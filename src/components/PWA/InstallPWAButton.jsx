@@ -4,7 +4,7 @@ import s from "@/components/Shared/Button/Button.module.scss";
 import { isInStandaloneMode, isIOS, isStandalone } from "@/functions/helper";
 import { useEffect, useState } from "react";
 
-const InstallPWAButton = () => {
+const InstallPWAButton = ({ playClickSound }) => {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isAppInstalled, setIsAppInstalled] = useState(false);
   const [showIosInstall, setShowIosInstall] = useState(false);
@@ -36,10 +36,12 @@ const InstallPWAButton = () => {
   }, []);
 
   async function handleInstallClick() {
+    playClickSound?.();
     if (!deferredPrompt) return false;
 
     deferredPrompt.prompt();
     await deferredPrompt.userChoice;
+    playClickSound?.();
 
     setDeferredPrompt(null);
   }
