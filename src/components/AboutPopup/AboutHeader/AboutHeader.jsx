@@ -4,8 +4,13 @@ import { SYMBOL_X } from "@/data/constants";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./AboutHeader.module.scss";
 
-const AboutHeader = () => {
+const AboutHeader = ({ playSound }) => {
   const toggleAboutModel = useGlobalStore((s) => s.toggleAboutModel);
+
+  function handleCloseButtonClick() {
+    toggleAboutModel(false);
+    playSound("click4");
+  }
 
   return (
     <header className={s.header}>
@@ -16,7 +21,7 @@ const AboutHeader = () => {
       <button
         type="button"
         className={s.closeBtn}
-        onClick={() => toggleAboutModel(false)}
+        onClick={handleCloseButtonClick}
         aria-label="Close About Popup"
       >
         {SYMBOL_X}

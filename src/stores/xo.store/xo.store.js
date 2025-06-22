@@ -105,18 +105,20 @@ export const useXOStore = create((set, get) => ({
   },
 
   // Power-Ups Management
-  usePowerUp: (rowIndex, columnIndex) => {
+  usePowerUp: ({ rowIndex, columnIndex, playSound }) => {
     const { board, powerUps, freezeSquare, bombSquares, handleSwapPowerUp } =
       get();
     const squareData = board[rowIndex][columnIndex];
-    const requiredData = { rowIndex, columnIndex, squareData };
+    const requiredData = { rowIndex, columnIndex, squareData, playSound };
     const { selectedPower } = powerUps;
 
     if (selectedPower === "Freeze") {
+      playSound("freeze");
       freezeSquare(requiredData);
     }
 
     if (selectedPower === "Bomb") {
+      playSound("bomb1", 0.5);
       bombSquares(requiredData);
     }
 
@@ -128,10 +130,11 @@ export const useXOStore = create((set, get) => ({
     get().handlePowerUpsCoolDown();
   },
 
-  selectPowerUp: ({ selectedPower, whoUsingPower }) => {
+  selectPowerUp: ({ selectedPower, whoUsingPower, playSound }) => {
     const { squaresToSwap, board } = get();
     const hasSelectSquare = squaresToSwap.length > 0;
 
+    playSound?.("unselect", 0.3);
     set({
       powerUps: { ...get().powerUps, selectedPower, whoUsingPower },
       board: hasSelectSquare ? unSelectSquare(board) : board,
@@ -139,11 +142,12 @@ export const useXOStore = create((set, get) => ({
     });
   },
 
-  unSelectPower: () => {
+  unSelectPower: (playSound) => {
     const { board, powerUps, squaresToSwap } = get();
     const isSwapPower = powerUps.selectedPower === "Swap";
     const hasSelectSquare = squaresToSwap.length > 0;
 
+    playSound?.("unselect", 0.3);
     set({
       powerUps: { ...powerUps, selectedPower: null, whoUsingPower: null },
       board: hasSelectSquare && isSwapPower ? unSelectAllSquares(board) : board,
@@ -252,8 +256,9 @@ export const useXOStore = create((set, get) => ({
   // Swap Power-Up
   handleSwapPowerUp: (requiredData) => {
     const { board, squaresToSwap, selectSquare, swapSquare } = get();
-    const isEmptySquare = requiredData.squareData.fillWith === "";
-    const isAlreadySelected = requiredData.squareData.swapSelected;
+    const { squareData, playSound } = requiredData;
+    const isEmptySquare = squareData.fillWith === "";
+    const isAlreadySelected = squareData.swapSelected;
     const isFirstSelection = squaresToSwap.length === 0;
     const isSecondSelection = squaresToSwap.length === 1;
 
@@ -262,17 +267,21 @@ export const useXOStore = create((set, get) => ({
     }
 
     if (isFirstSelection && !isSecondSelection) {
+      playSound("click4", 0.3);
       selectSquare(requiredData);
       return "Selected first square";
     }
 
     if (isAlreadySelected) {
       const newBoard = unSelectSquare(board);
+
+      playSound("unselect", 0.3);
       set({ board: newBoard, squaresToSwap: [] });
       return "Unselect squares";
     }
 
     if (isSecondSelection) {
+      playSound("swap1", 0.3);
       selectSquare(requiredData);
       swapSquare(requiredData);
     }

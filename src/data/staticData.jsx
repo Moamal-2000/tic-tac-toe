@@ -217,7 +217,9 @@ export const soundFiles = {
   click2: "/sounds/click-2.wav",
   click3: "/sounds/click-3.wav",
   click4: "/sounds/click-4.wav",
+  click5: "/sounds/click-5.wav",
   freeze: "/sounds/freeze-1.wav",
   swap1: "/sounds/swap-1.wav",
   swap2: "/sounds/swap-2.wav",
+  unselect: "/sounds/unselect.wav",
 };

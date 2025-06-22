@@ -6,7 +6,7 @@ import SvgIcon from "../SvgIcon";
 import s from "./GitHubButton.module.scss";
 
 const GitHubButton = () => {
-  const play = usePreloadSounds({ click4: soundFiles.click4 });
+  const playSound = usePreloadSounds({ click4: soundFiles.click4 });
 
   return (
     <a
@@ -15,7 +15,7 @@ const GitHubButton = () => {
       className={s.button}
       rel="noreferrer"
       title="Visit GitHub Repository"
-      onClick={() => play("click4")}
+      onClick={() => playSound("click4")}
     >
       <SvgIcon name="github" />
       GitHub

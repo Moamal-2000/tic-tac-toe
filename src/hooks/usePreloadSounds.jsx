@@ -11,17 +11,18 @@ const usePreloadSounds = (soundFiles) => {
     }
   }, []);
 
-  const play = (name) => {
+  const playSound = (name, volume = 1) => {
     const sound = soundsRef.current[name];
     if (!sound) return;
 
     sound.currentTime = 0;
+    sound.volume = volume;
     sound.play().catch((e) => {
       console.warn(`Failed to play ${name}:`, e);
     });
   };
 
-  return play;
+  return playSound;
 };
 
 export default usePreloadSounds;

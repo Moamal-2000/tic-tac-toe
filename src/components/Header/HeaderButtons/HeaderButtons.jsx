@@ -13,27 +13,27 @@ import s from "./HeaderButtons.module.scss";
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
   const toggleAboutModel = useGlobalStore((s) => s.toggleAboutModel);
-  const play = usePreloadSounds({ click4: soundFiles.click4 });
+  const playSound = usePreloadSounds({ click4: soundFiles.click4 });
 
   function handleAboutClick() {
     toggleAboutModel();
-    play("click4");
+    playSound("click4");
   }
 
   function handleResetClick() {
     resetStats();
-    play("click4");
+    playSound("click4");
   }
 
   return (
     <div className={s.headerButtons}>
       <div className={s.wrapper1}>
-        <FullscreenToggleButton playClickSound={() => play("click4")} />
-        <BoardSelector playClickSound={() => play("click4")} />
+        <FullscreenToggleButton playClickSound={() => playSound("click4")} />
+        <BoardSelector playClickSound={() => playSound("click4")} />
       </div>
 
       <div className={s.wrapper2}>
-        <InstallPWAButton playClickSound={() => play("click4")} />
+        <InstallPWAButton playClickSound={() => playSound("click4")} />
         <Button onClick={handleAboutClick}>About</Button>
         <Button onClick={handleResetClick}>Reset</Button>
       </div>

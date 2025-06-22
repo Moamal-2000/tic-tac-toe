@@ -1,5 +1,7 @@
 "use client";
 
+import { soundFiles } from "@/data/staticData";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./PowerUpButton.module.scss";
 
@@ -10,6 +12,7 @@ const PowerUpButton = ({
   const { selectPowerUp, powerUps, unSelectPower } = useXOStore((s) => s);
   const { selectedPower, whoUsingPower } = powerUps;
   const isSelected = selectedPower === name && whoUsingPower === player;
+  const playSound = usePreloadSounds({ unselect: soundFiles.unselect });
 
   const classes = [
     s.powerUp,
@@ -22,11 +25,11 @@ const PowerUpButton = ({
     if (!available) return;
 
     if (isSelected) {
-      unSelectPower();
+      unSelectPower(playSound);
       return;
     }
 
-    selectPowerUp({ selectedPower: name, whoUsingPower: player });
+    selectPowerUp({ selectedPower: name, whoUsingPower: player, playSound });
   }
 
   return (

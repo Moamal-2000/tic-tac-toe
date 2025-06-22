@@ -1,5 +1,7 @@
 "use client";
 
+import { soundFiles } from "@/data/staticData";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useRef } from "react";
 import AboutHeader from "./AboutHeader/AboutHeader";
@@ -13,6 +15,7 @@ const AboutPopup = () => {
   const { isAboutModelActive, toggleAboutModel } = useGlobalStore((s) => s);
   const aboutArticleRef = useRef(null);
   const showClass = isAboutModelActive ? s.show : "";
+  const playSound = usePreloadSounds({ click4: soundFiles.click4 });
 
   function handleOverlayClick(event) {
     const popupElement = aboutArticleRef.current;
@@ -20,6 +23,7 @@ const AboutPopup = () => {
 
     if (clickedInsidePopup) return;
     toggleAboutModel(false);
+    playSound("click4");
   }
 
   if (!isAboutModelActive) return null;
@@ -30,7 +34,7 @@ const AboutPopup = () => {
       onClick={handleOverlayClick}
     >
       <article className={s.aboutArticle} ref={aboutArticleRef}>
-        <AboutHeader />
+        <AboutHeader playSound={playSound} />
         <GameObjectiveCard />
         <HowToPlayCard />
         <WinningExplanationCard />
