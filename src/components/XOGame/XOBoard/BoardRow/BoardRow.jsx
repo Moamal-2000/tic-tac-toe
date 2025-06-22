@@ -1,4 +1,4 @@
-import { soundFiles } from "@/data/staticData";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
@@ -13,7 +13,7 @@ const BoardRow = ({ row, rowIndex }) => {
 
   function handleSquareClick(rowIndex, columnIndex) {
     if (!whoUsingPower) {
-      playSound("click4", 0.2);
+      playSound(BUTTON_SOUND, 0.3);
       fillSquare(rowIndex, columnIndex);
       return;
     }

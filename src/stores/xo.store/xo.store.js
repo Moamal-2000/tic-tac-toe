@@ -6,6 +6,13 @@ import {
   WINNER_POPUP_DURATION_MS,
 } from "@/data/constants";
 import {
+  BOMB_SOUND,
+  BUTTON_SOUND,
+  FREEZE_SOUND,
+  SWAP_SYMBOLS_SOUND,
+  UNSELECT_SOUND,
+} from "@/data/sounds";
+import {
   unSelectAllSquares,
   unSelectSquare,
   updateBoard,
@@ -113,12 +120,12 @@ export const useXOStore = create((set, get) => ({
     const { selectedPower } = powerUps;
 
     if (selectedPower === "Freeze") {
-      playSound("freeze");
+      playSound(FREEZE_SOUND);
       freezeSquare(requiredData);
     }
 
     if (selectedPower === "Bomb") {
-      playSound("bomb1", 0.5);
+      playSound(BOMB_SOUND, 0.5);
       bombSquares(requiredData);
     }
 
@@ -147,7 +154,7 @@ export const useXOStore = create((set, get) => ({
     const isSwapPower = powerUps.selectedPower === "Swap";
     const hasSelectSquare = squaresToSwap.length > 0;
 
-    playSound?.("unselect", 0.3);
+    playSound?.(UNSELECT_SOUND, 0.3);
     set({
       powerUps: { ...powerUps, selectedPower: null, whoUsingPower: null },
       board: hasSelectSquare && isSwapPower ? unSelectAllSquares(board) : board,
@@ -267,7 +274,7 @@ export const useXOStore = create((set, get) => ({
     }
 
     if (isFirstSelection && !isSecondSelection) {
-      playSound("click4", 0.3);
+      playSound(BUTTON_SOUND, 0.3);
       selectSquare(requiredData);
       return "Selected first square";
     }
@@ -275,13 +282,13 @@ export const useXOStore = create((set, get) => ({
     if (isAlreadySelected) {
       const newBoard = unSelectSquare(board);
 
-      playSound("unselect", 0.3);
+      playSound(UNSELECT_SOUND, 0.3);
       set({ board: newBoard, squaresToSwap: [] });
       return "Unselect squares";
     }
 
     if (isSecondSelection) {
-      playSound("swap1", 0.3);
+      playSound(SWAP_SYMBOLS_SOUND, 0.3);
       selectSquare(requiredData);
       swapSquare(requiredData);
     }

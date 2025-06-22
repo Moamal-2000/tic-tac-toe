@@ -1,6 +1,6 @@
 "use client";
 
-import { soundFiles } from "@/data/staticData";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useRef } from "react";
@@ -23,7 +23,7 @@ const AboutPopup = () => {
 
     if (clickedInsidePopup) return;
     toggleAboutModel(false);
-    playSound("click4");
+    playSound(BUTTON_SOUND);
   }
 
   if (!isAboutModelActive) return null;

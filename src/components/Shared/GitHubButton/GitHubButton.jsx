@@ -1,6 +1,6 @@
 "use client";
 
-import { soundFiles } from "@/data/staticData";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import SvgIcon from "../SvgIcon";
 import s from "./GitHubButton.module.scss";
@@ -15,7 +15,7 @@ const GitHubButton = () => {
       className={s.button}
       rel="noreferrer"
       title="Visit GitHub Repository"
-      onClick={() => playSound("click4")}
+      onClick={() => playSound(BUTTON_SOUND)}
     >
       <SvgIcon name="github" />
       GitHub

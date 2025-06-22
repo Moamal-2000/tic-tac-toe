@@ -2,7 +2,7 @@
 
 import InstallPWAButton from "@/components/PWA/InstallPWAButton";
 import Button from "@/components/Shared/Button/Button";
-import { soundFiles } from "@/data/staticData";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
@@ -17,23 +17,25 @@ const HeaderButtons = () => {
 
   function handleAboutClick() {
     toggleAboutModel();
-    playSound("click4");
+    playSound(BUTTON_SOUND);
   }
 
   function handleResetClick() {
     resetStats();
-    playSound("click4");
+    playSound(BUTTON_SOUND);
   }
 
   return (
     <div className={s.headerButtons}>
       <div className={s.wrapper1}>
-        <FullscreenToggleButton playClickSound={() => playSound("click4")} />
-        <BoardSelector playClickSound={() => playSound("click4")} />
+        <FullscreenToggleButton
+          playClickSound={() => playSound(BUTTON_SOUND)}
+        />
+        <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
       </div>
 
       <div className={s.wrapper2}>
-        <InstallPWAButton playClickSound={() => playSound("click4")} />
+        <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
         <Button onClick={handleAboutClick}>About</Button>
         <Button onClick={handleResetClick}>Reset</Button>
       </div>

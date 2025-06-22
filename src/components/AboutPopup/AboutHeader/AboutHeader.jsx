@@ -1,6 +1,7 @@
 "use client";
 
 import { SYMBOL_X } from "@/data/constants";
+import { BUTTON_SOUND } from "@/data/sounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./AboutHeader.module.scss";
 
@@ -9,7 +10,7 @@ const AboutHeader = ({ playSound }) => {
 
   function handleCloseButtonClick() {
     toggleAboutModel(false);
-    playSound("click4");
+    playSound(BUTTON_SOUND);
   }
 
   return (
