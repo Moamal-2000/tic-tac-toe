@@ -2,9 +2,10 @@
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import {
-  DRAW_SOUND_EFFECT,
+  DRAW_SOUND,
+  getRandomSound,
   soundFiles,
-  WINNER_SOUND_EFFECT,
+  WINNER_SOUNDS,
 } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
@@ -20,11 +21,11 @@ const WinnerPopUp = () => {
 
   if (isWinnerPopupVisible) {
     if (isDraw) {
-      playSound(DRAW_SOUND_EFFECT, 0.1);
+      playSound(DRAW_SOUND, 0.1);
     }
 
     if (isP1Win || isP2Win) {
-      playSound(WINNER_SOUND_EFFECT, 0.1);
+      playSound(...getRandomSound(...WINNER_SOUNDS));
     }
   }
 

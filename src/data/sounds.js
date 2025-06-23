@@ -22,7 +22,22 @@ export const soundFiles = {
 export const BUTTON_SOUND = "click4";
 export const UNSELECT_SOUND = "unselect";
 export const FREEZE_SOUND = "freeze";
-export const BOMB_SOUND = "bomb1";
 export const SWAP_SYMBOLS_SOUND = "swap1";
-export const WINNER_SOUND_EFFECT = "victory2";
-export const DRAW_SOUND_EFFECT = "victoryOrTie";
+export const DRAW_SOUND = "victoryOrTie";
+
+// [soundName, soundVolume]
+export const BOMB_SOUNDS = [
+  ["bomb1", 0.25],
+  ["bomb2", 1],
+];
+export const WINNER_SOUNDS = [
+  ["victory2", 0.1],
+  ["victory4", 0.2],
+];
+
+export function getRandomSound(...sounds) {
+  const randomNumber = Math.floor(Math.random() * sounds.length);
+  const sound = sounds[randomNumber][0];
+  const volume = sounds[randomNumber][1];
+  return [sound, volume];
+}
