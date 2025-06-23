@@ -17,6 +17,7 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
   - **Freeze**: Blocks a square permanently
   - **Bomb**: Destroys an area of 9 tiles
   - **Swap**: Exchange your symbol with an opponent’s
+- Sound effects for player actions and power-ups
 - Fully responsive and mobile-friendly
 - Accessible with keyboard and screen reader support
 - Built as a Progressive Web App (PWA)
