@@ -1,6 +1,6 @@
 import Header from "@/components/Header/Header";
 import PWAInit from "@/components/PWA/PWAInit";
-import UpdateNotification from "@/components/Shared/UpdateNotification/UpdateNotification";
+import UpdateNotification from "@/components/PWA/UpdateNotification/UpdateNotification";
 import { METADATA } from "@/data/metadata";
 import "../styles/globals.scss";
 

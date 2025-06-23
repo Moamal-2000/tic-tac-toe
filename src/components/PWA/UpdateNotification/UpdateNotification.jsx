@@ -1,9 +1,9 @@
 "use client";
 
+import Button from "@/components/Shared/Button/Button";
 import { IS_PRODUCTION } from "@/data/constants";
 import { refreshPage } from "@/functions/helper";
 import { useEffect, useState } from "react";
-import Button from "../Button/Button";
 import s from "./UpdateNotification.module.scss";
 
 export default function UpdateNotification() {
