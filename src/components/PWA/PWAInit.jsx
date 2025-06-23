@@ -19,7 +19,7 @@ async function registerServiceWorker() {
 }
 
 async function initializePWA() {
-  // if (!IS_PRODUCTION) return;
+  if (!IS_PRODUCTION) return;
   const isPageFullyLoaded = document.readyState === "complete";
 
   if (isPageFullyLoaded) {

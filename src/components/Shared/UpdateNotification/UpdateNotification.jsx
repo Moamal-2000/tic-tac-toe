@@ -1,5 +1,6 @@
 "use client";
 
+import { IS_PRODUCTION } from "@/data/constants";
 import { refreshPage } from "@/functions/helper";
 import { useEffect, useState } from "react";
 import Button from "../Button/Button";
@@ -23,15 +24,14 @@ export default function UpdateNotification() {
     showNotification && (
       <div className={s.updateNotification}>
         <span>A new version is available!</span>
-        <Button onClick={handleRefreshPage} className={s.refreshButton}>
-          Refresh
-        </Button>
+
+        <Button onClick={handleRefreshPage}>Refresh</Button>
       </div>
     )
   );
 }
 async function registerSWWithUpdate(setShowNotification) {
-  if (!("serviceWorker" in navigator)) return;
+  if (!("serviceWorker" in navigator) || !IS_PRODUCTION) return;
 
   try {
     const registration = await navigator.serviceWorker.register("/sw.js");
