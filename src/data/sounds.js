@@ -1,33 +1,25 @@
 export const soundFiles = {
-  click4: "/sounds/click-4.mp3",
+  click: "/sounds/click.mp3",
   unselect: "/sounds/unselect.mp3",
-  freeze: "/sounds/freeze-1.mp3",
-  bomb1: "/sounds/bomb-1.mp3",
-  bomb2: "/sounds/bomb-2.mp3",
-  swap1: "/sounds/swap-1.mp3",
-  swap2: "/sounds/swap-2.mp3",
+  freeze: "/sounds/freeze.mp3",
+  bomb: "/sounds/bomb.mp3",
+  swap: "/sounds/swap.mp3",
   victory1: "/sounds/victory-1.mp3",
   victory2: "/sounds/victory-2.mp3",
   draw: "/sounds/draw.mp3",
 };
 
-export const BUTTON_SOUND = "click4";
+export const BUTTON_SOUND = "click";
 export const UNSELECT_SOUND = "unselect";
 export const FREEZE_SOUND = "freeze";
+export const BOMB_SOUND = "bomb";
+export const SWAP_SOUND = "swap";
 export const DRAW_SOUND = "draw";
 
 // [soundName, soundVolume]
-export const BOMB_SOUNDS = [
-  ["bomb1", 0.25],
-  ["bomb2", 1],
-];
-export const SWAP_SOUNDS = [
-  ["swap1", 0.3],
-  ["swap2", 0.3],
-];
 export const WINNER_SOUNDS = [
-  ["victory2", 0.1],
-  ["victory4", 0.2],
+  ["victory1", 0.1],
+  ["victory2", 0.2],
 ];
 
 export function getRandomSound(...sounds) {

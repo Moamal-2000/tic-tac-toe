@@ -6,11 +6,10 @@ import {
   WINNER_POPUP_DURATION_MS,
 } from "@/data/constants";
 import {
-  BOMB_SOUNDS,
+  BOMB_SOUND,
   BUTTON_SOUND,
   FREEZE_SOUND,
-  getRandomSound,
-  SWAP_SOUNDS,
+  SWAP_SOUND,
   UNSELECT_SOUND,
 } from "@/data/sounds";
 import {
@@ -126,7 +125,7 @@ export const useXOStore = create((set, get) => ({
     }
 
     if (selectedPower === "Bomb") {
-      playSound(...getRandomSound(...BOMB_SOUNDS));
+      playSound(BOMB_SOUND, 0.25);
       bombSquares(requiredData);
       return;
     }
@@ -300,7 +299,7 @@ export const useXOStore = create((set, get) => ({
     }
 
     if (isSecondSelection) {
-      playSound(...getRandomSound(...SWAP_SOUNDS));
+      playSound(SWAP_SOUND, 0.3);
       selectSquare(requiredData);
       swapSquare(requiredData);
     }

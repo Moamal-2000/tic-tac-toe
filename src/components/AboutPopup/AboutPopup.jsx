@@ -15,7 +15,7 @@ const AboutPopup = () => {
   const { isAboutModelActive, toggleAboutModel } = useGlobalStore((s) => s);
   const aboutArticleRef = useRef(null);
   const showClass = isAboutModelActive ? s.show : "";
-  const playSound = usePreloadSounds({ click4: soundFiles.click4 });
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleOverlayClick(event) {
     const popupElement = aboutArticleRef.current;

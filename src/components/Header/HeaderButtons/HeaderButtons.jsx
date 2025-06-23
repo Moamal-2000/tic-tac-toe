@@ -13,7 +13,7 @@ import s from "./HeaderButtons.module.scss";
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
   const toggleAboutModel = useGlobalStore((s) => s.toggleAboutModel);
-  const playSound = usePreloadSounds({ click4: soundFiles.click4 });
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleAboutClick() {
     toggleAboutModel();
