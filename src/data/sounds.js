@@ -14,13 +14,16 @@ export const soundFiles = {
 export const BUTTON_SOUND = "click4";
 export const UNSELECT_SOUND = "unselect";
 export const FREEZE_SOUND = "freeze";
-export const SWAP_SYMBOLS_SOUND = "swap1";
 export const DRAW_SOUND = "draw";
 
 // [soundName, soundVolume]
 export const BOMB_SOUNDS = [
   ["bomb1", 0.25],
   ["bomb2", 1],
+];
+export const SWAP_SOUNDS = [
+  ["swap1", 0.3],
+  ["swap2", 0.3],
 ];
 export const WINNER_SOUNDS = [
   ["victory2", 0.1],

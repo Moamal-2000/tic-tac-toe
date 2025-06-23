@@ -10,7 +10,7 @@ import {
   BUTTON_SOUND,
   FREEZE_SOUND,
   getRandomSound,
-  SWAP_SYMBOLS_SOUND,
+  SWAP_SOUNDS,
   UNSELECT_SOUND,
 } from "@/data/sounds";
 import {
@@ -300,7 +300,7 @@ export const useXOStore = create((set, get) => ({
     }
 
     if (isSecondSelection) {
-      playSound(SWAP_SYMBOLS_SOUND, 0.3);
+      playSound(...getRandomSound(...SWAP_SOUNDS));
       selectSquare(requiredData);
       swapSquare(requiredData);
     }
