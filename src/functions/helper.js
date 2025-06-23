@@ -34,3 +34,7 @@ export function enterFullScreen() {
     htmlElement.webkitRequestFullscreen();
   else if (htmlElement.msRequestFullscreen) htmlElement.msRequestFullscreen();
 }
+
+export function refreshPage() {
+  window.location.reload();
+}
