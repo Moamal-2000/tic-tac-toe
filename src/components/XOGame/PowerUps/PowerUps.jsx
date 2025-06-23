@@ -35,6 +35,7 @@ const PowerUps = ({ player }) => {
           winner,
           isPlayer1,
           isPlayer2,
+          powerUps,
         });
 
         return (

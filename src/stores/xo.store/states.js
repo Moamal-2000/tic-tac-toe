@@ -17,6 +17,7 @@ export const initialGameStates = ({
     player2: initialPlayerPowerUps(boardSize),
     selectedPower: null,
     whoUsingPower: null,
+    hasActivePowerUp: false,
   },
 });
 

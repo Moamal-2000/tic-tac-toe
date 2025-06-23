@@ -8,7 +8,7 @@ import s from "./BoardRow.module.scss";
 const BoardRow = ({ row, rowIndex }) => {
   const { hasGameStart, fillSquare, powerUps, usePowerUp, playerTurn } =
     useXOStore((s) => s);
-  const { whoUsingPower } = powerUps;
+  const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
 
   function handleSquareClick(rowIndex, columnIndex) {
@@ -28,7 +28,8 @@ const BoardRow = ({ row, rowIndex }) => {
           hasGameStart,
           squareData,
           playerTurn,
-          powerUps,
+          selectedPower,
+          hasActivePowerUp,
         });
 
         return (

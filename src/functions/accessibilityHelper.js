@@ -15,17 +15,17 @@ export function shouldDisableSquare({
   hasGameStart,
   squareData,
   playerTurn,
-  powerUps,
+  selectedPower,
+  hasActivePowerUp,
 }) {
   const { fillWith, isBombed } = squareData;
-  const { selectedPower } = powerUps;
 
   const isEmpty = fillWith === "";
   const isPlayerSymbol = fillWith === playerTurn;
   const isOpponentSymbol = !isEmpty && !isPlayerSymbol;
   const noPowerAndFilled = !selectedPower && !isEmpty;
 
-  if (!hasGameStart || noPowerAndFilled || isBombed) {
+  if (!hasGameStart || noPowerAndFilled || isBombed || hasActivePowerUp) {
     return true;
   }
 
@@ -48,6 +48,7 @@ export function shouldDisablePowerUp({
   winner,
   isPlayer1,
   isPlayer2,
+  powerUps,
 }) {
   const numberOfPlacedSymbols = getPlacedSymbolCount(board);
   const hasOpponentSymbol = opponentSymbolExists(board, playerTurn);
@@ -57,6 +58,7 @@ export function shouldDisablePowerUp({
   const freezeCondition = powerName === "Freeze" && !hasOpponentSymbol;
 
   return (
+    powerUps.hasActivePowerUp ||
     !available ||
     isPlayer1 ||
     isPlayer2 ||
