@@ -1,4 +1,4 @@
-const CACHE_NAME = "tic-tac-toe-v11";
+const CACHE_NAME = "tic-tac-toe-v12";
 
 const urlsToCache = ["/", "/manifest.json", "/PWA/icons/maskable-icon.webp"];
 
