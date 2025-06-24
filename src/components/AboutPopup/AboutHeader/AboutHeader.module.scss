@@ -6,7 +6,7 @@
   align-items: center;
   margin-bottom: 35px;
   padding-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 1px solid #232831;
 }
 
 @include m.small {
@@ -36,10 +36,10 @@
 }
 
 .header .closeBtn {
-  background: rgba(255, 255, 255, .08);
-  border: solid 1px rgba(255, 255, 255, .15);
+  background: #232831;
+  border: solid 1px #444950;
   outline: solid 1px transparent;
-  color: rgba(255, 255, 255, .7);
+  color: #bdbfc2;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -55,13 +55,13 @@
     color .3s ease;
 
   &:hover {
-    background: rgba(255, 107, 107, .25);
+    background: #4c2c33;
     border-color: #ff6b6b;
     color: #ff6b6b;
   }
 
   &:focus-visible {
-    background: rgba(255, 107, 107, .25);
+    background: #4c2c33;
     border-color: #ff6b6b;
     outline-color: #fff;
     color: #ff6b6b;
