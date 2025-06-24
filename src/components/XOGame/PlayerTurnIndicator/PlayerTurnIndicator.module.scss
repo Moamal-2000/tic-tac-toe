@@ -66,17 +66,19 @@
   border: 3px solid #ff6b6b;
   border-radius: 50%;
   @include m.center-x-y;
-  font-size: 1.75rem;
-  padding-bottom: 5px;
   position: relative;
 }
 
 .indicator .player.p1 .symbol {
-  font-size: 2rem;
   font-weight: 400;
   border-color: #ff6b6b;
   color: #ff6b6b;
   background: #3b333f;
+}
+
+.indicator .player.p1 .symbol>svg {
+  width: 30px;
+  height: 30px;
 }
 
 .indicator .player.p2 .symbol {
@@ -84,8 +86,11 @@
   border-color: #4ecdc4;
   color: #4ecdc4;
   background: #293d48;
-  position: relative;
-  z-index: 1;
+}
+
+.indicator .player.p2 .symbol>svg {
+  width: 34px;
+  height: 34px;
 }
 
 .indicator .player .symbol::before,
@@ -120,16 +125,6 @@
 .indicator:not(.disable) .player.p2.active .symbol::after {
   border-color: #4ecdc4;
   animation: pulse 1.3s .15s ease infinite;
-}
-
-.indicator .player.p1 .symbol .wrapper {
-  position: relative;
-  top: 3px;
-}
-
-.indicator .player.p2 .symbol .wrapper {
-  position: relative;
-  top: 1px;
 }
 
 .indicator .player .label {
