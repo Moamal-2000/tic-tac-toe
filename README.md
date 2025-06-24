@@ -37,11 +37,11 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/advanced-tic-tac-toe.git
+git clone git@github.com:Moamal-2000/tic-tac-toe.git
 ```
 
 ```bash
-cd advanced-tic-tac-toe
+cd tic-tac-toe
 ```
 
 ```bash
