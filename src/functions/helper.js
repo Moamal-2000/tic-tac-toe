@@ -34,13 +34,12 @@ export function isFullScreenSupported() {
 export function enterFullScreen() {
   if (typeof document === "undefined") return false;
 
-  const htmlElement = document.documentElement;
+  const root = document.documentElement;
 
-  if (htmlElement.requestFullscreen) htmlElement.requestFullscreen();
-  else if (htmlElement.mozRequestFullScreen) htmlElement.mozRequestFullScreen();
-  else if (htmlElement.webkitRequestFullscreen)
-    htmlElement.webkitRequestFullscreen();
-  else if (htmlElement.msRequestFullscreen) htmlElement.msRequestFullscreen();
+  if (root.requestFullscreen) root.requestFullscreen();
+  else if (root.mozRequestFullScreen) root.mozRequestFullScreen();
+  else if (root.webkitRequestFullscreen) root.webkitRequestFullscreen();
+  else if (root.msRequestFullscreen) root.msRequestFullscreen();
 }
 
 export function refreshPage() {
