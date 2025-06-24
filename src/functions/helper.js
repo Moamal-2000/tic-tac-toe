@@ -23,6 +23,14 @@ export function isInStandaloneMode() {
   );
 }
 
+export function isFullScreenSupported() {
+  return (
+    document.documentElement.requestFullscreen ||
+    document.documentElement.webkitRequestFullscreen ||
+    document.documentElement.msRequestFullscreen
+  );
+}
+
 export function enterFullScreen() {
   if (typeof document === "undefined") return false;
 

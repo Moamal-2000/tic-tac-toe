@@ -2,7 +2,7 @@
 
 import SvgIcon from "@/components/Shared/SvgIcon";
 import { KEY_DEBOUNCE_DELAY_MS } from "@/data/constants";
-import { enterFullScreen } from "@/functions/helper";
+import { enterFullScreen, isFullScreenSupported } from "@/functions/helper";
 import useFunctionOnKey from "@/hooks/useFunctionOnKey";
 import { useState } from "react";
 import s from "./FullscreenToggleButton.module.scss";
@@ -15,19 +15,21 @@ const FullscreenToggleButton = ({ playClickSound }) => {
   function toggleFullScreen() {
     playClickSound?.();
     setIsFullScreen((prevValue) => !prevValue);
-    if (document.fullscreenElement) document.exitFullscreen();
+    if (document?.fullscreenElement) document?.exitFullscreen();
     enterFullScreen();
   }
 
   return (
-    <button
-      type="button"
-      className={s.fullscreenBtn}
-      title={title}
-      onClick={toggleFullScreen}
-    >
-      <SvgIcon name={isFullScreen ? "compress" : "expand"} />
-    </button>
+    isFullScreenSupported() && (
+      <button
+        type="button"
+        className={s.fullscreenBtn}
+        title={title}
+        onClick={toggleFullScreen}
+      >
+        <SvgIcon name={isFullScreen ? "compress" : "expand"} />
+      </button>
+    )
   );
 };
 
