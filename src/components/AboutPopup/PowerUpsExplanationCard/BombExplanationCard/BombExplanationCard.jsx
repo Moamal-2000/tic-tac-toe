@@ -1,6 +1,6 @@
 import ExampleBoard from "@/components/Shared/ExampleBoard/ExampleBoard";
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/data/constants";
 import { BOARD_EXAMPLES } from "@/data/staticData";
 
 const BombExplanationCard = () => {
@@ -21,19 +21,19 @@ const BombExplanationCard = () => {
 
       <p style={{ marginTop: "20px" }}>
         <strong>
-          Player 1 <b>({SYMBOL_O})</b>
+          Player 1 <b>({SYMBOL_O_TEXT})</b>
         </strong>{" "}
         is about to deploy the <strong>Bomb</strong> power-up, targeting the
-        marked <strong data-symbol="x">{SYMBOL_X}</strong> in the second row,
-        second column. Notice the symbols surrounding it.
+        marked <strong data-symbol="x">{SYMBOL_X_TEXT}</strong> in the second
+        row, second column. Notice the symbols surrounding it.
       </p>
 
       <ExampleBoard boardData={BOARD_EXAMPLES.afterBombBoard} />
 
       <p style={{ marginTop: "20px" }}>
-        The <strong data-symbol="x">{SYMBOL_X}</strong> and all its adjacent
-        symbols have been successfully cleared, opening up new strategic
-        possibilities for both players.
+        The <strong data-symbol="x">{SYMBOL_X_TEXT}</strong> and all its
+        adjacent symbols have been successfully cleared, opening up new
+        strategic possibilities for both players.
       </p>
     </InfoCard>
   );

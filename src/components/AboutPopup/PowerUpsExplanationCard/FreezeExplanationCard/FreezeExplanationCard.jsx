@@ -1,6 +1,6 @@
 import ExampleBoard from "@/components/Shared/ExampleBoard/ExampleBoard";
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/data/constants";
 import { BOARD_EXAMPLES } from "@/data/staticData";
 import s from "./FreezeExplanationCard.module.scss";
 
@@ -35,18 +35,18 @@ const FreezeExplanationCard = () => {
       <p className={s.freezeExampleDescription}>
         In this example,{" "}
         <strong>
-          Player 1 <b>({SYMBOL_O})</b>
+          Player 1 <b>({SYMBOL_O_TEXT})</b>
         </strong>{" "}
         has used the Freeze power-up on{" "}
         <strong>
           Player 2's{" "}
           <b>
-            (<b data-symbol="x">{SYMBOL_X}</b>){" "}
+            (<b data-symbol="x">{SYMBOL_X_TEXT}</b>){" "}
           </b>
         </strong>{" "}
         symbol in the <strong>top-middle</strong> cell. This{" "}
         <strong>
-          <b data-symbol="x">{SYMBOL_X}</b>
+          <b data-symbol="x">{SYMBOL_X_TEXT}</b>
         </strong>{" "}
         is now <strong>frozen</strong>, making it unusable in future moves and
         blocking Player 2 from completing <strong>vertical</strong>,{" "}

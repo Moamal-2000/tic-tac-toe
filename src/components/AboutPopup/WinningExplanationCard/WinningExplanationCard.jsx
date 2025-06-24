@@ -1,6 +1,6 @@
 import ExampleBoard from "@/components/Shared/ExampleBoard/ExampleBoard";
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
-import { SYMBOL_O } from "@/data/constants";
+import { SYMBOL_O_TEXT } from "@/data/constants";
 import { BOARD_EXAMPLES } from "@/data/staticData";
 
 const WinningExplanationCard = () => {
@@ -9,7 +9,7 @@ const WinningExplanationCard = () => {
       <p>
         Here's a clear illustration of how{" "}
         <strong>
-          Player 1 <b>({SYMBOL_O})</b>
+          Player 1 <b>({SYMBOL_O_TEXT})</b>
         </strong>{" "}
         can achieve victory with a diagonal connection on a standard 4x4 board:
       </p>
@@ -19,7 +19,7 @@ const WinningExplanationCard = () => {
       <p style={{ marginTop: "20px" }}>
         In this scenario, <strong>Player 1</strong> successfully connects Four{" "}
         <strong>
-          <b>{SYMBOL_O}</b> symbols
+          <b>{SYMBOL_O_TEXT}</b> symbols
         </strong>{" "}
         along a diagonal path, securing the win.
       </p>

@@ -1,4 +1,4 @@
-import { SYMBOL_O } from "@/data/constants";
+import SvgIcon from "@/components/Shared/SvgIcon";
 import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
 import { getSquareClasses } from "@/functions/classNames";
 import { useXOStore } from "@/stores/xo.store/xo.store";
@@ -30,8 +30,7 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData)}
     >
-      {fillWith === SYMBOL_O && <span className={s.symbol}>{fillWith}</span>}
-      {fillWith !== SYMBOL_O && fillWith}
+      {fillWith && <SvgIcon name={`${fillWith}-symbol`} />}
       {isFrozen && <span className={s.freeze} />}
       {isBombed && <span className={s.bomb} />}
       {shouldSwap && <span className={s.swap} />}

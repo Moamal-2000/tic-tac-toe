@@ -22,8 +22,7 @@
   transition:
     background .3s ease,
     border-color .3s ease,
-    box-shadow .3s ease,
-    text-shadow .3s ease;
+    box-shadow .3s ease;
 
   &.x4 {
     --size: 70px;
@@ -127,33 +126,89 @@
 .square.playerX {
   border-color: #4ecdc4;
   background: #324a54;
-  color: #4ecdc4;
-  text-shadow: 0 0 20px #5adad1;
   box-shadow: 0 0 15px rgba(78, 205, 196, .5);
+}
 
-  &.x4 {
-    font-size: 1.8rem;
+.square.playerX>svg {
+  --x-symbol-size: 46px;
+  width: var(--x-symbol-size);
+  height: var(--x-symbol-size);
+}
+
+@media (max-width: 500px) {
+  .square.playerX>svg {
+    --x-symbol-size: 60%;
   }
+}
 
-  &.x5 {
-    font-size: 1.5rem;
+.square.playerX.x4>svg {
+  --x-symbol-size: 35px;
+}
+
+@media (max-width: 500px) {
+  .square.playerX.x4>svg {
+    --x-symbol-size: 60%;
+  }
+}
+
+.square.playerX.x5>svg {
+  --x-symbol-size: 30px;
+}
+
+@include m.medium {
+  .square.playerX.x5>svg {
+    --x-symbol-size: 26px;
+  }
+}
+
+@media (max-width: 500px) {
+  .square.playerX.x5>svg {
+    --x-symbol-size: 60%;
   }
 }
 
 .square.playerO {
   border-color: #ff6b6b;
-  background: rgba(255, 128, 128, .2);
-  color: #ff6b6b;
-  text-shadow: 0 0 20px #fd7272;
+  background: #4f3c46;
   box-shadow: 0 0 15px rgba(255, 107, 107, .5);
   font-size: 3.8rem;
+}
 
-  &.x4 {
-    font-size: 3.6rem;
+.square.playerO>svg {
+  --o-symbol-size: 40px;
+  width: var(--o-symbol-size);
+  height: var(--o-symbol-size);
+}
+
+@media (max-width: 500px) {
+  .square.playerO>svg {
+    --o-symbol-size: 53%;
   }
+}
 
-  &.x5 {
-    font-size: 2.9rem;
+.square.playerO.x4>svg {
+  --o-symbol-size: 28px;
+}
+
+@media (max-width: 500px) {
+  .square.playerO.x4>svg {
+    --o-symbol-size: 53%;
+  }
+}
+
+.square.playerO.x5>svg {
+  --o-symbol-size: 25px;
+}
+
+@include m.medium {
+  .square.playerO.x5>svg {
+    --o-symbol-size: 21px;
+  }
+}
+
+@media (max-width: 500px) {
+  .square.playerO.x5>svg {
+    --o-symbol-size: 56%;
   }
 }
 
@@ -161,18 +216,22 @@
   outline: 3px dashed #ffd93d;
   border-color: transparent;
   outline-offset: -2px;
-  color: #ffd93d;
   background: #504d38;
   box-shadow: 0 0 10px rgba(255, 217, 61, .5);
-  text-shadow: 0 0 20px #ffd93d;
+
+  &>svg {
+    stroke: #ffd93d;
+  }
 }
 
 .square:not(:disabled, .select).swapHover:where(:hover, :focus-visible) {
-  color: #ffd93d;
   background: #504d38;
   border-color: #95843b;
   box-shadow: 0 0 10px rgba(255, 217, 61, .5);
-  text-shadow: 0 0 20px #ffd93d;
+
+  &>svg {
+    stroke: #ffd93d;
+  }
 }
 
 @media (hover: none) and (pointer: coarse) {

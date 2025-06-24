@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "./constants";
+import { SYMBOL_O, SYMBOL_O_TEXT, SYMBOL_X, SYMBOL_X_TEXT } from "./constants";
 
 export const POWER_UPS_BUTTONS = [
   {
@@ -23,13 +23,13 @@ export const HOW_TO_PLAY_LIST = [
     content: (
       <p>
         <strong>
-          Player 1 <b>({SYMBOL_O})</b>
+          Player 1 <b>({SYMBOL_O_TEXT})</b>
         </strong>{" "}
         always starts the game by placing their symbol first.{" "}
         <strong>
           Player 2{" "}
           <b>
-            (<b data-symbol="x">{SYMBOL_X}</b>)
+            (<b data-symbol="x">{SYMBOL_X_TEXT}</b>)
           </b>
         </strong>{" "}
         follows.
@@ -209,4 +209,3 @@ export const BOARD_EXAMPLES = {
     ],
   ],
 };
-
