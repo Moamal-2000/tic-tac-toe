@@ -24,6 +24,8 @@ export function isInStandaloneMode() {
 }
 
 export function isFullScreenSupported() {
+  if (typeof document === "undefined") return true;
+
   return (
     document.documentElement.requestFullscreen ||
     document.documentElement.webkitRequestFullscreen ||
