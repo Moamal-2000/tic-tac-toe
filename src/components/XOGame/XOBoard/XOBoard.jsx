@@ -11,11 +11,11 @@ const XOBoard = () => {
 
   return (
     <div className={`${s.board} ${playerTurnClass} ${drawClass}`}>
+      <WinnerPopUp />
+
       {board.map((row, rowIndex) => (
         <BoardRow key={rowIndex} row={row} rowIndex={rowIndex} />
       ))}
-
-      <WinnerPopUp />
     </div>
   );
 };

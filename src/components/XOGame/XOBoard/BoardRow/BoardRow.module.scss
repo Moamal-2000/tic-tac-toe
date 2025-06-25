@@ -3,11 +3,4 @@
 .row {
   display: flex;
   align-items: center;
-  gap: 6px;
-}
-
-@include m.medium {
-  .row {
-    gap: 4px;
-  }
 }

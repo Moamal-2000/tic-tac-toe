@@ -75,6 +75,16 @@
   }
 }
 
+.square:not(:last-child) {
+  margin-right: 6px;
+}
+
+@include m.medium {
+  .square:not(:last-child) {
+    margin-right: 4px;
+  }
+}
+
 .freeze {
   position: absolute;
   inset: 0;

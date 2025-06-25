@@ -2,7 +2,6 @@
 
 .board {
   display: grid;
-  gap: 6px;
   padding: 16px;
   background: #232b37;
   border-radius: 16px;
@@ -34,6 +33,15 @@
 @include m.medium {
   .board {
     padding: 12px;
-    gap: 4px;
+  }
+}
+
+.board>div:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+@include m.medium {
+  .board>div:not(:last-child) {
+    margin-bottom: 4px;
   }
 }
