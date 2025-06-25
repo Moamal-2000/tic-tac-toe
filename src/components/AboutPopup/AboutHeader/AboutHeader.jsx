@@ -15,9 +15,7 @@ const AboutHeader = ({ playSound }) => {
 
   return (
     <header className={s.header}>
-      <h2 className={s.title}>
-        About <br /> Tic Tac Toe
-      </h2>
+      <h2 className={s.title}>About Tic Tac Toe</h2>
 
       <button
         type="button"

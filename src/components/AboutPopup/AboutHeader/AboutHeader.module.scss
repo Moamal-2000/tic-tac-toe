@@ -6,6 +6,7 @@
   align-items: center;
   margin-bottom: 35px;
   padding-bottom: 25px;
+  gap: 20px;
   border-bottom: 1px solid #232831;
 }
 
@@ -30,8 +31,8 @@
 }
 
 @include m.very-small {
-  .header .title>br {
-    display: block;
+  .header .title {
+    font-size: clamp(1.2rem, 6.6vw, 2rem);
   }
 }
 
