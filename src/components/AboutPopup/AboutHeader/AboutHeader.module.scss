@@ -39,7 +39,6 @@
   background: #232831;
   border: solid 1px #444950;
   outline: solid 1px transparent;
-  color: #bdbfc2;
   width: 45px;
   height: 45px;
   border-radius: 50%;
@@ -51,19 +50,27 @@
   transition:
     background .3s ease,
     border-color .3s ease,
-    outline-color .3s ease,
-    color .3s ease;
+    outline-color .3s ease;
 
   &:hover {
     background: #4c2c33;
     border-color: #ff6b6b;
-    color: #ff6b6b;
   }
 
   &:focus-visible {
     background: #4c2c33;
     border-color: #ff6b6b;
     outline-color: #fff;
-    color: #ff6b6b;
   }
+}
+
+.header .closeBtn>svg {
+  width: 20px;
+  height: 20px;
+  stroke: #bdbfc2;
+  transition: color .3s ease;
+}
+
+.header .closeBtn:where(:hover, :focus-visible)>svg {
+  stroke: #ff6b6b;
 }

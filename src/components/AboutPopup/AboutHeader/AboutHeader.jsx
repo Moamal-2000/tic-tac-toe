@@ -1,6 +1,6 @@
 "use client";
 
-import { SYMBOL_X_TEXT } from "@/data/constants";
+import SvgIcon from "@/components/Shared/SvgIcon";
 import { BUTTON_SOUND } from "@/data/sounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./AboutHeader.module.scss";
@@ -25,7 +25,7 @@ const AboutHeader = ({ playSound }) => {
         onClick={handleCloseButtonClick}
         aria-label="Close About Popup"
       >
-        {SYMBOL_X_TEXT}
+        <SvgIcon name="x-symbol" />
       </button>
     </header>
   );
