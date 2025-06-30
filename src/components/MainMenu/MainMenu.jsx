@@ -13,8 +13,8 @@ const MainMenu = () => {
   return (
     <div className={s.menuOverlay}>
       <section className={s.mainMenu}>
-        {gameMode === "multiplayer" && <MainMenuButtons />}
-        {gameMode !== "multiplayer" && <MultiPlayerMenu />}
+        {gameMode !== "multiplayer" && <MainMenuButtons />}
+        {gameMode === "multiplayer" && <MultiPlayerMenu />}
       </section>
     </div>
   );

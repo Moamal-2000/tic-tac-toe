@@ -43,8 +43,6 @@ export const iconsData = [
     name: "user",
     icon: (
       <svg
-        width="24"
-        height="24"
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
@@ -60,8 +58,6 @@ export const iconsData = [
     name: "users",
     icon: (
       <svg
-        width="24"
-        height="24"
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"
@@ -71,6 +67,21 @@ export const iconsData = [
         <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M22 21v-2a4 4 0 0 0-3-4M16 3a4 4 0 0 1 0 8" />
+      </svg>
+    ),
+  },
+  {
+    name: "arrowLeft",
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
+        <path d="M19 12H5"></path>
+        <path d="m12 19-7-7 7-7"></path>
       </svg>
     ),
   },
