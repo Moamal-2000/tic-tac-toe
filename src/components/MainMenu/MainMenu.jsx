@@ -21,10 +21,8 @@ const MainMenu = () => {
               key={`${label}-${id}`}
               onClick={() => updateGameMode(label)}
             >
-              <div className={s.iconHolder}>
-                <SvgIcon name={iconName} />
-              </div>
-              <span>{label}</span>
+              <SvgIcon name={iconName} />
+              {label}
             </button>
           ))}
         </div>
