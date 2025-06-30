@@ -209,3 +209,16 @@ export const BOARD_EXAMPLES = {
     ],
   ],
 };
+
+export const GAME_MODES_BUTTONS = [
+  {
+    label: "singleplayer",
+    iconName: "user",
+    id: 1,
+  },
+  {
+    label: "multiplayer",
+    iconName: "users",
+    id: 2,
+  },
+];

@@ -8,4 +8,5 @@ export const useGlobalStore = create((set, get) => ({
   toggleAboutModel: (value) => {
     set({ isAboutModelActive: value ? value : !get().isAboutModelActive });
   },
+
 }));
