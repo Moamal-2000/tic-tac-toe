@@ -1,0 +1,109 @@
+.mpContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+}
+
+.mpContent .header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.mpContent .header>h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 5px;
+}
+
+.mpContent .header>p {
+  color: #a0a0a0;
+  font-size: .875rem;
+}
+
+.mpForm {
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  display: flex;
+}
+
+.mpForm .boardSelectionWrapper {
+  background-color: #333333;
+  border-radius: 8px;
+  padding: 14px 20px;
+  width: 100%;
+  border: 1px solid rgba(120, 120, 120, .2);
+}
+
+.mpForm .boardSelectionWrapper>label {
+  display: inline-block;
+  color: #e0e0e0;
+  font-weight: 500;
+  font-size: .9375rem;
+  margin-bottom: 10px;
+}
+
+.mpForm .boardSelection {
+  display: flex;
+  gap: 8px;
+}
+
+.mpForm .boardSelection .option {
+  position: relative;
+  padding: 8px 0;
+}
+
+.mpForm .boardSelection .option>input {
+  border: none;
+  outline: none;
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  font-weight: 500;
+  color: #e0e0e0;
+  background-color: #333333;
+}
+
+.mpForm .boardSelection .option>label {
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 8px 20px;
+  transition: background .15s ease;
+
+  &:hover {
+    background: #404040;
+  }
+
+}
+
+.mpForm .boardSelection .option:has(input:checked)>label {
+  background: #927eff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(146, 126, 255, 0.4);
+}
+
+.mpForm button[type=submit] {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(90deg, #48c9b0, #3ac0a0);
+  color: #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+  border: 1px solid rgba(72, 201, 176, .4);
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: .5px;
+
+  &:hover {
+    background: linear-gradient(90deg, #43c0a7, #31a58a);
+  }
+}
