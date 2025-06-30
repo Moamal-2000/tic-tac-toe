@@ -5,14 +5,14 @@ import s from "./MainMenu.module.scss";
 import MainMenuButtons from "./MainMenuButtons/MainMenuButtons";
 
 const MainMenu = () => {
-  const isMainMenuActive = useGlobalStore((s) => s.isMainMenuActive);
+  const { isMainMenuActive, gameMode } = useGlobalStore((s) => s);
 
   if (!isMainMenuActive) return null;
 
   return (
     <div className={s.menuOverlay}>
       <section className={s.mainMenu}>
-        <MainMenuButtons />
+        {gameMode !== "multiplayer" && <MainMenuButtons />}
       </section>
     </div>
   );
