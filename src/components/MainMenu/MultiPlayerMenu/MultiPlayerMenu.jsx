@@ -4,8 +4,11 @@ import SvgIcon from "@/components/Shared/SvgIcon";
 import { INITIAL_BOARD_SIZE } from "@/data/constants";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useState } from "react";
+import { io } from "socket.io-client";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
+
+const socket = io.connect("http://localhost:4000");
 
 const MultiPlayerMenu = () => {
   const updateGameMode = useGlobalStore((s) => s.updateGameMode);
@@ -14,6 +17,11 @@ const MultiPlayerMenu = () => {
 
   function handleBackButton() {
     updateGameMode(null);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    socket.emit("matchmaking", selectedBoardSize);
   }
 
   return (
@@ -27,7 +35,7 @@ const MultiPlayerMenu = () => {
         <p>Configure your game settings</p>
       </header>
 
-      <form className={s.mpForm}>
+      <form className={s.mpForm} onClick={handleSubmit}>
         <MPBoardSelection
           selectedBoardSize={selectedBoardSize}
           setSelectedBoardSize={setSelectedBoardSize}
