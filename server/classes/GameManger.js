@@ -57,9 +57,7 @@ export class GameManager {
     if (queue.length > 0) {
       const waitingSocket = queue.shift();
       this.createRoom(waitingSocket, socket, boardSize);
-      console.log("Room created");
     } else {
-      console.log("Added to queue");
       queue.push(socket);
     }
   }
