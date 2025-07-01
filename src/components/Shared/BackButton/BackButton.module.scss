@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .backButton {
   position: absolute;
   top: -36px;
@@ -14,6 +16,20 @@
   border: 1px solid rgba(120, 120, 120, .2);
   box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
   transition: background-color .15s ease, transform .15s ease;
+}
+
+@include m.small {
+  .backButton {
+    top: -20px;
+    left: -10px;
+  }
+}
+
+@include m.very-small {
+  .backButton {
+    top: 20px;
+    left: 20px;
+  }
 }
 
 .backButton>svg {

@@ -1,9 +1,16 @@
+@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.spin;
 
 .loadingMenu {
   position: relative;
   width: 265px;
+}
+
+@include m.very-small {
+  .loadingMenu {
+    position: static;
+  }
 }
 
 .loadingMenu .content {

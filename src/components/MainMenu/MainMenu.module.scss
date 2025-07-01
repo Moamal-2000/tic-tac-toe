@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .menuOverlay {
   position: fixed;
   top: 0;
@@ -5,9 +7,7 @@
   width: 100%;
   height: 100vh;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include m.center-x-y;
   background-color: #1a1a1a;
   color: #e0e0e0;
 }
@@ -22,8 +22,28 @@
   border: 1px solid rgba(120, 120, 120, 0.2);
   max-width: 380px;
   width: 100%;
-  display: flex;
+  @include m.center-x-y;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+}
+
+@include m.very-small {
+  .mainMenu {
+    position: static;
+  }
+}
+
+@include m.small {
+  .mainMenu {
+    padding: 40px 20px;
+    max-width: 320px;
+  }
+}
+
+@include m.very-small {
+  .mainMenu {
+    padding: 30px 20px;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+  }
 }
