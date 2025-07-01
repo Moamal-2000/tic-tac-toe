@@ -11,7 +11,7 @@ import s from "./MultiPlayerMenu.module.scss";
 const socket = io.connect("http://localhost:4000");
 
 const MultiPlayerMenu = () => {
-  const updateGameMode = useGlobalStore((s) => s.updateGameMode);
+  const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
   const [selectedBoardSize, setSelectedBoardSize] =
     useState(INITIAL_BOARD_SIZE);
 
@@ -22,6 +22,7 @@ const MultiPlayerMenu = () => {
   function handleSubmit(event) {
     event.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
+    updateGlobalState({ key: "isWaitingForOpponent", value: true });
   }
 
   return (
@@ -35,7 +36,7 @@ const MultiPlayerMenu = () => {
         <p>Configure your game settings</p>
       </header>
 
-      <form className={s.mpForm} onClick={handleSubmit}>
+      <form className={s.mpForm} onSubmit={handleSubmit}>
         <MPBoardSelection
           selectedBoardSize={selectedBoardSize}
           setSelectedBoardSize={setSelectedBoardSize}
