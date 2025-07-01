@@ -1,20 +1,27 @@
 "use client";
 
 import { useGlobalStore } from "@/stores/global.store/global.store";
+import LoadingMenu from "./LoadingMenu/LoadingMenu";
 import s from "./MainMenu.module.scss";
 import MainMenuButtons from "./MainMenuButtons/MainMenuButtons";
 import MultiPlayerMenu from "./MultiPlayerMenu/MultiPlayerMenu";
 
 const MainMenu = () => {
-  const { isMainMenuActive, gameMode } = useGlobalStore((s) => s);
+  const { isMainMenuActive, gameMode, isWaitingForOpponent } = useGlobalStore(
+    (s) => s
+  );
 
   if (!isMainMenuActive) return null;
+
+  const displayMultiplayerMenu =
+    gameMode === "multiplayer" && !isWaitingForOpponent;
 
   return (
     <div className={s.menuOverlay}>
       <section className={s.mainMenu}>
         {gameMode !== "multiplayer" && <MainMenuButtons />}
-        {gameMode === "multiplayer" && <MultiPlayerMenu />}
+        {displayMultiplayerMenu && <MultiPlayerMenu />}
+        {isWaitingForOpponent && <LoadingMenu />}
       </section>
     </div>
   );
