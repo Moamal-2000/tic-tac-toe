@@ -1,11 +1,20 @@
+"use client";
+
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import SvgIcon from "@/components/Shared/SvgIcon";
+import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./LoadingMenu.module.scss";
 
 const LoadingMenu = () => {
+  const updateGlobalState = useGlobalStore((s) => s.updateGlobalState);
+
+  function handleBackButton() {
+    updateGlobalState({ key: "isWaitingForOpponent", value: false });
+  }
+
   return (
     <div className={s.loadingMenu}>
-      <BackButton onClick={() => updateGameMode(null)} />
+      <BackButton onClick={handleBackButton} />
 
       <div className={s.content}>
         <div className={s.loader}>
