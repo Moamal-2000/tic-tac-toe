@@ -1,0 +1,47 @@
+@use "@/styles/keyframes" as keyframe;
+@include keyframe.spin;
+
+.loadingMenu {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
+.loadingMenu .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding-top: 30px;
+}
+
+.loadingMenu .content .loader {
+  width: 60px;
+  height: 60px;
+  background-color: #927eff;
+  border-radius: 50%;
+  margin: 0 auto 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(146, 126, 255, .4);
+}
+
+.loadingMenu .content .loader>svg {
+  width: 30px;
+  height: 30px;
+  color: #e0e0e0;
+  animation: spin 1s linear infinite;
+}
+
+.loadingMenu .content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 6px;
+}
+
+.loadingMenu .content p {
+  color: #a0a0a0;
+  font-size: .875rem;
+}
