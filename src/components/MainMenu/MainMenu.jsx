@@ -11,7 +11,7 @@ const MainMenu = () => {
     (s) => s
   );
 
-  if (!isMainMenuActive) return null;
+  if (!isMainMenuActive && !isWaitingForOpponent) return null;
 
   const displayMultiplayerMenu =
     gameMode === "multiplayer" && !isWaitingForOpponent;

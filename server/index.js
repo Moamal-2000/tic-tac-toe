@@ -1,9 +1,9 @@
 // index.js
-import { createServer } from "http";
-import express from "express";
 import cors from "cors";
-import { Server } from "socket.io";
 import "dotenv/config";
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
 import { GameManager } from "./classes/GameManger.js";
 
 const PORT = process.env.PORT || 4000;
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
 
-    // remove if in matchmaking queue 
+    // remove if in matchmaking queue
     // if in game the other player wins and remove the game for rooms map(for now)
   });
 });

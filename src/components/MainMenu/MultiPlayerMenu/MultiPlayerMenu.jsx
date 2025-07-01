@@ -2,13 +2,11 @@
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import { INITIAL_BOARD_SIZE } from "@/data/constants";
+import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useState } from "react";
-import { io } from "socket.io-client";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
-
-const socket = io.connect("http://localhost:4000");
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
