@@ -1,0 +1,23 @@
+.backButton {
+  position: absolute;
+  top: -36px;
+  left: -30px;
+  width: 40px;
+  height: 40px;
+  background-color: #333333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgba(120, 120, 120, .2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+  transition: background-color .15s ease, transform .15s ease;
+}
+
+.backButton>svg {
+  width: 20px;
+  height: 20px;
+  color: #e0e0e0;
+}

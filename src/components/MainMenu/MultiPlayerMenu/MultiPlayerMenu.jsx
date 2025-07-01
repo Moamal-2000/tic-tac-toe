@@ -1,6 +1,6 @@
 "use client";
 
-import SvgIcon from "@/components/Shared/SvgIcon";
+import BackButton from "@/components/Shared/BackButton/BackButton";
 import { INITIAL_BOARD_SIZE } from "@/data/constants";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useState } from "react";
@@ -15,10 +15,6 @@ const MultiPlayerMenu = () => {
   const [selectedBoardSize, setSelectedBoardSize] =
     useState(INITIAL_BOARD_SIZE);
 
-  function handleBackButton() {
-    updateGameMode(null);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
@@ -27,9 +23,7 @@ const MultiPlayerMenu = () => {
 
   return (
     <div className={s.mpContent}>
-      <button type="button" className={s.backButton} onClick={handleBackButton}>
-        <SvgIcon name="arrowLeft" />
-      </button>
+      <BackButton onClick={() => updateGameMode(null)} />
 
       <header className={s.header}>
         <h1>Multiplayer Setup</h1>
