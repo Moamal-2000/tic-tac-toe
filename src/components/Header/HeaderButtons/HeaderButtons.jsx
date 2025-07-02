@@ -12,7 +12,7 @@ import s from "./HeaderButtons.module.scss";
 
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
-  const toggleAboutModel = useGlobalStore((s) => s.toggleAboutModel);
+  const { toggleAboutModel, updateGameMode } = useGlobalStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleAboutClick() {
@@ -22,6 +22,11 @@ const HeaderButtons = () => {
 
   function handleResetClick() {
     resetStats();
+    playSound(BUTTON_SOUND);
+  }
+
+  function handleMenuClick() {
+    updateGameMode("");
     playSound(BUTTON_SOUND);
   }
 
@@ -38,6 +43,7 @@ const HeaderButtons = () => {
         <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
         <Button onClick={handleAboutClick}>About</Button>
         <Button onClick={handleResetClick}>Reset</Button>
+        <Button onClick={handleMenuClick}>Menu</Button>
       </div>
     </div>
   );
