@@ -13,18 +13,20 @@ const MultiPlayerMenu = () => {
   const [selectedBoardSize, setSelectedBoardSize] =
     useState(INITIAL_BOARD_SIZE);
 
-  useEffect(() => {
-    socket.on("room-update", (state) => {
-      updateGlobalState({ key: "isMainMenuActive", value: false });
-      updateGlobalState({ key: "isWaitingForOpponent", value: false });
-    });
-  }, []);
-
   function handleSubmit(event) {
-    event.preventDefault();
+    event?.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
     updateGlobalState({ key: "isWaitingForOpponent", value: true });
   }
+
+  useEffect(() => {
+    socket.on("room-update", () => {
+      updateGlobalState({ key: "isMainMenuActive", value: false });
+      updateGlobalState({ key: "isWaitingForOpponent", value: false });
+    });
+
+    handleSubmit()
+  }, []);
 
   return (
     <div className={s.mpContent}>
