@@ -4,12 +4,14 @@ import BackButton from "@/components/Shared/BackButton/BackButton";
 import { INITIAL_BOARD_SIZE } from "@/data/constants";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect, useState } from "react";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
+  const { getGameStates } = useMultiplayerStore((s) => s);
   const [selectedBoardSize, setSelectedBoardSize] =
     useState(INITIAL_BOARD_SIZE);
 
@@ -20,12 +22,16 @@ const MultiPlayerMenu = () => {
   }
 
   useEffect(() => {
-    socket.on("room-update", () => {
+    socket.on("room-update", (state) => {
       updateGlobalState({ key: "isMainMenuActive", value: false });
       updateGlobalState({ key: "isWaitingForOpponent", value: false });
+      getGameStates({
+        boardSize: state.board[0].length,
+        playerTurn: state.turn,
+      });
     });
 
-    handleSubmit()
+    handleSubmit();
   }, []);
 
   return (
