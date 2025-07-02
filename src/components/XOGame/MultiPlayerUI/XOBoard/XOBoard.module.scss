@@ -1,0 +1,47 @@
+@use "@/styles/mixins" as m;
+
+.board {
+  display: grid;
+  padding: 16px;
+  background: #232b37;
+  border-radius: 16px;
+  border: 1px solid #39414b;
+  position: relative;
+
+  &.xTurn {
+    border-color: #4ecdc4;
+    box-shadow: 0 0 50px rgba(78, 205, 196, .1);
+  }
+
+  &.oTurn {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 50px rgba(255, 107, 107, .1);
+  }
+
+  &.draw {
+    border-color: #ffd93d;
+    box-shadow: 0 0 50px rgba(255, 217, 61, .1);
+  }
+}
+
+@media (max-width: 500px) {
+  .board {
+    width: 100%;
+  }
+}
+
+@include m.medium {
+  .board {
+    padding: 12px;
+  }
+}
+
+.board>div:not(:last-child) {
+  margin-bottom: 6px;
+}
+
+@include m.medium {
+  .board>div:not(:last-child) {
+    margin-bottom: 4px;
+  }
+}

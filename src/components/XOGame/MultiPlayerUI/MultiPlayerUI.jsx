@@ -1,6 +1,7 @@
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import s from "./MultiPlayerUI.module.scss";
 import PlayerTurnIndicator from "./PlayerTurnIndicator/PlayerTurnIndicator";
+import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
   const boardSize = useMultiplayerStore((s) => s.boardSize);
@@ -8,6 +9,7 @@ const MultiPlayerUI = () => {
 
   return (
     <section className={`${s.game} ${board3Class}`}>
+      <XOBoard />
       <PlayerTurnIndicator />
     </section>
   );
