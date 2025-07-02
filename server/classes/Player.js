@@ -3,7 +3,7 @@ import { Ability } from "./Ability.js";
 export class Player {
   constructor(id, symbol) {
     this.id = id;
-    this.symbol = symbol; // 'A' | 'B'
+    this.symbol = symbol; // 'x' | 'o'
     this.abilities = {
       freeze: new Ability("freeze", 3),
       bomb: new Ability("bomb", 4),

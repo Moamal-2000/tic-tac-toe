@@ -1,6 +1,7 @@
 "use client";
 
 import SvgIcon from "@/components/Shared/SvgIcon";
+import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./PlayerTurnIndicator.module.scss";
@@ -8,8 +9,8 @@ import s from "./PlayerTurnIndicator.module.scss";
 const PlayerTurnIndicator = () => {
   const { winner } = useXOStore((s) => s);
   const { playerTurn, boardSize } = useMultiplayerStore((s) => s);
-  const p1ActiveClass = playerTurn === "A" ? s.active : "";
-  const p2ActiveClass = playerTurn === "B" ? s.active : "";
+  const p1ActiveClass = playerTurn === SYMBOL_O ? s.active : "";
+  const p2ActiveClass = playerTurn === SYMBOL_X ? s.active : "";
 
   const containerClasses = [
     s.indicator,

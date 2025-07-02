@@ -1,3 +1,4 @@
+import { SYMBOL_O, SYMBOL_X } from "../data/constants.js";
 import { Game } from "./Game.js";
 
 export class GameManager {
@@ -7,16 +8,16 @@ export class GameManager {
     this.matchmakingQueue = new Map(); // boardSize -> Socket[]
   }
 
-  createRoom(socketA, socketB, boardSize) {
+  createRoom(socketO, socketX, boardSize) {
     const roomId = this.generateRoomId();
-    const game = new Game(roomId, socketA, socketB, boardSize);
+    const game = new Game(roomId, socketO, socketX, boardSize);
     this.rooms.set(roomId, game);
 
-    socketA.join(roomId);
-    socketB.join(roomId);
+    socketO.join(roomId);
+    socketX.join(roomId);
 
-    socketA.data.roomId = roomId;
-    socketB.data.roomId = roomId;
+    socketO.data.roomId = roomId;
+    socketX.data.roomId = roomId;
 
     this.syncRoom(roomId);
   }
@@ -26,7 +27,8 @@ export class GameManager {
     if (!roomId || !this.rooms.has(roomId)) return;
 
     const game = this.rooms.get(roomId);
-    const playerSymbol = game.players.A.id === socket.id ? "A" : "B";
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
 
     if (game.turn !== playerSymbol) return;
 
@@ -39,7 +41,8 @@ export class GameManager {
     if (!roomId || !this.rooms.has(roomId)) return;
 
     const game = this.rooms.get(roomId);
-    const playerSymbol = game.players.A.id === socket.id ? "A" : "B";
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
 
     if (game.turn !== playerSymbol) return;
 
@@ -67,7 +70,7 @@ export class GameManager {
     if (!game) return;
 
     const state = game.getState();
-    const sockets = [game.players.A.id, game.players.B.id];
+    const sockets = [game.players[SYMBOL_O].id, game.players[SYMBOL_X].id];
     for (const socketId of sockets) {
       this.io.to(socketId).emit("room-update", state);
     }

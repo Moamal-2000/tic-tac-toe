@@ -1,13 +1,17 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
-import { INITIAL_BOARD_SIZE } from "@/data/constants";
+import { INITIAL_BOARD_SIZE, SYMBOL_O } from "@/data/constants";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect, useState } from "react";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
+
+const obj = {
+  [SYMBOL_O]: "Test",
+};
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
@@ -23,11 +27,16 @@ const MultiPlayerMenu = () => {
 
   useEffect(() => {
     socket.on("room-update", (state) => {
+      const someoneWins = !!state.winner;
+
       updateGlobalState({ key: "isMainMenuActive", value: false });
       updateGlobalState({ key: "isWaitingForOpponent", value: false });
       getGameStates({
         boardSize: state.board[0].length,
         playerTurn: state.turn,
+        board: state.board,
+        winner: state.winner,
+        isWinnerPopupVisible: someoneWins,
       });
     });
 

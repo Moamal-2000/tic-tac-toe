@@ -1,11 +1,11 @@
 import { SYMBOL_X } from "@/data/constants";
-import { useXOStore } from "@/stores/xo.store/xo.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import BoardRow from "./BoardRow/BoardRow";
 import WinnerPopUp from "./WinnerPopUp/WinnerPopUp";
 import s from "./XOBoard.module.scss";
 
 const XOBoard = () => {
-  const { board, playerTurn, winner } = useXOStore((s) => s);
+  const { board, playerTurn, winner } = useMultiplayerStore((s) => s);
   const playerTurnClass = playerTurn === SYMBOL_X ? s.xTurn : s.oTurn;
   const drawClass = winner === "Draw!" ? s.draw : "";
 

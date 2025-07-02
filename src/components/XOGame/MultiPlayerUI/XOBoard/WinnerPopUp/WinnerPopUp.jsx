@@ -8,11 +8,11 @@ import {
   WINNER_SOUNDS,
 } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
-import { useXOStore } from "@/stores/xo.store/xo.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import s from "./WinnerPopUp.module.scss";
 
 const WinnerPopUp = () => {
-  const { winner, isWinnerPopupVisible } = useXOStore((s) => s);
+  const { winner, isWinnerPopupVisible } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds(soundFiles);
 
   const isDraw = winner === "Draw!";

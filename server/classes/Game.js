@@ -1,17 +1,19 @@
-import { Player } from "./Player.js";
+import { SYMBOL_O, SYMBOL_X } from "../data/constants.js";
 import { Board } from "./Board.js";
+import { Player } from "./Player.js";
 
 export class Game {
-  constructor(id, socketA, socketB, boardSize) {
+  constructor(id, socketO, socketX, boardSize) {
     this.id = id;
     this.board = new Board(boardSize);
     this.players = {
-      A: new Player(socketA.id, "A"),
-      B: new Player(socketB.id, "B"),
+      [SYMBOL_O]: new Player(socketO.id, SYMBOL_O),
+      [SYMBOL_X]: new Player(socketX.id, SYMBOL_X),
     };
-    this.turn = "A";
+    this.turn = SYMBOL_X;
     this.winner = null;
     this.moveCount = 0;
+    this.hasGameStarted = false;
   }
 
   getCurrentPlayer() {
@@ -19,7 +21,7 @@ export class Game {
   }
 
   getOpponentSymbol() {
-    return this.turn === "A" ? "B" : "A";
+    return this.turn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
   }
 
   applyMove(row, col) {
@@ -112,11 +114,12 @@ export class Game {
         }))
       ),
       abilities: {
-        A: this.players.A.getAbilitiesState(),
-        B: this.players.B.getAbilitiesState(),
+        [SYMBOL_O]: this.players[SYMBOL_O].getAbilitiesState(),
+        [SYMBOL_X]: this.players[SYMBOL_X].getAbilitiesState(),
       },
       turn: this.turn,
       winner: this.winner,
+      hasGameStarted: this.hasGameStarted,
     };
   }
 }
