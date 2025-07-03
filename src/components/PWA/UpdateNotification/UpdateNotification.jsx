@@ -24,14 +24,13 @@ export default function UpdateNotification() {
     showNotification && (
       <div className={s.updateNotification}>
         <span>A new version is available!</span>
-
         <Button onClick={handleRefreshPage}>Refresh</Button>
       </div>
     )
   );
 }
 async function registerSWWithUpdate(setShowNotification) {
-  if (!("serviceWorker" in navigator) || !IS_PRODUCTION) return;
+  if (!("serviceWorker" in navigator) || IS_PRODUCTION) return;
 
   try {
     const registration = await navigator.serviceWorker.register("/sw.js");

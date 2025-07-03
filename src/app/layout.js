@@ -1,6 +1,5 @@
 import Header from "@/components/Header/Header";
 import MainMenu from "@/components/MainMenu/MainMenu";
-import PWAInit from "@/components/PWA/PWAInit";
 import UpdateNotification from "@/components/PWA/UpdateNotification/UpdateNotification";
 import { METADATA } from "@/data/metadata";
 import "../styles/globals.scss";
@@ -15,7 +14,6 @@ export default function RootLayout({ children }) {
         <Header />
         {children}
         <UpdateNotification />
-        <PWAInit />
       </body>
     </html>
   );
