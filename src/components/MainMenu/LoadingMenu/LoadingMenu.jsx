@@ -12,7 +12,7 @@ const LoadingMenu = () => {
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleBackButton() {
-    updateGlobalState({ key: "isWaitingForOpponent", value: false });
+    updateGlobalState({ isWaitingForOpponent: false });
     playSound(BUTTON_SOUND);
   }
 

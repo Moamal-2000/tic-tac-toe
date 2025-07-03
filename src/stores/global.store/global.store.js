@@ -12,5 +12,5 @@ export const useGlobalStore = create((set, get) => ({
   updateGameMode: (gameMode) => {
     set({ gameMode, isMainMenuActive: gameMode !== "singleplayer" });
   },
-  updateGlobalState: ({ key, value }) => set({ [key]: value }),
+  updateGlobalState: (state) => set(state),
 }));
