@@ -1,15 +1,26 @@
 const CACHE_NAME = "tic-tac-toe-v20";
 
+const soundFiles = [
+  "/sounds/click.mp3",
+  "/sounds/unselect.mp3",
+  "/sounds/freeze.mp3",
+  "/sounds/bomb.mp3",
+  "/sounds/swap.mp3",
+  "/sounds/victory-1.mp3",
+  "/sounds/victory-2.mp3",
+  "/sounds/draw.mp3",
+];
+
 const assets = [
   "/",
   "/manifest.json",
   "/PWA/icons/maskable-icon.webp",
+  ...soundFiles,
 ];
 
 async function installServiceWorker() {
   try {
     const cache = await caches.open(CACHE_NAME);
-    console.log(cache);
     await cache.addAll(assets);
   } catch (error) {
     console.error("Failed to install service worker:", error);
