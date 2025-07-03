@@ -2,14 +2,18 @@
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import SvgIcon from "@/components/Shared/SvgIcon";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./LoadingMenu.module.scss";
 
 const LoadingMenu = () => {
   const updateGlobalState = useGlobalStore((s) => s.updateGlobalState);
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleBackButton() {
     updateGlobalState({ key: "isWaitingForOpponent", value: false });
+    playSound(BUTTON_SOUND);
   }
 
   return (

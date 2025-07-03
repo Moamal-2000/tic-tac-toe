@@ -1,6 +1,8 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -12,11 +14,17 @@ const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
   const { getGameStates } = useMultiplayerStore((s) => s);
   const [selectedBoardSize, setSelectedBoardSize] = useState(3);
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {
     event?.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
     updateGlobalState({ key: "isWaitingForOpponent", value: true });
+  }
+
+  function handleBackButton() {
+    playSound(BUTTON_SOUND);
+    updateGameMode(null);
   }
 
   useEffect(() => {
@@ -35,7 +43,7 @@ const MultiPlayerMenu = () => {
 
   return (
     <div className={s.mpContent}>
-      <BackButton onClick={() => updateGameMode(null)} />
+      <BackButton onClick={handleBackButton} />
 
       <header className={s.header}>
         <h1>Multiplayer Setup</h1>
