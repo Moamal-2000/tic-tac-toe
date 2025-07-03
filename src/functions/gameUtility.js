@@ -83,20 +83,14 @@ export function updateCoolDownStatus(powerUps) {
   }
 }
 
-export function bothPlayersWonWithSwap({
-  newBoard,
-  theWinner,
-  playerTurn,
-  usedPowerUp,
-}) {
-  const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
-  const opponentWinner = whoWins(newBoard, opponent);
+export function bothPlayersWonWithSwap({ newBoard, usedPowerUp }) {
+  const isFirstPlayerWon = whoWins(newBoard, SYMBOL_O);
+  const isSecondPlayerWon = whoWins(newBoard, SYMBOL_X);
 
-  const bothWon = theWinner !== "None" && opponentWinner !== "None";
+  const bothWon = isFirstPlayerWon && isSecondPlayerWon;
   const usedSwap = usedPowerUp === "swap";
-  const sameWinner = theWinner === opponentWinner;
 
-  return usedSwap && bothWon && !sameWinner;
+  return usedSwap && bothWon;
 }
 
 export function opponentSymbolExists(board, playerTurn) {
