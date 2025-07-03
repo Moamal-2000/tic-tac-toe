@@ -4,13 +4,17 @@ import PlayerTurnIndicator from "./PlayerTurnIndicator/PlayerTurnIndicator";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
-  const boardSize = useMultiplayerStore((s) => s.boardSize);
+  const { boardSize, winner, playerTurn } = useMultiplayerStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   return (
     <section className={`${s.game} ${board3Class}`}>
       <XOBoard />
-      <PlayerTurnIndicator />
+      <PlayerTurnIndicator
+        boardSize={boardSize}
+        winner={winner}
+        playerTurn={playerTurn}
+      />
     </section>
   );
 };
