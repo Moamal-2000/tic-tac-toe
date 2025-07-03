@@ -14,6 +14,7 @@ export class Game {
     this.winner = null;
     this.moveCount = 0;
     this.hasGameStarted = false;
+    this.isWinnerPopupVisible = false;
   }
 
   getCurrentPlayer() {
@@ -26,14 +27,25 @@ export class Game {
 
   applyMove(row, col) {
     if (!this.board.isCellFree(row, col)) return false;
-    this.board.setCell(row, col, this.turn);
-    this.players[this.turn].decrementCooldowns();
     this.moveCount++;
-    if (this.checkWin(row, col)) {
+
+    const opponent = this.getOpponentSymbol()
+
+    // Fill square with player's symbol
+    this.board.setCell(row, col, this.turn);
+
+    // Decrease players power-ups cooldown
+    this.players[this.turn].decrementCooldowns();
+    this.players[opponent].decrementCooldowns();
+
+    const someoneWins = this.checkWin(row, col);
+
+    if (someoneWins) {
       this.winner = this.turn;
-    } else {
-      this.turn = this.getOpponentSymbol();
+      return true;
     }
+
+    this.turn = this.getOpponentSymbol();
     return true;
   }
 
@@ -76,6 +88,7 @@ export class Game {
 
     for (const [dr, dc] of directions) {
       if (this.countAligned(row, col, dr, dc, symbol) >= size) {
+        this.isWinnerPopupVisible = true;
         return true;
       }
     }
@@ -101,8 +114,8 @@ export class Game {
   }
 
   inBounds(row, col) {
-    const n = this.board.size;
-    return row >= 0 && col >= 0 && row < n && col < n;
+    const boardSize = this.board.size;
+    return row >= 0 && col >= 0 && row < boardSize && col < boardSize;
   }
 
   getState() {
@@ -111,6 +124,8 @@ export class Game {
         row.map((cell) => ({
           owner: cell.owner,
           frozen: cell.frozen,
+          bombed: cell.bombed,
+          swapSelected: cell.swapSelected,
         }))
       ),
       abilities: {
@@ -120,6 +135,7 @@ export class Game {
       turn: this.turn,
       winner: this.winner,
       hasGameStarted: this.hasGameStarted,
+      isWinnerPopupVisible: this.isWinnerPopupVisible,
     };
   }
 }
