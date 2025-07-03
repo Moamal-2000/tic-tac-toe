@@ -1,6 +1,7 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
+import { INITIAL_BOARD_SIZE } from "@/data/constants";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
@@ -13,7 +14,8 @@ import s from "./MultiPlayerMenu.module.scss";
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
   const { getGameStates } = useMultiplayerStore((s) => s);
-  const [selectedBoardSize, setSelectedBoardSize] = useState(3);
+  const [selectedBoardSize, setSelectedBoardSize] =
+    useState(INITIAL_BOARD_SIZE);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {
@@ -55,7 +57,6 @@ const MultiPlayerMenu = () => {
         <MPBoardSelection
           selectedBoardSize={selectedBoardSize}
           setSelectedBoardSize={setSelectedBoardSize}
-          playClickSound={playSound(BUTTON_SOUND)}
         />
 
         <button type="submit">Join & Wait</button>

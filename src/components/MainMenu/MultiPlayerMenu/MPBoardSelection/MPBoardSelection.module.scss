@@ -18,37 +18,3 @@
   display: flex;
   gap: 8px;
 }
-
-.boardSelection .option {
-  position: relative;
-  padding: 8px 0;
-}
-
-.boardSelection .option>input {
-  border: none;
-  outline: none;
-  position: absolute;
-  inset: 0;
-  visibility: hidden;
-  font-weight: 500;
-  color: #e0e0e0;
-  background-color: #333333;
-}
-
-.boardSelection .option>label {
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 8px 20px;
-  transition: background .15s ease;
-
-  &:hover {
-    background: #404040;
-  }
-
-}
-
-.boardSelection .option:has(input:checked)>label {
-  background: #927eff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(146, 126, 255, 0.4);
-}
