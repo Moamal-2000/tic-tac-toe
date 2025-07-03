@@ -18,6 +18,6 @@ export class Board {
 
   isCellFree(row, col) {
     const cell = this.getCell(row, col);
-    return !cell.owner && !cell.freezed;
+    return !cell.owner && !cell.frozen;
   }
 }

@@ -47,7 +47,7 @@ export class Game {
 
     switch (ability) {
       case "freeze":
-        cell.freezed = true;
+        cell.frozen = true;
         break;
       case "bomb":
         if (cell.owner) cell.owner = null;
@@ -110,7 +110,7 @@ export class Game {
       board: this.board.grid.map((row) =>
         row.map((cell) => ({
           owner: cell.owner,
-          freezed: cell.freezed,
+          frozen: cell.frozen,
         }))
       ),
       abilities: {

@@ -1,7 +1,11 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
-import { INITIAL_BOARD_SIZE, SYMBOL_O } from "@/data/constants";
+import {
+  INITIAL_BOARD_SIZE,
+  SYMBOL_O,
+  WINNER_POPUP_DURATION_MS,
+} from "@/data/constants";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
