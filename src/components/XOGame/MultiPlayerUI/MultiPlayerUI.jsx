@@ -1,6 +1,6 @@
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
-import PlayerTurnIndicator from "./PlayerTurnIndicator/PlayerTurnIndicator";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
