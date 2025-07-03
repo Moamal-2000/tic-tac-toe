@@ -20,6 +20,7 @@ const MultiPlayerMenu = () => {
     event?.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
     updateGlobalState({ key: "isWaitingForOpponent", value: true });
+    playSound(BUTTON_SOUND);
   }
 
   function handleBackButton() {
@@ -54,6 +55,7 @@ const MultiPlayerMenu = () => {
         <MPBoardSelection
           selectedBoardSize={selectedBoardSize}
           setSelectedBoardSize={setSelectedBoardSize}
+          playClickSound={playSound(BUTTON_SOUND)}
         />
 
         <button type="submit">Join & Wait</button>
