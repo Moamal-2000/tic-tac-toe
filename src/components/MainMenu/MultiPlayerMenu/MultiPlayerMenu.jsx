@@ -13,10 +13,6 @@ import { useEffect, useState } from "react";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
-const obj = {
-  [SYMBOL_O]: "Test",
-};
-
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
   const { getGameStates } = useMultiplayerStore((s) => s);
