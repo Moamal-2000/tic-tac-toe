@@ -1,3 +1,4 @@
+import { INITIAL_BOARD_SIZE } from "@/data/constants";
 import { create } from "zustand";
 
 export const useMultiplayerStore = create((set, get) => ({
@@ -7,6 +8,7 @@ export const useMultiplayerStore = create((set, get) => ({
   hasGameStarted: false,
   winner: null,
   isWinnerPopupVisible: false,
+  selectedBoardSize: INITIAL_BOARD_SIZE,
 
   getGameStates: ({
     boardSize,
@@ -25,4 +27,5 @@ export const useMultiplayerStore = create((set, get) => ({
       isWinnerPopupVisible,
     });
   },
+  updateMultiplayerState: (state) => set(state),
 }));
