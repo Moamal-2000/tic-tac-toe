@@ -31,8 +31,6 @@ const MultiPlayerMenu = () => {
         isWinnerPopupVisible: state.isWinnerPopupVisible,
       });
     });
-
-    handleSubmit();
   }, []);
 
   return (

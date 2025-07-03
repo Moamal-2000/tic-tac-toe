@@ -321,8 +321,6 @@ export const useXOStore = create((set, get) => ({
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const updatedPowerUps = { ...powerUps, hasActivePowerUp: true };
 
-    set({ powerUps: updatedPowerUps });
-
     setTimeout(() => {
       const newBoard = updateBoard({
         board,
@@ -332,7 +330,6 @@ export const useXOStore = create((set, get) => ({
         powerUp: selectedPower,
         squaresToSwap,
       });
-      const updatedPowerUps = { ...powerUps, hasActivePowerUp: true };
 
       set({
         board: newBoard,
