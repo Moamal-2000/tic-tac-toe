@@ -1,12 +1,12 @@
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "./GameStats/GameStats";
-import PlayerTurnIndicator from "./PlayerTurnIndicator/PlayerTurnIndicator";
+import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import PowerUps from "./PowerUps/PowerUps";
 import s from "./SinglePlayerUI.module.scss";
 import XOBoard from "./XOBoard/XOBoard";
 
 const SinglePlayerUI = () => {
-  const boardSize = useXOStore((s) => s.boardSize);
+  const { playerTurn, boardSize, winner } = useXOStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   return (
@@ -18,7 +18,11 @@ const SinglePlayerUI = () => {
       </div>
 
       <XOBoard />
-      <PlayerTurnIndicator />
+      <PlayerTurnIndicator
+        playerTurn={playerTurn}
+        boardSize={boardSize}
+        winner={winner}
+      />
     </section>
   );
 };

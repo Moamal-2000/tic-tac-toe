@@ -2,11 +2,9 @@
 
 import SvgIcon from "@/components/Shared/SvgIcon";
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./PlayerTurnIndicator.module.scss";
 
-const PlayerTurnIndicator = () => {
-  const { playerTurn, boardSize, winner } = useXOStore((s) => s);
+const PlayerTurnIndicator = ({ playerTurn, boardSize, winner }) => {
   const p1ActiveClass = playerTurn === SYMBOL_O ? s.active : "";
   const p2ActiveClass = playerTurn === SYMBOL_X ? s.active : "";
 
