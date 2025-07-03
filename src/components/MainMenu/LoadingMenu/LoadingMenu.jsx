@@ -23,6 +23,9 @@ const LoadingMenu = () => {
 
         <h2>Finding Match...</h2>
         <p>Please wait while we connect you with another player</p>
+        <p className={s.note}>
+          This feature is still in development and not ready for use yet
+        </p>
       </div>
     </div>
   );
