@@ -1,9 +1,9 @@
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import { BUTTON_SOUND, soundFiles } from "../../../../../data/sounds";
 import XOSquare from "../XOSquare/XOSquare";
 import s from "./BoardRow.module.scss";
 

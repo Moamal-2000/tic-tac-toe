@@ -1,6 +1,22 @@
-const CACHE_NAME = "tic-tac-toe-v19";
+const CACHE_NAME = "tic-tac-toe-v20";
 
-const urlsToCache = ["/", "/manifest.json", "/PWA/icons/maskable-icon.webp"];
+const soundFiles = {
+  click: "/sounds/click.mp3",
+  unselect: "/sounds/unselect.mp3",
+  freeze: "/sounds/freeze.mp3",
+  bomb: "/sounds/bomb.mp3",
+  swap: "/sounds/swap.mp3",
+  victory1: "/sounds/victory-1.mp3",
+  victory2: "/sounds/victory-2.mp3",
+  draw: "/sounds/draw.mp3",
+};
+
+const urlsToCache = [
+  "/",
+  "/manifest.json",
+  "/PWA/icons/maskable-icon.webp",
+  soundFiles,
+];
 
 async function installServiceWorker() {
   try {

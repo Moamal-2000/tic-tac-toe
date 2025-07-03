@@ -1,7 +1,7 @@
 "use client";
 
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { BUTTON_SOUND, soundFiles } from "../../../data/sounds";
 import SvgIcon from "../SvgIcon";
 import s from "./GitHubButton.module.scss";
 

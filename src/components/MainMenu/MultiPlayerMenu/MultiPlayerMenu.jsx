@@ -1,12 +1,12 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";
+import { BUTTON_SOUND, soundFiles } from "../../../data/sounds";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 

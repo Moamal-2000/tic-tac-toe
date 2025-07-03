@@ -1,14 +1,14 @@
 "use client";
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import {
   DRAW_SOUND,
   getRandomSound,
   soundFiles,
   WINNER_SOUNDS,
-} from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
-import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+} from "../../../../../data/sounds";
 import s from "./WinnerPopUp.module.scss";
 
 const WinnerPopUp = () => {

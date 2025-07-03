@@ -2,10 +2,10 @@
 
 import InstallPWAButton from "@/components/PWA/InstallPWAButton";
 import Button from "@/components/Shared/Button/Button";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import { BUTTON_SOUND, soundFiles } from "../../../data/sounds";
 import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
 import s from "./HeaderButtons.module.scss";

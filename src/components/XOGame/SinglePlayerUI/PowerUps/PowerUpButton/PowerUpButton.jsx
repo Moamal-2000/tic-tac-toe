@@ -1,8 +1,8 @@
 "use client";
 
-import { soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import { soundFiles } from "../../../../../data/sounds";
 import s from "./PowerUpButton.module.scss";
 
 const PowerUpButton = ({

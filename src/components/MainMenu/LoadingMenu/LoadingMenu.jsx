@@ -2,9 +2,9 @@
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import SvgIcon from "@/components/Shared/SvgIcon";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
+import { BUTTON_SOUND, soundFiles } from "../../../data/sounds";
 import s from "./LoadingMenu.module.scss";
 
 const LoadingMenu = () => {
