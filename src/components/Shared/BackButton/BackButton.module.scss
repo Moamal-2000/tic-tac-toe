@@ -15,7 +15,24 @@
   outline: none;
   border: 1px solid rgba(120, 120, 120, .2);
   box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
-  transition: background-color .15s ease, transform .15s ease;
+  transition:
+    background-color .15s ease,
+    scale .1s ease,
+    border-color .15s ease;
+
+  &:hover {
+    background-color: #404040;
+    border-color: #777777;
+  }
+
+  &:active {
+    scale: .99;
+    background-color: #4a4a4a;
+  }
+
+  &:focus-visible {
+    border-color: #fff;
+  }
 }
 
 @include m.small {
