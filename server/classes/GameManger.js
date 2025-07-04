@@ -71,6 +71,7 @@ export class GameManager {
 
     const state = game.getState();
     const sockets = [game.players[SYMBOL_O].id, game.players[SYMBOL_X].id];
+
     for (const socketId of sockets) {
       this.io.to(socketId).emit("room-update", state);
     }

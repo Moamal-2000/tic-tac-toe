@@ -1,12 +1,12 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";
-import { BUTTON_SOUND, soundFiles } from "../../../data/sounds";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
@@ -27,17 +27,24 @@ const MultiPlayerMenu = () => {
     updateGameMode(null);
   }
 
+  function syncNewGameState(state) {
+    const { turn, board, winner, isWinnerPopupVisible } = state;
+
+    updateGlobalState({ isMainMenuActive: false });
+    updateGlobalState({ isWaitingForOpponent: false });
+
+    getGameStates({
+      boardSize: state.board[0].length,
+      playerTurn: turn,
+      board,
+      winner,
+      isWinnerPopupVisible,
+    });
+  }
+
   useEffect(() => {
     socket.on("room-update", (state) => {
-      updateGlobalState({ isMainMenuActive: false });
-      updateGlobalState({ isWaitingForOpponent: false });
-      getGameStates({
-        boardSize: state.board[0].length,
-        playerTurn: state.turn,
-        board: state.board,
-        winner: state.winner,
-        isWinnerPopupVisible: state.isWinnerPopupVisible,
-      });
+      syncNewGameState(state);
     });
   }, []);
 
