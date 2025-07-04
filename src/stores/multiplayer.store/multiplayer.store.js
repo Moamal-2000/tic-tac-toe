@@ -10,7 +10,7 @@ export const useMultiplayerStore = create((set, get) => ({
   isWinnerPopupVisible: false,
   selectedBoardSize: INITIAL_BOARD_SIZE,
 
-  getGameStates: ({
+  updateGameStates: ({
     boardSize,
     playerTurn,
     board,

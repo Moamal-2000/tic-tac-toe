@@ -12,7 +12,7 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
-  const { getGameStates, selectedBoardSize } = useMultiplayerStore((s) => s);
+  const { updateGameStates, selectedBoardSize } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {
@@ -33,7 +33,7 @@ const MultiPlayerMenu = () => {
     updateGlobalState({ isMainMenuActive: false });
     updateGlobalState({ isWaitingForOpponent: false });
 
-    getGameStates({
+    updateGameStates({
       boardSize: state.board[0].length,
       playerTurn: turn,
       board,
