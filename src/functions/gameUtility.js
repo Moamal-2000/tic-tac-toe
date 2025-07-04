@@ -87,7 +87,7 @@ export function bothPlayersWonWithSwap({ newBoard, usedPowerUp }) {
   const isFirstPlayerWon = whoWins(newBoard, SYMBOL_O);
   const isSecondPlayerWon = whoWins(newBoard, SYMBOL_X);
 
-  const bothWon = isFirstPlayerWon && isSecondPlayerWon;
+  const bothWon = isFirstPlayerWon !== "None" && isSecondPlayerWon !== "None";
   const usedSwap = usedPowerUp === "swap";
 
   return usedSwap && bothWon;
