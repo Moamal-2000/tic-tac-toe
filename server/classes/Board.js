@@ -20,4 +20,8 @@ export class Board {
     const cell = this.getCell(row, col);
     return !cell.owner && !cell.frozen;
   }
+
+  hasFreeCell() {
+    return this.grid.some((row) => row.some((cell) => !cell.owner));
+  }
 }
