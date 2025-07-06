@@ -241,6 +241,7 @@ export const useXOStore = create((set, get) => ({
       powerUps,
       playerTurn,
       unSelectPower,
+      declareWinner,
       disablePowerUp,
       handlePowerUpsCoolDown,
     } = get();
@@ -266,6 +267,7 @@ export const useXOStore = create((set, get) => ({
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "bomb" });
       handlePowerUpsCoolDown();
+      declareWinner(newBoard);
     }, timeout);
   },
 
