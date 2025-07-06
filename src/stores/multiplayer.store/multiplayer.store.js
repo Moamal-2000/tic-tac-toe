@@ -7,6 +7,7 @@ export const useMultiplayerStore = create((set, get) => ({
   board: [],
   hasGameStarted: false,
   winner: null,
+  draw: false,
   isWinnerPopupVisible: false,
   selectedBoardSize: INITIAL_BOARD_SIZE,
 
@@ -16,6 +17,7 @@ export const useMultiplayerStore = create((set, get) => ({
     board,
     hasGameStarted,
     winner,
+    draw,
     isWinnerPopupVisible,
   }) => {
     set({
@@ -24,6 +26,7 @@ export const useMultiplayerStore = create((set, get) => ({
       board,
       hasGameStarted,
       winner,
+      draw,
       isWinnerPopupVisible,
     });
   },

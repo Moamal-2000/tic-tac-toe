@@ -1,26 +1,25 @@
 "use client";
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
-import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import {
   DRAW_SOUND,
   getRandomSound,
   soundFiles,
   WINNER_SOUNDS,
-} from "../../../../../data/sounds";
+} from "@/data/sounds";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import s from "./WinnerPopUp.module.scss";
 
 const WinnerPopUp = () => {
-  const { winner, isWinnerPopupVisible } = useMultiplayerStore((s) => s);
+  const { winner, draw, isWinnerPopupVisible } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds(soundFiles);
 
-  const isDraw = winner === "Draw!";
   const isP1Win = winner === SYMBOL_O;
   const isP2Win = winner === SYMBOL_X;
 
   if (isWinnerPopupVisible) {
-    if (isDraw) {
+    if (draw) {
       playSound(DRAW_SOUND, 0.1);
     }
 
@@ -31,13 +30,15 @@ const WinnerPopUp = () => {
 
   const classes = [
     s.winner,
-    isDraw ? s.draw : "",
+    draw ? s.draw : "",
     isP1Win ? s.p1 : "",
     isP2Win ? s.p2 : "",
     isWinnerPopupVisible ? s.show : "",
   ].join(" ");
 
-  return <p className={classes}>{winMessages?.[winner]}</p>;
+  const winMessage = winMessages?.[draw ? "Draw!" : winner];
+
+  return <p className={classes}>{winMessage}</p>;
 };
 
 export default WinnerPopUp;
