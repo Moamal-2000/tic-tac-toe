@@ -1,6 +1,6 @@
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
-import { BUTTON_SOUND, soundFiles } from "../../../../../data/sounds";
 import s from "./BoardSizeOption.module.scss";
 
 const BoardSizeOption = ({ size }) => {

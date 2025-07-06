@@ -1,9 +1,9 @@
 "use client";
 
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useRef } from "react";
-import { BUTTON_SOUND, soundFiles } from "../../data/sounds";
 import AboutHeader from "./AboutHeader/AboutHeader";
 import s from "./AboutPopup.module.scss";
 import GameObjectiveCard from "./GameObjectiveCard/GameObjectiveCard";

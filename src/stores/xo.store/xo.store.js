@@ -6,6 +6,13 @@ import {
   WINNER_POPUP_DURATION_MS,
 } from "@/data/constants";
 import {
+  BOMB_SOUND,
+  BUTTON_SOUND,
+  FREEZE_SOUND,
+  SWAP_SOUND,
+  UNSELECT_SOUND,
+} from "@/data/sounds";
+import {
   unSelectAllSquares,
   unSelectSquare,
   updateBoard,
@@ -17,13 +24,6 @@ import {
   whoWins,
 } from "@/functions/gameUtility";
 import { create } from "zustand";
-import {
-  BOMB_SOUND,
-  BUTTON_SOUND,
-  FREEZE_SOUND,
-  SWAP_SOUND,
-  UNSELECT_SOUND,
-} from "../../data/sounds";
 import { initialGameStates, initialStats } from "./states";
 
 export const useXOStore = create((set, get) => ({
