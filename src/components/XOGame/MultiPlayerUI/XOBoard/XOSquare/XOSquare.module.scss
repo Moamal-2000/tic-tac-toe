@@ -18,6 +18,7 @@
   font-size: 2rem;
   font-weight: bold;
   user-select: none;
+  aspect-ratio: 1;
   z-index: 1;
   transition:
     background .3s ease,
@@ -140,7 +141,6 @@
 }
 
 .square.playerX>svg {
-  vertical-align: middle;
   --x-symbol-size: 46px;
   width: var(--x-symbol-size);
   height: var(--x-symbol-size);
