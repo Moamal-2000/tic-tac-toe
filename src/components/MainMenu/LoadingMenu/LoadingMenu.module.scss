@@ -20,16 +20,19 @@
 .loadingMenu .content .loader {
   width: 60px;
   height: 60px;
-  background-color: #927eff;
+  background-color: #4a9eff;
   border-radius: 50%;
   margin: 0 auto 30px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 15px rgba(146, 126, 255, .4);
+  @include m.center-x-y;
+  box-shadow: 0 0 15px #4a9eff;
+  position: relative;
 }
 
 .loadingMenu .content .loader>svg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
   width: 30px;
   height: 30px;
   color: #e0e0e0;
