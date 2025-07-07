@@ -212,13 +212,15 @@ export const BOARD_EXAMPLES = {
 
 export const GAME_MODES_BUTTONS = [
   {
-    label: "singleplayer",
+    label: "Play on This Device",
     iconName: "user",
+    mode: "local",
     id: 1,
   },
   {
-    label: "multiplayer",
+    label: "Play Online",
     iconName: "users",
+    mode: "online",
     id: 2,
   },
 ];

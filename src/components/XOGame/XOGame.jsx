@@ -9,8 +9,8 @@ const XOGame = () => {
 
   return (
     <>
-      {gameMode === "singleplayer" && <SinglePlayerUI />}
-      {gameMode === "multiplayer" && <MultiPlayerUI />}
+      {gameMode === "local" && <SinglePlayerUI />}
+      {gameMode === "online" && <MultiPlayerUI />}
     </>
   );
 };
