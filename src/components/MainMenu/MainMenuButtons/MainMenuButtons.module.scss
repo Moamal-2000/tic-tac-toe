@@ -9,7 +9,7 @@
 
 .buttons .button {
   outline: none;
-  background-color: #333333;
+  background-color: #0f1419;
   color: #e0e0e0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
   border: 1px solid rgba(120, 120, 120, .2);
@@ -32,16 +32,12 @@
   text-transform: capitalize;
   transition: background-color .15s ease;
 
-  &:hover {
-    background-color: #3f3f3f;
-  }
-
   &:active {
-    background-color: #4a4a4a;
+    scale: .998;
   }
 
   &:focus-visible {
-    background-color: #4a4a4a;
+    border-color: #fff;
   }
 }
 
@@ -60,23 +56,53 @@
   width: 4px;
   height: 100%;
   border-radius: 8px 0 0 8px;
-  transition: background-color 0.15s ease;
+  transition:
+    background-color .15s ease,
+    box-shadow .15s ease;
 }
 
-.buttons .button:nth-child(1)::before {
-  background-color: #4a90e2;
+.buttons .button:nth-child(1)::before,
+.buttons .button:nth-child(1)::after {
+  background-color: #ff4757;
 }
 
-.buttons .button:nth-child(2)::before {
-  background-color: #48c9b0;
+.buttons .button:nth-child(1):hover::before {
+  box-shadow:
+    0 0 1px rgb(255, 71, 87),
+    0 0 3px rgb(255, 71, 87),
+    0 0 5px rgb(255, 71, 87);
+}
+
+.buttons .button:nth-child(2)::before,
+.buttons .button:nth-child(2)::after {
+  background-color: #4a9eff;
+}
+
+.buttons .button:nth-child(2):hover::before {
+  box-shadow:
+    0 0 1px #4a9eff,
+    0 0 3px #4a9eff,
+    0 0 5px #4a9eff;
+}
+
+.buttons .button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  left: -.04px;
+  width: 4px;
+  height: calc(100% - 2px);
+  border-radius: 8px 0 0 8px;
+  transition:
+    background-color .15s ease,
+    box-shadow .15s ease;
 }
 
 .button>svg {
   width: 28px;
   height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include m.center-x-y;
   flex-shrink: 0;
   color: #e0e0e0;
 }

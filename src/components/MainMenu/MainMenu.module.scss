@@ -1,6 +1,7 @@
 @use "@/styles/mixins" as m;
 
 .menuOverlay {
+  --alpha: .7;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,7 +9,11 @@
   height: 100vh;
   z-index: 1000;
   @include m.center-x-y;
-  background-color: #1a1a1a;
+  background-color: #1a1a1a5c;
+  background: linear-gradient(135deg,
+      rgba(15, 20, 25, var(--alpha)) 0,
+      rgba(26, 35, 50, var(--alpha)) 50%,
+      rgba(15, 20, 25, var(--alpha)) 100%);
   color: #e0e0e0;
 }
 
@@ -16,9 +21,9 @@
   position: relative;
   z-index: 10;
   background-color: #282828;
+  background: linear-gradient(135deg, #0f1419 0, #1a2332 50%, #0f1419 100%);
   border-radius: 12px;
   padding: 60px 40px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(120, 120, 120, 0.2);
   max-width: 380px;
   width: 100%;
