@@ -70,7 +70,7 @@
   .square {
     --size: auto !important;
     flex: 1;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1;
   }
 
   :where(.square.x4, .square.x5) {

@@ -12,12 +12,15 @@
   border: 2px solid transparent;
   min-width: var(--size);
   min-height: var(--size);
+  width: var(--size);
+  height: var(--size);
   border-radius: 10px;
   @include m.flex-center;
   position: relative;
   font-size: 2rem;
   font-weight: bold;
   user-select: none;
+  aspect-ratio: 1;
   z-index: 1;
   transition:
     background .3s ease,
@@ -67,7 +70,7 @@
   .square {
     --size: auto !important;
     flex: 1;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1;
   }
 
   :where(.square.x4, .square.x5) {
