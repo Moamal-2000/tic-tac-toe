@@ -27,8 +27,8 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       type="button"
       className={classes}
       onClick={onClick}
-      disabled={disabled}
-      aria-label={getSquareAriaLabel(squareData)}
+      // disabled={disabled}
+      // aria-label={getSquareAriaLabel(squareData)}
     >
       {fillWith && <SvgIcon name={`${fillWith}-symbol`} />}
       {isFrozen && <span className={s.freeze} />}
