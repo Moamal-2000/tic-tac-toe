@@ -5,6 +5,7 @@
 .loadingMenu {
   position: relative;
   width: 265px;
+  height: var(--main-menu-content-height);
 }
 
 @include m.very-small {
