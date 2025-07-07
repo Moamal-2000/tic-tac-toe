@@ -1,7 +1,7 @@
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
 import { getSquareClasses } from "@/functions/classNames";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import Image from "next/image";
 import s from "./XOSquare.module.scss";
 
 const XOSquare = ({ squareData, disabled, onClick }) => {
@@ -30,7 +30,9 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData)}
     >
-      {fillWith}
+      {fillWith && (
+        <Image src={`/${fillWith}-symbol.png`} alt={fillWith} fill />
+      )}
       {/* {fillWith && <SvgIcon name={`${fillWith}-symbol`} />} */}
       {isFrozen && <span className={s.freeze} />}
       {isBombed && <span className={s.bomb} />}
