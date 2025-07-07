@@ -140,7 +140,7 @@
 }
 
 .square.playerX>svg {
-  display: block;
+  vertical-align: middle;
   --x-symbol-size: 46px;
   width: var(--x-symbol-size);
   height: var(--x-symbol-size);
