@@ -12,6 +12,8 @@
   border: 2px solid transparent;
   min-width: var(--size);
   min-height: var(--size);
+  width: var(--size);
+  height: var(--size);
   border-radius: 10px;
   @include m.flex-center;
   position: relative;
