@@ -31,7 +31,7 @@ export const iconsData = [
         height="26"
         stroke="#4ecdc4"
         strokeWidth="8"
-        viewBox="0 0 100 99"
+        viewBox="0 0 100 100"
       >
         <path d="m20 20 60 60M80 20 20 80" />
       </svg>
@@ -45,7 +45,7 @@ export const iconsData = [
         height="20"
         stroke="#ff6b6b"
         strokeWidth="8"
-        viewBox="0 0 100 96"
+        viewBox="0 0 100 100"
       >
         <circle cx="50" cy="50" r="40" fill="none" />
       </svg>
