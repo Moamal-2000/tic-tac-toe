@@ -24,7 +24,7 @@
   background-color: #4a9eff;
   border-radius: 50%;
   margin: 0 auto 30px auto;
-  @include m.center-x-y;
+  @include m.flex-center;
   box-shadow: 0 0 15px #4a9eff;
   position: relative;
 }

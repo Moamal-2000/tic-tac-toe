@@ -41,7 +41,7 @@
   max-width: var(--size);
   max-height: var(--size);
   border-radius: 10px;
-  @include m.center-x-y;
+  @include m.flex-center;
   font-size: 1.125rem;
   font-weight: bold;
   user-select: none;

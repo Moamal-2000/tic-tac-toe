@@ -25,7 +25,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  @include m.center-x-y;
+  @include m.flex-center;
   font-size: .875rem;
   font-weight: bold;
   flex-shrink: 0;

@@ -13,7 +13,7 @@
   min-width: var(--size);
   min-height: var(--size);
   border-radius: 10px;
-  @include m.center-x-y;
+  @include m.flex-center;
   position: relative;
   font-size: 2rem;
   font-weight: bold;

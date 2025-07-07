@@ -43,7 +43,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  @include m.center-x-y;
+  @include m.flex-center;
   cursor: pointer;
   user-select: none;
   font-size: .9rem;
