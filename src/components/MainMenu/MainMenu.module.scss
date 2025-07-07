@@ -17,6 +17,12 @@
   color: #e0e0e0;
 }
 
+@include m.very-small {
+  .menuOverlay {
+    --alpha: 1;
+  }
+}
+
 .mainMenu {
   position: relative;
   z-index: 10;
@@ -47,18 +53,18 @@
     padding: 30px 20px;
     border: 0;
     box-shadow: none;
+    background: none;
   }
 }
 
 .mainMenu.menuButtons {
   height: fit-content;
-  background: transparent;
+  background: none;
   border: none;
 }
 
 @include m.very-small {
   .mainMenu.menuButtons {
-    background: linear-gradient(135deg, #0f1419 0, #1a2332 50%, #0f1419 100%);
     height: 100dvh;
   }
 }
