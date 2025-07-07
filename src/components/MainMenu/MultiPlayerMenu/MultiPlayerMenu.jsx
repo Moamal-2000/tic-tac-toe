@@ -60,7 +60,7 @@ const MultiPlayerMenu = () => {
 
       <form className={s.mpForm} onSubmit={handleSubmit}>
         <MPBoardSelection />
-        <button type="submit">Join & Wait</button>
+        <button type="submit">Find Match</button>
       </form>
     </div>
   );
