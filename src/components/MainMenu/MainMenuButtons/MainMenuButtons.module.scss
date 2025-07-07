@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -22,8 +24,10 @@
   border-radius: 8px;
   cursor: pointer;
   position: relative;
+  text-wrap: nowrap;
   font-weight: 600;
   font-size: 1.125rem;
+  font-size: clamp(.8rem, 5.6vw, 1.125rem);
   letter-spacing: .5px;
   text-transform: capitalize;
   transition: background-color .15s ease;
@@ -38,6 +42,13 @@
 
   &:focus-visible {
     background-color: #4a4a4a;
+  }
+}
+
+@include m.very-small {
+  .buttons .button {
+    padding: 15px 20px;
+    gap: 10px;
   }
 }
 
