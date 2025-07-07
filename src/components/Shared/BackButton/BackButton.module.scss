@@ -6,11 +6,8 @@
   left: -30px;
   width: 40px;
   height: 40px;
-  background-color: #333333;
+  background-color: #1e2832;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   outline: none;
   border: 1px solid rgba(120, 120, 120, .2);
@@ -21,13 +18,13 @@
     border-color .15s ease;
 
   &:hover {
-    background-color: #404040;
+    background-color: #26323e;
     border-color: #777777;
   }
 
   &:active {
     scale: .99;
-    background-color: #4a4a4a;
+    background-color: #1e2832;
   }
 
   &:focus-visible {
@@ -50,6 +47,10 @@
 }
 
 .backButton>svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
   width: 20px;
   height: 20px;
   color: #e0e0e0;
