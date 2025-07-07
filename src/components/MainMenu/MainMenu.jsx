@@ -13,12 +13,15 @@ const MainMenu = () => {
 
   if (!isMainMenuActive && !isWaitingForOpponent) return null;
 
+  const displayMainMenuButtons = gameMode !== "online";
   const displayMultiplayerMenu = gameMode === "online" && !isWaitingForOpponent;
+
+  const menuButtonsClass = displayMainMenuButtons ? s.menuButtons : "";
 
   return (
     <div className={s.menuOverlay}>
-      <section className={s.mainMenu}>
-        {gameMode !== "online" && <MainMenuButtons />}
+      <section className={`${s.mainMenu} ${menuButtonsClass}`}>
+        {displayMainMenuButtons && <MainMenuButtons />}
         {displayMultiplayerMenu && <MultiPlayerMenu />}
         {isWaitingForOpponent && <LoadingMenu />}
       </section>
