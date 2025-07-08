@@ -117,18 +117,18 @@ export const useXOStore = create((set, get) => ({
     const requiredData = { rowIndex, columnIndex, squareData, playSound };
     const { selectedPower } = powerUps;
 
-    if (selectedPower === "Freeze") {
+    if (selectedPower === "freeze") {
       playSound(FREEZE_SOUND);
       freezeSquare(requiredData);
     }
 
-    if (selectedPower === "Bomb") {
+    if (selectedPower === "bomb") {
       playSound(BOMB_SOUND, 0.25);
       bombSquares(requiredData);
       return;
     }
 
-    if (selectedPower === "Swap") {
+    if (selectedPower === "swap") {
       handleSwapPowerUp(requiredData);
       return;
     }
@@ -150,7 +150,7 @@ export const useXOStore = create((set, get) => ({
 
   unSelectPower: (playSound) => {
     const { board, powerUps, squaresToSwap } = get();
-    const isSwapPower = powerUps.selectedPower === "Swap";
+    const isSwapPower = powerUps.selectedPower === "swap";
     const hasSelectSquare = squaresToSwap.length > 0;
 
     playSound?.(UNSELECT_SOUND, 0.3);
@@ -254,7 +254,7 @@ export const useXOStore = create((set, get) => ({
         rowIndex,
         columnIndex,
         playerTurn,
-        powerUp: "Delete Bomb",
+        powerUp: "delete bomb",
       });
 
       const updatedPowerUps = { ...powerUps, hasActivePowerUp: false };

@@ -14,15 +14,15 @@ export function updateBoard({
     return board;
   }
 
-  if (powerUp === "Swap" && squaresToSwap.length === 2) {
+  if (powerUp === "swap" && squaresToSwap.length === 2) {
     return swapSymbolsOnBoard({ board, squaresToSwap });
   }
 
-  if (powerUp === "Bomb") {
+  if (powerUp === "bomb") {
     return triggerBombEffect({ board, rowIndex, columnIndex });
   }
 
-  if (powerUp === "Delete Bomb") {
+  if (powerUp === "delete bomb") {
     return deleteBombEffect(board);
   }
 
@@ -33,7 +33,7 @@ export function updateBoard({
   board[rowIndex][columnIndex] = {
     ...selectedSquare,
     fillWith,
-    isFrozen: powerUp === "Freeze",
+    isFrozen: powerUp === "freeze",
   };
 
   return board;

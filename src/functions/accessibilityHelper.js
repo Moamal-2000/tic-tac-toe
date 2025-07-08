@@ -29,11 +29,11 @@ export function shouldDisableSquare({
     return true;
   }
 
-  if (selectedPower === "Freeze") {
+  if (selectedPower === "freeze") {
     return !isOpponentSymbol || isFrozen;
   }
 
-  if (selectedPower === "Swap") {
+  if (selectedPower === "swap") {
     return isEmpty;
   }
 
@@ -54,8 +54,8 @@ export function shouldDisablePowerUp({
   const hasOpponentSymbol = opponentSymbolExists(board, playerTurn);
   const hasTwoSymbols = numberOfPlacedSymbols < 2;
 
-  const swapCondition = powerName === "Swap" && hasTwoSymbols;
-  const freezeCondition = powerName === "Freeze" && !hasOpponentSymbol;
+  const swapCondition = powerName === "swap" && hasTwoSymbols;
+  const freezeCondition = powerName === "freeze" && !hasOpponentSymbol;
 
   return (
     powerUps.hasActivePowerUp ||

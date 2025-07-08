@@ -3,10 +3,11 @@
 import { soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import Image from "next/image";
 import s from "./PowerUpButton.module.scss";
 
 const PowerUpButton = ({
-  data: { id, name, icon, available, coolDown, player },
+  data: { name, available, coolDown, player },
   disabled,
 }) => {
   const { selectPowerUp, powerUps, unSelectPower } = useXOStore((s) => s);
@@ -34,13 +35,19 @@ const PowerUpButton = ({
 
   return (
     <button
-      key={id}
+      key={name}
       type="button"
       className={classes}
       onClick={handleClick}
       disabled={disabled}
     >
-      <span className={s.icon}>{icon}</span>
+      <Image
+        className={s.icon}
+        src={`/images/${name}-icon.png`}
+        alt={name}
+        width={22}
+        height={21}
+      />
       <span className={s.powerName}>{name}</span>
       <span className={s.coolDown}>{coolDown}</span>
     </button>

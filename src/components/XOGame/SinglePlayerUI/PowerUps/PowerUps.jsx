@@ -40,7 +40,7 @@ const PowerUps = ({ player }) => {
 
         return (
           <PowerUpButton
-            key={buttonData.id}
+            key={buttonData.name}
             data={{ ...buttonData, available, coolDown, player }}
             disabled={disable}
           />

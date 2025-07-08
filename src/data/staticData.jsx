@@ -1,21 +1,9 @@
 import { SYMBOL_O, SYMBOL_O_TEXT, SYMBOL_X, SYMBOL_X_TEXT } from "./constants";
 
 export const POWER_UPS_BUTTONS = [
-  {
-    id: "freeze",
-    name: "Freeze",
-    icon: "❄️",
-  },
-  {
-    id: "bomb",
-    name: "Bomb",
-    icon: "💣",
-  },
-  {
-    id: "swap",
-    name: "Swap",
-    icon: "🔄",
-  },
+  { name: "freeze", label: "Freeze" },
+  { name: "bomb", label: "Bomb" },
+  { name: "swap", label: "Swap" },
 ];
 
 export const HOW_TO_PLAY_LIST = [
