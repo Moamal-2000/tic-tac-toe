@@ -14,7 +14,7 @@ export const initialGameStates = ({
   boardSize,
   playMode,
   winner: "",
-  board: createBoardBySize(boardSize),
+  board: createBoardBySize(boardSize, playMode),
   isWinnerPopupVisible: false,
   squaresToSwap: [],
   stats: initialStats(stats),
@@ -54,13 +54,17 @@ export function getInitialCoolDown(boardSize) {
   return 16;
 }
 
-export function createBoardBySize(size = 3) {
+export function createBoardBySize(size = 3, playMode) {
   const InitialSquare = {
     fillWith: "",
     isFrozen: false,
     isBombed: false,
     swapSelected: false,
   };
+
+  if (playMode === "autoHideMode") {
+    InitialSquare.hiddenTime = 3;
+  }
 
   const row = Array.from({ length: size }, () => InitialSquare);
   const board = Array.from({ length: size }, () => [...row]);

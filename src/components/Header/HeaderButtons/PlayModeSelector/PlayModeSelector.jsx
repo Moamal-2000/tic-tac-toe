@@ -6,7 +6,7 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./PlayModeSelector.module.scss";
 
 const PlayModeSelector = ({ playClickSound }) => {
-  const { playMode, updateXOStoreState } = useXOStore((s) => s);
+  const { playMode, updateXOStoreState, startNewGame } = useXOStore((s) => s);
   const gameMode = useGlobalStore((s) => s.gameMode);
 
   if (gameMode === "online") return null;
@@ -14,6 +14,7 @@ const PlayModeSelector = ({ playClickSound }) => {
   function handleClick(type) {
     playClickSound?.();
     updateXOStoreState({ playMode: type });
+    startNewGame();
   }
 
   return (
