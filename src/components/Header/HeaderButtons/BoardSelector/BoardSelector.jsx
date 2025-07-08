@@ -9,7 +9,7 @@ const BoardSelector = ({ playClickSound }) => {
   const { boardSize, updateBoardSize } = useXOStore((s) => s);
   const gameMode = useGlobalStore((s) => s.gameMode);
 
-  if (gameMode === "multiplayer") return null;
+  if (gameMode === "online") return null;
 
   function handleClick(size) {
     updateBoardSize(size);
