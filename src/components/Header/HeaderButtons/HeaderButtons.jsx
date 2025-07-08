@@ -12,8 +12,11 @@ import s from "./HeaderButtons.module.scss";
 
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
-  const { toggleAboutModel, updateGameMode } = useGlobalStore((s) => s);
+  const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore(
+    (s) => s
+  );
   const playSound = usePreloadSounds({ click: soundFiles.click });
+  const isOnlineMode = gameMode === "online";
 
   function handleAboutClick() {
     toggleAboutModel();
@@ -21,7 +24,10 @@ const HeaderButtons = () => {
   }
 
   function handleResetClick() {
-    resetStats();
+    if (isOnlineMode) {
+      // send emit to server with event "rematch"
+    } else resetStats();
+
     playSound(BUTTON_SOUND);
   }
 
@@ -42,8 +48,10 @@ const HeaderButtons = () => {
       <div className={s.wrapper2}>
         <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
         <Button onClick={handleAboutClick}>About</Button>
-        <Button onClick={handleResetClick}>Reset</Button>
         <Button onClick={handleMenuClick}>Menu</Button>
+        <Button onClick={handleResetClick}>
+          {isOnlineMode ? "Rematch" : "Reset"}
+        </Button>
       </div>
     </div>
   );
