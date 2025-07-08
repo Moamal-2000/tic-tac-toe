@@ -27,7 +27,7 @@ export const initialStats = ({ p1Wins = 0, draws = 0, p2Wins = 0 } = {}) => ({
   p2Wins,
 });
 
-const initialPlayerPowerUps = (boardSize) => ({
+export const initialPlayerPowerUps = (boardSize = INITIAL_BOARD_SIZE) => ({
   freeze: {
     available: true,
     coolDown: getInitialCoolDown(boardSize),

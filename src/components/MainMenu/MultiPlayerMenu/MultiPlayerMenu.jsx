@@ -30,6 +30,9 @@ const MultiPlayerMenu = () => {
   function syncNewGameState(state) {
     const { turn, board, winner, draw, isWinnerPopupVisible } = state;
 
+    // Get it from the server
+    const hasGameStarted = true;
+
     updateGlobalState({ isMainMenuActive: false });
     updateGlobalState({ isWaitingForOpponent: false });
 
@@ -39,6 +42,7 @@ const MultiPlayerMenu = () => {
       board,
       winner,
       draw,
+      hasGameStarted,
       isWinnerPopupVisible,
     });
   }

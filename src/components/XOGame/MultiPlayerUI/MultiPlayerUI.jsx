@@ -2,6 +2,7 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
+import PowerUps from "./PowerUps/PowerUps";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
@@ -13,7 +14,9 @@ const MultiPlayerUI = () => {
   return (
     <section className={`${s.game} ${board3Class}`}>
       <div className={s.wrapper}>
+        <PowerUps player="player1" />
         <GameStats boardSize={boardSize} stats={stats} />
+        <PowerUps player="player2" />
       </div>
 
       <XOBoard />

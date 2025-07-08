@@ -1,0 +1,114 @@
+@use "@/styles/mixins" as m;
+
+.powerUp {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  background: #2f3743;
+  border: 2px solid #3a414d;
+  color: #d4d6d8;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 70px;
+  position: relative;
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease,
+    opacity .3s ease,
+    scale .05s linear;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:not(:disabled):active {
+    scale: .988;
+  }
+}
+
+@include m.small {
+  .powerUp {
+    flex: 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .powerUp {
+    aspect-ratio: 1.7/1;
+  }
+}
+
+.powerUp:not(:disabled):where(:hover, .selected, :focus-visible) {
+  background-color: #3a424d;
+  border-color: #4ecdc4;
+  box-shadow: 0 5px 15px rgba(78, 205, 196, .2);
+}
+
+.powerUp:not(:disabled).selected {
+  background-color: #4ecdc44d;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .powerUp:not(:disabled, .selected):hover {
+    background-color: #2f3743;
+    border-color: #3a414d;
+    box-shadow: none;
+  }
+}
+
+.powerUp.player1:not(:disabled):where(:hover, .selected, :focus-visible) {
+  background-color: #3a424d;
+  border-color: #ff6b6b;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, .2);
+}
+
+.powerUp.player1:not(:disabled).selected {
+  background-color: #ff6b6b4d;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .powerUp:not(:disabled, .selected):hover {
+    background-color: #2f3743;
+    border-color: #3a414d;
+    box-shadow: none;
+  }
+}
+
+.powerUp:disabled .icon {
+  opacity: .5;
+}
+
+.powerUp .powerName {
+  font-size: .75rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.powerUp:disabled .powerName {
+  opacity: .5;
+}
+
+.powerUp .coolDown {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff6b6b;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  font-weight: bold;
+}
+
+.powerUp.disabled .coolDown {
+  display: flex;
+}

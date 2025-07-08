@@ -140,7 +140,7 @@ export const useXOStore = create((set, get) => ({
     const { squaresToSwap, board } = get();
     const hasSelectSquare = squaresToSwap.length > 0;
 
-    playSound?.("unselect", 0.3);
+    playSound?.(UNSELECT_SOUND, 0.3);
     set({
       powerUps: { ...get().powerUps, selectedPower, whoUsingPower },
       board: hasSelectSquare ? unSelectSquare(board) : board,

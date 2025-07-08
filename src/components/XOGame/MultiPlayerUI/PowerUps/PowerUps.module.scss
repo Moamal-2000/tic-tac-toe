@@ -1,0 +1,34 @@
+@use "@/styles/mixins" as m;
+
+.powerUps {
+  display: flex;
+  gap: 15px;
+  background: #242c39;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #3a414d;
+
+  &.hidden {
+    display: none;
+    pointer-events: none;
+  }
+}
+
+@include m.medium {
+  .powerUps {
+    flex-direction: column;
+  }
+}
+
+@include m.small {
+  .powerUps {
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    display: none;
+
+    &:where(.player1, .player2):not(.hidden).display {
+      display: flex;
+    }
+  }
+}
