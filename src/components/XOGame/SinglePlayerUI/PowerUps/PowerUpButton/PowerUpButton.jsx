@@ -47,6 +47,7 @@ const PowerUpButton = ({
         alt={name}
         width={22}
         height={21}
+        priority
       />
       <span className={s.powerName}>{name}</span>
       <span className={s.coolDown}>{coolDown}</span>
