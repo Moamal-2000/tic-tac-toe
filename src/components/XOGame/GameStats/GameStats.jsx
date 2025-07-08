@@ -1,10 +1,6 @@
-"use client";
-
-import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./GameStats.module.scss";
 
-const GameStats = () => {
-  const { stats, boardSize } = useXOStore((s) => s);
+const GameStats = ({ stats, boardSize }) => {
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   return (
