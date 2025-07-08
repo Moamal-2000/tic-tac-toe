@@ -1,12 +1,18 @@
-import { FIRST_PLAYER, INITIAL_BOARD_SIZE } from "@/data/constants";
+import {
+  FIRST_PLAYER,
+  INITIAL_BOARD_SIZE,
+  INITIAL_PLAY_MODE,
+} from "@/data/constants";
 
 export const initialGameStates = ({
   boardSize = INITIAL_BOARD_SIZE,
+  playMode = INITIAL_PLAY_MODE,
   stats,
 } = {}) => ({
   hasGameStart: true,
   playerTurn: FIRST_PLAYER,
   boardSize,
+  playMode,
   winner: "",
   board: createBoardBySize(boardSize),
   isWinnerPopupVisible: false,

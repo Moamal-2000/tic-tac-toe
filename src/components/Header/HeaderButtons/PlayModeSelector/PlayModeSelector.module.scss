@@ -1,0 +1,60 @@
+.playModeSelector {
+  display: flex;
+  background: #28303a;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 2px;
+  border: 1px solid #484f57;
+}
+
+.playModeSelector>button {
+  -webkit-tap-highlight-color: transparent;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #b9c0c8;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: .75rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  text-wrap: nowrap;
+  transition:
+    background .3s ease,
+    color .3s ease,
+    border-color .3s ease;
+
+  &:hover {
+    background: #404651;
+    color: #e8e9eb;
+    border-color: #666b74;
+  }
+
+  &:active {
+    background-color: #555a64;
+    color: #fff;
+    border-color: #888c93;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff;
+  }
+
+  &.active {
+    background: #304f56;
+    color: #4ecdc4;
+    border: 1px solid #3a7577;
+  }
+
+  &.active:hover {
+    background: #356065;
+    color: #4ecdc4;
+    border: 1px solid #44a19e;
+  }
+
+  &.active:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px #4ecdc4;
+  }
+}

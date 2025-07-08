@@ -30,9 +30,11 @@ export const useXOStore = create((set, get) => ({
   // Game State
   ...initialGameStates(),
 
+  updateXOStoreState: (state) => set(state),
+
   updateBoardSize: (boardSize) => {
     set({ boardSize });
-    get().startNewGame({ boardSize });
+    get().startNewGame();
   },
 
   // Core Game Mechanics
@@ -53,9 +55,15 @@ export const useXOStore = create((set, get) => ({
   },
 
   startNewGame: () => {
-    const { boardSize, stats } = get();
+    const { boardSize, stats, playMode } = get();
     const { p1Wins, draws, p2Wins } = stats;
-    set(initialGameStates({ boardSize, stats: { p1Wins, draws, p2Wins } }));
+    set(
+      initialGameStates({
+        boardSize,
+        playMode,
+        stats: { p1Wins, draws, p2Wins },
+      })
+    );
   },
 
   resetStats: () => {

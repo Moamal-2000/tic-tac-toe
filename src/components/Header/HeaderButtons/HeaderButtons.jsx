@@ -9,6 +9,7 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
 import s from "./HeaderButtons.module.scss";
+import PlayModeSelector from "./PlayModeSelector/PlayModeSelector";
 
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
@@ -43,6 +44,7 @@ const HeaderButtons = () => {
           playClickSound={() => playSound(BUTTON_SOUND)}
         />
         <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+        <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
       </div>
 
       <div className={s.wrapper2}>
