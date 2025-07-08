@@ -24,6 +24,7 @@
   user-select: none;
   aspect-ratio: 1;
   z-index: 1;
+  background-color: rgb(32, 216, 115);
   transition:
     background .3s ease,
     border-color .3s ease,
@@ -90,6 +91,10 @@
   }
 }
 
+.square>svg {
+  background-color: red;
+}
+
 .freeze {
   position: absolute;
   inset: 0;
@@ -142,12 +147,14 @@
   border-color: #4ecdc4;
   background: #324a54;
   box-shadow: 0 0 15px rgba(78, 205, 196, .5);
+  background-color: green;
 }
 
 .square.playerX>svg {
   --x-symbol-size: 46px;
   width: var(--x-symbol-size);
   height: var(--x-symbol-size);
+  background-color: blue;
 }
 
 @media (max-width: 500px) {
@@ -187,6 +194,7 @@
   background: #4f3c46;
   box-shadow: 0 0 15px rgba(255, 107, 107, .5);
   font-size: 3.8rem;
+  background-color: rgb(152, 8, 8);
 }
 
 .square.playerO>svg {
