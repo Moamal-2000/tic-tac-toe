@@ -8,9 +8,11 @@ import PowerUpButton from "./PowerUpButton/PowerUpButton";
 import s from "./PowerUps.module.scss";
 
 const PowerUps = ({ player }) => {
-  const { boardSize, board, powerUps, playerTurn, winner } = useXOStore(
-    (s) => s
-  );
+  const { boardSize, board, powerUps, playerTurn, winner, playMode } =
+    useXOStore((s) => s);
+
+  if (playMode === "autoHideMode") return null;
+
   const playerPowerUps = Object.entries(powerUps[player]);
   const isPlayer1 = playerTurn !== SYMBOL_O && player === "player1";
   const isPlayer2 = playerTurn !== SYMBOL_X && player === "player2";
