@@ -7,6 +7,7 @@ export function updateBoard({
   playerTurn,
   powerUp,
   squaresToSwap = [],
+  playMode,
 }) {
   if (powerUp === "Select") {
     const selectedSquare = board[rowIndex][columnIndex];
@@ -26,6 +27,10 @@ export function updateBoard({
     return deleteBombEffect(board);
   }
 
+  if (playMode === "autoHideMode") {
+    reduceSymbolHiddenDuration(board);
+  }
+
   const selectedSquare = board[rowIndex][columnIndex];
   const fillWith =
     selectedSquare.fillWith === "" ? playerTurn : selectedSquare.fillWith;
@@ -35,6 +40,16 @@ export function updateBoard({
     fillWith,
     isFrozen: powerUp === "freeze",
   };
+
+  return board;
+}
+
+export function reduceSymbolHiddenDuration(board) {
+  const placedSymbols = board.flatMap((row) =>
+    row.filter((cell) => cell.fillWith && cell.hiddenTime > 0)
+  );
+
+  placedSymbols.forEach((cell) => (cell.hiddenTime -= 1));
 
   return board;
 }

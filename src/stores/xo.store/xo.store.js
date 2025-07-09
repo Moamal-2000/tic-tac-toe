@@ -41,9 +41,21 @@ export const useXOStore = create((set, get) => ({
   fillSquare: (rowIndex, columnIndex) => {
     if (!get().hasGameStart) return;
 
-    const { playerTurn, board, declareWinner, handlePowerUpsCoolDown } = get();
+    const {
+      playerTurn,
+      board,
+      declareWinner,
+      handlePowerUpsCoolDown,
+      playMode,
+    } = get();
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
-    const newBoard = updateBoard({ board, rowIndex, columnIndex, playerTurn });
+    const newBoard = updateBoard({
+      board,
+      rowIndex,
+      columnIndex,
+      playerTurn,
+      playMode,
+    });
 
     const theWinner = whoWins(newBoard, playerTurn);
     const noSquaresAvailable = hasNoSquaresAvailable(newBoard);
