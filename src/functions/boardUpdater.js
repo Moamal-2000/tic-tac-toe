@@ -46,10 +46,13 @@ export function updateBoard({
 
 export function reduceSymbolHiddenDuration(board) {
   const placedSymbols = board.flatMap((row) =>
-    row.filter((cell) => cell.fillWith && cell.hiddenTime > 0)
+    row.filter((cell) => cell.fillWith)
   );
 
-  placedSymbols.forEach((cell) => (cell.hiddenTime -= 1));
+  placedSymbols.forEach((cell) => {
+    if (cell.hiddenTime > 0) cell.hiddenTime -= 1;
+    if (cell.hiddenTime <= 0) cell.hiddenTime = 3;
+  });
 
   return board;
 }
