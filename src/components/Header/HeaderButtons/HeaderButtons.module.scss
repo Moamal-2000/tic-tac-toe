@@ -6,13 +6,7 @@
   align-items: center;
 }
 
-@media (max-width: 620px) {
-  .headerButtons {
-    align-self: center;
-  }
-}
-
-@media (max-width: 500px) {
+@include m.medium {
   .headerButtons {
     flex-direction: column;
   }
@@ -26,11 +20,32 @@
   }
 }
 
-.headerButtons .wrapper1,
-.headerButtons .wrapper2 {
+.headerButtons :where(.wrapper1, .wrapper2) {
   display: flex;
   gap: 12px;
   align-items: center;
+}
+
+@include m.medium {
+  .headerButtons .wrapper2 {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 620px) {
+  .headerButtons :where(.wrapper1, .wrapper2) {
+    flex-wrap: wrap;
+  }
+
+  .headerButtons .wrapper2 {
+    align-self: flex-start;
+  }
+}
+
+@include m.very-small {
+  .headerButtons .wrapper {
+    gap: 12px;
+  }
 }
 
 .installBtn {
@@ -50,11 +65,5 @@
   &:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-}
-
-@include m.very-small {
-  .headerButtons .wrapper {
-    gap: 12px;
   }
 }
