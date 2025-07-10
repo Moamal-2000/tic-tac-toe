@@ -5,7 +5,13 @@
 .indicator {
   display: flex;
   align-items: center;
-  gap: 80px;
+  justify-content: space-between;
+  width: 200px;
+  max-width: 260px;
+
+  &.x5 {
+    width: 100%;
+  }
 }
 
 .indicator .player {
