@@ -2,7 +2,8 @@
 
 .gameStats {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 40px;
   background-color: #252c3a;
   padding: 20px;
@@ -18,7 +19,15 @@
 @include m.small {
   .gameStats {
     height: 183px;
+    gap: 0;
+    justify-content: space-between;
   }
+}
+
+.gameStats .stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 
 .gameStats .stat {

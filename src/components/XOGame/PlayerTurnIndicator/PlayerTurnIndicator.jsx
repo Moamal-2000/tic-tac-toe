@@ -4,7 +4,14 @@ import SvgIcon from "@/components/Shared/SvgIcon";
 import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import s from "./PlayerTurnIndicator.module.scss";
 
-const PlayerTurnIndicator = ({ playerTurn, boardSize, winner, hideOn }) => {
+const PlayerTurnIndicator = ({
+  playerTurn,
+  boardSize,
+  winner,
+  hideOn,
+  showOn,
+  hideUntilShow,
+}) => {
   const p1ActiveClass = playerTurn === SYMBOL_O ? s.active : "";
   const p2ActiveClass = playerTurn === SYMBOL_X ? s.active : "";
 
@@ -13,10 +20,18 @@ const PlayerTurnIndicator = ({ playerTurn, boardSize, winner, hideOn }) => {
     boardSize === 3 ? s.x3 : "",
     boardSize === 5 ? s.x5 : "",
     winner ? s.disable : "",
+
     hideOn === SCREEN_SIZES.large.size ? s.hideOnLarge : "",
     hideOn === SCREEN_SIZES.medium.size ? s.hideOnMedium : "",
     hideOn === SCREEN_SIZES.small.size ? s.hideOnSmall : "",
     hideOn === SCREEN_SIZES.verySmall.size ? s.hideOnVerySmall : "",
+
+    showOn === SCREEN_SIZES.large.size ? s.showOnLarge : "",
+    showOn === SCREEN_SIZES.medium.size ? s.showOnMedium : "",
+    showOn === SCREEN_SIZES.small.size ? s.showOnSmall : "",
+    showOn === SCREEN_SIZES.verySmall.size ? s.showOnVerySmall : "",
+
+    hideUntilShow ? s.hideUntilShow : "",
   ].join(" ");
 
   return (

@@ -12,6 +12,16 @@
   &.x5 {
     width: 100%;
   }
+
+  &.hideUntilShow {
+    display: none;
+  }
+}
+
+@include m.medium {
+  .indicator {
+    width: 100%;
+  }
 }
 
 .indicator .player {
@@ -75,7 +85,6 @@
   height: 100%;
   border: solid 3px transparent;
   border-radius: inherit;
-  z-index: -1;
 }
 
 .indicator:not(.disable) .player.p1.active .symbol::before {
@@ -119,6 +128,31 @@
 
 .indicator:not(.disable) .player.p2.active .label {
   color: #4ecdc4;
+}
+
+// Show on specific screen sizes
+@include m.large {
+  .showOnLarge {
+    display: flex !important;
+  }
+}
+
+@include m.medium {
+  .showOnMedium {
+    display: flex !important;
+  }
+}
+
+@include m.small {
+  .showOnSmall {
+    display: flex !important;
+  }
+}
+
+@include m.very-small {
+  .showOnVerySmall {
+    display: flex !important;
+  }
 }
 
 // Hide on specific screen sizes
