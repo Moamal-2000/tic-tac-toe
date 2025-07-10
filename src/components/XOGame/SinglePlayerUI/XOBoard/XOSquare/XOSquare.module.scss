@@ -54,6 +54,10 @@
     border-color: #e98061;
     background: linear-gradient(45deg, #ff4400, #ff6347);
   }
+
+  &.transparent {
+    opacity: .7;
+  }
 }
 
 @include m.medium {

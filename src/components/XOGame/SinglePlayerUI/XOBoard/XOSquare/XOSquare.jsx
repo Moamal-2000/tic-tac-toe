@@ -5,21 +5,21 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./XOSquare.module.scss";
 
 const XOSquare = ({ squareData, disabled, onClick }) => {
-  const { boardSize, powerUps, squaresToSwap, playerTurn } = useXOStore(
-    (s) => s
-  );
-  const { fillWith, isFrozen, isBombed, swapSelected } = squareData;
+  const { boardSize, powerUps, squaresToSwap, playerTurn, playMode } =
+    useXOStore((s) => s);
+
+  const { fillWith, isFrozen, isBombed } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
   const shouldSwap = hasSelectSquares && squareData.swapSelected;
 
   const classes = getSquareClasses({
     cssModule: s,
     boardSize,
-    fillWith,
     powerUps,
-    swapSelected,
     playerTurn,
     hasSelectSquares,
+    squareData,
+    playMode,
   });
 
   return (

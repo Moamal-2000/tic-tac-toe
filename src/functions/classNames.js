@@ -3,13 +3,17 @@ import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 export function getSquareClasses({
   cssModule,
   boardSize,
-  fillWith,
   powerUps,
-  swapSelected,
   playerTurn,
   hasSelectSquares,
+  squareData,
+  playMode,
 }) {
+  const { swapSelected, fillWith } = squareData;
   const isOpponent = fillWith !== playerTurn;
+  const isAutoHideMode = playMode === "autoHideMode";
+  const shouldTransparent = isAutoHideMode && squareData?.hiddenTime === 1;
+
   const activeFreezeHover =
     powerUps.selectedPower === "freeze" && fillWith && isOpponent;
   const activeSwapHover =
@@ -25,6 +29,7 @@ export function getSquareClasses({
     activeSwapHover && fillWith ? cssModule.swapHover : "",
     powerUps.selectedPower === "bomb" ? cssModule.bombHover : "",
     swapSelected ? cssModule.select : "",
+    shouldTransparent ? cssModule.transparent : "",
   ].join(" ");
 }
 
