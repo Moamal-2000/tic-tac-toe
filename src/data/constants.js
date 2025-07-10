@@ -16,3 +16,21 @@ export const PLAY_MODES = [
   { name: "Classic", type: "classicMode", id: 1 },
   { name: "Auto Hide Mode", type: "autoHideMode", id: 2 },
 ];
+export const SCREEN_SIZES = {
+  large: {
+    devices: ["standard desktop", "large laptop", "desktop"],
+    size: 1200,
+  },
+  medium: {
+    devices: ["small laptop", "tablet in landscape"],
+    size: 992,
+  },
+  small: {
+    devices: ["tablet", "large phone in landscape"],
+    size: 768,
+  },
+  verySmall: {
+    devices: ["small phone"],
+    size: 376,
+  },
+};

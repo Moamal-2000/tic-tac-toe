@@ -149,3 +149,28 @@
 .indicator:not(.disable) .player.p2.active .label {
   color: #4ecdc4;
 }
+
+// Hide on specific screen sizes
+@include m.large {
+  .hideOnLarge {
+    display: none;
+  }
+}
+
+@include m.medium {
+  .hideOnMedium {
+    display: none;
+  }
+}
+
+@include m.small {
+  .hideOnSmall {
+    display: none;
+  }
+}
+
+@include m.very-small {
+  .hideOnVerySmall {
+    display: none;
+  }
+}
