@@ -1,4 +1,7 @@
-import { BOMB_DELETION_DELAY_MS } from "@/data/constants";
+import {
+  BOMB_DELETION_DELAY_MS,
+  INITIAL_SQUARE_HIDDEN_TIME,
+} from "@/data/constants";
 
 export function updateBoard({
   board,
@@ -8,6 +11,7 @@ export function updateBoard({
   powerUp,
   squaresToSwap = [],
   playMode,
+  squareHiddenTime,
 }) {
   if (powerUp === "Select") {
     const selectedSquare = board[rowIndex][columnIndex];
@@ -28,7 +32,7 @@ export function updateBoard({
   }
 
   if (playMode === "autoHideMode") {
-    reduceSymbolHiddenDuration(board);
+    reduceSymbolHiddenDuration(board, squareHiddenTime);
   }
 
   const selectedSquare = board[rowIndex][columnIndex];
@@ -42,18 +46,21 @@ export function updateBoard({
   };
 
   if (playMode === "autoHideMode") {
-    return removeHiddenSquares(board);
+    return removeHiddenSquares(board, squareHiddenTime);
   }
 
   return board;
 }
 
-export function removeHiddenSquares(board) {
+export function removeHiddenSquares(
+  board,
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+) {
   const newBoard = board.map((row) =>
     row.map((cell) => {
       if (cell?.hiddenTime === 0) {
         cell.fillWith = "";
-        cell.hiddenTime = 3;
+        cell.hiddenTime = squareHiddenTime;
       }
 
       return cell;
@@ -63,14 +70,17 @@ export function removeHiddenSquares(board) {
   return newBoard;
 }
 
-export function reduceSymbolHiddenDuration(board) {
+export function reduceSymbolHiddenDuration(
+  board,
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+) {
   const placedSymbols = board.flatMap((row) =>
     row.filter((cell) => cell.fillWith)
   );
 
   placedSymbols.forEach((cell) => {
     if (cell.hiddenTime > 0) cell.hiddenTime -= 1;
-    if (cell.hiddenTime < 0) cell.hiddenTime = 3;
+    if (cell.hiddenTime < 0) cell.hiddenTime = squareHiddenTime;
   });
 
   return board;

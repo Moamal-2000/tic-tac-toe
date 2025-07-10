@@ -47,6 +47,7 @@ export const useXOStore = create((set, get) => ({
       declareWinner,
       handlePowerUpsCoolDown,
       playMode,
+      squareHiddenTime,
     } = get();
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const newBoard = updateBoard({
@@ -55,6 +56,7 @@ export const useXOStore = create((set, get) => ({
       columnIndex,
       playerTurn,
       playMode,
+      squareHiddenTime,
     });
 
     const theWinner = whoWins(newBoard, playerTurn);

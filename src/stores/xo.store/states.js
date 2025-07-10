@@ -2,6 +2,7 @@ import {
   FIRST_PLAYER,
   INITIAL_BOARD_SIZE,
   INITIAL_PLAY_MODE,
+  INITIAL_SQUARE_HIDDEN_TIME,
 } from "@/data/constants";
 
 export const initialGameStates = ({
@@ -13,6 +14,7 @@ export const initialGameStates = ({
   playerTurn: FIRST_PLAYER,
   boardSize,
   playMode,
+  squareHiddenTime: INITIAL_SQUARE_HIDDEN_TIME,
   winner: "",
   board: createBoardBySize(boardSize, playMode),
   isWinnerPopupVisible: false,
@@ -54,7 +56,11 @@ export function getInitialCoolDown(boardSize) {
   return 16;
 }
 
-export function createBoardBySize(size = 3, playMode) {
+export function createBoardBySize(
+  size = 3,
+  playMode,
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+) {
   const InitialSquare = {
     fillWith: "",
     isFrozen: false,
@@ -63,7 +69,7 @@ export function createBoardBySize(size = 3, playMode) {
   };
 
   if (playMode === "autoHideMode") {
-    InitialSquare.hiddenTime = 3;
+    InitialSquare.hiddenTime = squareHiddenTime;
   }
 
   const row = Array.from({ length: size }, () => InitialSquare);
