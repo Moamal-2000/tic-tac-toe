@@ -8,41 +8,6 @@
   gap: 80px;
 }
 
-@include m.medium {
-  .indicator:not(.x3) {
-    position: absolute;
-    left: 50%;
-    top: 230px;
-    translate: -50% 0;
-    gap: 40px;
-  }
-}
-
-@include m.small {
-  .indicator {
-    position: absolute;
-    left: 50%;
-    translate: -50% 0;
-    gap: 40px;
-  }
-
-  .indicator {
-    top: 180px !important;
-  }
-}
-
-@media (max-width: 620px) {
-  .indicator {
-    top: 235px !important;
-  }
-}
-
-@media (max-width: 500px) {
-  .indicator {
-    top: 280px !important;
-  }
-}
-
 .indicator .player {
   display: flex;
   flex-direction: column;

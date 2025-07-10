@@ -1,3 +1,4 @@
+import { SCREEN_SIZES } from "@/data/constants";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
@@ -22,6 +23,7 @@ const SinglePlayerUI = () => {
         playerTurn={playerTurn}
         boardSize={boardSize}
         winner={winner}
+        hideOn={SCREEN_SIZES.medium.size}
       />
     </section>
   );
