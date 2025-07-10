@@ -31,6 +31,7 @@
 .game .wrapper {
   display: flex;
   gap: 30px;
+  width: 100%;
 }
 
 @include m.medium {
@@ -42,7 +43,6 @@
 @include m.small {
   .game .wrapper {
     flex-direction: column;
-    width: 100%;
   }
 
   .game .wrapper>*:nth-child(1) {
