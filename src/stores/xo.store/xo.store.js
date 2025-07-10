@@ -24,7 +24,11 @@ import {
   whoWins,
 } from "@/functions/gameUtility";
 import { create } from "zustand";
-import { initialGameStates, initialStats } from "./states";
+import {
+  InitialHiddenTimeByBoardSize,
+  initialGameStates,
+  initialStats,
+} from "./states";
 
 export const useXOStore = create((set, get) => ({
   // Game State
@@ -34,7 +38,7 @@ export const useXOStore = create((set, get) => ({
 
   updateBoardSize: (boardSize) => {
     set({ boardSize });
-    get().startNewGame();
+    get().startNewGame(InitialHiddenTimeByBoardSize(boardSize));
   },
 
   // Core Game Mechanics
@@ -68,10 +72,10 @@ export const useXOStore = create((set, get) => ({
     declareWinner(newBoard);
   },
 
-  startNewGame: () => {
+  startNewGame: (squareHiddenTime) => {
     const { boardSize, stats, playMode } = get();
 
-    set(initialGameStates({ boardSize, playMode, stats }));
+    set(initialGameStates({ boardSize, playMode, stats, squareHiddenTime }));
   },
 
   resetStats: () => {

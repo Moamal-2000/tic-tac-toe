@@ -8,7 +8,7 @@ import {
 export const initialGameStates = ({
   boardSize = INITIAL_BOARD_SIZE,
   playMode = INITIAL_PLAY_MODE,
-  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME,
+  squareHiddenTime = InitialHiddenTimeByBoardSize(boardSize),
   stats,
 } = {}) => ({
   hasGameStart: true,
@@ -60,7 +60,7 @@ export function getInitialCoolDown(boardSize) {
 export function createBoardBySize(
   size = INITIAL_BOARD_SIZE,
   playMode,
-  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+  squareHiddenTime
 ) {
   const InitialSquare = {
     fillWith: "",
@@ -77,4 +77,10 @@ export function createBoardBySize(
   const board = Array.from({ length: size }, () => [...row]);
 
   return board;
+}
+
+export function InitialHiddenTimeByBoardSize(boardSize = INITIAL_BOARD_SIZE) {
+  if (boardSize === 4) return 10;
+  if (boardSize === 5) return 15;
+  return INITIAL_SQUARE_HIDDEN_TIME;
 }
