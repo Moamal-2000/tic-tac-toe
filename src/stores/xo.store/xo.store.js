@@ -70,19 +70,20 @@ export const useXOStore = create((set, get) => ({
 
   startNewGame: () => {
     const { boardSize, stats, playMode } = get();
-    const { p1Wins, draws, p2Wins } = stats;
-    set(
-      initialGameStates({
-        boardSize,
-        playMode,
-        stats: { p1Wins, draws, p2Wins },
-      })
-    );
+
+    set(initialGameStates({ boardSize, playMode, stats }));
   },
 
   resetStats: () => {
+    const { boardSize, playMode, squareHiddenTime } = get();
+
     set(
-      initialGameStates({ boardSize: get().boardSize, stats: initialStats() })
+      initialGameStates({
+        boardSize,
+        stats: initialStats(),
+        playMode,
+        squareHiddenTime,
+      })
     );
   },
 

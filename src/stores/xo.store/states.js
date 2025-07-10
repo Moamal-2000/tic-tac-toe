@@ -8,15 +8,16 @@ import {
 export const initialGameStates = ({
   boardSize = INITIAL_BOARD_SIZE,
   playMode = INITIAL_PLAY_MODE,
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME,
   stats,
 } = {}) => ({
   hasGameStart: true,
   playerTurn: FIRST_PLAYER,
   boardSize,
   playMode,
-  squareHiddenTime: INITIAL_SQUARE_HIDDEN_TIME,
+  squareHiddenTime,
   winner: "",
-  board: createBoardBySize(boardSize, playMode),
+  board: createBoardBySize(boardSize, playMode, squareHiddenTime),
   isWinnerPopupVisible: false,
   squaresToSwap: [],
   stats: initialStats(stats),
@@ -57,7 +58,7 @@ export function getInitialCoolDown(boardSize) {
 }
 
 export function createBoardBySize(
-  size = 3,
+  size = INITIAL_BOARD_SIZE,
   playMode,
   squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
 ) {
