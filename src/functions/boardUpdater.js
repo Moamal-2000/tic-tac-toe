@@ -41,7 +41,26 @@ export function updateBoard({
     isFrozen: powerUp === "freeze",
   };
 
+  if (playMode === "autoHideMode") {
+    return removeHiddenSquares(board);
+  }
+
   return board;
+}
+
+export function removeHiddenSquares(board) {
+  const newBoard = board.map((row) =>
+    row.map((cell) => {
+      if (cell?.hiddenTime === 0) {
+        cell.fillWith = "";
+        cell.hiddenTime = 3;
+      }
+
+      return cell;
+    })
+  );
+
+  return newBoard;
 }
 
 export function reduceSymbolHiddenDuration(board) {
@@ -51,7 +70,7 @@ export function reduceSymbolHiddenDuration(board) {
 
   placedSymbols.forEach((cell) => {
     if (cell.hiddenTime > 0) cell.hiddenTime -= 1;
-    if (cell.hiddenTime <= 0) cell.hiddenTime = 3;
+    if (cell.hiddenTime < 0) cell.hiddenTime = 3;
   });
 
   return board;
