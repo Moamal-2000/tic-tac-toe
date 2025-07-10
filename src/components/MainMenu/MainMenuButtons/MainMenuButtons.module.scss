@@ -22,11 +22,9 @@
   width: 100%;
   min-height: 60px;
   border-radius: 8px;
-  cursor: pointer;
   position: relative;
   text-wrap: nowrap;
   font-weight: 600;
-  font-size: 1.125rem;
   font-size: clamp(.8rem, 5.6vw, 1.125rem);
   letter-spacing: .5px;
   text-transform: capitalize;
