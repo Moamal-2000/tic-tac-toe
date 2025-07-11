@@ -8,6 +8,7 @@
 A modern twist on the classic Tic Tac Toe game, now with customizable board sizes (up to 5x5) and powerful game-changing Power-Ups like **Freeze**, **Bomb**, and **Swap**. Built with a focus on accessibility, responsiveness, and interactive fun! [Play Now](https://tictactoe-4x4.netlify.app)
 
 ## Note
+
 We're working on adding `online` multiplayer support, launching soon!
 
 ---
@@ -20,6 +21,7 @@ We're working on adding `online` multiplayer support, launching soon!
   - **Freeze**: Blocks a square permanently
   - **Bomb**: Destroys an area of 9 tiles
   - **Swap**: Exchange your symbol with an opponent’s
+- **Auto Hide mode**: symbols disappear after a set number of turns, dynamically based on board size
 - Sound effects for player actions and power-ups
 - Fully responsive and mobile-friendly
 - Accessible with keyboard and screen reader support
