@@ -29,7 +29,7 @@ export class Game {
     if (!this.board.isCellFree(row, col)) return false;
     this.moveCount++;
 
-    const opponent = this.getOpponentSymbol()
+    const opponent = this.getOpponentSymbol();
 
     // Fill square with player's symbol
     this.board.setCell(row, col, this.turn);
@@ -38,10 +38,10 @@ export class Game {
     this.players[this.turn].decrementCooldowns();
     this.players[opponent].decrementCooldowns();
 
-    const someoneWins = this.checkWin(row, col);
+    const winner = this.checkWin(row, col);
 
-    if (someoneWins) {
-      this.winner = this.turn;
+    if (winner) {
+      this.winner = winner;
       return true;
     }
 
@@ -72,13 +72,17 @@ export class Game {
         break;
     }
 
+    const winner = this.checkWin();
+
+    if (winner) {
+      this.winner = winner;
+    }
+
     return true;
   }
 
   checkWin(row, col) {
-    const symbol = this.turn;
     const size = this.board.size;
-
     const directions = [
       [0, 1],
       [1, 0],
@@ -86,14 +90,39 @@ export class Game {
       [1, -1],
     ];
 
-    for (const [dr, dc] of directions) {
-      if (this.countAligned(row, col, dr, dc, symbol) >= size) {
-        this.isWinnerPopupVisible = true;
-        return true;
+    for (const symbol of [SYMBOL_X, SYMBOL_O]) {
+      if (row !== undefined && col !== undefined) {
+        const cell = this.board.getCell(row, col);
+        if (cell.owner === symbol) {
+          for (const [dr, dc] of directions) {
+            if (this.countAligned(row, col, dr, dc, symbol) >= size) {
+              this.isWinnerPopupVisible = true;
+              return symbol;
+            }
+          }
+        }
+      } else {
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            const cell = this.board.getCell(r, c);
+            if (cell.owner === symbol) {
+              for (const [dr, dc] of directions) {
+                if (this.countAligned(r, c, dr, dc, symbol) >= size) {
+                  this.isWinnerPopupVisible = true;
+                  return symbol;
+                }
+              }
+            }
+          }
+        }
       }
     }
 
     return false;
+  }
+
+  checkDraw() {
+    return !this.board.hasFreeCell();
   }
 
   countAligned(row, col, dr, dc, symbol) {
@@ -134,6 +163,7 @@ export class Game {
       },
       turn: this.turn,
       winner: this.winner,
+      draw: this.checkDraw(),
       hasGameStarted: this.hasGameStarted,
       isWinnerPopupVisible: this.isWinnerPopupVisible,
     };

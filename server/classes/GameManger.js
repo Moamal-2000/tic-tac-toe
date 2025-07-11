@@ -19,6 +19,8 @@ export class GameManager {
     socketO.data.roomId = roomId;
     socketX.data.roomId = roomId;
 
+    game.hasGameStarted = true;
+
     this.syncRoom(roomId);
   }
 
