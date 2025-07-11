@@ -9,16 +9,18 @@
   width: 200px;
   max-width: 260px;
 
-  &.x5 {
-    width: 100%;
-  }
-
   &.hideUntilShow {
     display: none;
   }
 }
 
 @include m.medium {
+  .indicator {
+    width: 220px;
+  }
+}
+
+@media (max-width: 300px) {
   .indicator {
     width: 100%;
   }
