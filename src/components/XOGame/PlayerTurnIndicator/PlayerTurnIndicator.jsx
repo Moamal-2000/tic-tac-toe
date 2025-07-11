@@ -1,7 +1,8 @@
 "use client";
 
 import SvgIcon from "@/components/Shared/SvgIcon";
-import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { getPlayerIndicatorClasses } from "@/functions/classNames";
 import s from "./PlayerTurnIndicator.module.scss";
 
 const PlayerTurnIndicator = ({
@@ -15,24 +16,14 @@ const PlayerTurnIndicator = ({
   const p1ActiveClass = playerTurn === SYMBOL_O ? s.active : "";
   const p2ActiveClass = playerTurn === SYMBOL_X ? s.active : "";
 
-  const containerClasses = [
-    s.indicator,
-    boardSize === 3 ? s.x3 : "",
-    boardSize === 5 ? s.x5 : "",
-    winner ? s.disable : "",
-
-    hideOn === SCREEN_SIZES.large.size ? s.hideOnLarge : "",
-    hideOn === SCREEN_SIZES.medium.size ? s.hideOnMedium : "",
-    hideOn === SCREEN_SIZES.small.size ? s.hideOnSmall : "",
-    hideOn === SCREEN_SIZES.verySmall.size ? s.hideOnVerySmall : "",
-
-    showOn === SCREEN_SIZES.large.size ? s.showOnLarge : "",
-    showOn === SCREEN_SIZES.medium.size ? s.showOnMedium : "",
-    showOn === SCREEN_SIZES.small.size ? s.showOnSmall : "",
-    showOn === SCREEN_SIZES.verySmall.size ? s.showOnVerySmall : "",
-
-    hideUntilShow ? s.hideUntilShow : "",
-  ].join(" ");
+  const containerClasses = getPlayerIndicatorClasses({
+    cssModule: s,
+    boardSize,
+    winner,
+    hideOn,
+    showOn,
+    hideUntilShow,
+  });
 
   return (
     <div className={containerClasses}>

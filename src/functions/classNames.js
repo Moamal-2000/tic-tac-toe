@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/data/constants";
 
 export function getSquareClasses({
   cssModule,
@@ -43,4 +43,41 @@ export function getExampleBoardSquareClasses({ cssModule, fillWith, type }) {
     type?.includes("targeted") ? cssModule.targeted : "",
     type?.includes("selected") ? cssModule.selected : "",
   ].join(" ");
+}
+
+export function getPlayerIndicatorClasses({
+  cssModule,
+  boardSize,
+  winner,
+  hideOn,
+  showOn,
+  hideUntilShow,
+}) {
+  return [
+    cssModule.indicator,
+    boardSize === 3 ? cssModule.x3 : "",
+    boardSize === 5 ? cssModule.x5 : "",
+    winner ? cssModule.disable : "",
+    hideUntilShow ? cssModule.hideUntilShow : "",
+    getScreenSizeClass(cssModule, hideOn, "hideOn"),
+    getScreenSizeClass(cssModule, showOn, "showOn"),
+  ].join(" ");
+}
+
+export function getScreenSizeClass(cssModule, screenSize, prefix) {
+  const screenEntries = Object.entries(SCREEN_SIZES);
+
+  const screenEntry = screenEntries.find((screenEntries) => {
+    const screen = screenEntries[1];
+    return screen.size === screenSize;
+  });
+
+  if (!screenEntry) return "";
+
+  const screenName = screenEntry[0];
+
+  const camelCasedClassName =
+    prefix + screenName[0].toUpperCase() + screenName.slice(1);
+
+  return cssModule[camelCasedClassName] || "";
 }
