@@ -32,10 +32,21 @@ We're working on adding `online` multiplayer support, launching soon!
 
 ## Tech Stack
 
-- **Next.js v15**
-- **SASS** with **CSS Modules**
-- **PWA** (Progressive Web App)
-- **Zustand** for state management
+### Front-End
+- **Next.js v15** (React framework)
+- **React v19** & **React DOM**
+- **SASS** with **CSS Modules** for styling
+- **Socket.IO Client v4** for real-time communication with the server
+- **Zustand v5** for state management
+- **npm-check-updates** for easy dependency updates
+
+### Back-End
+- **Node.js** with **ES Modules**
+- **Express v5** for HTTP server
+- **Socket.IO v4** for real-time WebSocket communication
+- **CORS** middleware for cross-origin requests
+- **dotenv** for environment variable management
+- **nodemon** for automatic server restarts during development
 
 ---
 
