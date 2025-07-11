@@ -7,13 +7,19 @@
 }
 
 @include m.medium {
-  .headerButtons {
+  .headerButtons.onlineMode {
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .headerButtons:not(.onlineMode) {
     flex-direction: column;
   }
 }
 
-@include m.very-small {
+@media (max-width: 500px) {
   .headerButtons {
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
@@ -42,9 +48,13 @@
   }
 }
 
-@include m.very-small {
-  .headerButtons .wrapper {
-    gap: 12px;
+@media (max-width: 500px) {
+  .headerButtons :where(.wrapper1, .wrapper2) {
+    width: 100%;
+
+    &>* {
+      flex: 1;
+    }
   }
 }
 

@@ -38,16 +38,16 @@ const HeaderButtons = () => {
   }
 
   return (
-    <div className={s.headerButtons}>
+    <div className={`${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""}`}>
       <div className={s.wrapper1}>
-        <FullscreenToggleButton
-          playClickSound={() => playSound(BUTTON_SOUND)}
-        />
         <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
         <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
       </div>
 
       <div className={s.wrapper2}>
+        <FullscreenToggleButton
+          playClickSound={() => playSound(BUTTON_SOUND)}
+        />
         <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
         <Button onClick={handleAboutClick}>About</Button>
         <Button onClick={handleMenuClick}>Menu</Button>

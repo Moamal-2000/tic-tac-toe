@@ -57,3 +57,9 @@
     box-shadow: 0 0 0 1px #4ecdc4;
   }
 }
+
+@media (max-width: 500px) {
+  .playModeSelector>button {
+    flex: 1;
+  }
+}
