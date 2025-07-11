@@ -1,3 +1,4 @@
+import { SCREEN_SIZES } from "@/data/constants";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
@@ -21,9 +22,10 @@ const MultiPlayerUI = () => {
 
       <XOBoard />
       <PlayerTurnIndicator
+        playerTurn={playerTurn}
         boardSize={boardSize}
         winner={winner}
-        playerTurn={playerTurn}
+        hideOn={SCREEN_SIZES.medium.size}
       />
     </section>
   );
