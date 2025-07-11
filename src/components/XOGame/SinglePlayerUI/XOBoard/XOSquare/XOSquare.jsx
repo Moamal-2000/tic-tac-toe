@@ -8,9 +8,9 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
   const { boardSize, powerUps, squaresToSwap, playerTurn, playMode } =
     useXOStore((s) => s);
 
-  const { fillWith, isFrozen, isBombed } = squareData;
+  const { fillWith, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
-  const shouldSwap = hasSelectSquares && squareData.swapSelected;
+  const shouldSwap = hasSelectSquares && swapSelected;
 
   const classes = getSquareClasses({
     cssModule: s,
@@ -20,6 +20,9 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
     hasSelectSquares,
     squareData,
     playMode,
+    fillWith,
+    swapSelected,
+    hiddenTime: squareData?.hiddenTime,
   });
 
   return (

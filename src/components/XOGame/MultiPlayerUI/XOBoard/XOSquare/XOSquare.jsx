@@ -10,16 +10,16 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
   const { boardSize } = useMultiplayerStore((s) => s);
   const { owner, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
-  const shouldSwap = hasSelectSquares && squareData.swapSelected;
+  const shouldSwap = hasSelectSquares && swapSelected;
 
   const classes = getSquareClasses({
     cssModule: s,
     boardSize,
-    fillWith: owner,
     powerUps,
-    swapSelected,
+    fillWith: owner,
     playerTurn,
     hasSelectSquares,
+    swapSelected,
   });
 
   return (

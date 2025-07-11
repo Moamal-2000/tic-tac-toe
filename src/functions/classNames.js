@@ -6,13 +6,14 @@ export function getSquareClasses({
   powerUps,
   playerTurn,
   hasSelectSquares,
-  squareData,
   playMode,
+  fillWith,
+  swapSelected,
+  hiddenTime,
 }) {
-  const { swapSelected, fillWith } = squareData;
   const isOpponent = fillWith !== playerTurn;
   const isAutoHideMode = playMode === "autoHideMode";
-  const shouldTransparent = isAutoHideMode && squareData?.hiddenTime === 1;
+  const shouldTransparent = isAutoHideMode && hiddenTime === 1;
 
   const activeFreezeHover =
     powerUps.selectedPower === "freeze" && fillWith && isOpponent;
