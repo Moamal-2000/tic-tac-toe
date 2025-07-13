@@ -1,12 +1,12 @@
 "use client";
 
 import { SCREEN_SIZES } from "@/data/constants";
-import { useXOStore } from "@/stores/xo.store/xo.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./GameStats.module.scss";
 
 const GameStats = ({ stats }) => {
-  const { boardSize, playerTurn, winner } = useXOStore((s) => s);
+  const { boardSize, playerTurn, winner } = useMultiplayerStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   return (
