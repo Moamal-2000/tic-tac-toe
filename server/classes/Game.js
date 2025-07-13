@@ -122,7 +122,13 @@ export class Game {
   }
 
   checkDraw() {
-    return !this.board.hasFreeCell();
+    const hasFreeCell = this.board.hasFreeCell();
+
+    if (!hasFreeCell) {
+      this.isWinnerPopupVisible = true;
+    }
+
+    return !hasFreeCell;
   }
 
   countAligned(row, col, dr, dc, symbol) {
