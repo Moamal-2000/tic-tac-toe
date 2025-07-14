@@ -6,7 +6,11 @@ import s from "./RematchMenu.module.scss";
 const RematchMenu = () => {
   const { updateMultiplayerState } = useMultiplayerStore((s) => s);
 
-  function closeRematchMenu() {
+  function closeRematchMenu(event) {
+    const isOverlayClick = event.target.contains(event.currentTarget);
+
+    if (!isOverlayClick) return;
+
     updateMultiplayerState({ isRematchMenuActive: false });
   }
 
