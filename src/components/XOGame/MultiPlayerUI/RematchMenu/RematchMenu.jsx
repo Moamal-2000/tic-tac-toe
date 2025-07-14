@@ -1,7 +1,16 @@
 import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
-  return <div className={s.rematchMenu}></div>;
+  return (
+    <div className={s.rematchMenu}>
+      <p>Ask for a rematch?</p>
+
+      <div className={s.buttons}>
+        <button className={s.yes}>Yes</button>
+        <button className={s.no}>No</button>
+      </div>
+    </div>
+  );
 };
 
 export default RematchMenu;

@@ -5,6 +5,7 @@ import Button from "@/components/Shared/Button/Button";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
@@ -16,6 +17,7 @@ const HeaderButtons = () => {
   const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore(
     (s) => s
   );
+  const { updateMultiplayerState } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const isOnlineMode = gameMode === "online";
 
@@ -27,6 +29,7 @@ const HeaderButtons = () => {
   function handleResetClick() {
     if (isOnlineMode) {
       // send emit to server with event "rematch"
+      updateMultiplayerState({ isRematchMenuActive: true });
     } else resetStats();
 
     playSound(BUTTON_SOUND);

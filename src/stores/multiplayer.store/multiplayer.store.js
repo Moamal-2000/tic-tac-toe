@@ -10,6 +10,7 @@ export const useMultiplayerStore = create((set, get) => ({
   winner: null,
   draw: false,
   isWinnerPopupVisible: false,
+  isRematchMenuActive: false,
   selectedBoardSize: INITIAL_BOARD_SIZE,
   stats: { p1Wins: 0, draws: 0, p2Wins: 0 },
   powerUps: {

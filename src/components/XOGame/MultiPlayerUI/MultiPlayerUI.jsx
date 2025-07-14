@@ -4,12 +4,12 @@ import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
 import PowerUps from "./PowerUps/PowerUps";
+import RematchMenu from "./RematchMenu/RematchMenu";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
-  const { boardSize, stats, winner, playerTurn } = useMultiplayerStore(
-    (s) => s
-  );
+  const { boardSize, stats, winner, playerTurn, isRematchMenuActive } =
+    useMultiplayerStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   return (
@@ -27,6 +27,7 @@ const MultiPlayerUI = () => {
         winner={winner}
         hideOn={SCREEN_SIZES.medium.size}
       />
+      {isRematchMenuActive && <RematchMenu />}
     </section>
   );
 };
