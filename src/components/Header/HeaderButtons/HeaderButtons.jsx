@@ -28,7 +28,6 @@ const HeaderButtons = () => {
 
   function handleResetClick() {
     if (isOnlineMode) {
-      // send emit to server with event "rematch"
       updateMultiplayerState({ isRematchMenuActive: true });
     } else resetStats();
 

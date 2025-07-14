@@ -42,6 +42,10 @@ io.on("connection", (socket) => {
     gameManager.handleAbility(socket, { ability, row, col });
   });
 
+  socket.on("requestRematch", ({ playerWhoRequested }) => {
+    gameManager.handleRequestRematch(socket, playerWhoRequested);
+  });
+
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
 

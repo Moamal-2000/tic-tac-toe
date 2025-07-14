@@ -4,7 +4,7 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
-  const { updateMultiplayerState } = useMultiplayerStore((s) => s);
+  const { updateMultiplayerState, playerTurn } = useMultiplayerStore((s) => s);
 
   function closeRematchMenu(event) {
     const isOverlayClick = event.target.contains(event.currentTarget);
@@ -14,13 +14,20 @@ const RematchMenu = () => {
     updateMultiplayerState({ isRematchMenuActive: false });
   }
 
+  function handleRematch() {
+    updateMultiplayerState({ isRematchMenuActive: false });
+    // socket.emit("requestRematch", { playerWhoRequested: playerTurn });
+  }
+
   return (
     <div className={s.overlay} onClick={closeRematchMenu}>
       <div className={s.rematchMenu}>
         <p>Ask for a rematch?</p>
 
         <div className={s.buttons}>
-          <button className={s.yes}>Yes</button>
+          <button className={s.yes} onClick={handleRematch}>
+            Yes
+          </button>
           <button className={s.no} onClick={closeRematchMenu}>
             No
           </button>

@@ -67,6 +67,21 @@ export class GameManager {
     }
   }
 
+  handleRequestRematch(socket) {
+    const roomId = socket.data.roomId;
+    if (!roomId || !this.rooms.has(roomId)) return;
+
+    const game = this.rooms.get(roomId);
+
+    // TODO: Check if rematch is allowed
+
+    // TODO: Send rematch request to other player
+
+    // TODO: Reset game state for both players
+
+    this.syncRoom(roomId);
+  }
+
   syncRoom(roomId) {
     const game = this.rooms.get(roomId);
     if (!game) return;
