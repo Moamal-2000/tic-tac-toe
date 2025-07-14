@@ -1,35 +1,54 @@
+@use "@/styles/mixins" as m;
+
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 20, 25, 0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: rgba(15, 20, 25, .54);
+  @include m.flex-center;
   z-index: 1000;
 }
 
+@include m.very-small {
+  .overlay {
+    background: linear-gradient(135deg,
+        rgb(15, 20, 25) 0,
+        rgb(26, 35, 50) 50%,
+        rgb(15, 20, 25) 100%);
+  }
+}
+
 .rematchMenu {
-  background: var(--app-background-gradient, #181a20);
+  background: var(--app-background-gradient);
   border-radius: 16px;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.28);
+  border: 1px solid #23242b;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2rem 2.5rem;
-  min-width: 280px;
+  gap: 24px;
+  padding: 32px 40px;
+  min-width: 320px;
   max-width: 90vw;
   align-items: center;
   position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, .1);
+}
+
+@include m.very-small {
+  .rematchMenu {
+    background: transparent;
+    border: none;
+    padding: 0;
+    // width: 100%;
+  }
 }
 
 .rematchMenu h2 {
   color: #ededed;
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
   text-align: center;
 }
 
@@ -42,19 +61,47 @@
 
 .rematchMenu .buttons button {
   background: #23242b;
-  border: none;
+  border: 1px solid #31323a;
   border-radius: 8px;
   color: #ededed;
   cursor: pointer;
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  transition: background 0.18s, color 0.18s, transform 0.18s;
+  padding: 10px 19px;
+  box-shadow: none;
+  min-width: 80px;
+  transition: background .18s, color .18s, border .18s;
+  outline: none;
+}
+
+.rematchMenu .buttons button:focus {
+  border-color: #6366f1;
 }
 
 .rematchMenu .buttons button:hover {
+  background: #31323a;
+  color: #fff;
+}
+
+.rematchMenu .buttons .yes {
   background: #6366f1;
   color: #fff;
-  transform: translateY(-2px) scale(1.04);
+  border-color: #6366f1;
+}
+
+.rematchMenu .buttons .yes:hover {
+  background: #4f46e5;
+  border-color: #4f46e5;
+}
+
+.rematchMenu .buttons .no {
+  background: #23242b;
+  color: #ededed;
+  border-color: #31323a;
+}
+
+.rematchMenu .buttons .no:hover {
+  background: #e92424;
+  color: #fff;
+  border-color: #e92424;
 }
