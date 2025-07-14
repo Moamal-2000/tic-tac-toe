@@ -22,7 +22,7 @@ const RematchMenu = () => {
   return (
     <div className={s.overlay} onClick={closeRematchMenu}>
       <div className={s.rematchMenu}>
-        <p>Ask for a rematch?</p>
+        <h2>Ask for a rematch?</h2>
 
         <div className={s.buttons}>
           <button className={s.yes} onClick={handleRematch}>
