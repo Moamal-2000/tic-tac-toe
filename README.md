@@ -9,7 +9,7 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
 
 ## Note
 
-We're working on adding `online` multiplayer support, launching soon!
+If you're interested in this game and would like to collaborate, feel free to help me add **multiplayer support** using **Socket.IO**!
 
 ---
 
