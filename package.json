@@ -9,17 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.5.4",
+    "next": "16.0.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sass": "^1.93.2",
+    "sass": "^1.94.0",
     "socket.io-client": "^4.8.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
-    "eslint-config-next": "15.5.4",
-    "npm-check-updates": "^19.0.0"
+    "eslint-config-next": "16.0.3",
+    "npm-check-updates": "^19.1.2"
   }
 }
