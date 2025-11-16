@@ -14,7 +14,7 @@ const VolumeButton = () => {
   return (
     <button
       type="button"
-      className={s.volumeBtn}
+      className={`${s.volumeBtn} ${isVolumeOn ? "" : s.muted}`}
       title={`${isVolumeOn ? "Mute" : "Unmute"} Sound`}
       onClick={toggleVolume}
     >
