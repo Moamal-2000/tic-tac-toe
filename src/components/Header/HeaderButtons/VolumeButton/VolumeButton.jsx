@@ -18,7 +18,7 @@ const VolumeButton = () => {
       title={`${isVolumeOn ? "Mute" : "Unmute"} Sound`}
       onClick={toggleVolume}
     >
-      <SvgIcon name={"expand"} />
+      <SvgIcon name="volume" />
     </button>
   );
 };

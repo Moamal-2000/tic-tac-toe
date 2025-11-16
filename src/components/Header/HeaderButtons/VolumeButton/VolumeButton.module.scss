@@ -4,7 +4,8 @@
   background: #313946;
   border: 1px solid #5a606a;
   color: #e9e9ec;
-  padding: 8px 8px;
+  min-width: 33.6px;
+  min-height: 33.6px;
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -29,7 +30,7 @@
 }
 
 .volumeBtn>svg {
-  width: 16px;
-  height: 16px;
+  width: 19px;
+  height: 19px;
   fill: #d8d9dc;
 }
