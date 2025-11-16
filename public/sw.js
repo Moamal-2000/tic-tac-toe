@@ -1,4 +1,4 @@
-const CACHE_NAME = "tic-tac-toe-v34";
+const CACHE_NAME = "tic-tac-toe-v1.0.1";
 
 const soundFiles = [
   "/sounds/click.mp3",
