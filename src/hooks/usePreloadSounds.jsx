@@ -1,6 +1,8 @@
+import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useEffect, useRef } from "react";
 
 const usePreloadSounds = (soundFiles) => {
+  const isVolumeOn = useGlobalStore((s) => s.isVolumeOn);
   const soundsRef = useRef({});
 
   useEffect(() => {
@@ -12,6 +14,8 @@ const usePreloadSounds = (soundFiles) => {
   }, []);
 
   const playSound = (name, volume = 1) => {
+    if (!isVolumeOn) return;
+
     const sound = soundsRef.current[name];
     if (!sound) return;
 
