@@ -11,6 +11,7 @@ import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
 import s from "./HeaderButtons.module.scss";
 import PlayModeSelector from "./PlayModeSelector/PlayModeSelector";
+import VolumeButton from "./VolumeButton/VolumeButton";
 
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
@@ -50,6 +51,7 @@ const HeaderButtons = () => {
         <FullscreenToggleButton
           playClickSound={() => playSound(BUTTON_SOUND)}
         />
+        <VolumeButton />
         <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
         <Button onClick={handleAboutClick}>About</Button>
         <Button onClick={handleMenuClick}>Menu</Button>
