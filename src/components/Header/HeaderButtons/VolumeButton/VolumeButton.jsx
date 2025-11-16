@@ -1,14 +1,16 @@
 "use client";
 
 import SvgIcon from "@/components/Shared/SvgIcon";
-import { useGlobalStore } from "@/stores/global.store/global.store";
+import { useLocalStorageStore } from "@/stores/localStorage.store/localStorage.store";
 import s from "./VolumeButton.module.scss";
 
 const VolumeButton = () => {
-  const { updateGlobalState, isVolumeOn } = useGlobalStore((s) => s);
+  const { updateLocalStorageState, isVolumeOn } = useLocalStorageStore(
+    (s) => s
+  );
 
   function toggleVolume() {
-    updateGlobalState({ isVolumeOn: !isVolumeOn });
+    updateLocalStorageState({ isVolumeOn: !isVolumeOn });
   }
 
   return (

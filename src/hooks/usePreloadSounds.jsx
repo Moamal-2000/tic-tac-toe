@@ -1,8 +1,8 @@
-import { useGlobalStore } from "@/stores/global.store/global.store";
+import { useLocalStorageStore } from "@/stores/localStorage.store/localStorage.store";
 import { useEffect, useRef } from "react";
 
 const usePreloadSounds = (soundFiles) => {
-  const isVolumeOn = useGlobalStore((s) => s.isVolumeOn);
+  const isVolumeOn = useLocalStorageStore((s) => s.isVolumeOn);
   const soundsRef = useRef({});
 
   useEffect(() => {
