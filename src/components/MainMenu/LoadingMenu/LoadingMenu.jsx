@@ -1,7 +1,6 @@
 "use client";
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
@@ -22,7 +21,9 @@ const LoadingMenu = () => {
 
       <div className={s.content}>
         <div className={s.loader}>
-          <SvgIcon name="spinner" />
+          <svg aria-hidden="true">
+            <use href="/icons-sprite.svg#spinner" />
+          </svg>
         </div>
 
         <h2>Finding Match...</h2>

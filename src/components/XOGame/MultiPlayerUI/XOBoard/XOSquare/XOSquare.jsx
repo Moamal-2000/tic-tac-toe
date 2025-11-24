@@ -1,4 +1,3 @@
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
 import { getSquareClasses } from "@/functions/classNames";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -30,7 +29,11 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData)}
     >
-      {owner && <SvgIcon name={`${owner}-symbol`} />}
+      {fillWith && (
+        <svg aria-hidden="true">
+          <use href={`/icons-sprite.svg#${owner}-symbol`} />
+        </svg>
+      )}
       {isFrozen && <span className={s.freeze} />}
       {isBombed && <span className={s.bomb} />}
       {shouldSwap && <span className={s.swap} />}

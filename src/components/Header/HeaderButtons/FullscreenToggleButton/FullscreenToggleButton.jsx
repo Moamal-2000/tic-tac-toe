@@ -1,6 +1,5 @@
 "use client";
 
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { KEY_DEBOUNCE_DELAY_MS } from "@/data/constants";
 import { enterFullScreen, isFullScreenSupported } from "@/functions/helper";
 import useFunctionOnKey from "@/hooks/useFunctionOnKey";
@@ -27,7 +26,11 @@ const FullscreenToggleButton = ({ playClickSound }) => {
         title={title}
         onClick={toggleFullScreen}
       >
-        <SvgIcon name={isFullScreen ? "compress" : "expand"} />
+        <svg aria-hidden="true">
+          <use
+            href={`/icons-sprite.svg#${isFullScreen ? "compress" : "expand"}`}
+          />
+        </svg>
       </button>
     )
   );

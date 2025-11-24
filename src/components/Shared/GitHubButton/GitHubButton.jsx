@@ -2,7 +2,6 @@
 
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
-import SvgIcon from "../SvgIcon";
 import s from "./GitHubButton.module.scss";
 
 const GitHubButton = () => {
@@ -17,7 +16,9 @@ const GitHubButton = () => {
       title="Visit GitHub Repository"
       onClick={() => playSound(BUTTON_SOUND)}
     >
-      <SvgIcon name="github" />
+      <svg aria-hidden="true">
+        <use href={"/icons-sprite.svg#github"} />
+      </svg>
       GitHub
     </a>
   );

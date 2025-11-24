@@ -1,4 +1,3 @@
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { GAME_MODES_BUTTONS } from "@/data/staticData";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
@@ -23,7 +22,9 @@ const MainMenuButtons = () => {
           key={`${mode}-${id}`}
           onClick={() => handleClick(mode)}
         >
-          <SvgIcon name={iconName} />
+          <svg aria-hidden="true">
+            <use href={`/icons-sprite.svg#${iconName}`} />
+          </svg>
           {label}
         </button>
       ))}

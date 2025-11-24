@@ -161,6 +161,10 @@
   border-color: #4ecdc4;
   background: #324a54;
   box-shadow: 0 0 15px rgba(78, 205, 196, .5);
+
+  &>svg {
+    stroke: #4ecdc4;
+  }
 }
 
 .square.playerO {
@@ -168,6 +172,10 @@
   background: #4f3c46;
   box-shadow: 0 0 15px rgba(255, 107, 107, .5);
   font-size: 3.8rem;
+
+  &>svg {
+    stroke: #ff6b6b;
+  }
 }
 
 .square.select {

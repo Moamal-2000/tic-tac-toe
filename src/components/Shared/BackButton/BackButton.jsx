@@ -1,4 +1,3 @@
-import SvgIcon from "../SvgIcon";
 import s from "./BackButton.module.scss";
 
 const BackButton = ({ onClick }) => {
@@ -9,7 +8,9 @@ const BackButton = ({ onClick }) => {
       onClick={onClick}
       aria-label="Back to previous menu"
     >
-      <SvgIcon name="arrowLeft" />
+      <svg aria-hidden="true">
+        <use href="/icons-sprite.svg#arrowLeft" />
+      </svg>
     </button>
   );
 };

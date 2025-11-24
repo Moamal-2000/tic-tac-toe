@@ -1,6 +1,5 @@
 "use client";
 
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { useLocalStorageStore } from "@/stores/localStorage.store/localStorage.store";
 import s from "./VolumeButton.module.scss";
 
@@ -20,7 +19,9 @@ const VolumeButton = () => {
       title={`${isVolumeOn ? "Mute" : "Unmute"} Sound`}
       onClick={toggleVolume}
     >
-      <SvgIcon name="volume" />
+      <svg aria-hidden="true">
+        <use href="/icons-sprite.svg#volume" />
+      </svg>
     </button>
   );
 };

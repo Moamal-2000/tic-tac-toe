@@ -1,4 +1,3 @@
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
 import { getSquareClasses } from "@/functions/classNames";
 import { useXOStore } from "@/stores/xo.store/xo.store";
@@ -33,7 +32,11 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData)}
     >
-      {fillWith && <SvgIcon name={`${fillWith}-symbol`} />}
+      {fillWith && (
+        <svg aria-hidden="true">
+          <use href={`/icons-sprite.svg#${fillWith}-symbol`} />
+        </svg>
+      )}
       {isFrozen && <span className={s.freeze} />}
       {isBombed && <span className={s.bomb} />}
       {shouldSwap && <span className={s.swap} />}

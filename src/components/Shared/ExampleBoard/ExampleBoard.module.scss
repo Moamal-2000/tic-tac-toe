@@ -56,12 +56,20 @@
 .square.playerX {
   border-color: #4ecdc4;
   background: #324a54;
+
+  & svg {
+    stroke: #4ecdc4;
+  }
 }
 
 .square.playerO {
   border-color: #ff6b6b;
   background: #4f3c46;
   box-shadow: 0 0 15px rgba(255, 107, 107, .1);
+
+  & svg {
+    stroke: #ff6b6b;
+  }
 }
 
 .square.winning::before {

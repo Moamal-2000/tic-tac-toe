@@ -1,6 +1,5 @@
 "use client";
 
-import SvgIcon from "@/components/Shared/SvgIcon";
 import { BUTTON_SOUND } from "@/data/sounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./AboutHeader.module.scss";
@@ -23,7 +22,9 @@ const AboutHeader = ({ playSound }) => {
         onClick={handleCloseButtonClick}
         aria-label="Close About Popup"
       >
-        <SvgIcon name="x-symbol" />
+        <svg aria-hidden="true">
+          <use href="/icons-sprite.svg#x-symbol" />
+        </svg>
       </button>
     </header>
   );

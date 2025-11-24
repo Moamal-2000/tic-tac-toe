@@ -1,5 +1,4 @@
 import { getExampleBoardSquareClasses } from "@/functions/classNames";
-import SvgIcon from "../SvgIcon";
 import s from "./ExampleBoard.module.scss";
 
 const ExampleBoard = ({ boardData }) => {
@@ -21,7 +20,11 @@ const ExampleBoard = ({ boardData }) => {
                 key={`${rowIndex}-${columnIndex}`}
                 className={classes}
               >
-                {fillWith && <SvgIcon name={`${fillWith}-symbol`} />}
+                {fillWith && (
+                  <svg aria-hidden="true">
+                    <use href={`/icons-sprite.svg#${fillWith}-symbol`} />
+                  </svg>
+                )}
               </button>
             );
           })}
