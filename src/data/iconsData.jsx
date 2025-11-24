@@ -26,16 +26,17 @@ export const iconsData = [
   {
     name: "x-symbol",
     icon: (
-      <svg width="26" stroke="#4ecdc4" strokeWidth="8" viewBox="0 0 100 99">
-        <path d="m20 20 60 60M80 20 20 80" />
+      <svg width="26" stroke="#4ecdc4" strokeWidth="11" viewBox="0 0 100 100">
+        <line x1="10" y1="10" x2="90" y2="90" />
+        <line x1="90" y1="10" x2="10" y2="90" />
       </svg>
     ),
   },
   {
     name: "o-symbol",
     icon: (
-      <svg width="20" stroke="#ff6b6b" strokeWidth="8" viewBox="0 0 100 96">
-        <circle cx="50" cy="50" r="40" fill="none" />
+      <svg width="26" stroke="#ff6b6b" strokeWidth="8" viewBox="0 0 100 96">
+        <circle cx="50" cy="47" r="44" fill="none" />
       </svg>
     ),
   },

@@ -67,9 +67,9 @@
   background: #3b333f;
 }
 
-.indicator .player.p1 .symbol>svg {
-  width: 30px;
-  height: 30px;
+.indicator .player .symbol>svg {
+  width: 25px;
+  height: 25px;
 }
 
 .indicator .player.p2 .symbol {
@@ -77,11 +77,6 @@
   border-color: #4ecdc4;
   color: #4ecdc4;
   background: #293d48;
-}
-
-.indicator .player.p2 .symbol>svg {
-  width: 34px;
-  height: 34px;
 }
 
 .indicator .player .symbol::before,

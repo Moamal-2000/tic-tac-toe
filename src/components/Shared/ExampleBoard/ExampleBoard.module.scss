@@ -48,6 +48,11 @@
   position: relative;
 }
 
+.square>svg {
+  width: 20px;
+  height: 20px;
+}
+
 .square.playerX {
   border-color: #4ecdc4;
   background: #324a54;

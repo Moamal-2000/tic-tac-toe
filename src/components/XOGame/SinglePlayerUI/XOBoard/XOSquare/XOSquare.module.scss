@@ -72,15 +72,26 @@
   }
 }
 
+.square>svg {
+  width: 43%;
+  height: 43%;
+}
+
+.square.x4>svg {
+  width: 42%;
+  height: 42%;
+}
+
+.square.x5>svg {
+  width: 40%;
+  height: 40%;
+}
+
 @media (max-width: 500px) {
   .square {
     --size: auto !important;
     flex: 1;
     aspect-ratio: 1;
-  }
-
-  :where(.square.x4, .square.x5) {
-    font-weight: 400;
   }
 }
 
@@ -148,87 +159,11 @@
   box-shadow: 0 0 15px rgba(78, 205, 196, .5);
 }
 
-.square.playerX>svg {
-  --x-symbol-size: 46px;
-  width: var(--x-symbol-size);
-  height: var(--x-symbol-size);
-}
-
-@media (max-width: 500px) {
-  .square.playerX>svg {
-    --x-symbol-size: 60%;
-  }
-}
-
-.square.playerX.x4>svg {
-  --x-symbol-size: 35px;
-}
-
-@media (max-width: 500px) {
-  .square.playerX.x4>svg {
-    --x-symbol-size: 60%;
-  }
-}
-
-.square.playerX.x5>svg {
-  --x-symbol-size: 30px;
-}
-
-@include m.medium {
-  .square.playerX.x5>svg {
-    --x-symbol-size: 26px;
-  }
-}
-
-@media (max-width: 500px) {
-  .square.playerX.x5>svg {
-    --x-symbol-size: 60%;
-  }
-}
-
 .square.playerO {
   border-color: #ff6b6b;
   background: #4f3c46;
   box-shadow: 0 0 15px rgba(255, 107, 107, .5);
   font-size: 3.8rem;
-}
-
-.square.playerO>svg {
-  --o-symbol-size: 40px;
-  width: var(--o-symbol-size);
-  height: var(--o-symbol-size);
-}
-
-@media (max-width: 500px) {
-  .square.playerO>svg {
-    --o-symbol-size: 53%;
-  }
-}
-
-.square.playerO.x4>svg {
-  --o-symbol-size: 28px;
-}
-
-@media (max-width: 500px) {
-  .square.playerO.x4>svg {
-    --o-symbol-size: 53%;
-  }
-}
-
-.square.playerO.x5>svg {
-  --o-symbol-size: 25px;
-}
-
-@include m.medium {
-  .square.playerO.x5>svg {
-    --o-symbol-size: 21px;
-  }
-}
-
-@media (max-width: 500px) {
-  .square.playerO.x5>svg {
-    --o-symbol-size: 56%;
-  }
 }
 
 .square.select {
