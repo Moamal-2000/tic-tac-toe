@@ -16,7 +16,7 @@ export const BOMB_SOUND = "bomb";
 export const SWAP_SOUND = "swap";
 export const DRAW_SOUND = "draw";
 
-// [soundName, soundVolume]
+// [name, volume]
 export const WINNER_SOUNDS = [
   ["victory1", 0.1],
   ["victory2", 0.2],
