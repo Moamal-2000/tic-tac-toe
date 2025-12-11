@@ -9,11 +9,11 @@
   "type": "module",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^5.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.11"
   }
 }
