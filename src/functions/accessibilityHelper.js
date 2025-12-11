@@ -46,6 +46,7 @@ export function shouldDisablePowerUp({
   board,
   playerTurn,
   winner,
+  draw,
   isPlayer1,
   isPlayer2,
   powerUps,
@@ -63,6 +64,7 @@ export function shouldDisablePowerUp({
     isPlayer1 ||
     isPlayer2 ||
     winner ||
+    draw ||
     swapCondition ||
     freezeCondition
   );

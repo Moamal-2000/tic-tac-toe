@@ -9,11 +9,16 @@ import s from "./BoardRow.module.scss";
 
 const BoardRow = ({ row, rowIndex }) => {
   const { fillSquare, powerUps, usePowerUp } = useXOStore((s) => s);
-  const { hasGameStarted, playerTurn } = useMultiplayerStore((s) => s);
+  const { hasGameStarted, playerTurn, winner, draw } = useMultiplayerStore(
+    (s) => s
+  );
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
 
   function handleSquareClick(rowIndex, columnIndex) {
+    // Block interaction if game has ended (win or draw) or hasn't started
+    if (!hasGameStarted || winner || draw) return;
+
     // if (!whoUsingPower) {
     playSound(BUTTON_SOUND, 0.3);
     // fillSquare(rowIndex, columnIndex);

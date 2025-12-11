@@ -8,7 +8,7 @@ import PowerUpButton from "./PowerUpButton/PowerUpButton";
 import s from "./PowerUps.module.scss";
 
 const PowerUps = ({ player }) => {
-  const { boardSize, board, powerUps, playerTurn, winner } =
+  const { boardSize, board, powerUps, playerTurn, winner, draw } =
     useMultiplayerStore((s) => s);
   const playerPowerUps = Object.entries(powerUps[player]);
   const isPlayer1 = playerTurn !== SYMBOL_O && player === "player1";
@@ -32,6 +32,7 @@ const PowerUps = ({ player }) => {
           board,
           playerTurn,
           winner,
+          draw,
           isPlayer1,
           isPlayer2,
           powerUps,
