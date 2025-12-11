@@ -174,4 +174,15 @@ export class Game {
       isWinnerPopupVisible: this.isWinnerPopupVisible,
     };
   }
+
+  reset() {
+    const size = this.board.size;
+
+    this.board = new Board(size);
+    this.turn = SYMBOL_X;
+    this.winner = null;
+    this.moveCount = 0;
+    this.hasGameStarted = true;
+    this.isWinnerPopupVisible = false;
+  }
 }

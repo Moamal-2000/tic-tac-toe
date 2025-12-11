@@ -35,7 +35,23 @@ export class GameManager {
     if (game.turn !== playerSymbol) return;
 
     const moveSuccess = game.applyMove(row, col);
-    if (moveSuccess) this.syncRoom(roomId);
+    if (!moveSuccess) return;
+
+    // First, sync the state that contains the move (and possibly the result)
+    this.syncRoom(roomId);
+
+    // If the game has ended (win or draw), automatically start a new round
+    const hasEnded = game.winner || game.checkDraw();
+    if (hasEnded) {
+      setTimeout(() => {
+        // Make sure the room still exists
+        if (!this.rooms.has(roomId)) return;
+
+        const g = this.rooms.get(roomId);
+        g.reset();
+        this.syncRoom(roomId);
+      }, 1500);
+    }
   }
 
   handleAbility(socket, { ability, row, col }) {
@@ -49,7 +65,21 @@ export class GameManager {
     if (game.turn !== playerSymbol) return;
 
     const abilitySuccess = game.useAbility(ability, row, col);
-    if (abilitySuccess) this.syncRoom(roomId);
+    if (!abilitySuccess) return;
+
+    // Sync state after ability use (may also end the game)
+    this.syncRoom(roomId);
+
+    const hasEnded = game.winner || game.checkDraw();
+    if (hasEnded) {
+      setTimeout(() => {
+        if (!this.rooms.has(roomId)) return;
+
+        const g = this.rooms.get(roomId);
+        g.reset();
+        this.syncRoom(roomId);
+      }, 1500);
+    }
   }
 
   handleMatchmaking(socket, boardSize) {
