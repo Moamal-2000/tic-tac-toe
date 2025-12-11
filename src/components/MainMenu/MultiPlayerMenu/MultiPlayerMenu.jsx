@@ -12,7 +12,8 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
-  const { updateGameStates, selectedBoardSize } = useMultiplayerStore((s) => s);
+  const { updateGameStates, updateStatsOnResult, selectedBoardSize } =
+    useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {
@@ -33,6 +34,11 @@ const MultiPlayerMenu = () => {
 
     updateGlobalState({ isMainMenuActive: false });
     updateGlobalState({ isWaitingForOpponent: false });
+
+    // If the game has ended (winner or draw), update multiplayer stats
+    if (winner || draw) {
+      updateStatsOnResult({ winner, draw });
+    }
 
     updateGameStates({
       boardSize: state.board[0].length,

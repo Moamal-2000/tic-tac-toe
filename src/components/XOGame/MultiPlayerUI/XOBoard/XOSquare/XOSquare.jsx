@@ -29,7 +29,7 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData)}
     >
-      {fillWith && (
+      {owner && (
         <svg aria-hidden="true">
           <use href={`/icons-sprite.svg#${owner}-symbol`} />
         </svg>
