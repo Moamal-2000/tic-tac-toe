@@ -18,7 +18,8 @@ export class Ability {
   getState() {
     return {
       type: this.type,
-      cooldown: this.cooldown,
+      coolDown: this.cooldown,
+      available: this.cooldown === 0,
     };
   }
 }

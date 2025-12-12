@@ -42,6 +42,10 @@ io.on("connection", (socket) => {
     gameManager.handleAbility(socket, { ability, row, col });
   });
 
+  socket.on("select-power-up", ({ ability }) => {
+    gameManager.handleSelectAbility(socket, { ability });
+  });
+
   socket.on("requestRematch", ({ playerWhoRequested }) => {
     gameManager.handleRequestRematch(socket, playerWhoRequested);
   });

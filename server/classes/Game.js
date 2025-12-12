@@ -15,6 +15,35 @@ export class Game {
     this.moveCount = 0;
     this.hasGameStarted = false;
     this.isWinnerPopupVisible = false;
+    this.powerUpsState = {
+      selectedPower: null,
+      whoUsingPower: null,
+    };
+  }
+
+  selectAbility(playerSymbol, ability) {
+    // Only the current turn player can select
+    if (this.turn !== playerSymbol) {
+      return false;
+    }
+
+    const player = this.players[playerSymbol];
+    if (!player.abilities[ability]) return false;
+
+    // Toggle: if same ability selected, unselect
+    if (
+      this.powerUpsState.selectedPower === ability &&
+      this.powerUpsState.whoUsingPower === playerSymbol
+    ) {
+      this.powerUpsState.selectedPower = null;
+      this.powerUpsState.whoUsingPower = null;
+      return true;
+    }
+
+    // Select the ability
+    this.powerUpsState.selectedPower = ability;
+    this.powerUpsState.whoUsingPower = playerSymbol;
+    return true;
   }
 
   getCurrentPlayer() {
@@ -44,6 +73,10 @@ export class Game {
       this.winner = winner;
       return true;
     }
+
+    // Clear power-up selection when turn changes
+    this.powerUpsState.selectedPower = null;
+    this.powerUpsState.whoUsingPower = null;
 
     this.turn = this.getOpponentSymbol();
     return true;
@@ -77,6 +110,10 @@ export class Game {
     if (winner) {
       this.winner = winner;
     }
+
+    // Clear power-up selection after use
+    this.powerUpsState.selectedPower = null;
+    this.powerUpsState.whoUsingPower = null;
 
     return true;
   }
@@ -167,6 +204,18 @@ export class Game {
         [SYMBOL_O]: this.players[SYMBOL_O].getAbilitiesState(),
         [SYMBOL_X]: this.players[SYMBOL_X].getAbilitiesState(),
       },
+      powerUps: {
+        player1: this.players[SYMBOL_X].getAbilitiesState(),
+        player2: this.players[SYMBOL_O].getAbilitiesState(),
+        selectedPower: this.powerUpsState.selectedPower,
+        whoUsingPower:
+          this.powerUpsState.whoUsingPower === SYMBOL_X
+            ? "player1"
+            : this.powerUpsState.whoUsingPower === SYMBOL_O
+            ? "player2"
+            : null,
+        hasActivePowerUp: false,
+      },
       turn: this.turn,
       winner: this.winner,
       draw: this.checkDraw(),
@@ -184,5 +233,9 @@ export class Game {
     this.moveCount = 0;
     this.hasGameStarted = true;
     this.isWinnerPopupVisible = false;
+    this.powerUpsState = {
+      selectedPower: null,
+      whoUsingPower: null,
+    };
   }
 }

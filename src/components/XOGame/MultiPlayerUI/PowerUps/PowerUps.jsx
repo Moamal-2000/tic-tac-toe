@@ -10,22 +10,32 @@ import s from "./PowerUps.module.scss";
 const PowerUps = ({ player }) => {
   const { boardSize, board, powerUps, playerTurn, winner, draw } =
     useMultiplayerStore((s) => s);
-  const playerPowerUps = Object.entries(powerUps[player]);
-  const isPlayer1 = playerTurn !== SYMBOL_O && player === "player1";
-  const isPlayer2 = playerTurn !== SYMBOL_X && player === "player2";
+
+  // Determine if this is the active player's panel (for styling)
+  const isPlayer1Turn = playerTurn === SYMBOL_X;
+  const isPlayer2Turn = playerTurn === SYMBOL_O;
+  const isActivePanel =
+    (player === "player1" && isPlayer1Turn) ||
+    (player === "player2" && isPlayer2Turn);
+
+  // Determine if buttons should be disabled because it's not this player's turn
+  const isNotMyTurn =
+    (player === "player1" && !isPlayer1Turn) ||
+    (player === "player2" && !isPlayer2Turn);
 
   const classes = [
     s.powerUps,
     boardSize === 3 ? s.hidden : "",
     player === "player1" ? s.player1 : "",
     player === "player2" ? s.player2 : "",
-    !(isPlayer1 || isPlayer2) ? s.display : "",
+    !isActivePanel ? s.display : "",
   ].join(" ");
 
   return (
     <div className={classes}>
-      {POWER_UPS_BUTTONS.map((buttonData, index) => {
-        const { available, coolDown } = playerPowerUps[index][1];
+      {POWER_UPS_BUTTONS.map((buttonData) => {
+        const powerUpData = powerUps[player]?.[buttonData.name] || {};
+        const { available = false, coolDown = 0 } = powerUpData;
         const disable = shouldDisablePowerUp({
           available,
           powerName: buttonData.name,
@@ -33,8 +43,7 @@ const PowerUps = ({ player }) => {
           playerTurn,
           winner,
           draw,
-          isPlayer1,
-          isPlayer2,
+          isNotMyTurn,
           powerUps,
         });
 

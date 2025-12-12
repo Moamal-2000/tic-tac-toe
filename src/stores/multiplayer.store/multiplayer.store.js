@@ -29,6 +29,7 @@ export const useMultiplayerStore = create((set, get) => ({
     winner,
     draw,
     isWinnerPopupVisible,
+    powerUps,
   }) => {
     set({
       boardSize,
@@ -38,6 +39,7 @@ export const useMultiplayerStore = create((set, get) => ({
       winner,
       draw,
       isWinnerPopupVisible,
+      powerUps,
     });
   },
   updateMultiplayerState: (state) => set(state),

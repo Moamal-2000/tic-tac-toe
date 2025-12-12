@@ -82,6 +82,23 @@ export class GameManager {
     }
   }
 
+  handleSelectAbility(socket, { ability }) {
+    const roomId = socket.data.roomId;
+    if (!roomId || !this.rooms.has(roomId)) return;
+
+    const game = this.rooms.get(roomId);
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
+
+    console.log(`Player ${playerSymbol} selecting ability: ${ability}`);
+    const changed = game.selectAbility(playerSymbol, ability);
+    console.log(`Selection changed: ${changed}, state:`, game.powerUpsState);
+
+    if (changed) {
+      this.syncRoom(roomId);
+    }
+  }
+
   handleMatchmaking(socket, boardSize) {
     if (!this.matchmakingQueue.has(boardSize)) {
       this.matchmakingQueue.set(boardSize, []);

@@ -2,6 +2,7 @@
 
 import { soundFiles, UNSELECT_SOUND } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import Image from "next/image";
 import s from "./PowerUpButton.module.scss";
@@ -25,14 +26,9 @@ const PowerUpButton = ({
   function handleClick() {
     if (!available) return;
 
-    if (isSelected) {
-      // reset: selectedPower, whoUsingPower (emit to server)
-      playSound(UNSELECT_SOUND, 0.3);
-      return;
-    }
-
     playSound(UNSELECT_SOUND, 0.3);
-    // set: selectedPower, whoUsingPower (emit to server)
+    // Emit to server - server handles toggle logic
+    socket.emit("select-power-up", { ability: name });
   }
 
   return (

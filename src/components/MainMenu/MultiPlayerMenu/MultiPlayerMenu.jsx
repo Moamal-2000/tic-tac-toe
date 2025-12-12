@@ -48,6 +48,7 @@ const MultiPlayerMenu = () => {
       draw,
       hasGameStarted,
       isWinnerPopupVisible,
+      powerUps: state.powerUps,
     });
   }
 

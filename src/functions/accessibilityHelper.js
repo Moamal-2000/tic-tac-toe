@@ -47,8 +47,7 @@ export function shouldDisablePowerUp({
   playerTurn,
   winner,
   draw,
-  isPlayer1,
-  isPlayer2,
+  isNotMyTurn,
   powerUps,
 }) {
   const numberOfPlacedSymbols = getPlacedSymbolCount(board);
@@ -61,8 +60,7 @@ export function shouldDisablePowerUp({
   return (
     powerUps.hasActivePowerUp ||
     !available ||
-    isPlayer1 ||
-    isPlayer2 ||
+    isNotMyTurn ||
     winner ||
     draw ||
     swapCondition ||
