@@ -12,28 +12,28 @@ const PowerUps = ({ player }) => {
     useMultiplayerStore((s) => s);
 
   // Determine if this is the active player's panel (for styling)
-  const isPlayer1Turn = playerTurn === SYMBOL_X;
-  const isPlayer2Turn = playerTurn === SYMBOL_O;
+  const isPlayer1Turn = playerTurn === SYMBOL_O;
+  const isPlayer2Turn = playerTurn === SYMBOL_X;
   const isActivePanel =
     (player === "player1" && isPlayer1Turn) ||
     (player === "player2" && isPlayer2Turn);
 
   // Determine if this panel belongs to the local player
   const isMyPanel =
-    (player === "player1" && mySymbol === SYMBOL_X) ||
-    (player === "player2" && mySymbol === SYMBOL_O);
+    (player === "player1" && mySymbol === SYMBOL_O) ||
+    (player === "player2" && mySymbol === SYMBOL_X);
 
   // Determine if buttons should be disabled because it's not this player's turn
   const isNotMyTurn =
-    (player === "player1" && !isPlayer1Turn) ||
-    (player === "player2" && !isPlayer2Turn);
+    (player === "player2" && !isPlayer2Turn) ||
+    (player === "player1" && !isPlayer1Turn);
 
   const classes = [
     s.powerUps,
     boardSize === 3 ? s.hidden : "",
     player === "player1" ? s.player1 : "",
     player === "player2" ? s.player2 : "",
-    !isActivePanel ? s.display : "",
+    isActivePanel ? s.display : "",
   ].join(" ");
 
   return (

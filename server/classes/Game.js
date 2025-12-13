@@ -230,13 +230,13 @@ export class Game {
         ),
       },
       powerUps: {
-        player1: this.players[SYMBOL_X].getAbilitiesState(this.board, SYMBOL_O),
-        player2: this.players[SYMBOL_O].getAbilitiesState(this.board, SYMBOL_X),
+        player1: this.players[SYMBOL_O].getAbilitiesState(this.board, SYMBOL_X),
+        player2: this.players[SYMBOL_X].getAbilitiesState(this.board, SYMBOL_O),
         selectedPower: this.powerUpsState.selectedPower,
         whoUsingPower:
-          this.powerUpsState.whoUsingPower === SYMBOL_X
+          this.powerUpsState.whoUsingPower === SYMBOL_O
             ? "player1"
-            : this.powerUpsState.whoUsingPower === SYMBOL_O
+            : this.powerUpsState.whoUsingPower === SYMBOL_X
             ? "player2"
             : null,
         hasActivePowerUp: false,
