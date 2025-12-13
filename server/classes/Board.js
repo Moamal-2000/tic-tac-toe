@@ -24,4 +24,20 @@ export class Board {
   hasFreeCell() {
     return this.grid.some((row) => row.some((cell) => !cell.owner));
   }
+
+  hasOpponentSymbol(opponentSymbol) {
+    return this.grid.some((row) =>
+      row.some((cell) => cell.owner === opponentSymbol)
+    );
+  }
+
+  getPlacedSymbolCount() {
+    let count = 0;
+    this.grid.forEach((row) => {
+      row.forEach((cell) => {
+        if (cell.owner) count++;
+      });
+    });
+    return count;
+  }
 }

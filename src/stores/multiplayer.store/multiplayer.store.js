@@ -6,6 +6,7 @@ export const useMultiplayerStore = create((set, get) => ({
   boardSize: null,
   playerTurn: null,
   board: [],
+  mySymbol: null,
   hasGameStarted: false,
   winner: null,
   draw: false,
@@ -30,11 +31,13 @@ export const useMultiplayerStore = create((set, get) => ({
     draw,
     isWinnerPopupVisible,
     powerUps,
+    mySymbol,
   }) => {
     set({
       boardSize,
       playerTurn,
       board,
+      mySymbol,
       hasGameStarted,
       winner,
       draw,

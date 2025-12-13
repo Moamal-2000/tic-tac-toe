@@ -30,6 +30,9 @@ export class Game {
     const player = this.players[playerSymbol];
     if (!player.abilities[ability]) return false;
 
+    // Check if ability is on cooldown
+    if (player.abilities[ability].cooldown > 0) return false;
+
     // Toggle: if same ability selected, unselect
     if (
       this.powerUpsState.selectedPower === ability &&
@@ -38,6 +41,22 @@ export class Game {
       this.powerUpsState.selectedPower = null;
       this.powerUpsState.whoUsingPower = null;
       return true;
+    }
+
+    const opponentSymbol = this.getOpponentSymbol();
+
+    // Validate freeze: needs opponent symbol on board
+    if (ability === "freeze") {
+      if (!this.board.hasOpponentSymbol(opponentSymbol)) {
+        return false;
+      }
+    }
+
+    // Validate swap: needs at least 2 symbols on board
+    if (ability === "swap") {
+      if (this.board.getPlacedSymbolCount() < 2) {
+        return false;
+      }
     }
 
     // Select the ability
@@ -201,12 +220,18 @@ export class Game {
         }))
       ),
       abilities: {
-        [SYMBOL_O]: this.players[SYMBOL_O].getAbilitiesState(),
-        [SYMBOL_X]: this.players[SYMBOL_X].getAbilitiesState(),
+        [SYMBOL_O]: this.players[SYMBOL_O].getAbilitiesState(
+          this.board,
+          SYMBOL_X
+        ),
+        [SYMBOL_X]: this.players[SYMBOL_X].getAbilitiesState(
+          this.board,
+          SYMBOL_O
+        ),
       },
       powerUps: {
-        player1: this.players[SYMBOL_X].getAbilitiesState(),
-        player2: this.players[SYMBOL_O].getAbilitiesState(),
+        player1: this.players[SYMBOL_X].getAbilitiesState(this.board, SYMBOL_O),
+        player2: this.players[SYMBOL_O].getAbilitiesState(this.board, SYMBOL_X),
         selectedPower: this.powerUpsState.selectedPower,
         whoUsingPower:
           this.powerUpsState.whoUsingPower === SYMBOL_X

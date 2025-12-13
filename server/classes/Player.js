@@ -17,10 +17,26 @@ export class Player {
     );
   }
 
-  getAbilitiesState() {
+  getAbilitiesState(board, opponentSymbol) {
     const state = {};
     for (const [key, ability] of Object.entries(this.abilities)) {
-      state[key] = ability.getState();
+      const baseState = ability.getState();
+      let available = baseState.available;
+
+      // Additional validation for freeze and swap
+      if (board && opponentSymbol) {
+        if (key === "freeze" && available) {
+          available = board.hasOpponentSymbol(opponentSymbol);
+        }
+        if (key === "swap" && available) {
+          available = board.getPlacedSymbolCount() >= 2;
+        }
+      }
+
+      state[key] = {
+        ...baseState,
+        available,
+      };
     }
     return state;
   }

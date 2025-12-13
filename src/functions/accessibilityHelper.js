@@ -49,7 +49,16 @@ export function shouldDisablePowerUp({
   draw,
   isNotMyTurn,
   powerUps,
+  isMultiplayer = false,
 }) {
+  // For multiplayer, the server already calculates availability including freeze/swap conditions
+  if (isMultiplayer) {
+    return (
+      powerUps.hasActivePowerUp || !available || isNotMyTurn || winner || draw
+    );
+  }
+
+  // For single player, calculate locally
   const numberOfPlacedSymbols = getPlacedSymbolCount(board);
   const hasOpponentSymbol = opponentSymbolExists(board, playerTurn);
   const hasTwoSymbols = numberOfPlacedSymbols < 2;

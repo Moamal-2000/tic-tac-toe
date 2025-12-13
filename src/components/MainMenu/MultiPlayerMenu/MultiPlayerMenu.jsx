@@ -49,6 +49,7 @@ const MultiPlayerMenu = () => {
       hasGameStarted,
       isWinnerPopupVisible,
       powerUps: state.powerUps,
+      mySymbol: state.me,
     });
   }
 

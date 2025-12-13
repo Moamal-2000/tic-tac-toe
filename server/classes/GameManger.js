@@ -134,10 +134,16 @@ export class GameManager {
     if (!game) return;
 
     const state = game.getState();
-    const sockets = [game.players[SYMBOL_O].id, game.players[SYMBOL_X].id];
+    // Send to Player O
+    if (game.players[SYMBOL_O]) {
+      const socketId = game.players[SYMBOL_O].id;
+      this.io.to(socketId).emit("room-update", { ...state, me: SYMBOL_O });
+    }
 
-    for (const socketId of sockets) {
-      this.io.to(socketId).emit("room-update", state);
+    // Send to Player X
+    if (game.players[SYMBOL_X]) {
+      const socketId = game.players[SYMBOL_X].id;
+      this.io.to(socketId).emit("room-update", { ...state, me: SYMBOL_X });
     }
   }
 
