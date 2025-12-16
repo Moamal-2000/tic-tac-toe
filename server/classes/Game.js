@@ -38,6 +38,11 @@ export class Game {
       this.powerUpsState.selectedPower === ability &&
       this.powerUpsState.whoUsingPower === playerSymbol
     ) {
+      // If unselecting swap, clear any swapSelected flags on the board
+      if (ability === "swap") {
+        this.clearSwapSelection();
+      }
+
       this.powerUpsState.selectedPower = null;
       this.powerUpsState.whoUsingPower = null;
       return true;
@@ -259,6 +264,18 @@ export class Game {
 
         // Clear the bombed flag
         targetedCell.bombed = false;
+      }
+    }
+  }
+
+  clearSwapSelection() {
+    const boardSize = this.board.size;
+    for (let row = 0; row < boardSize; row++) {
+      for (let col = 0; col < boardSize; col++) {
+        const cell = this.board.getCell(row, col);
+        if (cell.swapSelected) {
+          cell.swapSelected = false;
+        }
       }
     }
   }
