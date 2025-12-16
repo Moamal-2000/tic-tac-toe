@@ -7,8 +7,8 @@ export class Game {
     this.id = id;
     this.board = new Board(boardSize);
     this.players = {
-      [SYMBOL_O]: new Player(socketO.id, SYMBOL_O),
-      [SYMBOL_X]: new Player(socketX.id, SYMBOL_X),
+      [SYMBOL_O]: new Player(socketO.id, SYMBOL_O, boardSize),
+      [SYMBOL_X]: new Player(socketX.id, SYMBOL_X, boardSize),
     };
     this.turn = SYMBOL_X;
     this.winner = null;
@@ -104,24 +104,27 @@ export class Game {
   useAbility(ability, row, col, row2, col2) {
     const player = this.getCurrentPlayer();
     const cell = this.board.getCell(row, col);
+    const opponent = this.getOpponentSymbol();
 
     if (!player.abilities[ability] || !player.abilities[ability].use()) {
       return false;
     }
 
-    switch (ability) {
-      case "freeze":
-        cell.frozen = true;
-        break;
-      case "bomb":
-        if (cell.owner) cell.owner = null;
-        break;
-      case "swap":
-        const cell2 = this.board.getCell(row2, col2);
-        const cellOwner = cell.owner;
-        cell.owner = cell2.owner;
-        cell2.owner = cellOwner;
-        break;
+    // Validate freeze: can only be placed on opponent symbols, not frozen already
+    if (ability === "freeze") {
+      // Must have opponent symbol, cannot be empty, cannot be own symbol, cannot be frozen
+      if (!cell.owner || cell.owner === this.turn || cell.frozen) {
+        player.abilities[ability].cooldown = 0; // Reset cooldown since validation failed
+        return false;
+      }
+      cell.frozen = true;
+    } else if (ability === "bomb") {
+      if (cell.owner) cell.owner = null;
+    } else if (ability === "swap") {
+      const cell2 = this.board.getCell(row2, col2);
+      const cellOwner = cell.owner;
+      cell.owner = cell2.owner;
+      cell2.owner = cellOwner;
     }
 
     const winner = this.checkWin();
@@ -133,6 +136,12 @@ export class Game {
     // Clear power-up selection after use
     this.powerUpsState.selectedPower = null;
     this.powerUpsState.whoUsingPower = null;
+
+    // Change turn and decrement cooldowns
+    this.players[this.turn].decrementCooldowns();
+    this.players[opponent].decrementCooldowns();
+
+    this.turn = opponent;
 
     return true;
   }
@@ -194,7 +203,11 @@ export class Game {
       let r = row + dr * dir;
       let c = col + dc * dir;
 
-      while (this.inBounds(r, c) && this.board.getCell(r, c).owner === symbol) {
+      while (
+        this.inBounds(r, c) &&
+        this.board.getCell(r, c).owner === symbol &&
+        !this.board.getCell(r, c).frozen
+      ) {
         count++;
         r += dr * dir;
         c += dc * dir;
@@ -214,8 +227,8 @@ export class Game {
       board: this.board.grid.map((row) =>
         row.map((cell) => ({
           owner: cell.owner,
-          frozen: cell.frozen,
-          bombed: cell.bombed,
+          isFrozen: cell.frozen,
+          isBombed: cell.bombed,
           swapSelected: cell.swapSelected,
         }))
       ),
@@ -262,5 +275,12 @@ export class Game {
       selectedPower: null,
       whoUsingPower: null,
     };
+
+    // Reset all player cooldowns
+    Object.values(this.players).forEach((player) => {
+      Object.values(player.abilities).forEach((ability) => {
+        ability.cooldown = 0;
+      });
+    });
   }
 }

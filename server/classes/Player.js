@@ -1,14 +1,21 @@
 import { Ability } from "./Ability.js";
 
 export class Player {
-  constructor(id, symbol) {
+  constructor(id, symbol, boardSize = 3) {
     this.id = id;
     this.symbol = symbol; // 'x' | 'o'
+    const cooldown = this.getInitialCoolDown(boardSize);
     this.abilities = {
-      freeze: new Ability("freeze", 3),
-      bomb: new Ability("bomb", 4),
-      swap: new Ability("swap", 5),
+      freeze: new Ability("freeze", cooldown),
+      bomb: new Ability("bomb", cooldown),
+      swap: new Ability("swap", cooldown),
     };
+  }
+
+  getInitialCoolDown(boardSize) {
+    if (boardSize === 4) return 11;
+    if (boardSize === 5) return 16;
+    return 16;
   }
 
   decrementCooldowns() {
