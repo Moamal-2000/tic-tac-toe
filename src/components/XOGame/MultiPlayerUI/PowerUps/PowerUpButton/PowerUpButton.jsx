@@ -48,7 +48,7 @@ const PowerUpButton = ({
         priority
       />
       <span className={s.powerName}>{name}</span>
-      <span className={s.coolDown}>{coolDown}</span>
+      {coolDown > 0 && <span className={s.coolDown}>{coolDown}</span>}
     </button>
   );
 };
