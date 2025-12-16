@@ -292,7 +292,7 @@ export class Game {
     for (const symbol of [SYMBOL_X, SYMBOL_O]) {
       if (row !== undefined && col !== undefined) {
         const cell = this.board.getCell(row, col);
-        if (cell.owner === symbol) {
+        if (cell.owner === symbol && !cell.frozen) {
           for (const [dr, dc] of directions) {
             if (this.countAligned(row, col, dr, dc, symbol) >= size) {
               this.isWinnerPopupVisible = true;
@@ -304,7 +304,7 @@ export class Game {
         for (let r = 0; r < size; r++) {
           for (let c = 0; c < size; c++) {
             const cell = this.board.getCell(r, c);
-            if (cell.owner === symbol) {
+            if (cell.owner === symbol && !cell.frozen) {
               for (const [dr, dc] of directions) {
                 if (this.countAligned(r, c, dr, dc, symbol) >= size) {
                   this.isWinnerPopupVisible = true;
