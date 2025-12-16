@@ -53,6 +53,11 @@ io.on("connection", (socket) => {
     gameManager.handleSelectAbility(socket, { ability });
   });
 
+  socket.on("time-up", () => {
+    const roomId = socket.data.roomId;
+    gameManager.handleTimeUp(roomId);
+  });
+
   socket.on("requestRematch", ({ playerWhoRequested }) => {
     gameManager.handleRequestRematch(socket, playerWhoRequested);
   });

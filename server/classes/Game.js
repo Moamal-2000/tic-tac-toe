@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "../data/constants.js";
+import { SYMBOL_O, SYMBOL_X, TURN_TIMER_DURATION } from "../data/constants.js";
 import { Board } from "./Board.js";
 import { Player } from "./Player.js";
 
@@ -15,6 +15,9 @@ export class Game {
     this.moveCount = 0;
     this.hasGameStarted = false;
     this.isWinnerPopupVisible = false;
+    this.timeRemaining = TURN_TIMER_DURATION;
+    this.timerActive = false;
+    this.timerInterval = null;
     this.powerUpsState = {
       selectedPower: null,
       whoUsingPower: null,
@@ -72,6 +75,39 @@ export class Game {
 
   getCurrentPlayer() {
     return this.players[this.turn];
+  }
+
+  getOpponentSymbol() {
+    return this.turn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
+  }
+
+  startTimer(callback) {
+    if (this.timerInterval) clearInterval(this.timerInterval);
+    this.timeRemaining = TURN_TIMER_DURATION;
+    this.timerActive = true;
+
+    this.timerInterval = setInterval(() => {
+      this.timeRemaining--;
+
+      if (this.timeRemaining <= 0) {
+        this.stopTimer();
+        if (callback) callback();
+      }
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+    this.timerActive = false;
+  }
+
+  resetTimer() {
+    this.stopTimer();
+    this.timeRemaining = TURN_TIMER_DURATION;
+    this.timerActive = false;
   }
 
   getOpponentSymbol() {
@@ -393,6 +429,8 @@ export class Game {
       draw: this.checkDraw(),
       hasGameStarted: this.hasGameStarted,
       isWinnerPopupVisible: this.isWinnerPopupVisible,
+      timeRemaining: this.timeRemaining,
+      timerActive: this.timerActive,
     };
   }
 

@@ -5,6 +5,7 @@ import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
 import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
+import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
@@ -14,6 +15,7 @@ const MultiPlayerUI = () => {
 
   return (
     <section className={`${s.game} ${board3Class}`}>
+      <Timer />
       <div className={s.wrapper}>
         <PowerUps player="player1" />
         <GameStats boardSize={boardSize} stats={stats} />

@@ -15,6 +15,8 @@ export const useMultiplayerStore = create((set, get) => ({
   selectedBoardSize: INITIAL_BOARD_SIZE,
   stats: { p1Wins: 0, draws: 0, p2Wins: 0 },
   squaresToSwap: [],
+  timeRemaining: 30,
+  timerActive: false,
   powerUps: {
     player1: initialPlayerPowerUps(get()?.boardSize),
     player2: initialPlayerPowerUps(get()?.boardSize),
@@ -34,6 +36,8 @@ export const useMultiplayerStore = create((set, get) => ({
     powerUps,
     mySymbol,
     squaresToSwap = [],
+    timeRemaining = 30,
+    timerActive = true,
   }) => {
     set({
       boardSize,
@@ -46,6 +50,8 @@ export const useMultiplayerStore = create((set, get) => ({
       isWinnerPopupVisible,
       powerUps,
       squaresToSwap,
+      timeRemaining,
+      timerActive,
     });
   },
   updateMultiplayerState: (state) => set(state),

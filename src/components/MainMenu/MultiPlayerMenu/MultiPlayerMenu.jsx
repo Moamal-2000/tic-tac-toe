@@ -29,8 +29,16 @@ const MultiPlayerMenu = () => {
   }
 
   function syncNewGameState(state) {
-    const { turn, board, winner, draw, hasGameStarted, isWinnerPopupVisible } =
-      state;
+    const {
+      turn,
+      board,
+      winner,
+      draw,
+      hasGameStarted,
+      isWinnerPopupVisible,
+      timeRemaining,
+      timerActive,
+    } = state;
 
     updateGlobalState({ isMainMenuActive: false });
     updateGlobalState({ isWaitingForOpponent: false });
@@ -61,6 +69,8 @@ const MultiPlayerMenu = () => {
       powerUps: state.powerUps,
       mySymbol: state.me,
       squaresToSwap,
+      timeRemaining,
+      timerActive,
     });
   }
 

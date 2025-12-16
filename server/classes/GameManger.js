@@ -21,6 +21,11 @@ export class GameManager {
 
     game.hasGameStarted = true;
 
+    // Start the timer for the first player
+    game.startTimer(() => {
+      this.handleTimeUp(roomId);
+    });
+
     this.syncRoom(roomId);
   }
 
@@ -37,12 +42,19 @@ export class GameManager {
     const moveSuccess = game.applyMove(row, col);
     if (!moveSuccess) return;
 
+    // Reset timer for the next player's turn
+    game.resetTimer();
+    game.startTimer(() => {
+      this.handleTimeUp(roomId);
+    });
+
     // First, sync the state that contains the move (and possibly the result)
     this.syncRoom(roomId);
 
     // If the game has ended (win or draw), automatically start a new round
     const hasEnded = game.winner || game.checkDraw();
     if (hasEnded) {
+      game.stopTimer();
       setTimeout(() => {
         // Make sure the room still exists
         if (!this.rooms.has(roomId)) return;
@@ -74,6 +86,9 @@ export class GameManager {
     );
     if (!abilitySuccess) return;
 
+    // Reset timer for the next player's turn
+    game.resetTimer();
+
     // Sync state after ability use
     this.syncRoom(roomId);
 
@@ -104,6 +119,7 @@ export class GameManager {
 
         const hasEnded = g.winner || g.checkDraw();
         if (hasEnded) {
+          g.stopTimer();
           setTimeout(() => {
             if (!this.rooms.has(roomId)) return;
 
@@ -111,6 +127,11 @@ export class GameManager {
             gr.reset();
             this.syncRoom(roomId);
           }, 1500);
+        } else {
+          // Start timer for the new turn
+          g.startTimer(() => {
+            this.handleTimeUp(roomId);
+          });
         }
       }, 500); // Animation duration for bomb
       return;
@@ -128,6 +149,7 @@ export class GameManager {
 
         const hasEnded = g.winner || g.checkDraw();
         if (hasEnded) {
+          g.stopTimer();
           setTimeout(() => {
             if (!this.rooms.has(roomId)) return;
 
@@ -142,6 +164,7 @@ export class GameManager {
 
     const hasEnded = game.winner || game.checkDraw();
     if (hasEnded) {
+      game.stopTimer();
       setTimeout(() => {
         if (!this.rooms.has(roomId)) return;
 
@@ -149,6 +172,49 @@ export class GameManager {
         g.reset();
         this.syncRoom(roomId);
       }, 1500);
+    } else {
+      // Start timer for the next player
+      game.startTimer(() => {
+        this.handleTimeUp(roomId);
+      });
+    }
+  }
+
+  handleTimeUp(roomId) {
+    if (!this.rooms.has(roomId)) return;
+
+    const game = this.rooms.get(roomId);
+    const opponent = game.turn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
+
+    // Skip the current player's turn
+    game.players[game.turn].decrementCooldowns();
+    game.players[opponent].decrementCooldowns();
+
+    // Clear power-up selection when turn changes
+    game.powerUpsState.selectedPower = null;
+    game.powerUpsState.whoUsingPower = null;
+
+    // Switch turn to opponent
+    game.turn = opponent;
+
+    // Check if game has ended (draw)
+    const hasEnded = game.checkDraw();
+    if (hasEnded) {
+      game.stopTimer();
+      setTimeout(() => {
+        if (!this.rooms.has(roomId)) return;
+
+        const g = this.rooms.get(roomId);
+        g.reset();
+        this.syncRoom(roomId);
+      }, 1500);
+    } else {
+      // Start timer for the opponent
+      game.resetTimer();
+      game.startTimer(() => {
+        this.handleTimeUp(roomId);
+      });
+      this.syncRoom(roomId);
     }
   }
 
@@ -165,6 +231,11 @@ export class GameManager {
     console.log(`Selection changed: ${changed}, state:`, game.powerUpsState);
 
     if (changed) {
+      // Reset timer when selecting an ability
+      game.resetTimer();
+      game.startTimer(() => {
+        this.handleTimeUp(roomId);
+      });
       this.syncRoom(roomId);
     }
   }
