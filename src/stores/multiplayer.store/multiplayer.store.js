@@ -14,6 +14,7 @@ export const useMultiplayerStore = create((set, get) => ({
   isRematchMenuActive: false,
   selectedBoardSize: INITIAL_BOARD_SIZE,
   stats: { p1Wins: 0, draws: 0, p2Wins: 0 },
+  squaresToSwap: [],
   powerUps: {
     player1: initialPlayerPowerUps(get()?.boardSize),
     player2: initialPlayerPowerUps(get()?.boardSize),
@@ -32,6 +33,7 @@ export const useMultiplayerStore = create((set, get) => ({
     isWinnerPopupVisible,
     powerUps,
     mySymbol,
+    squaresToSwap = [],
   }) => {
     set({
       boardSize,
@@ -43,6 +45,7 @@ export const useMultiplayerStore = create((set, get) => ({
       draw,
       isWinnerPopupVisible,
       powerUps,
+      squaresToSwap,
     });
   },
   updateMultiplayerState: (state) => set(state),

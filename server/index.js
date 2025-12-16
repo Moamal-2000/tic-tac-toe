@@ -38,8 +38,15 @@ io.on("connection", (socket) => {
     gameManager.handleMove(socket, { row, col });
   });
 
-  socket.on("ability", ({ ability, row, col }) => {
-    gameManager.handleAbility(socket, { ability, row, col });
+  socket.on("ability", ({ ability, row, col, row2, col2, action }) => {
+    gameManager.handleAbility(socket, {
+      ability,
+      row,
+      col,
+      row2,
+      col2,
+      action,
+    });
   });
 
   socket.on("select-power-up", ({ ability }) => {

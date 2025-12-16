@@ -1,4 +1,9 @@
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import {
+  BUTTON_SOUND,
+  soundFiles,
+  SWAP_SOUND,
+  UNSELECT_SOUND,
+} from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
@@ -15,6 +20,8 @@ const BoardRow = ({ row, rowIndex }) => {
     fillSquare,
     powerUps,
     usePowerUp,
+    squaresToSwap,
+    updateMultiplayerState,
   } = useMultiplayerStore((s) => s);
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
@@ -24,6 +31,64 @@ const BoardRow = ({ row, rowIndex }) => {
     if (!hasGameStarted || winner || draw) return;
 
     playSound(BUTTON_SOUND, 0.3);
+
+    // If swap power-up is selected, handle swap selection logic
+    if (selectedPower === "swap") {
+      const squareData = row[columnIndex];
+      const isEmptySquare = squareData.owner === "" || !squareData.owner;
+      const isAlreadySelected = squareData.swapSelected;
+      const isFirstSelection = squaresToSwap.length === 0;
+      const isSecondSelection = squaresToSwap.length === 1;
+
+      // Invalid: can't swap empty squares
+      if (isEmptySquare) {
+        return;
+      }
+
+      // First selection
+      if (isFirstSelection && !isSecondSelection) {
+        playSound(BUTTON_SOUND, 0.3);
+        const newSquaresToSwap = [[rowIndex, columnIndex]];
+
+        // Update the local state immediately
+        updateMultiplayerState({ squaresToSwap: newSquaresToSwap });
+        socket.emit("ability", {
+          ability: "swap",
+          row: rowIndex,
+          col: columnIndex,
+          action: "select",
+        });
+        return;
+      }
+
+      // Unselect if clicking the same square
+      if (isAlreadySelected) {
+        playSound(UNSELECT_SOUND, 0.3);
+        updateMultiplayerState({ squaresToSwap: [] });
+        socket.emit("ability", {
+          ability: "swap",
+          row: rowIndex,
+          col: columnIndex,
+          action: "unselect",
+        });
+        return;
+      }
+
+      // Second selection - perform swap
+      if (isSecondSelection) {
+        playSound(SWAP_SOUND, 0.3);
+        const [firstRow, firstCol] = squaresToSwap[0];
+        socket.emit("ability", {
+          ability: "swap",
+          row: firstRow,
+          col: firstCol,
+          row2: rowIndex,
+          col2: columnIndex,
+        });
+        updateMultiplayerState({ squaresToSwap: [] });
+        return;
+      }
+    }
 
     // If freeze power-up is selected, emit ability event
     if (selectedPower === "freeze") {
@@ -42,9 +107,17 @@ const BoardRow = ({ row, rowIndex }) => {
   return (
     <div className={s.row}>
       {row.map((squareData, columnIndex) => {
+        // Create compatible squareData for shouldDisableSquare
+        const compatibleSquareData = {
+          fillWith: squareData.owner,
+          isFrozen: squareData.isFrozen,
+          isBombed: squareData.isBombed,
+          swapSelected: squareData.swapSelected,
+        };
+
         const disable = shouldDisableSquare({
           hasGameStarted,
-          squareData,
+          squareData: compatibleSquareData,
           playerTurn,
           selectedPower,
           hasActivePowerUp,

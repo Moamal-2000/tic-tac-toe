@@ -54,7 +54,7 @@ export class GameManager {
     }
   }
 
-  handleAbility(socket, { ability, row, col }) {
+  handleAbility(socket, { ability, row, col, row2, col2, action }) {
     const roomId = socket.data.roomId;
     if (!roomId || !this.rooms.has(roomId)) return;
 
@@ -64,11 +64,42 @@ export class GameManager {
 
     if (game.turn !== playerSymbol) return;
 
-    const abilitySuccess = game.useAbility(ability, row, col);
+    const abilitySuccess = game.useAbility(
+      ability,
+      row,
+      col,
+      row2,
+      col2,
+      action
+    );
     if (!abilitySuccess) return;
 
-    // Sync state after ability use (may also end the game)
+    // Sync state after ability use
     this.syncRoom(roomId);
+
+    // Handle swap with timeout for animation
+    if (ability === "swap" && row2 !== undefined && col2 !== undefined) {
+      setTimeout(() => {
+        if (!this.rooms.has(roomId)) return;
+
+        const g = this.rooms.get(roomId);
+        g.performSwap(row, col, row2, col2);
+
+        this.syncRoom(roomId);
+
+        const hasEnded = g.winner || g.checkDraw();
+        if (hasEnded) {
+          setTimeout(() => {
+            if (!this.rooms.has(roomId)) return;
+
+            const gr = this.rooms.get(roomId);
+            gr.reset();
+            this.syncRoom(roomId);
+          }, 1500);
+        }
+      }, 900); // Match the animation duration
+      return;
+    }
 
     const hasEnded = game.winner || game.checkDraw();
     if (hasEnded) {

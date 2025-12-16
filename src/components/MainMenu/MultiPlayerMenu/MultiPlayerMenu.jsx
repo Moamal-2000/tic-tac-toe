@@ -40,6 +40,16 @@ const MultiPlayerMenu = () => {
       updateStatsOnResult({ winner, draw });
     }
 
+    // Extract squaresToSwap from the board state
+    const squaresToSwap = [];
+    board.forEach((row, rowIndex) => {
+      row.forEach((cell, colIndex) => {
+        if (cell.swapSelected) {
+          squaresToSwap.push([rowIndex, colIndex]);
+        }
+      });
+    });
+
     updateGameStates({
       boardSize: state.board[0].length,
       playerTurn: turn,
@@ -50,6 +60,7 @@ const MultiPlayerMenu = () => {
       isWinnerPopupVisible,
       powerUps: state.powerUps,
       mySymbol: state.me,
+      squaresToSwap,
     });
   }
 

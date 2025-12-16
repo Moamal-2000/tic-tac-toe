@@ -101,10 +101,26 @@ export class Game {
     return true;
   }
 
-  useAbility(ability, row, col, row2, col2) {
+  useAbility(ability, row, col, row2, col2, action) {
     const player = this.getCurrentPlayer();
     const cell = this.board.getCell(row, col);
     const opponent = this.getOpponentSymbol();
+
+    // Handle swap selection/unselection before checking ability use
+    if (ability === "swap" && action) {
+      if (action === "select") {
+        // Mark cell as selected for swap
+        if (!cell.owner) {
+          return false; // Can't select empty cells
+        }
+        cell.swapSelected = true;
+        return true;
+      } else if (action === "unselect") {
+        // Unmark cell as selected
+        cell.swapSelected = false;
+        return true;
+      }
+    }
 
     if (!player.abilities[ability] || !player.abilities[ability].use()) {
       return false;
@@ -121,10 +137,19 @@ export class Game {
     } else if (ability === "bomb") {
       if (cell.owner) cell.owner = null;
     } else if (ability === "swap") {
-      const cell2 = this.board.getCell(row2, col2);
-      const cellOwner = cell.owner;
-      cell.owner = cell2.owner;
-      cell2.owner = cellOwner;
+      // Validate both cells have symbols
+      if (!cell.owner || !this.board.getCell(row2, col2).owner) {
+        player.abilities[ability].cooldown = 0; // Reset cooldown since validation failed
+        return false;
+      }
+
+      // For swap, we'll handle it with a delay in the manager
+      // Just mark the cells for swap here
+      cell.swapSelected = true;
+      this.board.getCell(row2, col2).swapSelected = true;
+
+      // Return true to indicate ability is being processed
+      return "swap-processing";
     }
 
     const winner = this.checkWin();
@@ -138,6 +163,38 @@ export class Game {
     this.powerUpsState.whoUsingPower = null;
 
     // Change turn and decrement cooldowns
+    this.players[this.turn].decrementCooldowns();
+    this.players[opponent].decrementCooldowns();
+
+    this.turn = opponent;
+
+    return true;
+  }
+
+  performSwap(row, col, row2, col2) {
+    const cell = this.board.getCell(row, col);
+    const cell2 = this.board.getCell(row2, col2);
+
+    // Perform the swap
+    const cellOwner = cell.owner;
+    cell.owner = cell2.owner;
+    cell2.owner = cellOwner;
+
+    // Clear swap selection markers
+    cell.swapSelected = false;
+    cell2.swapSelected = false;
+
+    const winner = this.checkWin();
+
+    if (winner) {
+      this.winner = winner;
+    }
+
+    // Clear power-up selection and change turn
+    this.powerUpsState.selectedPower = null;
+    this.powerUpsState.whoUsingPower = null;
+
+    const opponent = this.getOpponentSymbol();
     this.players[this.turn].decrementCooldowns();
     this.players[opponent].decrementCooldowns();
 
