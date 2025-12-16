@@ -1,4 +1,5 @@
 import {
+  BOMB_SOUND,
   BUTTON_SOUND,
   soundFiles,
   SWAP_SOUND,
@@ -94,6 +95,17 @@ const BoardRow = ({ row, rowIndex }) => {
     if (selectedPower === "freeze") {
       socket.emit("ability", {
         ability: "freeze",
+        row: rowIndex,
+        col: columnIndex,
+      });
+      return;
+    }
+
+    // If bomb power-up is selected, emit ability event
+    if (selectedPower === "bomb") {
+      playSound(BOMB_SOUND, 0.25);
+      socket.emit("ability", {
+        ability: "bomb",
         row: rowIndex,
         col: columnIndex,
       });

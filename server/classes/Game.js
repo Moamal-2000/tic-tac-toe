@@ -135,7 +135,11 @@ export class Game {
       }
       cell.frozen = true;
     } else if (ability === "bomb") {
-      if (cell.owner) cell.owner = null;
+      // Mark cells for bomb effect (3x3 area centered at row, col)
+      this.triggerBombEffect(row, col);
+
+      // Return "bomb-processing" to indicate bomb needs delay before deletion
+      return "bomb-processing";
     } else if (ability === "swap") {
       // Validate both cells have symbols
       if (!cell.owner || !this.board.getCell(row2, col2).owner) {
@@ -201,6 +205,62 @@ export class Game {
     this.turn = opponent;
 
     return true;
+  }
+
+  triggerBombEffect(row, col, radius = 1) {
+    const boardSize = this.board.size;
+
+    // Mark all cells in 3x3 area with isBombed flag
+    for (let dimensionX = -radius; dimensionX <= radius; dimensionX++) {
+      for (let dimensionY = -radius; dimensionY <= radius; dimensionY++) {
+        const newRow = row + dimensionX;
+        const newCol = col + dimensionY;
+
+        const isOutOfBounds =
+          newRow < 0 ||
+          newCol < 0 ||
+          newRow >= boardSize ||
+          newCol >= boardSize;
+
+        if (isOutOfBounds) continue;
+
+        const targetedCell = this.board.getCell(newRow, newCol);
+        targetedCell.bombed = true;
+      }
+    }
+  }
+
+  deleteBombEffect(row, col, radius = 1) {
+    const boardSize = this.board.size;
+
+    // Clear symbols in 3x3 area and handle frozen squares
+    for (let dimensionX = -radius; dimensionX <= radius; dimensionX++) {
+      for (let dimensionY = -radius; dimensionY <= radius; dimensionY++) {
+        const newRow = row + dimensionX;
+        const newCol = col + dimensionY;
+
+        const isOutOfBounds =
+          newRow < 0 ||
+          newCol < 0 ||
+          newRow >= boardSize ||
+          newCol >= boardSize;
+
+        if (isOutOfBounds) continue;
+
+        const targetedCell = this.board.getCell(newRow, newCol);
+
+        if (targetedCell.frozen) {
+          // Remove freeze effect but keep the symbol
+          targetedCell.frozen = false;
+        } else {
+          // Clear the symbol
+          targetedCell.owner = null;
+        }
+
+        // Clear the bombed flag
+        targetedCell.bombed = false;
+      }
+    }
   }
 
   checkWin(row, col) {

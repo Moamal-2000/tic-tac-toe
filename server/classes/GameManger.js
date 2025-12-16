@@ -77,6 +77,45 @@ export class GameManager {
     // Sync state after ability use
     this.syncRoom(roomId);
 
+    // Handle bomb with timeout for animation
+    if (ability === "bomb" && abilitySuccess === "bomb-processing") {
+      setTimeout(() => {
+        if (!this.rooms.has(roomId)) return;
+
+        const g = this.rooms.get(roomId);
+        const opponent = g.getOpponentSymbol();
+
+        g.deleteBombEffect(row, col);
+
+        // Change turn and decrement cooldowns
+        g.players[g.turn].decrementCooldowns();
+        g.players[opponent].decrementCooldowns();
+
+        g.powerUpsState.selectedPower = null;
+        g.powerUpsState.whoUsingPower = null;
+        g.turn = opponent;
+
+        const winner = g.checkWin();
+        if (winner) {
+          g.winner = winner;
+        }
+
+        this.syncRoom(roomId);
+
+        const hasEnded = g.winner || g.checkDraw();
+        if (hasEnded) {
+          setTimeout(() => {
+            if (!this.rooms.has(roomId)) return;
+
+            const gr = this.rooms.get(roomId);
+            gr.reset();
+            this.syncRoom(roomId);
+          }, 1500);
+        }
+      }, 500); // Animation duration for bomb
+      return;
+    }
+
     // Handle swap with timeout for animation
     if (ability === "swap" && row2 !== undefined && col2 !== undefined) {
       setTimeout(() => {
