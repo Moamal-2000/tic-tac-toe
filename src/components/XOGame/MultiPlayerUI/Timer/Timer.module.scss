@@ -2,33 +2,22 @@
 
 .timerContainer {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 15px;
+  right: 15px;
+  width: 80px;
+  height: 80px;
   z-index: 10;
-
-  @include m.medium {
-    width: 85px;
-    height: 85px;
-    top: 15px;
-    right: 15px;
-  }
+  @include m.flex-center;
 }
 
 .timerCircle {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
+  rotate: -90deg;
 }
 
 .timerBg {
   fill: none;
-  stroke: rgba(78, 205, 196, 0.2);
+  stroke: rgba(78, 205, 196, .2);
   stroke-width: 3;
 }
 
@@ -39,17 +28,15 @@
   stroke-dasharray: 282.743;
   stroke-dashoffset: 282.743;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.3s linear, stroke 0.2s ease;
+  transition: stroke-dashoffset .3s linear, stroke .2s ease;
 }
 
 .timerText {
-  position: relative;
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 500;
   color: #4ecdc4;
-  text-align: center;
   z-index: 1;
-  text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+  text-shadow: 0 0 10px rgba(78, 205, 196, .5);
 }
 
 .timerContainer.lowTime {
@@ -59,28 +46,28 @@
 
   .timerText {
     color: #ffd93d;
-    text-shadow: 0 0 10px rgba(255, 217, 61, 0.5);
+    text-shadow: 0 0 10px rgba(255, 217, 61, .5);
   }
 
   .timerBg {
-    stroke: rgba(255, 217, 61, 0.2);
+    stroke: rgba(255, 217, 61, .2);
   }
 }
 
 .timerContainer.veryLowTime {
   .timerProgress {
     stroke: #ff6b6b;
-    animation: pulse 0.5s ease-in-out infinite;
+    animation: pulse .5s ease-in-out infinite;
   }
 
   .timerText {
     color: #ff6b6b;
-    text-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
-    animation: pulse-text 0.5s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 107, 107, .7);
+    animation: pulse-text .5s ease-in-out infinite;
   }
 
   .timerBg {
-    stroke: rgba(255, 107, 107, 0.2);
+    stroke: rgba(255, 107, 107, .2);
   }
 }
 
@@ -92,7 +79,7 @@
   }
 
   50% {
-    opacity: 0.6;
+    opacity: .6;
   }
 }
 
@@ -100,11 +87,11 @@
 
   0%,
   100% {
-    transform: scale(1);
+    scale: 1;
   }
 
   50% {
-    transform: scale(1.05);
+    scale: 1.05;
   }
 }
 
