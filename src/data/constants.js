@@ -9,6 +9,8 @@ export const SWAP_SYMBOL_DELAY_MS = 800;
 export const BOMB_DELETION_DELAY_MS = 800;
 export const WINNER_POPUP_DURATION_MS = 2000;
 export const KEY_DEBOUNCE_DELAY_MS = 200;
+export const TURN_TIMER_DURATION = 30; // seconds
+export const CIRCLE_LENGTH = 2 * Math.PI * 45;
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
 export const INITIAL_PLAY_MODE = "classicMode"; // "classicMode" | "autoHideMode"
 export const INITIAL_SQUARE_HIDDEN_TIME = 6;

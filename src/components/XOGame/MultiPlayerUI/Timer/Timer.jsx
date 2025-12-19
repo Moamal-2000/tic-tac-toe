@@ -1,5 +1,7 @@
 "use client";
 
+import { CIRCLE_LENGTH, TURN_TIMER_DURATION } from "@/data/constants";
+import { stopTimer } from "@/functions/helper";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect, useRef } from "react";
@@ -7,63 +9,32 @@ import s from "./Timer.module.scss";
 
 const Timer = () => {
   const { timeRemaining, timerActive, hasGameStarted, winner } =
-    useMultiplayerStore((s) => s);
-  const updateMultiplayerState = useMultiplayerStore(
-    (s) => s.updateMultiplayerState
-  );
+    useMultiplayerStore();
   const intervalRef = useRef(null);
 
+  const isTimerRunning = timerActive && hasGameStarted && !winner;
+
   useEffect(() => {
-    if (!timerActive || !hasGameStarted || winner) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
+    if (!isTimerRunning) {
+      stopTimer(intervalRef);
       return;
     }
 
-    intervalRef.current = setInterval(() => {
-      useMultiplayerStore.setState((state) => {
-        const newTime = state.timeRemaining - 1;
-
-        if (newTime <= 0) {
-          if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-            intervalRef.current = null;
-          }
-          // Time is up, emit timeout event to server
-          socket.emit("time-up");
-          return {
-            timeRemaining: 0,
-            timerActive: false,
-          };
-        }
-
-        return { timeRemaining: newTime };
-      });
-    }, 1000);
+    intervalRef.current = setInterval(() => tick(intervalRef), 1000);
 
     return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
+      stopTimer(intervalRef);
     };
-  }, [timerActive, hasGameStarted, winner, updateMultiplayerState]);
+  }, [timerActive, hasGameStarted, winner]);
 
-  if (!hasGameStarted || !timerActive || winner) {
-    return null;
-  }
+  if (!isTimerRunning) return null;
 
-  const isLowTime = timeRemaining <= 10;
-  const isVeryLowTime = timeRemaining <= 5;
+  const { isLowTime, isVeryLowTime, strokeDashoffset } =
+    calculateTimerVisuals(timeRemaining);
+  const timerClasses = getTimerClasses(s, isLowTime, isVeryLowTime);
 
   return (
-    <div
-      className={`${s.timerContainer} ${isLowTime ? s.lowTime : ""} ${
-        isVeryLowTime ? s.veryLowTime : ""
-      }`}
-    >
+    <div className={timerClasses}>
       <svg className={s.timerCircle} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" className={s.timerBg} />
         <circle
@@ -71,9 +42,7 @@ const Timer = () => {
           cy="50"
           r="45"
           className={s.timerProgress}
-          style={{
-            strokeDashoffset: `${(282.743 * (30 - timeRemaining)) / 30}`,
-          }}
+          style={{ strokeDashoffset }}
         />
       </svg>
       <div className={s.timerText}>{timeRemaining}s</div>
@@ -82,3 +51,37 @@ const Timer = () => {
 };
 
 export default Timer;
+
+function tick(intervalRef) {
+  useMultiplayerStore.setState((state) => {
+    const nextTime = state.timeRemaining - 1;
+
+    if (nextTime <= 0) {
+      stopTimer(intervalRef);
+      socket.emit("time-up");
+      return { timeRemaining: 0, timerActive: false };
+    }
+
+    return { timeRemaining: nextTime };
+  });
+}
+
+function calculateTimerVisuals(timeRemaining) {
+  return {
+    isLowTime: timeRemaining <= 10,
+    isVeryLowTime: timeRemaining <= 5,
+    strokeDashoffset:
+      (CIRCLE_LENGTH * (TURN_TIMER_DURATION - timeRemaining)) /
+      TURN_TIMER_DURATION,
+  };
+}
+
+function getTimerClasses(cssModule, isLowTime, isVeryLowTime) {
+  return [
+    cssModule.timerContainer,
+    isLowTime && cssModule.lowTime,
+    isVeryLowTime && cssModule.veryLowTime,
+  ]
+    .filter(Boolean)
+    .join(" ");
+}

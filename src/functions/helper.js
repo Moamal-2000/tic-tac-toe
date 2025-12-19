@@ -47,3 +47,10 @@ export function enterFullScreen() {
 export function refreshPage() {
   window.location.reload();
 }
+
+export function stopTimer(ref) {
+  if (ref.current) {
+    clearInterval(ref.current);
+    ref.current = null;
+  }
+}
