@@ -11,7 +11,7 @@ import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
-  const { updateGameMode, updateGlobalState } = useGlobalStore((s) => s);
+  const { updateGameMode, updateGlobalState } = useGlobalStore();
   const { updateGameStates, updateStatsOnResult, selectedBoardSize } =
     useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });

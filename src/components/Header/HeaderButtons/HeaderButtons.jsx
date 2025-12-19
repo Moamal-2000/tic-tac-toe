@@ -15,9 +15,7 @@ import VolumeButton from "./VolumeButton/VolumeButton";
 
 const HeaderButtons = () => {
   const resetStats = useXOStore((s) => s.resetStats);
-  const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore(
-    (s) => s
-  );
+  const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore();
   const { updateMultiplayerState } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const isOnlineMode = gameMode === "online";

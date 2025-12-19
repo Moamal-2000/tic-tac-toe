@@ -12,7 +12,7 @@ import PowerUpsExplanationCard from "./PowerUpsExplanationCard/PowerUpsExplanati
 import WinningExplanationCard from "./WinningExplanationCard/WinningExplanationCard";
 
 const AboutPopup = () => {
-  const { isAboutModelActive, toggleAboutModel } = useGlobalStore((s) => s);
+  const { isAboutModelActive, toggleAboutModel } = useGlobalStore();
   const aboutArticleRef = useRef(null);
   const showClass = isAboutModelActive ? s.show : "";
   const playSound = usePreloadSounds({ click: soundFiles.click });
