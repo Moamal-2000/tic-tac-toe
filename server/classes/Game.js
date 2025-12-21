@@ -12,6 +12,7 @@ export class Game {
     };
     this.turn = SYMBOL_X;
     this.winner = null;
+    this.draw = false;
     this.moveCount = 0;
     this.hasGameStarted = false;
     this.isWinnerPopupVisible = false;
@@ -244,10 +245,17 @@ export class Game {
     cell.swapSelected = false;
     cell2.swapSelected = false;
 
-    const winner = this.checkWin();
-
-    if (winner) {
-      this.winner = winner;
+    // Check if both players won (treat as draw)
+    if (this.checkBothPlayersWon()) {
+      this.isWinnerPopupVisible = true;
+      this.draw = true;
+      // Both won = draw, don't set a single winner
+      this.winner = null;
+    } else {
+      const winner = this.checkWin();
+      if (winner) {
+        this.winner = winner;
+      }
     }
 
     // Clear power-up selection and change turn
@@ -371,6 +379,38 @@ export class Game {
     return false;
   }
 
+  // Check if both players have won (used for swap power-up)
+  checkBothPlayersWon() {
+    const size = this.board.size;
+    const directions = [
+      [0, 1],
+      [1, 0],
+      [1, 1],
+      [1, -1],
+    ];
+
+    const winners = new Set();
+
+    for (const symbol of [SYMBOL_X, SYMBOL_O]) {
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const cell = this.board.getCell(r, c);
+          if (cell.owner === symbol && !cell.frozen) {
+            for (const [dr, dc] of directions) {
+              if (this.countAligned(r, c, dr, dc, symbol) >= size) {
+                winners.add(symbol);
+                break;
+              }
+            }
+          }
+        }
+        if (winners.has(symbol)) break;
+      }
+    }
+
+    return winners.size === 2;
+  }
+
   checkDraw() {
     const hasFreeCell = this.board.hasFreeCell();
 
@@ -441,7 +481,7 @@ export class Game {
       },
       turn: this.turn,
       winner: this.winner,
-      draw: this.checkDraw(),
+      draw: this.draw || this.checkDraw(),
       hasGameStarted: this.hasGameStarted,
       isWinnerPopupVisible: this.isWinnerPopupVisible,
       timeRemaining: this.timeRemaining,
@@ -455,6 +495,7 @@ export class Game {
     this.board = new Board(size);
     this.turn = SYMBOL_X;
     this.winner = null;
+    this.draw = false;
     this.moveCount = 0;
     this.hasGameStarted = true;
     this.isWinnerPopupVisible = false;

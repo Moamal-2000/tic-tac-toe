@@ -149,7 +149,10 @@ export class GameManager {
 
         this.syncRoom(roomId);
 
-        const hasEnded = g.winner || g.checkDraw();
+        // Check if both players won (treat as draw)
+        const bothWon = g.checkBothPlayersWon();
+        const hasEnded = bothWon || g.winner || g.checkDraw();
+
         if (hasEnded) {
           g.stopTimer();
           setTimeout(() => {
