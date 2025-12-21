@@ -141,6 +141,9 @@ export class GameManager {
 
     // Handle swap with timeout for animation
     if (ability === "swap" && row2 !== undefined && col2 !== undefined) {
+      // Sync immediately to show both squares selected before animation
+      this.syncRoom(roomId);
+      
       setTimeout(() => {
         if (!this.rooms.has(roomId)) return;
 
