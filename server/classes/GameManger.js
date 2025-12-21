@@ -110,14 +110,21 @@ export class GameManager {
         g.powerUpsState.whoUsingPower = null;
         g.turn = opponent;
 
-        const winner = g.checkWin();
-        if (winner) {
-          g.winner = winner;
+        // Check if both players won (treat as draw)
+        if (g.checkBothPlayersWon()) {
+          g.isWinnerPopupVisible = true;
+          g.draw = true;
+          g.winner = null;
+        } else {
+          const winner = g.checkWin();
+          if (winner) {
+            g.winner = winner;
+          }
         }
 
         this.syncRoom(roomId);
 
-        const hasEnded = g.winner || g.checkDraw();
+        const hasEnded = g.winner || g.draw || g.checkDraw();
         if (hasEnded) {
           g.stopTimer();
           setTimeout(() => {
@@ -143,7 +150,7 @@ export class GameManager {
     if (ability === "swap" && row2 !== undefined && col2 !== undefined) {
       // Sync immediately to show both squares selected before animation
       this.syncRoom(roomId);
-      
+
       setTimeout(() => {
         if (!this.rooms.has(roomId)) return;
 
