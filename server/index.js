@@ -34,6 +34,10 @@ io.on("connection", (socket) => {
     gameManager.handleMatchmaking(socket, boardSize);
   });
 
+  socket.on("cancel-matchmaking", () => {
+    gameManager.handleCancelMatchmaking(socket);
+  });
+
   socket.on("move", ({ row, col }) => {
     gameManager.handleMove(socket, { row, col });
   });

@@ -269,11 +269,30 @@ export class GameManager {
 
     const queue = this.matchmakingQueue.get(boardSize);
 
+    // Check if the socket is already in the queue to prevent matching with itself
+    const existingSocketIndex = queue.findIndex((s) => s.id === socket.id);
+    if (existingSocketIndex !== -1) {
+      // Remove the existing socket and create a new matchmaking request
+      queue.splice(existingSocketIndex, 1);
+    }
+
     if (queue.length > 0) {
       const waitingSocket = queue.shift();
       this.createRoom(waitingSocket, socket, boardSize);
     } else {
       queue.push(socket);
+    }
+  }
+
+  handleCancelMatchmaking(socket) {
+    // Remove socket from all matchmaking queues
+    for (const queue of this.matchmakingQueue.values()) {
+      const index = queue.findIndex((s) => s.id === socket.id);
+      if (index !== -1) {
+        queue.splice(index, 1);
+        console.log(`Socket ${socket.id} removed from matchmaking queue`);
+        return;
+      }
     }
   }
 

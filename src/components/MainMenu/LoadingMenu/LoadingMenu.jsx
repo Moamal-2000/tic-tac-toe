@@ -3,6 +3,7 @@
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./LoadingMenu.module.scss";
 
@@ -11,6 +12,7 @@ const LoadingMenu = () => {
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleBackButton() {
+    socket.emit("cancel-matchmaking");
     updateGlobalState({ isWaitingForOpponent: false });
     playSound(BUTTON_SOUND);
   }
