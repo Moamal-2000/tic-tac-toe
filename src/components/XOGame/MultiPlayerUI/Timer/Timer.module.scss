@@ -10,6 +10,19 @@
   @include m.flex-center;
 }
 
+@include m.large {
+  .timerContainer {
+    top: 50%;
+  }
+}
+
+@include m.medium {
+  .timerContainer {
+    top: auto;
+    bottom: 15px;
+  }
+}
+
 .timerCircle {
   position: absolute;
   rotate: -90deg;
@@ -37,6 +50,16 @@
   color: #4ecdc4;
   z-index: 1;
   text-shadow: 0 0 10px rgba(78, 205, 196, .5);
+}
+
+.timerText .word {
+  display: none;
+}
+
+@media (max-width: 620px) {
+  .timerText .word {
+    display: block;
+  }
 }
 
 .timerContainer.lowTime {
@@ -95,15 +118,21 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 620px) {
   .timerContainer {
-    width: 70px;
-    height: 70px;
-    top: 10px;
-    right: 10px;
+    position: static;
+    width: fit-content;
+    height: 40px;
   }
 
   .timerText {
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .timerCircle {
+    display: none;
   }
 }

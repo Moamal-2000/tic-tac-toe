@@ -16,15 +16,9 @@
   }
 }
 
-@include m.small {
+@media (max-width: 620px) {
   .game {
-    padding-bottom: 30px;
-  }
-}
-
-@include m.very-small {
-  .game {
-    align-items: stretch;
+    position: relative;
   }
 }
 

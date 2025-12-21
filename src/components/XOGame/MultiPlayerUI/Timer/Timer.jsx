@@ -45,7 +45,9 @@ const Timer = () => {
           style={{ strokeDashoffset }}
         />
       </svg>
-      <div className={s.timerText}>{timeRemaining}s</div>
+      <div className={s.timerText}>
+        {timeRemaining}s<span className={s.word}> left</span>
+      </div>
     </div>
   );
 };
