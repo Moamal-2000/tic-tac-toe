@@ -23,9 +23,11 @@ const BoardRow = ({ row, rowIndex }) => {
     usePowerUp,
     squaresToSwap,
     updateMultiplayerState,
+    mySymbol,
   } = useMultiplayerStore((s) => s);
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
+  const isMyTurn = playerTurn === mySymbol;
 
   function handleSquareClick(rowIndex, columnIndex) {
     // Block interaction if game has ended (win or draw) or hasn't started
@@ -139,7 +141,7 @@ const BoardRow = ({ row, rowIndex }) => {
           <XOSquare
             key={columnIndex}
             squareData={squareData}
-            disabled={!disable}
+            disabled={!disable || !isMyTurn}
             onClick={() => handleSquareClick(rowIndex, columnIndex)}
           />
         );
