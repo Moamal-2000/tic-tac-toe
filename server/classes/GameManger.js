@@ -94,6 +94,9 @@ export class GameManager {
 
     // Handle bomb with timeout for animation
     if (ability === "bomb" && abilitySuccess === "bomb-processing") {
+      // Sync immediately to show bomb effect on all clients
+      this.syncRoom(roomId);
+
       setTimeout(() => {
         if (!this.rooms.has(roomId)) return;
 
