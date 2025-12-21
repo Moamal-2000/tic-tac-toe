@@ -323,8 +323,11 @@ export class GameManager {
     // Check if player is in an active game
     for (const [roomId, game] of this.rooms) {
       const disconnectedPlayer =
-        game.players[SYMBOL_O]?.id === socketId ? SYMBOL_O :
-        game.players[SYMBOL_X]?.id === socketId ? SYMBOL_X : null;
+        game.players[SYMBOL_O]?.id === socketId
+          ? SYMBOL_O
+          : game.players[SYMBOL_X]?.id === socketId
+          ? SYMBOL_X
+          : null;
 
       if (disconnectedPlayer) {
         const opponent = disconnectedPlayer === SYMBOL_O ? SYMBOL_X : SYMBOL_O;

@@ -3,11 +3,11 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
+import OpponentDisconnectedModal from "./OpponentDisconnectedModal/OpponentDisconnectedModal";
 import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
-import OpponentDisconnectedModal from "./OpponentDisconnectedModal/OpponentDisconnectedModal";
 
 const MultiPlayerUI = () => {
   const { boardSize, stats, winner, playerTurn, isRematchMenuActive } =

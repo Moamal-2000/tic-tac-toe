@@ -12,8 +12,12 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore();
-  const { updateGameStates, updateStatsOnResult, selectedBoardSize, resetMultiplayerState, updateMultiplayerState } =
-    useMultiplayerStore((s) => s);
+  const {
+    updateGameStates,
+    updateStatsOnResult,
+    selectedBoardSize,
+    updateMultiplayerState,
+  } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {

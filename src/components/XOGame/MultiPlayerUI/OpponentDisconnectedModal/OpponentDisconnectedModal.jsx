@@ -7,8 +7,9 @@ import s from "./OpponentDisconnectedModal.module.scss";
 
 const OpponentDisconnectedModal = () => {
   const router = useRouter();
-  const { isOpponentDisconnected, resetMultiplayerState } =
-    useMultiplayerStore((state) => state);
+  const { isOpponentDisconnected, resetMultiplayerState } = useMultiplayerStore(
+    (state) => state
+  );
   const { updateGameMode } = useGlobalStore();
 
   if (!isOpponentDisconnected) return null;
