@@ -104,9 +104,9 @@ const MultiPlayerMenu = () => {
       <header className={s.header}>
         <h1>Multiplayer Setup</h1>
         <p>Configure your game settings</p>
-        <div className={s.playerCount}>
+        {/* <div className={s.playerCount}>
           <span>Connected Players: {connectedPlayers}</span>
-        </div>
+        </div> */}
       </header>
 
       <form className={s.mpForm} onSubmit={handleSubmit}>
