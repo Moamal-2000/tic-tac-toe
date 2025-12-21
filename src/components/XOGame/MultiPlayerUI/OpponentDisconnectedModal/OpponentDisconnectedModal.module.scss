@@ -1,57 +1,92 @@
+@use "@/styles/mixins" as m;
+
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 16px;
+  user-select: text;
 }
 
 .modal {
-  background-color: #1a1f2e;
-  border: 2px solid #4ecdc4;
-  border-radius: 12px;
-  padding: 40px;
-  max-width: 400px;
+  background-color: #111525;
+  border: 2px solid #ffd93d;
+  border-radius: 16px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 420px;
   text-align: center;
-  box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+  box-shadow: 0 0 10px rgba(255, 217, 61, 0.4);
+  transform: translateY(0);
+  animation: modalFadeIn 200ms ease-out;
 
   h2 {
     color: #ffd93d;
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+    font-size: clamp(1.2rem, 5vw, 1.7rem);
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
   }
 
   p {
     color: #d4d6d8;
-    font-size: 1rem;
+    font-size: clamp(.8rem, 3vw, .98rem);
     margin-bottom: 10px;
     line-height: 1.5;
   }
 }
 
+@include m.small {
+  .modal {
+    padding: 24px 20px;
+  }
+}
+
 .button {
+  outline: none;
   margin-top: 20px;
   padding: 10px 30px;
-  background-color: #4ecdc4;
-  color: #1a1f2e;
+  background-color: #ffd93d;
+  color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 
   &:hover {
-    background-color: #45b7ae;
-    transform: scale(1.05);
+    background-color: #ffd015;
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.4);
   }
 
   &:active {
-    transform: scale(0.98);
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.4);
+  }
+
+  &:focus-visible {
+    outline: solid 2px #fff;
+    outline-offset: 2px;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
