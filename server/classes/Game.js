@@ -85,13 +85,14 @@ export class Game {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = true;
+    this.timerCallback = callback; // Store callback for reuse
 
     this.timerInterval = setInterval(() => {
       this.timeRemaining--;
 
       if (this.timeRemaining <= 0) {
         this.stopTimer();
-        if (callback) callback();
+        if (this.timerCallback) this.timerCallback();
       }
     }, 1000);
   }
@@ -108,6 +109,20 @@ export class Game {
     this.stopTimer();
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
+  }
+
+  // Ensure timer is running without resetting the time
+  ensureTimerRunning() {
+    if (!this.timerInterval && this.timerActive && this.timerCallback) {
+      this.timerInterval = setInterval(() => {
+        this.timeRemaining--;
+
+        if (this.timeRemaining <= 0) {
+          this.stopTimer();
+          if (this.timerCallback) this.timerCallback();
+        }
+      }, 1000);
+    }
   }
 
   getOpponentSymbol() {

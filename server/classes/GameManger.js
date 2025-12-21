@@ -86,11 +86,11 @@ export class GameManager {
     );
     if (!abilitySuccess) return;
 
-    // Reset timer for the next player's turn
-    game.resetTimer();
-
-    // Sync state after ability use
-    this.syncRoom(roomId);
+    // For swap, sync intermediate states (first square selection) without affecting timer
+    if (ability === "swap" && row2 === undefined) {
+      this.syncRoom(roomId);
+      return;
+    }
 
     // Handle bomb with timeout for animation
     if (ability === "bomb" && abilitySuccess === "bomb-processing") {
@@ -129,9 +129,11 @@ export class GameManager {
           }, 1500);
         } else {
           // Start timer for the new turn
+          g.resetTimer();
           g.startTimer(() => {
             this.handleTimeUp(roomId);
           });
+          this.syncRoom(roomId);
         }
       }, 500); // Animation duration for bomb
       return;
@@ -157,6 +159,13 @@ export class GameManager {
             gr.reset();
             this.syncRoom(roomId);
           }, 1500);
+        } else {
+          // Start timer for the new turn
+          g.resetTimer();
+          g.startTimer(() => {
+            this.handleTimeUp(roomId);
+          });
+          this.syncRoom(roomId);
         }
       }, 900); // Match the animation duration
       return;
@@ -173,10 +182,12 @@ export class GameManager {
         this.syncRoom(roomId);
       }, 1500);
     } else {
-      // Start timer for the next player
+      // Start timer for the next player (only after turn changes)
+      game.resetTimer();
       game.startTimer(() => {
         this.handleTimeUp(roomId);
       });
+      this.syncRoom(roomId);
     }
   }
 
@@ -231,11 +242,9 @@ export class GameManager {
     console.log(`Selection changed: ${changed}, state:`, game.powerUpsState);
 
     if (changed) {
-      // Reset timer when selecting an ability
-      game.resetTimer();
-      game.startTimer(() => {
-        this.handleTimeUp(roomId);
-      });
+      // Ensure timer is still running without resetting the time
+      game.ensureTimerRunning();
+      // Sync the selection state without resetting the timer
       this.syncRoom(roomId);
     }
   }
