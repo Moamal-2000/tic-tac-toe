@@ -27,8 +27,15 @@ app.get("/health", (_, res) => res.send("OK"));
 
 const gameManager = new GameManager(io);
 
+function broadcastConnectedPlayersCount() {
+  const connectedCount = io.sockets.sockets.size;
+  console.log(`Broadcasting connected players: ${connectedCount}`);
+  io.emit("connected-players-count", { count: connectedCount });
+}
+
 io.on("connection", (socket) => {
   console.log(`Socket connected: ${socket.id}`);
+  broadcastConnectedPlayersCount();
 
   socket.on("matchmaking", (boardSize) => {
     gameManager.handleMatchmaking(socket, boardSize);
@@ -69,6 +76,7 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
     gameManager.handlePlayerDisconnect(socket.id);
+    broadcastConnectedPlayersCount();
   });
 });
 

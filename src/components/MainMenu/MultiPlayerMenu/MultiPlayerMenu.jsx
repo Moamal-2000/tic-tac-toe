@@ -6,7 +6,7 @@ import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
@@ -19,6 +19,7 @@ const MultiPlayerMenu = () => {
     updateMultiplayerState,
   } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
+  const [connectedPlayers, setConnectedPlayers] = useState(0);
 
   function handleSubmit(event) {
     event?.preventDefault();
@@ -86,6 +87,14 @@ const MultiPlayerMenu = () => {
     socket.on("opponent-disconnected", () => {
       updateMultiplayerState({ isOpponentDisconnected: true });
     });
+
+    socket.on("connected-players-count", ({ count }) => {
+      setConnectedPlayers(count);
+    });
+
+    return () => {
+      socket.off("connected-players-count");
+    };
   }, []);
 
   return (
@@ -95,6 +104,9 @@ const MultiPlayerMenu = () => {
       <header className={s.header}>
         <h1>Multiplayer Setup</h1>
         <p>Configure your game settings</p>
+        <div className={s.playerCount}>
+          <span>Connected Players: {connectedPlayers}</span>
+        </div>
       </header>
 
       <form className={s.mpForm} onSubmit={handleSubmit}>
