@@ -7,6 +7,7 @@ import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
+import OpponentDisconnectedModal from "./OpponentDisconnectedModal/OpponentDisconnectedModal";
 
 const MultiPlayerUI = () => {
   const { boardSize, stats, winner, playerTurn, isRematchMenuActive } =
@@ -30,6 +31,7 @@ const MultiPlayerUI = () => {
         hideOn={SCREEN_SIZES.medium.size}
       />
       {isRematchMenuActive && <RematchMenu />}
+      <OpponentDisconnectedModal />
     </section>
   );
 };

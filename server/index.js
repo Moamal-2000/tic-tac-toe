@@ -64,9 +64,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
-
-    // remove if in matchmaking queue
-    // if in game the other player wins and remove the game for rooms map(for now)
+    gameManager.handlePlayerDisconnect(socket.id);
   });
 });
 

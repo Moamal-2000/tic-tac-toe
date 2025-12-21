@@ -12,7 +12,7 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore();
-  const { updateGameStates, updateStatsOnResult, selectedBoardSize } =
+  const { updateGameStates, updateStatsOnResult, selectedBoardSize, resetMultiplayerState, updateMultiplayerState } =
     useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
@@ -77,6 +77,10 @@ const MultiPlayerMenu = () => {
   useEffect(() => {
     socket.on("room-update", (state) => {
       syncNewGameState(state);
+    });
+
+    socket.on("opponent-disconnected", () => {
+      updateMultiplayerState({ isOpponentDisconnected: true });
     });
   }, []);
 

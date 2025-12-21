@@ -1,0 +1,57 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #1a1f2e;
+  border: 2px solid #4ecdc4;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+
+  h2 {
+    color: #ffd93d;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #d4d6d8;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: #4ecdc4;
+  color: #1a1f2e;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #45b7ae;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}

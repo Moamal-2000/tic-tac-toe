@@ -310,6 +310,39 @@ export class GameManager {
     }
   }
 
+  handlePlayerDisconnect(socketId) {
+    // Check if player is in matchmaking queue
+    for (const queue of this.matchmakingQueue.values()) {
+      const index = queue.findIndex((socket) => socket.id === socketId);
+      if (index !== -1) {
+        queue.splice(index, 1);
+        return;
+      }
+    }
+
+    // Check if player is in an active game
+    for (const [roomId, game] of this.rooms) {
+      const disconnectedPlayer =
+        game.players[SYMBOL_O]?.id === socketId ? SYMBOL_O :
+        game.players[SYMBOL_X]?.id === socketId ? SYMBOL_X : null;
+
+      if (disconnectedPlayer) {
+        const opponent = disconnectedPlayer === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
+        const opponentSocketId = game.players[opponent]?.id;
+
+        // Notify opponent of disconnection
+        if (opponentSocketId) {
+          this.io.to(opponentSocketId).emit("opponent-disconnected");
+        }
+
+        // Stop timer and remove room
+        game.stopTimer();
+        this.rooms.delete(roomId);
+        break;
+      }
+    }
+  }
+
   generateRoomId() {
     return Math.random().toString(36).substring(2, 10);
   }

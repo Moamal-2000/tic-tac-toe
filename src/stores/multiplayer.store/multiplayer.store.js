@@ -12,6 +12,7 @@ export const useMultiplayerStore = create((set, get) => ({
   draw: false,
   isWinnerPopupVisible: false,
   isRematchMenuActive: false,
+  isOpponentDisconnected: false,
   selectedBoardSize: INITIAL_BOARD_SIZE,
   stats: { p1Wins: 0, draws: 0, p2Wins: 0 },
   squaresToSwap: [],
@@ -75,6 +76,30 @@ export const useMultiplayerStore = create((set, get) => ({
       };
 
       return { ...state, stats: updatedStats };
+    });
+  },
+  resetMultiplayerState: () => {
+    set({
+      boardSize: null,
+      playerTurn: null,
+      board: [],
+      mySymbol: null,
+      hasGameStarted: false,
+      winner: null,
+      draw: false,
+      isWinnerPopupVisible: false,
+      isRematchMenuActive: false,
+      isOpponentDisconnected: false,
+      squaresToSwap: [],
+      timeRemaining: 30,
+      timerActive: false,
+      powerUps: {
+        player1: {},
+        player2: {},
+        selectedPower: null,
+        whoUsingPower: null,
+        hasActivePowerUp: false,
+      },
     });
   },
 }));
