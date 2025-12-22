@@ -33,6 +33,7 @@ If you're interested in this game and would like to collaborate, feel free to he
 ## Tech Stack
 
 ### Front-End
+
 - **Next.js v15** (React framework)
 - **React v19** & **React DOM**
 - **SASS** with **CSS Modules** for styling
@@ -41,6 +42,7 @@ If you're interested in this game and would like to collaborate, feel free to he
 - **npm-check-updates** for easy dependency updates
 
 ### Back-End
+
 - **Node.js** with **ES Modules**
 - **Express v5** for HTTP server
 - **Socket.IO v4** for real-time WebSocket communication
@@ -78,7 +80,7 @@ Click the **Install** button inside the app to add it to your device's home scre
 
 ## Credits
 
-Developed by [Moamal Alaa Karem](https://www.linkedin.com/in/moamal-alaa/])\
+Developed by [Moamal Alaa Karem](https://moamalalaa.netlify.app])\
 Design inspired by classic games with a modern UX approach.
 
 ---
