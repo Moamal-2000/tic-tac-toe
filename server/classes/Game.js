@@ -501,6 +501,8 @@ export class Game {
     this.hasGameStarted = true;
     this.isWinnerPopupVisible = false;
     this.rematchState = null;
+    this.timeRemaining = TURN_TIMER_DURATION;
+    this.timerActive = false;
     this.powerUpsState = {
       selectedPower: null,
       whoUsingPower: null,

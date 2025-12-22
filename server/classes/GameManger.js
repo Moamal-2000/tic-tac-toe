@@ -327,19 +327,23 @@ export class GameManager {
     const opponent = playerSymbol === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
     const opponentId = game.players[opponent].id;
 
+    // Stop any existing timer
+    game.stopTimer();
+
     // Reset the game state
     game.reset();
+
+    // Reset and start the new game timer
+    game.resetTimer();
+    game.startTimer(() => {
+      this.handleTimeUp(roomId);
+    });
 
     // Notify both players that rematch is accepted and reset game
     this.syncRoom(roomId);
 
     // Send a specific "rematch-accepted" event to the opponent (who requested the rematch)
     this.io.to(opponentId).emit("rematch-accepted");
-
-    // Start the new game timer
-    game.startTimer(() => {
-      this.handleTimeUp(roomId);
-    });
   }
 
   handleRematchRejected(socket) {
