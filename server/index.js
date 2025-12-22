@@ -1,4 +1,3 @@
-// index.js
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
@@ -14,10 +13,7 @@ const ORIGIN = (
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: ORIGIN,
-    methods: ["GET", "POST"],
-  },
+  cors: { origin: ORIGIN, methods: ["GET", "POST"] },
 });
 
 app.use(express.json());

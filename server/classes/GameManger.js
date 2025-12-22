@@ -4,8 +4,8 @@ import { Game } from "./Game.js";
 export class GameManager {
   constructor(io) {
     this.io = io;
-    this.rooms = new Map(); // roomId -> Game
-    this.matchmakingQueue = new Map(); // boardSize -> Socket[]
+    this.rooms = new Map();
+    this.matchmakingQueue = new Map();
   }
 
   createRoom(socketO, socketX, boardSize) {
@@ -253,9 +253,7 @@ export class GameManager {
     const playerSymbol =
       game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
 
-    console.log(`Player ${playerSymbol} selecting ability: ${ability}`);
     const changed = game.selectAbility(playerSymbol, ability);
-    console.log(`Selection changed: ${changed}, state:`, game.powerUpsState);
 
     if (changed) {
       // Ensure timer is still running without resetting the time
