@@ -214,3 +214,44 @@
   top: calc(50% + -3px);
   translate: -50% -50%;
 }
+
+.opponentFreezePreview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(135, 206, 235, 0.4), rgba(70, 130, 180, 0.4));
+  border: 2px dashed #87ceeb;
+  pointer-events: none;
+  animation: fade-in 0.3s ease forwards;
+}
+
+.opponentBombPreview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 2;
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.3), rgba(255, 99, 71, 0.2));
+  border: 2px dashed #e98061;
+  pointer-events: none;
+  animation: fade-in 0.3s ease forwards;
+  box-shadow: 0 0 8px rgba(233, 128, 97, 0.5);
+}
+
+.opponentSwapPreview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(255, 217, 61, 0.3), rgba(255, 200, 40, 0.2));
+  border: 2px dashed #ffd93d;
+  pointer-events: none;
+  animation: fade-in 0.3s ease forwards;
+  box-shadow: 0 0 8px rgba(255, 217, 61, 0.4);
+}

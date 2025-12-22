@@ -19,6 +19,7 @@ export const useMultiplayerStore = create((set, get) => ({
   squaresToSwap: [],
   timeRemaining: 30,
   timerActive: false,
+  opponentHoveredSquare: null,
   powerUps: {
     player1: initialPlayerPowerUps(get()?.boardSize),
     player2: initialPlayerPowerUps(get()?.boardSize),
@@ -95,6 +96,7 @@ export const useMultiplayerStore = create((set, get) => ({
       squaresToSwap: [],
       timeRemaining: 30,
       timerActive: false,
+      opponentHoveredSquare: null,
       powerUps: {
         player1: {},
         player2: {},

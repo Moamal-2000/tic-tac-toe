@@ -1,5 +1,7 @@
 import { SCREEN_SIZES } from "@/data/constants";
+import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useEffect } from "react";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import s from "./MultiPlayerUI.module.scss";
@@ -11,9 +13,29 @@ import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 
 const MultiPlayerUI = () => {
-  const { boardSize, stats, winner, playerTurn, isRematchMenuActive } =
-    useMultiplayerStore((s) => s);
+  const {
+    boardSize,
+    stats,
+    winner,
+    playerTurn,
+    isRematchMenuActive,
+    updateMultiplayerState,
+  } = useMultiplayerStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
+
+  useEffect(() => {
+    socket.on("square-hover", ({ row, col, power }) => {
+      if (row !== null && col !== null) {
+        updateMultiplayerState({ opponentHoveredSquare: { row, col, power } });
+      } else {
+        updateMultiplayerState({ opponentHoveredSquare: null });
+      }
+    });
+
+    return () => {
+      socket.off("square-hover");
+    };
+  }, [updateMultiplayerState]);
 
   return (
     <section className={`${s.game} ${board3Class}`}>

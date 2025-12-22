@@ -65,6 +65,11 @@ io.on("connection", (socket) => {
     gameManager.handleTimeUp(roomId);
   });
 
+  socket.on("square-hover", ({ row, col, power }) => {
+    const roomId = socket.data.roomId;
+    io.to(roomId).emit("square-hover", { row, col, power });
+  });
+
   socket.on("requestRematch", ({ playerWhoRequested }) => {
     gameManager.handleRequestRematch(socket, playerWhoRequested);
   });

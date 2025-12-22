@@ -89,6 +89,12 @@ const BoardRow = ({ row, rowIndex }) => {
           col2: columnIndex,
         });
         updateMultiplayerState({ squaresToSwap: [] });
+        // Clear hover effect immediately
+        updateMultiplayerState({
+          hoveredSquare: null,
+          opponentHoveredSquare: null,
+        });
+        socket.emit("square-hover", { row: null, col: null, power: null });
         return;
       }
     }
@@ -100,6 +106,12 @@ const BoardRow = ({ row, rowIndex }) => {
         row: rowIndex,
         col: columnIndex,
       });
+      // Clear hover effect immediately
+      updateMultiplayerState({
+        hoveredSquare: null,
+        opponentHoveredSquare: null,
+      });
+      socket.emit("square-hover", { row: null, col: null, power: null });
       return;
     }
 
@@ -111,6 +123,12 @@ const BoardRow = ({ row, rowIndex }) => {
         row: rowIndex,
         col: columnIndex,
       });
+      // Clear hover effect immediately
+      updateMultiplayerState({
+        hoveredSquare: null,
+        opponentHoveredSquare: null,
+      });
+      socket.emit("square-hover", { row: null, col: null, power: null });
       return;
     }
 
@@ -141,6 +159,8 @@ const BoardRow = ({ row, rowIndex }) => {
           <XOSquare
             key={columnIndex}
             squareData={squareData}
+            rowIndex={rowIndex}
+            columnIndex={columnIndex}
             disabled={!disable || !isMyTurn}
             onClick={() => handleSquareClick(rowIndex, columnIndex)}
           />
