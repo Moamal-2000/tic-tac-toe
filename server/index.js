@@ -5,9 +5,9 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import { GameManager } from "./classes/GameManger.js";
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 const ORIGIN = (
-  process.env.ORIGIN || "http://localhost:3000,http://localhost:4000"
+  process.env.ORIGIN || "http://localhost:3000,http://localhost:5000"
 ).split(",");
 
 const app = express();
