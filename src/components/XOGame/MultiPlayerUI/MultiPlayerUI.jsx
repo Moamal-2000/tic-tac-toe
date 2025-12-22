@@ -6,6 +6,7 @@ import s from "./MultiPlayerUI.module.scss";
 import OpponentDisconnectedModal from "./OpponentDisconnectedModal/OpponentDisconnectedModal";
 import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
+import RematchRequestNotification from "./RematchRequestNotification/RematchRequestNotification";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 
@@ -31,6 +32,7 @@ const MultiPlayerUI = () => {
         hideOn={SCREEN_SIZES.medium.size}
       />
       {isRematchMenuActive && <RematchMenu />}
+      <RematchRequestNotification />
       <OpponentDisconnectedModal />
     </section>
   );

@@ -19,6 +19,7 @@ export class Game {
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
     this.timerInterval = null;
+    this.rematchState = null; // Can be null or { requester: SYMBOL_O | SYMBOL_X }
     this.powerUpsState = {
       selectedPower: null,
       whoUsingPower: null,
@@ -499,6 +500,7 @@ export class Game {
     this.moveCount = 0;
     this.hasGameStarted = true;
     this.isWinnerPopupVisible = false;
+    this.rematchState = null;
     this.powerUpsState = {
       selectedPower: null,
       whoUsingPower: null,

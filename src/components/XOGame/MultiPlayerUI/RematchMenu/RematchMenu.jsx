@@ -1,37 +1,86 @@
 "use client";
 
+import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useEffect, useState } from "react";
+import RematchDeclineNotification from "./RematchDeclineNotification/RematchDeclineNotification";
 import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
-  const { updateMultiplayerState, playerTurn } = useMultiplayerStore((s) => s);
+  const { updateMultiplayerState, playerTurn, winner, draw } =
+    useMultiplayerStore((s) => s);
+  const [isWaitingForOpponent, setIsWaitingForOpponent] = useState(false);
+  const [showDeclineNotification, setShowDeclineNotification] = useState(false);
+
+  useEffect(() => {
+    socket.on("rematch-request-rejected", () => {
+      setIsWaitingForOpponent(false);
+      setShowDeclineNotification(true);
+    });
+
+    // Listen for when rematch is accepted by opponent
+    socket.on("rematch-accepted", () => {
+      // The game state will be updated via room-update event
+      // This handler ensures we immediately clear the waiting state
+      setIsWaitingForOpponent(false);
+      updateMultiplayerState({ isRematchMenuActive: false });
+    });
+
+    return () => {
+      socket.off("rematch-request-rejected");
+      socket.off("rematch-accepted");
+    };
+  }, [updateMultiplayerState]);
 
   function closeRematchMenu(event) {
     const isOverlayClick = event.target.contains(event.currentTarget);
 
     if (!isOverlayClick) return;
 
-    updateMultiplayerState({ isRematchMenuActive: false });
+    if (!isWaitingForOpponent) {
+      updateMultiplayerState({ isRematchMenuActive: false });
+    }
   }
 
   function handleRematch() {
-    updateMultiplayerState({ isRematchMenuActive: false });
-    // socket.emit("requestRematch", { playerWhoRequested: playerTurn });
+    setIsWaitingForOpponent(true);
+    socket.emit("requestRematch", { playerWhoRequested: playerTurn });
+  }
+
+  // Hide RematchMenu when decline notification is shown
+  if (showDeclineNotification) {
+    return (
+      <RematchDeclineNotification
+        isVisible={showDeclineNotification}
+        onHide={() => setShowDeclineNotification(false)}
+      />
+    );
   }
 
   return (
     <div className={s.overlay} onClick={closeRematchMenu}>
       <div className={s.rematchMenu}>
-        <h2>Ask for a rematch?</h2>
+        {isWaitingForOpponent ? (
+          <>
+            <h2>Waiting for opponent...</h2>
+            <p>
+              Please wait while the opponent responds to your rematch request.
+            </p>
+          </>
+        ) : (
+          <>
+            <h2>Ask for a rematch?</h2>
 
-        <div className={s.buttons}>
-          <button className={s.yes} onClick={handleRematch}>
-            Yes
-          </button>
-          <button className={s.no} onClick={closeRematchMenu}>
-            No
-          </button>
-        </div>
+            <div className={s.buttons}>
+              <button className={s.yes} onClick={handleRematch}>
+                Yes
+              </button>
+              <button className={s.no} onClick={closeRematchMenu}>
+                No
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

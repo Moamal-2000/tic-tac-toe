@@ -13,6 +13,7 @@ export const useMultiplayerStore = create((set, get) => ({
   isWinnerPopupVisible: false,
   isRematchMenuActive: false,
   isOpponentDisconnected: false,
+  rematchRequest: null, // Can be null, 'pending', 'accepted', 'rejected'
   selectedBoardSize: INITIAL_BOARD_SIZE,
   stats: { p1Wins: 0, draws: 0, p2Wins: 0 },
   squaresToSwap: [],
@@ -90,6 +91,7 @@ export const useMultiplayerStore = create((set, get) => ({
       isWinnerPopupVisible: false,
       isRematchMenuActive: false,
       isOpponentDisconnected: false,
+      rematchRequest: null,
       squaresToSwap: [],
       timeRemaining: 30,
       timerActive: false,

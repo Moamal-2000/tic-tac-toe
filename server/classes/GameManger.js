@@ -303,13 +303,59 @@ export class GameManager {
 
     const game = this.rooms.get(roomId);
 
-    // TODO: Check if rematch is allowed
+    // Determine who requested the rematch
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
+    const opponent = playerSymbol === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
+    const opponentId = game.players[opponent].id;
 
-    // TODO: Send rematch request to other player
+    // Send rematch request to opponent
+    this.io.to(opponentId).emit("rematch-request-received", {
+      playerWhoRequested: playerSymbol,
+    });
+  }
 
-    // TODO: Reset game state for both players
+  handleRematchAccepted(socket) {
+    const roomId = socket.data.roomId;
+    if (!roomId || !this.rooms.has(roomId)) return;
 
+    const game = this.rooms.get(roomId);
+
+    // Determine who accepted the rematch and notify the other player
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
+    const opponent = playerSymbol === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
+    const opponentId = game.players[opponent].id;
+
+    // Reset the game state
+    game.reset();
+
+    // Notify both players that rematch is accepted and reset game
     this.syncRoom(roomId);
+
+    // Send a specific "rematch-accepted" event to the opponent (who requested the rematch)
+    this.io.to(opponentId).emit("rematch-accepted");
+
+    // Start the new game timer
+    game.startTimer(() => {
+      this.handleTimeUp(roomId);
+    });
+  }
+
+  handleRematchRejected(socket) {
+    const roomId = socket.data.roomId;
+    if (!roomId || !this.rooms.has(roomId)) return;
+
+    const game = this.rooms.get(roomId);
+
+    // Determine who requested the rematch (the one who did NOT reject)
+    const playerSymbol =
+      game.players[SYMBOL_O].id === socket.id ? SYMBOL_O : SYMBOL_X;
+    const opponent = playerSymbol === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
+    const opponentId = game.players[opponent].id;
+
+    // Send rejection notification to the opponent
+    this.io.to(opponentId).emit("rematch-request-rejected");
   }
 
   syncRoom(roomId) {

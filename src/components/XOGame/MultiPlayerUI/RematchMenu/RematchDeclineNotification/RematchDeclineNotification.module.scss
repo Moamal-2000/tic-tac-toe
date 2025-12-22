@@ -1,0 +1,72 @@
+@use "@/styles/mixins" as m;
+
+.notificationOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  padding: 16px;
+}
+
+.notification {
+  background-color: #111525;
+  border: 2px solid #e74c3c;
+  border-radius: 16px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
+  transform: translateY(0);
+  animation: modalFadeIn 200ms ease-out, modalFadeOut 200ms ease-out 2.8s forwards;
+}
+
+@include m.small {
+  .notification {
+    padding: 24px 20px;
+  }
+}
+
+.notification h3 {
+  color: #e74c3c;
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
+  margin: 0 0 15px 0;
+  letter-spacing: 0.03em;
+}
+
+.notification p {
+  color: #d4d6d8;
+  font-size: clamp(0.8rem, 3vw, 0.98rem);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
