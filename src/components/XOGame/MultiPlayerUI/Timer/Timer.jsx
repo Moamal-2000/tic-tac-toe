@@ -61,7 +61,7 @@ function tick(intervalRef) {
     if (nextTime <= 0) {
       stopTimer(intervalRef);
       socket.emit("time-up");
-      return { timeRemaining: 0, timerActive: false };
+      return state;
     }
 
     return { timeRemaining: nextTime };
