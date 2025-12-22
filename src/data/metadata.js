@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL } from "./env";
 
 const title = "Advanced Tic Tac Toe";
 
