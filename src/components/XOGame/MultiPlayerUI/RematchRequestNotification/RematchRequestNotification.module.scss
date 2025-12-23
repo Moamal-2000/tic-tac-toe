@@ -4,14 +4,9 @@
 
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .75);
+  @include m.flex-center;
   z-index: 1000;
   padding: 16px;
 }
@@ -24,9 +19,9 @@
   width: 100%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(39, 174, 96, 0.4);
-  transform: translateY(0);
-  animation: modal-fade-in 200ms ease-out;
+  box-shadow: 0 0 10px rgba(39, 174, 96, .4);
+  translate: 0;
+  animation: modal-fade-in .2s ease-out;
 }
 
 @include m.small {
@@ -39,56 +34,44 @@
   color: #27ae60;
   font-size: clamp(1.2rem, 5vw, 1.7rem);
   margin: 0 0 15px 0;
-  letter-spacing: 0.03em;
+  letter-spacing: .03em;
 }
 
 .notification p {
   color: #d4d6d8;
-  font-size: clamp(0.8rem, 3vw, 0.98rem);
-  margin: 0 0 20px 0;
+  font-size: clamp(.8rem, 3vw, .98rem);
+  margin-bottom: 20px;
   line-height: 1.5;
 }
 
 .buttons {
   display: flex;
-  gap: 15px;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .buttons button {
-  outline: none;
+  border: none;
   padding: 10px 30px;
   background-color: #27ae60;
   color: #fff;
-  border: none;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
+  transition:
+    background .2s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
 
-.buttons button:hover {
-  background-color: #229954;
-  box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.4);
-}
+  &:hover {
+    background-color: #27c569;
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, .4);
+  }
 
-.buttons button:active {
-  box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.4);
-}
-
-.buttons button:focus-visible {
-  outline: solid 2px #fff;
-  outline-offset: 2px;
-}
-
-.accept {
-  background-color: #27ae60;
-  color: #fff;
-}
-
-.reject {
-  background-color: #27ae60;
-  color: #fff;
+  &:focus-visible {
+    outline: solid 2px #fff;
+    outline-offset: 2px;
+  }
 }
