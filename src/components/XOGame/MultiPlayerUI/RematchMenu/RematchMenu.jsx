@@ -7,8 +7,7 @@ import RematchDeclineNotification from "./RematchDeclineNotification/RematchDecl
 import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
-  const { updateMultiplayerState, playerTurn, winner, draw } =
-    useMultiplayerStore((s) => s);
+  const { updateMultiplayerState, playerTurn } = useMultiplayerStore();
   const [isWaitingForOpponent, setIsWaitingForOpponent] = useState(false);
   const [showDeclineNotification, setShowDeclineNotification] = useState(false);
 
@@ -18,10 +17,7 @@ const RematchMenu = () => {
       setShowDeclineNotification(true);
     });
 
-    // Listen for when rematch is accepted by opponent
     socket.on("rematch-accepted", () => {
-      // The game state will be updated via room-update event
-      // This handler ensures we immediately clear the waiting state
       setIsWaitingForOpponent(false);
       updateMultiplayerState({ isRematchMenuActive: false });
     });
@@ -47,7 +43,6 @@ const RematchMenu = () => {
     socket.emit("requestRematch", { playerWhoRequested: playerTurn });
   }
 
-  // Hide RematchMenu when decline notification is shown
   if (showDeclineNotification) {
     return (
       <RematchDeclineNotification
@@ -60,14 +55,7 @@ const RematchMenu = () => {
   return (
     <div className={s.overlay} onClick={closeRematchMenu}>
       <div className={s.rematchMenu}>
-        {isWaitingForOpponent ? (
-          <>
-            <h2>Waiting for opponent...</h2>
-            <p>
-              Please wait while the opponent responds to your rematch request.
-            </p>
-          </>
-        ) : (
+        {!isWaitingForOpponent && (
           <>
             <h2>Ask for a rematch?</h2>
 
@@ -79,6 +67,15 @@ const RematchMenu = () => {
                 No
               </button>
             </div>
+          </>
+        )}
+
+        {isWaitingForOpponent && (
+          <>
+            <h2>Waiting for opponent...</h2>
+            <p>
+              Please wait while the opponent responds to your rematch request.
+            </p>
           </>
         )}
       </div>
