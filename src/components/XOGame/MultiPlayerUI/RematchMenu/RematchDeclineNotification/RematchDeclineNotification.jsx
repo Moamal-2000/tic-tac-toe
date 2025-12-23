@@ -5,12 +5,11 @@ import { useEffect } from "react";
 import s from "./RematchDeclineNotification.module.scss";
 
 const RematchDeclineNotification = ({ isVisible, onHide }) => {
-  const { updateMultiplayerState } = useMultiplayerStore((state) => state);
+  const { updateMultiplayerState } = useMultiplayerStore();
 
   useEffect(() => {
     if (!isVisible) return;
 
-    // Auto-hide notification after 3 seconds
     const timer = setTimeout(() => {
       onHide();
       updateMultiplayerState({ isRematchMenuActive: false });
@@ -19,9 +18,7 @@ const RematchDeclineNotification = ({ isVisible, onHide }) => {
     return () => clearTimeout(timer);
   }, [isVisible, onHide, updateMultiplayerState]);
 
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
     <div className={s.notificationOverlay}>
