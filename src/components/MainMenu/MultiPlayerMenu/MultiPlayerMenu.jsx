@@ -88,22 +88,14 @@ const MultiPlayerMenu = () => {
     // Request initial count
     socket.emit("get-online-players");
 
-    socket.on("room-update", (state) => {
-      syncNewGameState(state);
-    });
-
-    socket.on("opponent-disconnected", () => {
-      updateMultiplayerState({ isOpponentDisconnected: true });
-    });
-
-    socket.on("online-players-count", ({ count }) => {
+    const handleOnlinePlayersCount = ({ count }) => {
       setOnlinePlayers(count);
-    });
+    };
+
+    socket.on("online-players-count", handleOnlinePlayersCount);
 
     return () => {
-      socket.off("room-update");
-      socket.off("opponent-disconnected");
-      socket.off("online-players-count");
+      socket.off("online-players-count", handleOnlinePlayersCount);
     };
   }, []);
 

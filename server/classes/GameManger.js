@@ -10,6 +10,10 @@ export class GameManager {
 
   createRoom(socketO, socketX, boardSize) {
     const roomId = this.generateRoomId();
+    console.log(
+      `[Room] Created room ${roomId} with players ${socketO.id} (O) and ${socketX.id} (X)`
+    );
+
     const game = new Game(roomId, socketO, socketX, boardSize);
     this.rooms.set(roomId, game);
 
@@ -26,6 +30,7 @@ export class GameManager {
       this.handleTimeUp(roomId);
     });
 
+    console.log(`[Room] Syncing room ${roomId} with initial game state`);
     this.syncRoom(roomId);
   }
 
@@ -264,6 +269,10 @@ export class GameManager {
   }
 
   handleMatchmaking(socket, boardSize) {
+    console.log(
+      `[Matchmaking] Player ${socket.id} looking for match on board size ${boardSize}`
+    );
+
     if (!this.matchmakingQueue.has(boardSize)) {
       this.matchmakingQueue.set(boardSize, []);
     }
@@ -275,13 +284,22 @@ export class GameManager {
     if (existingSocketIndex !== -1) {
       // Remove the existing socket and create a new matchmaking request
       queue.splice(existingSocketIndex, 1);
+      console.log(
+        `[Matchmaking] Removed duplicate from queue for ${socket.id}`
+      );
     }
 
     if (queue.length > 0) {
       const waitingSocket = queue.shift();
+      console.log(
+        `[Matchmaking] Match found! Pairing ${waitingSocket.id} with ${socket.id}`
+      );
       this.createRoom(waitingSocket, socket, boardSize);
     } else {
       queue.push(socket);
+      console.log(
+        `[Matchmaking] No opponent available. ${socket.id} added to queue. Queue size: ${queue.length}`
+      );
     }
   }
 
@@ -363,18 +381,27 @@ export class GameManager {
 
   syncRoom(roomId) {
     const game = this.rooms.get(roomId);
-    if (!game) return;
+    if (!game) {
+      console.log(`[Sync] Room ${roomId} not found!`);
+      return;
+    }
 
     const state = game.getState();
+    console.log(
+      `[Sync] Syncing room ${roomId} - O: ${game.players[SYMBOL_O]?.id}, X: ${game.players[SYMBOL_X]?.id}`
+    );
+
     // Send to Player O
     if (game.players[SYMBOL_O]) {
       const socketId = game.players[SYMBOL_O].id;
+      console.log(`[Sync] Emitting room-update to O player ${socketId}`);
       this.io.to(socketId).emit("room-update", { ...state, me: SYMBOL_O });
     }
 
     // Send to Player X
     if (game.players[SYMBOL_X]) {
       const socketId = game.players[SYMBOL_X].id;
+      console.log(`[Sync] Emitting room-update to X player ${socketId}`);
       this.io.to(socketId).emit("room-update", { ...state, me: SYMBOL_X });
     }
 
