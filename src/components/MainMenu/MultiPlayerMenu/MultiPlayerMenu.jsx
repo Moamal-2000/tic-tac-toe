@@ -77,6 +77,9 @@ const MultiPlayerMenu = () => {
       timeRemaining,
       timerActive,
     });
+
+    // Clear hover effects when game state updates (power used)
+    updateMultiplayerState({ hoveredSquare: null, opponentHoveredSquare: null });
   }
 
   useEffect(() => {

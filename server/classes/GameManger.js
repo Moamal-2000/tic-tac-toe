@@ -378,6 +378,9 @@ export class GameManager {
       const socketId = game.players[SYMBOL_X].id;
       this.io.to(socketId).emit("room-update", { ...state, me: SYMBOL_X });
     }
+
+    // Clear hover effects for both players when state updates
+    this.io.to(roomId).emit("square-hover", { row: null, col: null, power: null });
   }
 
   handlePlayerDisconnect(socketId) {
