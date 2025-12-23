@@ -291,7 +291,6 @@ export class GameManager {
       const index = queue.findIndex((s) => s.id === socket.id);
       if (index !== -1) {
         queue.splice(index, 1);
-        console.log(`Socket ${socket.id} removed from matchmaking queue`);
         return;
       }
     }

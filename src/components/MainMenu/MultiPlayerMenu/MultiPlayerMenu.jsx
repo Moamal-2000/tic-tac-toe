@@ -78,7 +78,6 @@ const MultiPlayerMenu = () => {
       timerActive,
     });
 
-    // Clear hover effects when game state updates (power used)
     updateMultiplayerState({
       hoveredSquare: null,
       opponentHoveredSquare: null,
@@ -98,7 +97,6 @@ const MultiPlayerMenu = () => {
     });
 
     socket.on("online-players-count", ({ count }) => {
-      console.log("Received online players count:", count);
       setOnlinePlayers(count);
     });
 

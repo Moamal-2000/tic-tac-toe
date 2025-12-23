@@ -36,7 +36,6 @@ function getOnlinePlayersCount() {
 
 function broadcastOnlinePlayersCount() {
   const onlineCount = getOnlinePlayersCount();
-  console.log(`Broadcasting online players: ${onlineCount}`);
   io.emit("online-players-count", { count: onlineCount });
 }
 
@@ -100,7 +99,6 @@ io.on("connection", (socket) => {
 
   socket.on("get-online-players", () => {
     const count = getOnlinePlayersCount();
-    console.log(`Sending online players count: ${count}`);
     socket.emit("online-players-count", { count });
   });
 
