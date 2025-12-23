@@ -2,14 +2,9 @@
 
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .75);
+  @include m.flex-center;
   z-index: 1000;
   padding: 16px;
 }
@@ -22,13 +17,13 @@
   width: 100%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(52, 152, 219, 0.4);
-  transform: translateY(0);
-  animation: modalFadeIn 200ms ease-out;
+  box-shadow: 0 0 10px rgba(52, 152, 219, .4);
+  translate: 0 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
+  animation: modalFadeIn .2s ease-out;
 }
 
 @include m.small {
@@ -40,72 +35,57 @@
 .rematchMenu h2 {
   color: #3498db;
   font-size: clamp(1.2rem, 5vw, 1.7rem);
-  margin: 0;
-  letter-spacing: 0.03em;
+  letter-spacing: .03em;
 }
 
 .rematchMenu p {
   color: #d4d6d8;
-  font-size: clamp(0.8rem, 3vw, 0.98rem);
-  margin: 0;
+  font-size: clamp(.8rem, 3vw, .98rem);
   line-height: 1.5;
 }
 
 .buttons {
   display: flex;
-  gap: 15px;
-  width: 100%;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
   margin-top: 10px;
 }
 
 .buttons button {
-  outline: none;
+  border: none;
   padding: 10px 30px;
   background-color: #3498db;
   color: #fff;
-  border: none;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-  min-width: auto;
-}
+  transition:
+    background .2s ease,
+    transform .15s ease,
+    box-shadow .15s ease;
 
-.buttons button:hover {
-  background-color: #2980b9;
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.4);
-}
+  &:hover {
+    background-color: #2ba4f4;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, .4);
+  }
 
-.buttons button:active {
-  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.4);
-}
-
-.buttons button:focus-visible {
-  outline: solid 2px #fff;
-  outline-offset: 2px;
-}
-
-.yes {
-  background-color: #3498db;
-  color: #fff;
-}
-
-.no {
-  background-color: #3498db;
-  color: #fff;
+  &:focus-visible {
+    outline: solid 2px #fff;
+    outline-offset: 2px;
+  }
 }
 
 @keyframes modalFadeIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    translate: 0 12px;
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    translate: 0 0;
   }
 }

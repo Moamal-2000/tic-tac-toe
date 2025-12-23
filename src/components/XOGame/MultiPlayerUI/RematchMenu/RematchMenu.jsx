@@ -60,12 +60,8 @@ const RematchMenu = () => {
             <h2>Ask for a rematch?</h2>
 
             <div className={s.buttons}>
-              <button className={s.yes} onClick={handleRematch}>
-                Yes
-              </button>
-              <button className={s.no} onClick={closeRematchMenu}>
-                No
-              </button>
+              <button onClick={handleRematch}>Yes</button>
+              <button onClick={closeRematchMenu}>No</button>
             </div>
           </>
         )}
