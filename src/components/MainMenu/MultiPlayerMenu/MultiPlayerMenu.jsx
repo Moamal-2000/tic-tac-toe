@@ -19,7 +19,7 @@ const MultiPlayerMenu = () => {
     updateMultiplayerState,
   } = useMultiplayerStore((s) => s);
   const playSound = usePreloadSounds({ click: soundFiles.click });
-  const [connectedPlayers, setConnectedPlayers] = useState(0);
+  const [onlinePlayers, setOnlinePlayers] = useState(0);
 
   function handleSubmit(event) {
     event?.preventDefault();
@@ -79,10 +79,16 @@ const MultiPlayerMenu = () => {
     });
 
     // Clear hover effects when game state updates (power used)
-    updateMultiplayerState({ hoveredSquare: null, opponentHoveredSquare: null });
+    updateMultiplayerState({
+      hoveredSquare: null,
+      opponentHoveredSquare: null,
+    });
   }
 
   useEffect(() => {
+    // Request initial count
+    socket.emit("get-online-players");
+
     socket.on("room-update", (state) => {
       syncNewGameState(state);
     });
@@ -91,12 +97,15 @@ const MultiPlayerMenu = () => {
       updateMultiplayerState({ isOpponentDisconnected: true });
     });
 
-    socket.on("connected-players-count", ({ count }) => {
-      setConnectedPlayers(count);
+    socket.on("online-players-count", ({ count }) => {
+      console.log("Received online players count:", count);
+      setOnlinePlayers(count);
     });
 
     return () => {
-      socket.off("connected-players-count");
+      socket.off("room-update");
+      socket.off("opponent-disconnected");
+      socket.off("online-players-count");
     };
   }, []);
 
@@ -107,9 +116,9 @@ const MultiPlayerMenu = () => {
       <header className={s.header}>
         <h1>Multiplayer Setup</h1>
         <p>Configure your game settings</p>
-        {/* <div className={s.playerCount}>
-          <span>Connected Players: {connectedPlayers}</span>
-        </div> */}
+        <div className={s.playerCount}>
+          <span>Online Players: {onlinePlayers}</span>
+        </div>
       </header>
 
       <form className={s.mpForm} onSubmit={handleSubmit}>

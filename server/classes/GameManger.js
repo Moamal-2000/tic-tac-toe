@@ -380,7 +380,9 @@ export class GameManager {
     }
 
     // Clear hover effects for both players when state updates
-    this.io.to(roomId).emit("square-hover", { row: null, col: null, power: null });
+    this.io
+      .to(roomId)
+      .emit("square-hover", { row: null, col: null, power: null });
   }
 
   handlePlayerDisconnect(socketId) {

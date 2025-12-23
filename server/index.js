@@ -23,22 +23,38 @@ app.get("/health", (_, res) => res.send("OK"));
 
 const gameManager = new GameManager(io);
 
-function broadcastConnectedPlayersCount() {
-  const connectedCount = io.sockets.sockets.size;
-  console.log(`Broadcasting connected players: ${connectedCount}`);
-  io.emit("connected-players-count", { count: connectedCount });
+function getOnlinePlayersCount() {
+  let onlineCount = 0;
+  for (const socket of io.sockets.sockets.values()) {
+    // Count only players not in a game room
+    if (!socket.data.roomId) {
+      onlineCount++;
+    }
+  }
+  return onlineCount;
+}
+
+function broadcastOnlinePlayersCount() {
+  const onlineCount = getOnlinePlayersCount();
+  console.log(`Broadcasting online players: ${onlineCount}`);
+  io.emit("online-players-count", { count: onlineCount });
 }
 
 io.on("connection", (socket) => {
   console.log(`Socket connected: ${socket.id}`);
-  broadcastConnectedPlayersCount();
+  broadcastOnlinePlayersCount();
+
+  // Also send the count immediately to the newly connected socket
+  socket.emit("online-players-count", { count: getOnlinePlayersCount() });
 
   socket.on("matchmaking", (boardSize) => {
     gameManager.handleMatchmaking(socket, boardSize);
+    broadcastOnlinePlayersCount();
   });
 
   socket.on("cancel-matchmaking", () => {
     gameManager.handleCancelMatchmaking(socket);
+    broadcastOnlinePlayersCount();
   });
 
   socket.on("move", ({ row, col }) => {
@@ -82,10 +98,16 @@ io.on("connection", (socket) => {
     gameManager.handleRematchRejected(socket);
   });
 
+  socket.on("get-online-players", () => {
+    const count = getOnlinePlayersCount();
+    console.log(`Sending online players count: ${count}`);
+    socket.emit("online-players-count", { count });
+  });
+
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
     gameManager.handlePlayerDisconnect(socket.id);
-    broadcastConnectedPlayersCount();
+    broadcastOnlinePlayersCount();
   });
 });
 
