@@ -1,4 +1,6 @@
 @use "@/styles/mixins" as m;
+@use "@/styles/keyframes" as keyframe;
+@include keyframe.modal-fade-in;
 
 .modalOverlay {
   position: fixed;
@@ -25,7 +27,7 @@
   text-align: center;
   box-shadow: 0 0 10px rgba(255, 217, 61, 0.4);
   transform: translateY(0);
-  animation: modalFadeIn 200ms ease-out;
+  animation: modal-fade-in 200ms ease-out;
 
   h2 {
     color: #ffd93d;
@@ -76,17 +78,5 @@
   &:focus-visible {
     outline: solid 2px #fff;
     outline-offset: 2px;
-  }
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

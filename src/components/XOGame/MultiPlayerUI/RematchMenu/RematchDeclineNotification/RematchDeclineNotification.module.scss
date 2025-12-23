@@ -1,4 +1,6 @@
 @use "@/styles/mixins" as m;
+@use "@/styles/keyframes" as keyframe;
+@include keyframe.modal-fade-in;
 
 .notificationOverlay {
   position: fixed;
@@ -24,7 +26,7 @@
   text-align: center;
   box-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
   transform: translateY(0);
-  animation: modalFadeIn 200ms ease-out, modalFadeOut 200ms ease-out 2.8s forwards;
+  animation: modal-fade-in 200ms ease-out, modalFadeOut 200ms ease-out 2.8s forwards;
 }
 
 @include m.small {
@@ -45,18 +47,6 @@
   font-size: clamp(0.8rem, 3vw, 0.98rem);
   margin: 0;
   line-height: 1.5;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes modalFadeOut {

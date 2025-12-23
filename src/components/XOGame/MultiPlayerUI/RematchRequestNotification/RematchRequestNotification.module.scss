@@ -1,4 +1,6 @@
 @use "@/styles/mixins" as m;
+@use "@/styles/keyframes" as keyframe;
+@include keyframe.modal-fade-in;
 
 .overlay {
   position: fixed;
@@ -24,7 +26,7 @@
   text-align: center;
   box-shadow: 0 0 10px rgba(39, 174, 96, 0.4);
   transform: translateY(0);
-  animation: modalFadeIn 200ms ease-out;
+  animation: modal-fade-in 200ms ease-out;
 }
 
 @include m.small {
@@ -89,16 +91,4 @@
 .reject {
   background-color: #27ae60;
   color: #fff;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
