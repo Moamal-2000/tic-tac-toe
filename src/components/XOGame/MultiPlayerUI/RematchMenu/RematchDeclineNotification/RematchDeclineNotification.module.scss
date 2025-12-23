@@ -4,14 +4,9 @@
 
 .notificationOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .75);
+  @include m.flex-center;
   z-index: 1100;
   padding: 16px;
 }
@@ -24,9 +19,11 @@
   width: 100%;
   max-width: 420px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(231, 76, 60, 0.4);
-  transform: translateY(0);
-  animation: modal-fade-in 200ms ease-out, modalFadeOut 200ms ease-out 2.8s forwards;
+  box-shadow: 0 0 10px rgba(231, 76, 60, .4);
+  translate: 0;
+  animation:
+    modal-fade-in .2s ease-out,
+    modal-fade-out .2s ease-out 2.8s forwards;
 }
 
 @include m.small {
@@ -38,25 +35,25 @@
 .notification h3 {
   color: #e74c3c;
   font-size: clamp(1.2rem, 5vw, 1.7rem);
-  margin: 0 0 15px 0;
-  letter-spacing: 0.03em;
+  margin-bottom: 15px;
+  letter-spacing: .03em;
 }
 
 .notification p {
   color: #d4d6d8;
-  font-size: clamp(0.8rem, 3vw, 0.98rem);
+  font-size: clamp(.8rem, 3vw, .98rem);
   margin: 0;
   line-height: 1.5;
 }
 
-@keyframes modalFadeOut {
+@keyframes modal-fade-out {
   from {
     opacity: 1;
-    transform: translateY(0);
+    translate: 0;
   }
 
   to {
     opacity: 0;
-    transform: translateY(12px);
+    translate: 0 12px;
   }
 }
