@@ -6,13 +6,11 @@ import { useEffect, useState } from "react";
 import s from "./RematchRequestNotification.module.scss";
 
 const RematchRequestNotification = () => {
-  const { updateMultiplayerState, rematchRequest } = useMultiplayerStore(
-    (state) => state
-  );
+  const { updateMultiplayerState, rematchRequest } = useMultiplayerStore();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    socket.on("rematch-request-received", ({ playerWhoRequested }) => {
+    socket.on("rematch-request-received", () => {
       updateMultiplayerState({ rematchRequest: "pending" });
       setIsVisible(true);
     });
@@ -34,9 +32,7 @@ const RematchRequestNotification = () => {
     setIsVisible(false);
   }
 
-  if (!isVisible || rematchRequest !== "pending") {
-    return null;
-  }
+  if (!isVisible || rematchRequest !== "pending") return null;
 
   return (
     <div className={s.overlay}>
@@ -45,12 +41,8 @@ const RematchRequestNotification = () => {
         <p>Your opponent wants to play another round!</p>
 
         <div className={s.buttons}>
-          <button className={s.accept} onClick={handleAccept}>
-            Accept
-          </button>
-          <button className={s.reject} onClick={handleReject}>
-            Decline
-          </button>
+          <button onClick={handleAccept}>Accept</button>
+          <button onClick={handleReject}>Decline</button>
         </div>
       </div>
     </div>
