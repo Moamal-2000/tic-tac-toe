@@ -18,24 +18,20 @@ const BoardRow = ({ row, rowIndex }) => {
     playerTurn,
     winner,
     draw,
-    fillSquare,
     powerUps,
-    usePowerUp,
     squaresToSwap,
     updateMultiplayerState,
     mySymbol,
   } = useMultiplayerStore((s) => s);
-  const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
+  const { selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
   const isMyTurn = playerTurn === mySymbol;
 
   function handleSquareClick(rowIndex, columnIndex) {
-    // Block interaction if game has ended (win or draw) or hasn't started
     if (!hasGameStarted || winner || draw) return;
 
     playSound(BUTTON_SOUND, 0.3);
 
-    // If swap power-up is selected, handle swap selection logic
     if (selectedPower === "swap") {
       const squareData = row[columnIndex];
       const isEmptySquare = squareData.owner === "" || !squareData.owner;
@@ -43,17 +39,13 @@ const BoardRow = ({ row, rowIndex }) => {
       const isFirstSelection = squaresToSwap.length === 0;
       const isSecondSelection = squaresToSwap.length === 1;
 
-      // Invalid: can't swap empty squares
-      if (isEmptySquare) {
-        return;
-      }
+      if (isEmptySquare) return;
 
       // First selection
       if (isFirstSelection && !isSecondSelection) {
         playSound(BUTTON_SOUND, 0.3);
         const newSquaresToSwap = [[rowIndex, columnIndex]];
 
-        // Update the local state immediately
         updateMultiplayerState({ squaresToSwap: newSquaresToSwap });
         socket.emit("ability", {
           ability: "swap",
@@ -88,9 +80,8 @@ const BoardRow = ({ row, rowIndex }) => {
           row2: rowIndex,
           col2: columnIndex,
         });
-        updateMultiplayerState({ squaresToSwap: [] });
-        // Clear hover effect immediately
         updateMultiplayerState({
+          squaresToSwap: [],
           hoveredSquare: null,
           opponentHoveredSquare: null,
         });
@@ -99,14 +90,12 @@ const BoardRow = ({ row, rowIndex }) => {
       }
     }
 
-    // If freeze power-up is selected, emit ability event
     if (selectedPower === "freeze") {
       socket.emit("ability", {
         ability: "freeze",
         row: rowIndex,
         col: columnIndex,
       });
-      // Clear hover effect immediately
       updateMultiplayerState({
         hoveredSquare: null,
         opponentHoveredSquare: null,
@@ -115,7 +104,6 @@ const BoardRow = ({ row, rowIndex }) => {
       return;
     }
 
-    // If bomb power-up is selected, emit ability event
     if (selectedPower === "bomb") {
       playSound(BOMB_SOUND, 0.25);
       socket.emit("ability", {
@@ -123,7 +111,6 @@ const BoardRow = ({ row, rowIndex }) => {
         row: rowIndex,
         col: columnIndex,
       });
-      // Clear hover effect immediately
       updateMultiplayerState({
         hoveredSquare: null,
         opponentHoveredSquare: null,
@@ -139,7 +126,6 @@ const BoardRow = ({ row, rowIndex }) => {
   return (
     <div className={s.row}>
       {row.map((squareData, columnIndex) => {
-        // Create compatible squareData for shouldDisableSquare
         const compatibleSquareData = {
           fillWith: squareData.owner,
           isFrozen: squareData.isFrozen,
