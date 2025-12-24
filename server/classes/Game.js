@@ -1,4 +1,9 @@
-import { SYMBOL_O, SYMBOL_X, TURN_TIMER_DURATION } from "../data/constants.js";
+import {
+  FIRST_PLAYER,
+  SYMBOL_O,
+  SYMBOL_X,
+  TURN_TIMER_DURATION,
+} from "../data/constants.js";
 import { Board } from "./Board.js";
 import { Player } from "./Player.js";
 
@@ -10,7 +15,7 @@ export class Game {
       [SYMBOL_O]: new Player(socketO.id, SYMBOL_O, boardSize),
       [SYMBOL_X]: new Player(socketX.id, SYMBOL_X, boardSize),
     };
-    this.turn = SYMBOL_X;
+    this.turn = FIRST_PLAYER;
     this.winner = null;
     this.draw = false;
     this.moveCount = 0;
