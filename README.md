@@ -7,12 +7,6 @@
 
 A modern twist on the classic Tic Tac Toe game, now with customizable board sizes (up to 5x5) and powerful game-changing Power-Ups like **Freeze**, **Bomb**, and **Swap**. Built with a focus on accessibility, responsiveness, and interactive fun! [Play Now](https://tictactoe-4x4.netlify.app)
 
-## Note
-
-If you're interested in this game and would like to collaborate, feel free to help me add **multiplayer support** using **Socket.IO**!
-
----
-
 ## Features
 
 - Classic Tic Tac Toe gameplay with advanced rules
