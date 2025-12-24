@@ -1,7 +1,6 @@
 @use "@/styles/mixins" as m;
 
 .aboutOverlay {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   position: fixed;
   top: 0;
   left: 0;
@@ -76,7 +75,7 @@
 }
 
 .aboutArticle :where(p, li) b {
-  font-family: "Inter", system-ui, "Segoe UI", "Segoe UI Symbol", "System UI fonts";
+  font-family: var(--font-inter);
   font-weight: 500;
 }
 
