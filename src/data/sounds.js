@@ -23,8 +23,8 @@ export const WINNER_SOUNDS = [
 ];
 
 export function getRandomSound(...sounds) {
-  const randomNumber = Math.floor(Math.random() * sounds.length);
-  const sound = sounds[randomNumber][0];
-  const volume = sounds[randomNumber][1];
+  const randomIndex = Math.floor(Math.random() * sounds.length);
+  const sound = sounds[randomIndex][0];
+  const volume = sounds[randomIndex][1];
   return [sound, volume];
 }
