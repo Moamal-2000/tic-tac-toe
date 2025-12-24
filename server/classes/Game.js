@@ -1,5 +1,6 @@
 import {
   FIRST_PLAYER,
+  SECOND_IN_MS,
   SYMBOL_O,
   SYMBOL_X,
   TURN_TIMER_DURATION,
@@ -97,7 +98,7 @@ export class Game {
         this.stopTimer();
         if (this.timerCallback) this.timerCallback();
       }
-    }, 1000);
+    }, SECOND_IN_MS);
   }
 
   stopTimer() {
@@ -124,7 +125,7 @@ export class Game {
           this.stopTimer();
           if (this.timerCallback) this.timerCallback();
         }
-      }, 1000);
+      }, SECOND_IN_MS);
     }
   }
 
