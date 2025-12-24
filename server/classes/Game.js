@@ -181,9 +181,8 @@ export class Game {
       }
     }
 
-    if (!player.abilities[ability] || !player.abilities[ability].use()) {
+    if (!player.abilities[ability] || !player.abilities[ability].use())
       return false;
-    }
 
     // Validate freeze: can only be placed on opponent symbols, not frozen already
     if (ability === "freeze") {
@@ -206,8 +205,6 @@ export class Game {
         return false;
       }
 
-      // For swap, we'll handle it with a delay in the manager
-      // Just mark the cells for swap here
       cell.swapSelected = true;
       this.board.getCell(row2, col2).swapSelected = true;
 
@@ -216,10 +213,7 @@ export class Game {
     }
 
     const winner = this.checkWin();
-
-    if (winner) {
-      this.winner = winner;
-    }
+    if (winner) this.winner = winner;
 
     // Clear power-up selection after use
     this.powerUpsState.selectedPower = null;
@@ -228,7 +222,6 @@ export class Game {
     // Change turn and decrement cooldowns
     this.players[this.turn].decrementCooldowns();
     this.players[opponent].decrementCooldowns();
-
     this.turn = opponent;
 
     return true;
@@ -255,9 +248,7 @@ export class Game {
       this.winner = null;
     } else {
       const winner = this.checkWin();
-      if (winner) {
-        this.winner = winner;
-      }
+      if (winner) this.winner = winner;
     }
 
     // Clear power-up selection and change turn
@@ -267,7 +258,6 @@ export class Game {
     const opponent = this.getOpponentSymbol();
     this.players[this.turn].decrementCooldowns();
     this.players[opponent].decrementCooldowns();
-
     this.turn = opponent;
 
     return true;
@@ -334,9 +324,7 @@ export class Game {
     for (let row = 0; row < boardSize; row++) {
       for (let col = 0; col < boardSize; col++) {
         const cell = this.board.getCell(row, col);
-        if (cell.swapSelected) {
-          cell.swapSelected = false;
-        }
+        if (cell.swapSelected) cell.swapSelected = false;
       }
     }
   }
@@ -406,6 +394,7 @@ export class Game {
             }
           }
         }
+
         if (winners.has(symbol)) break;
       }
     }
@@ -415,11 +404,7 @@ export class Game {
 
   checkDraw() {
     const hasFreeCell = this.board.hasFreeCell();
-
-    if (!hasFreeCell) {
-      this.isWinnerPopupVisible = true;
-    }
-
+    if (!hasFreeCell) this.isWinnerPopupVisible = true;
     return !hasFreeCell;
   }
 
@@ -492,9 +477,7 @@ export class Game {
   }
 
   reset() {
-    const size = this.board.size;
-
-    this.board = new Board(size);
+    this.board = new Board(this.board.size);
     this.turn = SYMBOL_X;
     this.winner = null;
     this.draw = false;
@@ -502,10 +485,7 @@ export class Game {
     this.isWinnerPopupVisible = false;
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
-    this.powerUpsState = {
-      selectedPower: null,
-      whoUsingPower: null,
-    };
+    this.powerUpsState = { selectedPower: null, whoUsingPower: null };
 
     // Reset all player cooldowns
     Object.values(this.players).forEach((player) => {
