@@ -18,13 +18,11 @@ export class Game {
     this.turn = FIRST_PLAYER;
     this.winner = null;
     this.draw = false;
-    this.moveCount = 0;
     this.hasGameStarted = false;
     this.isWinnerPopupVisible = false;
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
     this.timerInterval = null;
-    this.rematchState = null; // Can be null or { requester: SYMBOL_O | SYMBOL_X }
     this.powerUpsState = {
       selectedPower: null,
       whoUsingPower: null,
@@ -33,9 +31,7 @@ export class Game {
 
   selectAbility(playerSymbol, ability) {
     // Only the current turn player can select
-    if (this.turn !== playerSymbol) {
-      return false;
-    }
+    if (this.turn !== playerSymbol) return false;
 
     const player = this.players[playerSymbol];
     if (!player.abilities[ability]) return false;
@@ -138,7 +134,6 @@ export class Game {
 
   applyMove(row, col) {
     if (!this.board.isCellFree(row, col)) return false;
-    this.moveCount++;
 
     const opponent = this.getOpponentSymbol();
 
@@ -502,10 +497,8 @@ export class Game {
     this.turn = SYMBOL_X;
     this.winner = null;
     this.draw = false;
-    this.moveCount = 0;
     this.hasGameStarted = true;
     this.isWinnerPopupVisible = false;
-    this.rematchState = null;
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
     this.powerUpsState = {
