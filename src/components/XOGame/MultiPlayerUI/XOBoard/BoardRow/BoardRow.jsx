@@ -85,6 +85,12 @@ const BoardRow = ({ row, rowIndex }) => {
           squaresToSwap: [],
           hoveredSquare: null,
           opponentHoveredSquare: null,
+          powerUps: {
+            ...powerUps,
+            selectedPower: null,
+            whoUsingPower: null,
+            hasActivePowerUp: false,
+          },
         });
         socket.emit("square-hover", { row: null, col: null, power: null });
         return;
@@ -101,6 +107,12 @@ const BoardRow = ({ row, rowIndex }) => {
       updateMultiplayerState({
         hoveredSquare: null,
         opponentHoveredSquare: null,
+        powerUps: {
+          ...powerUps,
+          selectedPower: null,
+          whoUsingPower: null,
+          hasActivePowerUp: false,
+        },
       });
       socket.emit("square-hover", { row: null, col: null, power: null });
       return;
@@ -116,6 +128,12 @@ const BoardRow = ({ row, rowIndex }) => {
       updateMultiplayerState({
         hoveredSquare: null,
         opponentHoveredSquare: null,
+        powerUps: {
+          ...powerUps,
+          selectedPower: null,
+          whoUsingPower: null,
+          hasActivePowerUp: false,
+        },
       });
       socket.emit("square-hover", { row: null, col: null, power: null });
       return;
