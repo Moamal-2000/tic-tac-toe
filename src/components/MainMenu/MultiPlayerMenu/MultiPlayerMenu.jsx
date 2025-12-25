@@ -12,12 +12,7 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore();
-  const {
-    updateGameStates,
-    updateStatsOnResult,
-    selectedBoardSize,
-    updateMultiplayerState,
-  } = useMultiplayerStore((s) => s);
+  const selectedBoardSize = useMultiplayerStore((s) => s.selectedBoardSize);
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const [onlinePlayers, setOnlinePlayers] = useState(0);
 
@@ -31,57 +26,6 @@ const MultiPlayerMenu = () => {
   function handleBackButton() {
     playSound(BUTTON_SOUND);
     updateGameMode(null);
-  }
-
-  function syncNewGameState(state) {
-    const {
-      turn,
-      board,
-      winner,
-      draw,
-      hasGameStarted,
-      isWinnerPopupVisible,
-      timeRemaining,
-      timerActive,
-    } = state;
-
-    updateGlobalState({ isMainMenuActive: false });
-    updateGlobalState({ isWaitingForOpponent: false });
-
-    // If the game has ended (winner or draw), update multiplayer stats
-    if (winner || draw) {
-      updateStatsOnResult({ winner, draw });
-    }
-
-    // Extract squaresToSwap from the board state
-    const squaresToSwap = [];
-    board.forEach((row, rowIndex) => {
-      row.forEach((cell, colIndex) => {
-        if (cell.swapSelected) {
-          squaresToSwap.push([rowIndex, colIndex]);
-        }
-      });
-    });
-
-    updateGameStates({
-      boardSize: state.board[0].length,
-      playerTurn: turn,
-      board,
-      winner,
-      draw,
-      hasGameStarted,
-      isWinnerPopupVisible,
-      powerUps: state.powerUps,
-      mySymbol: state.me,
-      squaresToSwap,
-      timeRemaining,
-      timerActive,
-    });
-
-    updateMultiplayerState({
-      hoveredSquare: null,
-      opponentHoveredSquare: null,
-    });
   }
 
   useEffect(() => {
