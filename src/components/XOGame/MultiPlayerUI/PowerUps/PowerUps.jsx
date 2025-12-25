@@ -9,7 +9,7 @@ import s from "./PowerUps.module.scss";
 
 const PowerUps = ({ player }) => {
   const { boardSize, board, powerUps, playerTurn, winner, draw, mySymbol } =
-    useMultiplayerStore((s) => s);
+    useMultiplayerStore();
 
   // Determine if this is the active player's panel (for styling)
   const isPlayer1Turn = playerTurn === SYMBOL_O;
@@ -24,7 +24,7 @@ const PowerUps = ({ player }) => {
     (player === "player2" && mySymbol === SYMBOL_X);
 
   // Determine if buttons should be disabled because it's not this player's turn
-  const isNotMyTurn =
+  const isMyTurn =
     (player === "player2" && !isPlayer2Turn) ||
     (player === "player1" && !isPlayer1Turn);
 
@@ -49,7 +49,7 @@ const PowerUps = ({ player }) => {
             playerTurn,
             winner,
             draw,
-            isNotMyTurn,
+            isMyTurn,
             powerUps,
             isMultiplayer: true,
           }) || !isMyPanel;

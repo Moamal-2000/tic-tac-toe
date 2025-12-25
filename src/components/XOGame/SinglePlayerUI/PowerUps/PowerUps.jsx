@@ -9,13 +9,17 @@ import s from "./PowerUps.module.scss";
 
 const PowerUps = ({ player }) => {
   const { boardSize, board, powerUps, playerTurn, winner, playMode } =
-    useXOStore((s) => s);
+    useXOStore();
 
   if (playMode === "autoHideMode") return null;
 
   const playerPowerUps = Object.entries(powerUps[player]);
   const isPlayer1 = playerTurn !== SYMBOL_O && player === "player1";
   const isPlayer2 = playerTurn !== SYMBOL_X && player === "player2";
+
+  const isMyTurn =
+    (player === "player2" && !isPlayer2) ||
+    (player === "player1" && !isPlayer1);
 
   const classes = [
     s.powerUps,
@@ -38,6 +42,7 @@ const PowerUps = ({ player }) => {
           isPlayer1,
           isPlayer2,
           powerUps,
+          isMyTurn,
         });
 
         return (

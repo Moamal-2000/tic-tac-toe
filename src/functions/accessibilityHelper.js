@@ -47,15 +47,12 @@ export function shouldDisablePowerUp({
   playerTurn,
   winner,
   draw,
-  isNotMyTurn,
+  isMyTurn,
   powerUps,
   isMultiplayer = false,
 }) {
-  // For multiplayer, the server already calculates availability including freeze/swap conditions
   if (isMultiplayer) {
-    return (
-      powerUps.hasActivePowerUp || !available || isNotMyTurn || winner || draw
-    );
+    return powerUps.hasActivePowerUp || !available || winner || draw;
   }
 
   // For single player, calculate locally
@@ -69,7 +66,7 @@ export function shouldDisablePowerUp({
   return (
     powerUps.hasActivePowerUp ||
     !available ||
-    isNotMyTurn ||
+    !isMyTurn ||
     winner ||
     draw ||
     swapCondition ||
