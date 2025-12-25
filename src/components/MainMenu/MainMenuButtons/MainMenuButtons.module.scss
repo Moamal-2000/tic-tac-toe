@@ -61,22 +61,34 @@
 
 .buttons .button:nth-child(1)::before,
 .buttons .button:nth-child(1)::after {
-  background-color: #ff4757;
+  background-color: #57f857;
 }
 
 .buttons .button:nth-child(1):hover::before {
   box-shadow:
-    0 0 1px rgb(255, 71, 87),
-    0 0 3px rgb(255, 71, 87),
-    0 0 5px rgb(255, 71, 87);
+    0 0 1px #57f857,
+    0 0 3px #57f857,
+    0 0 5px #57f857;
 }
 
 .buttons .button:nth-child(2)::before,
 .buttons .button:nth-child(2)::after {
-  background-color: #4a9eff;
+  background-color: #ff4757;
 }
 
 .buttons .button:nth-child(2):hover::before {
+  box-shadow:
+    0 0 1px #ff4757,
+    0 0 3px #ff4757,
+    0 0 5px #ff4757;
+}
+
+.buttons .button:nth-child(3)::before,
+.buttons .button:nth-child(3)::after {
+  background-color: #4a9eff;
+}
+
+.buttons .button:nth-child(3):hover::before {
   box-shadow:
     0 0 1px #4a9eff,
     0 0 3px #4a9eff,

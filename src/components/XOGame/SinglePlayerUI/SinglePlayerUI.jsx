@@ -1,4 +1,5 @@
 import { SCREEN_SIZES } from "@/data/constants";
+import useComputerBot from "@/hooks/useComputerBot";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
@@ -9,6 +10,8 @@ import XOBoard from "./XOBoard/XOBoard";
 const SinglePlayerUI = () => {
   const { playerTurn, boardSize, stats, winner } = useXOStore((s) => s);
   const board3Class = boardSize === 3 ? s.x3 : "";
+
+  useComputerBot();
 
   return (
     <section className={`${s.game} ${board3Class}`}>

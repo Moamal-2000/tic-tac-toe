@@ -200,15 +200,21 @@ export const BOARD_EXAMPLES = {
 
 export const GAME_MODES_BUTTONS = [
   {
+    label: "Play vs Computer",
+    iconName: "user",
+    mode: "computer",
+    id: 1,
+  },
+  {
     label: "Play on This Device",
     iconName: "user",
     mode: "local",
-    id: 1,
+    id: 2,
   },
   {
     label: "Play Online",
     iconName: "users",
     mode: "online",
-    id: 2,
+    id: 3,
   },
 ];

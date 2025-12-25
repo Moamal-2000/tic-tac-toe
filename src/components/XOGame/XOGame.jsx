@@ -11,7 +11,7 @@ const XOGame = () => {
 
   return (
     <>
-      {gameMode === "local" && <SinglePlayerUI />}
+      {(gameMode === "local" || gameMode === "computer") && <SinglePlayerUI />}
       {gameMode === "online" && hasGameStarted && <MultiPlayerUI />}
     </>
   );
