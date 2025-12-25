@@ -1,6 +1,7 @@
 import {
   BOMB_SOUND,
   BUTTON_SOUND,
+  FREEZE_SOUND,
   soundFiles,
   SWAP_SOUND,
   UNSELECT_SOUND,
@@ -91,6 +92,7 @@ const BoardRow = ({ row, rowIndex }) => {
     }
 
     if (selectedPower === "freeze") {
+      playSound(FREEZE_SOUND, 0.3);
       socket.emit("ability", {
         ability: "freeze",
         row: rowIndex,
