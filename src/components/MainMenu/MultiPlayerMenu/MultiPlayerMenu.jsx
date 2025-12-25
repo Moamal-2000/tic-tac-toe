@@ -47,11 +47,19 @@ const MultiPlayerMenu = () => {
     <div className={s.mpContent}>
       <BackButton onClick={handleBackButton} />
 
+      <div
+        className={s.playerCount}
+        aria-label={`Online players: ${onlinePlayers}`}
+      >
+        <span className={s.playerCountDot} />
+        <span className={s.playerCountLabel}>Online Players</span>
+        <span className={s.playerCountValue}>{onlinePlayers}</span>
+      </div>
+
       <header className={s.header}>
-        <h1>Multiplayer Setup</h1>
-        <p>Configure your game settings</p>
-        <div className={s.playerCount}>
-          <span>Online Players: {onlinePlayers}</span>
+        <div className={s.headerText}>
+          <h1>Multiplayer Setup</h1>
+          <p>Configure your game settings</p>
         </div>
       </header>
 
