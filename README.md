@@ -16,6 +16,9 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
   - **Bomb**: Destroys an area of 9 tiles
   - **Swap**: Exchange your symbol with an opponent’s
 - **Auto Hide mode**: symbols disappear after a set number of turns, dynamically based on board size
+- Local multiplayer support for playing with a friend on the same device
+- Play against a computer-controlled opponent locally
+- Online multiplayer support for playing with friends *(requires the workspace to remain open to keep the server active due to hosting limitations)*
 - Sound effects for player actions and power-ups
 - Fully responsive and mobile-friendly
 - Accessible with keyboard and screen reader support
