@@ -206,14 +206,14 @@ export const GAME_MODES_BUTTONS = [
     id: 1,
   },
   {
-    label: "Play on This Device",
-    iconName: "user",
+    label: "Play Locally",
+    iconName: "users",
     mode: "local",
     id: 2,
   },
   {
     label: "Play Online",
-    iconName: "users",
+    iconName: "wifi",
     mode: "online",
     id: 3,
   },

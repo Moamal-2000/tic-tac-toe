@@ -24,10 +24,9 @@
     <circle cx="50" cy="47" r="44" fill="none" />
   </symbol>
 
-  <symbol id="user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-    stroke-width="2">
-    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
+  <symbol id="wifi" viewBox="0 0 640 640">
+    <path
+      d="M320 160c-91 0-173 36-234 95a32 32 0 1 1-44-46 398 398 0 0 1 556 0 32 32 0 1 1-44 46c-61-59-143-95-234-95m-48 336a48 48 0 1 1 96 0 48 48 0 0 1-96 0m-72-106a32 32 0 1 1-48-42 224 224 0 0 1 336 0 32 32 0 0 1-48 42 159 159 0 0 0-240 0" />
   </symbol>
 
   <symbol id="users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"
