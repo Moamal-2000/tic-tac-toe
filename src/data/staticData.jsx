@@ -201,7 +201,7 @@ export const BOARD_EXAMPLES = {
 export const GAME_MODES_BUTTONS = [
   {
     label: "Play vs Computer",
-    iconName: "user",
+    iconName: "computer",
     mode: "computer",
     id: 1,
   },
