@@ -3,16 +3,22 @@
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 100%;
+  gap: 10px;
+  width: 260px;
 }
 
-.buttons .button {
+@include m.very-small {
+  .buttons {
+    width: 230px;
+  }
+}
+
+.button {
   outline: none;
   background-color: #0f1419;
   color: #e0e0e0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
-  border: 1px solid rgba(120, 120, 120, .2);
+  border: 1px solid #24282c;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,12 +26,12 @@
   gap: 15px;
   padding: 15px 20px 15px 35px;
   width: 100%;
-  min-height: 60px;
+  min-height: 56px;
   border-radius: 8px;
   position: relative;
   text-wrap: nowrap;
   font-weight: 600;
-  font-size: clamp(.8rem, 5.6vw, 1.125rem);
+  font-size: clamp(.8rem, 5.6vw, 1rem);
   letter-spacing: .5px;
   text-transform: capitalize;
   transition: background-color .15s ease;
@@ -37,16 +43,21 @@
   &:focus-visible {
     border-color: #fff;
   }
-}
 
-@include m.very-small {
-  .buttons .button {
-    padding: 15px 20px;
-    gap: 10px;
+  &:hover {
+    background-color: #171f28;
+    border-color: #3e4348;
   }
 }
 
-.buttons .button::before {
+@include m.very-small {
+  .button {
+    padding: 15px 20px;
+    min-height: 50px;
+  }
+}
+
+.button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -54,65 +65,26 @@
   width: 4px;
   height: 100%;
   border-radius: 8px 0 0 8px;
-  transition:
-    background-color .15s ease,
-    box-shadow .15s ease;
+  transition: box-shadow .15s ease;
 }
 
-.buttons .button:nth-child(1)::before,
-.buttons .button:nth-child(1)::after {
-  background-color: #57f857;
-}
+$button-colors: #57f857, #ff4757, #4a9eff;
 
-.buttons .button:nth-child(1):hover::before {
-  box-shadow:
-    0 0 1px #57f857,
-    0 0 3px #57f857,
-    0 0 5px #57f857;
-}
+@for $i from 1 through length($button-colors) {
 
-.buttons .button:nth-child(2)::before,
-.buttons .button:nth-child(2)::after {
-  background-color: #ff4757;
-}
+  .button:nth-child(#{$i})::before {
+    background-color: nth($button-colors, $i);
+  }
 
-.buttons .button:nth-child(2):hover::before {
-  box-shadow:
-    0 0 1px #ff4757,
-    0 0 3px #ff4757,
-    0 0 5px #ff4757;
-}
-
-.buttons .button:nth-child(3)::before,
-.buttons .button:nth-child(3)::after {
-  background-color: #4a9eff;
-}
-
-.buttons .button:nth-child(3):hover::before {
-  box-shadow:
-    0 0 1px #4a9eff,
-    0 0 3px #4a9eff,
-    0 0 5px #4a9eff;
-}
-
-.buttons .button::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  translate: 0 -50%;
-  left: -.04px;
-  width: 4px;
-  height: calc(100% - 2px);
-  border-radius: 8px 0 0 8px;
-  transition:
-    background-color .15s ease,
-    box-shadow .15s ease;
+  .button:nth-child(#{$i}):hover::before {
+    box-shadow:
+      0 0 1px nth($button-colors, $i),
+      0 0 3px nth($button-colors, $i);
+  }
 }
 
 .button>svg {
-  width: 24px;
-  height: 24px;
-  @include m.flex-center;
-  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
   fill: #e0e0e0;
 }
