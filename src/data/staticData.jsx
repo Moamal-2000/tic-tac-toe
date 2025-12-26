@@ -6,6 +6,8 @@ export const POWER_UPS_BUTTONS = [
   { name: "swap", label: "Swap" },
 ];
 
+export const POWER_UPS = POWER_UPS_BUTTONS.map((item) => item.name);
+
 export const HOW_TO_PLAY_LIST = [
   {
     content: (

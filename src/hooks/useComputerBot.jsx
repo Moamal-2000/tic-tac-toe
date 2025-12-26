@@ -2,18 +2,16 @@
 
 import { chooseBotAction } from "@/ai/bot";
 import { normalizeFromStore } from "@/ai/engine";
-import { SYMBOL_X } from "@/data/constants";
+import { BOT_MOVE_DELAY_MS, SYMBOL_X } from "@/data/constants";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { POWER_UPS } from "@/data/staticData";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export default function useComputerBot() {
-  const gameMode = useGlobalStore((s) => s.gameMode);
-  const aiDifficulty = useGlobalStore((s) => s.aiDifficulty);
-  const playSound = usePreloadSounds(soundFiles);
-
+  const { gameMode, aiDifficulty } = useGlobalStore();
   const {
     hasGameStart,
     winner,
@@ -26,156 +24,97 @@ export default function useComputerBot() {
     updateXOStoreState,
     fillSquare,
     usePowerUp,
-  } = useXOStore((s) => s);
+  } = useXOStore();
 
-  const busyRef = useRef(false);
+  const playSound = usePreloadSounds(soundFiles);
+
+  const isBotTurn =
+    gameMode === "computer" &&
+    hasGameStart &&
+    !winner &&
+    playerTurn === SYMBOL_X &&
+    !powerUps.hasActivePowerUp &&
+    squaresToSwap.length === 0;
+
+  const allowPowerUps =
+    boardSize >= 4 && boardSize <= 5 && playMode !== "autoHideMode";
+
+  function executePowerUp(type, action) {
+    playSound(BUTTON_SOUND, 0.3);
+
+    updateXOStoreState({
+      squaresToSwap: [],
+      powerUps: {
+        ...powerUps,
+        selectedPower: type,
+        whoUsingPower: "player2",
+      },
+    });
+
+    if (type === "swap") {
+      const [first, second] = [action.a, action.b];
+
+      usePowerUp({ rowIndex: first[0], columnIndex: first[1], playSound });
+
+      setTimeout(() => {
+        playSound(BUTTON_SOUND, 0.3);
+        usePowerUp({ rowIndex: second[0], columnIndex: second[1], playSound });
+      }, 180);
+
+      return;
+    }
+
+    usePowerUp({ rowIndex: action.row, columnIndex: action.col, playSound });
+  }
 
   useEffect(() => {
-    if (gameMode !== "computer") return;
-    if (!hasGameStart) return;
-    if (winner) return;
-    if (playerTurn !== SYMBOL_X) return;
-    if (powerUps.hasActivePowerUp) return;
-    if (squaresToSwap.length > 0) return;
-    if (busyRef.current) return;
+    if (!isBotTurn) return;
 
-    const allowPowerUps =
-      (boardSize === 4 || boardSize === 5) && playMode !== "autoHideMode";
+    function performBotMove() {
+      const baseState = normalizeFromStore({
+        board,
+        boardSize,
+        playerTurn,
+        powerUps,
+      });
 
-    busyRef.current = true;
+      let stateForBot = baseState;
 
-    const timeout = setTimeout(() => {
-      try {
-        const baseState = normalizeFromStore({
-          board,
-          boardSize,
-          playerTurn,
-          powerUps,
-        });
-        const stateForBot = allowPowerUps
-          ? baseState
-          : {
-              ...baseState,
-              powerUps: {
-                ...baseState.powerUps,
-                [SYMBOL_X]: {
-                  freeze: {
-                    ...baseState.powerUps[SYMBOL_X].freeze,
-                    available: false,
-                  },
-                  bomb: {
-                    ...baseState.powerUps[SYMBOL_X].bomb,
-                    available: false,
-                  },
-                  swap: {
-                    ...baseState.powerUps[SYMBOL_X].swap,
-                    available: false,
-                  },
-                },
-              },
-            };
+      if (!allowPowerUps) {
+        const disabledPlayerXPowerUps = Object.fromEntries(
+          Object.entries(baseState.powerUps[SYMBOL_X]).map(([key, val]) => [
+            key,
+            { ...val, available: false },
+          ])
+        );
 
-        const { action } = chooseBotAction(stateForBot, aiDifficulty);
-
-        if (!action) return;
-
-        // Ensure AI is controlling player2 selection state, then execute.
-        if (action.type === "place") {
-          fillSquare(action.row, action.col);
-          return;
-        }
-
-        if (!allowPowerUps) return;
-
-        if (action.type === "freeze") {
-          playSound(BUTTON_SOUND, 0.3);
-          updateXOStoreState({
-            squaresToSwap: [],
-            powerUps: {
-              ...powerUps,
-              selectedPower: "freeze",
-              whoUsingPower: "player2",
-            },
-          });
-          usePowerUp({
-            rowIndex: action.row,
-            columnIndex: action.col,
-            playSound,
-          });
-          return;
-        }
-
-        if (action.type === "bomb") {
-          playSound(BUTTON_SOUND, 0.3);
-          updateXOStoreState({
-            squaresToSwap: [],
-            powerUps: {
-              ...powerUps,
-              selectedPower: "bomb",
-              whoUsingPower: "player2",
-            },
-          });
-          usePowerUp({
-            rowIndex: action.row,
-            columnIndex: action.col,
-            playSound,
-          });
-          return;
-        }
-
-        if (action.type === "swap") {
-          playSound(BUTTON_SOUND, 0.3);
-          updateXOStoreState({
-            squaresToSwap: [],
-            powerUps: {
-              ...powerUps,
-              selectedPower: "swap",
-              whoUsingPower: "player2",
-            },
-          });
-
-          // Select first square (shows .select state)
-          usePowerUp({
-            rowIndex: action.a[0],
-            columnIndex: action.a[1],
-            playSound,
-          });
-
-          // Select second square shortly after so the UI renders the first selection,
-          // then shows the swap overlay animation for both squares.
-          setTimeout(() => {
-            playSound(BUTTON_SOUND, 0.3);
-            usePowerUp({
-              rowIndex: action.b[0],
-              columnIndex: action.b[1],
-              playSound,
-            });
-          }, 180);
-          return;
-        }
-      } finally {
-        busyRef.current = false;
+        stateForBot = {
+          ...baseState,
+          powerUps: {
+            ...baseState.powerUps,
+            [SYMBOL_X]: disabledPlayerXPowerUps,
+          },
+        };
       }
-    }, 250);
+
+      const { action } = chooseBotAction(stateForBot, aiDifficulty);
+      if (!action) return;
+
+      if (action.type === "place") {
+        playSound(BUTTON_SOUND, 0.3);
+        fillSquare(action.row, action.col);
+        return;
+      }
+
+      if (allowPowerUps && POWER_UPS.includes(action.type)) {
+        executePowerUp(action.type, action);
+      }
+    }
+
+    const timeout = setTimeout(performBotMove, BOT_MOVE_DELAY_MS);
 
     return () => {
       clearTimeout(timeout);
-      busyRef.current = false;
     };
-  }, [
-    gameMode,
-    aiDifficulty,
-    hasGameStart,
-    winner,
-    board,
-    boardSize,
-    playerTurn,
-    powerUps,
-    playMode,
-    squaresToSwap,
-    updateXOStoreState,
-    fillSquare,
-    usePowerUp,
-    playSound,
-  ]);
+  }, [playerTurn]);
 }
