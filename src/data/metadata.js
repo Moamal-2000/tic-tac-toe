@@ -74,15 +74,16 @@ export function getOpenGraphMetadata(pagePath = "") {
       authors: [author],
       images: [
         {
-          url: `${BASE_URL}/PWA/icons/android-chrome-512x512.webp`,
-          type: "image/jpeg",
+          url: `${BASE_URL}/og-image.webp`,
+          type: "image/webp",
           alt: "Tic Tac Toe Logo",
-          width: 512,
-          height: 512,
+          width: 1200,
+          height: 500,
         },
       ],
     },
   };
 }
+
 
 export const METADATA = { ...GLOBAL_METADATA, ...PWA_METADATA };
