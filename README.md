@@ -82,7 +82,7 @@ Design inspired by classic games with a modern UX approach.
 ## Future Enhancements
 
 - [x] ~~Online multiplayer mode~~ ✅ **In Progress**
-- [ ] AI opponent with difficulty levels
+- [x] ~~AI opponent with difficulty levels~~ ✅ **In Progress**
 - [ ] Additional power-ups and visual themes
 
 > Note: These enhancements are under consideration and not confirmed 100%.
