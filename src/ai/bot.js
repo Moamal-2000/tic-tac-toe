@@ -38,6 +38,18 @@ function makeRng(seed) {
   };
 }
 
+let callNonce = 0;
+
+function randomUint32() {
+  const c = globalThis.crypto;
+  if (c && typeof c.getRandomValues === "function") {
+    const a = new Uint32Array(1);
+    c.getRandomValues(a);
+    return a[0] >>> 0;
+  }
+  return (Math.floor(Math.random() * 4294967296) >>> 0) >>> 0;
+}
+
 function linesForBoard(board) {
   const n = board.length;
   const lines = [];
@@ -186,7 +198,7 @@ export function getLegalActions(state) {
   return actions;
 }
 
-function prioritizeActions(state, me, actions, cap) {
+function prioritizeActions(state, me, actions, cap, rng) {
   // Lightweight ordering: immediate win > block immediate loss > best heuristic delta.
   const scored = actions.map((a) => {
     const next = applyAction(state, a);
@@ -208,14 +220,15 @@ function prioritizeActions(state, me, actions, cap) {
     else if (w === "Draw!") s = 0;
     else s = evaluateState(next, me);
 
-    return { a, s };
+    const jitter = rng ? (rng() - 0.5) * 1e-3 : 0;
+    return { a, s: s + jitter };
   });
 
   scored.sort((x, y) => y.s - x.s);
   return scored.slice(0, cap).map((x) => x.a);
 }
 
-function minimax(state, me, depth, alpha, beta, actionCap) {
+function minimax(state, me, depth, alpha, beta, actionCap, rng) {
   const w = getWinner(state);
   if (state.forcedDraw) return { score: 0, action: null };
   if (w !== "None") {
@@ -231,7 +244,8 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
     state,
     me,
     getLegalActions(state),
-    actionCap
+    actionCap,
+    rng
   );
 
   let bestAction = actions[0] || null;
@@ -240,9 +254,20 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
     let bestScore = -Infinity;
     for (const a of actions) {
       const next = applyAction(state, a);
-      const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
+      const { score } = minimax(
+        next,
+        me,
+        depth - 1,
+        alpha,
+        beta,
+        actionCap,
+        rng
+      );
       if (score > bestScore) {
         bestScore = score;
+        bestAction = a;
+      }
+      if (score === bestScore && rng && rng() < 0.5) {
         bestAction = a;
       }
       alpha = Math.max(alpha, bestScore);
@@ -254,9 +279,12 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
   let bestScore = Infinity;
   for (const a of actions) {
     const next = applyAction(state, a);
-    const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
+    const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap, rng);
     if (score < bestScore) {
       bestScore = score;
+      bestAction = a;
+    }
+    if (score === bestScore && rng && rng() < 0.5) {
       bestAction = a;
     }
     beta = Math.min(beta, bestScore);
@@ -267,7 +295,8 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
 
 export function chooseBotAction(state, difficulty) {
   const me = state.playerTurn;
-  const seed = hashState(state);
+  callNonce = (callNonce + 1) >>> 0;
+  const seed = (hashState(state) ^ randomUint32() ^ callNonce) >>> 0;
   const rng = makeRng(seed);
 
   const legal = getLegalActions(state);
@@ -284,7 +313,7 @@ export function chooseBotAction(state, difficulty) {
       return { action: pick, debug: { reason: "easy_random" } };
     }
 
-    const top = prioritizeActions(state, me, legal, 8);
+    const top = prioritizeActions(state, me, legal, 8, rng);
     const pick =
       top[
         Math.min(top.length - 1, Math.floor(rng() * Math.min(2, top.length)))
@@ -295,11 +324,11 @@ export function chooseBotAction(state, difficulty) {
   if (difficulty === "medium") {
     const depth = 1;
     const actionCap = 18;
-    const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
+    const res = minimax(state, me, depth, -Infinity, Infinity, actionCap, rng);
 
     const noiseProb = 0.25;
     if (rng() < noiseProb) {
-      const top = prioritizeActions(state, me, legal, 6);
+      const top = prioritizeActions(state, me, legal, 6, rng);
       const pick =
         top[
           Math.min(
@@ -315,7 +344,7 @@ export function chooseBotAction(state, difficulty) {
 
   const depth = 4;
   const actionCap = 50;
-  const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
+  const res = minimax(state, me, depth, -Infinity, Infinity, actionCap, rng);
 
   return { action: res.action, debug: { reason: "hard_minimax_d4" } };
 }
