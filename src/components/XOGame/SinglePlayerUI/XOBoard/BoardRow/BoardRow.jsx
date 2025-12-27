@@ -1,15 +1,32 @@
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import XOSquare from "../XOSquare/XOSquare";
 import s from "./BoardRow.module.scss";
 
 const BoardRow = ({ row, rowIndex }) => {
-  const { hasGameStart, fillSquare, powerUps, usePowerUp, playerTurn } =
-    useXOStore((s) => s);
+  const {
+    hasGameStart,
+    fillSquare,
+    powerUps,
+    usePowerUp,
+    playerTurn,
+    winner,
+    squaresToSwap,
+  } = useXOStore((s) => s);
+  const { gameMode } = useGlobalStore();
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
+
+  const isBotTurn =
+    gameMode === "computer" &&
+    hasGameStart &&
+    !winner &&
+    playerTurn === "x" &&
+    !powerUps.hasActivePowerUp &&
+    squaresToSwap.length === 0;
 
   function handleSquareClick(rowIndex, columnIndex) {
     if (!whoUsingPower) {
@@ -30,6 +47,7 @@ const BoardRow = ({ row, rowIndex }) => {
           playerTurn,
           selectedPower,
           hasActivePowerUp,
+          isBotTurn,
         });
 
         return (

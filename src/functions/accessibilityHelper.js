@@ -17,6 +17,7 @@ export function shouldDisableSquare({
   playerTurn,
   selectedPower,
   hasActivePowerUp,
+  isBotTurn = false,
 }) {
   const { fillWith, isBombed, isFrozen } = squareData;
 
@@ -25,7 +26,13 @@ export function shouldDisableSquare({
   const isOpponentSymbol = !isEmpty && !isPlayerSymbol;
   const noPowerAndFilled = !selectedPower && !isEmpty;
 
-  if (!hasGameStart || noPowerAndFilled || isBombed || hasActivePowerUp) {
+  if (
+    !hasGameStart ||
+    noPowerAndFilled ||
+    isBombed ||
+    hasActivePowerUp ||
+    isBotTurn
+  ) {
     return true;
   }
 
