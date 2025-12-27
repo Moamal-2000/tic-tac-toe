@@ -18,6 +18,5 @@ export const useGlobalStore = create((set, get) => ({
       isWaitingForOpponent: false,
     });
   },
-  setAiDifficulty: (aiDifficulty) => set({ aiDifficulty }),
   updateGlobalState: (state) => set(state),
 }));

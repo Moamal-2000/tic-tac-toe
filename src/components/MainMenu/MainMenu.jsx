@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobalStore } from "@/stores/global.store/global.store";
+import DifficultySelector from "./DifficultySelector/DifficultySelector";
 import LoadingMenu from "./LoadingMenu/LoadingMenu";
 import s from "./MainMenu.module.scss";
 import MainMenuButtons from "./MainMenuButtons/MainMenuButtons";
@@ -19,6 +20,7 @@ const MainMenu = () => {
   return (
     <div className={s.menuOverlay}>
       <section className={`${s.mainMenu} ${menuButtonsClass}`}>
+        <DifficultySelector />
         {displayMainMenuButtons && <MainMenuButtons />}
         {displayMultiplayerMenu && <MultiPlayerMenu />}
         {isWaitingForOpponent && <LoadingMenu />}

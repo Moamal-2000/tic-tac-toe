@@ -18,6 +18,11 @@ export const PLAY_MODES = [
   { name: "Classic", type: "classicMode", id: 1 },
   { name: "Auto Hide Mode", type: "autoHideMode", id: 2 },
 ];
+export const DIFFICULTY_OPTIONS = [
+  { label: "Easy", value: "easy" },
+  { label: "Medium", value: "medium" },
+  { label: "Hard", value: "hard" },
+];
 export const SCREEN_SIZES = {
   large: {
     devices: ["standard desktop", "large laptop", "desktop"],

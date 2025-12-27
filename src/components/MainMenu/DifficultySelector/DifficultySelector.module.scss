@@ -1,0 +1,55 @@
+@use "@/styles/mixins" as m;
+
+.diffOptions {
+  display: flex;
+  gap: 2px;
+  padding: 3px 2px;
+  position: relative;
+  left: 88%;
+  top: 48px;
+}
+
+@include m.medium {
+  .diffOptions {
+    left: 0;
+    top: 0;
+  }
+}
+
+@include m.very-small {
+  .diffOptions {
+    width: 222px
+  }
+}
+
+.option {
+  flex: 1;
+  padding: 8px 18px;
+  border: none;
+  background: transparent;
+  color: #b9c0c8;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #e0e0e0;
+    border-color: rgba(230, 230, 230, 0.3);
+  }
+
+  &.active {
+    background: rgba(78, 205, 196, 0.1);
+    color: #4ecdc4;
+    border: 1px solid rgba(78, 205, 196, 0.6);
+  }
+}
+
+@include m.very-small {
+  .option {
+    padding: 8px 0;
+    font-size: .85rem;
+  }
+}
