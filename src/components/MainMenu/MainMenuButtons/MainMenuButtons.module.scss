@@ -1,4 +1,5 @@
 @use "@/styles/mixins" as m;
+@use "sass:list";
 
 .buttons {
   display: flex;
@@ -70,18 +71,18 @@
 
 $button-colors: #57f857, #ff4757, #4a9eff;
 
-@for $i from 1 through length($button-colors) {
-
+@for $i from 1 through list.length($button-colors) {
   .button:nth-child(#{$i})::before {
-    background-color: nth($button-colors, $i);
+    background-color: list.nth($button-colors, $i);
   }
 
   .button:nth-child(#{$i}):hover::before {
     box-shadow:
-      0 0 1px nth($button-colors, $i),
-      0 0 3px nth($button-colors, $i);
+      0 0 1px list.nth($button-colors, $i),
+      0 0 3px list.nth($button-colors, $i);
   }
 }
+
 
 .button>svg {
   width: 22px;
