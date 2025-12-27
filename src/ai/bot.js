@@ -275,9 +275,8 @@ export function chooseBotAction(state, difficulty) {
     return { action: null, debug: { reason: "no_legal_actions" } };
 
   if (difficulty === "easy") {
-    const mistakeProb = 0.35;
+    const mistakeProb = 0.3;
     if (rng() < mistakeProb) {
-      // Prefer random (usually bad) place move
       const places = legal.filter((a) => a.type === "place");
       const pick = (places.length ? places : legal)[
         Math.floor(rng() * (places.length ? places.length : legal.length))
@@ -285,10 +284,10 @@ export function chooseBotAction(state, difficulty) {
       return { action: pick, debug: { reason: "easy_random" } };
     }
 
-    const top = prioritizeActions(state, me, legal, 10);
+    const top = prioritizeActions(state, me, legal, 8);
     const pick =
       top[
-        Math.min(top.length - 1, Math.floor(rng() * Math.min(3, top.length)))
+        Math.min(top.length - 1, Math.floor(rng() * Math.min(2, top.length)))
       ];
     return { action: pick, debug: { reason: "easy_topk" } };
   }
@@ -298,8 +297,7 @@ export function chooseBotAction(state, difficulty) {
     const actionCap = 18;
     const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
 
-    // Medium imperfection: small chance to pick 2nd/3rd best deterministically
-    const noiseProb = 0.18;
+    const noiseProb = 0.25;
     if (rng() < noiseProb) {
       const top = prioritizeActions(state, me, legal, 6);
       const pick =
@@ -315,9 +313,9 @@ export function chooseBotAction(state, difficulty) {
     return { action: res.action, debug: { reason: "medium_minimax_d1" } };
   }
 
-  // hard
-  const depth = 2;
-  const actionCap = 28;
+  const depth = 4;
+  const actionCap = 50;
   const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
-  return { action: res.action, debug: { reason: "hard_minimax_d2" } };
+
+  return { action: res.action, debug: { reason: "hard_minimax_d4" } };
 }
