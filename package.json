@@ -14,7 +14,7 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "sass": "^1.97.1",
-    "socket.io-client": "^4.8.2",
+    "socket.io-client": "^4.8.3",
     "zustand": "^5.0.9"
   },
   "devDependencies": {
