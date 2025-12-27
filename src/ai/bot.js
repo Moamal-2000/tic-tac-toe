@@ -172,7 +172,20 @@ export function getLegalActions(state) {
   if (pu.bomb.available) {
     for (let r = 0; r < n; r++) {
       for (let c = 0; c < n; c++) {
-        actions.push({ type: "bomb", row: r, col: c });
+        let hasEffect = false;
+        for (let dx = -1; dx <= 1 && !hasEffect; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            const rr = r + dx;
+            const cc = c + dy;
+            if (rr < 0 || cc < 0 || rr >= n || cc >= n) continue;
+            const cell = state.board[rr][cc];
+            if (cell.isFrozen || cell.fillWith) {
+              hasEffect = true;
+              break;
+            }
+          }
+        }
+        if (hasEffect) actions.push({ type: "bomb", row: r, col: c });
       }
     }
   }
@@ -189,7 +202,11 @@ export function getLegalActions(state) {
     if (occ.length >= 2) {
       for (let i = 0; i < occ.length; i++) {
         for (let j = i + 1; j < occ.length; j++) {
-          actions.push({ type: "swap", a: occ[i], b: occ[j] });
+          const [r1, c1] = occ[i];
+          const [r2, c2] = occ[j];
+          const v1 = state.board[r1][c1].fillWith;
+          const v2 = state.board[r2][c2].fillWith;
+          if (v1 !== v2) actions.push({ type: "swap", a: occ[i], b: occ[j] });
         }
       }
     }
@@ -198,7 +215,7 @@ export function getLegalActions(state) {
   return actions;
 }
 
-function prioritizeActions(state, me, actions, cap, rng) {
+function prioritizeActions(state, me, actions, cap) {
   // Lightweight ordering: immediate win > block immediate loss > best heuristic delta.
   const scored = actions.map((a) => {
     const next = applyAction(state, a);
@@ -218,17 +235,40 @@ function prioritizeActions(state, me, actions, cap, rng) {
     if (w === me) s = 1e9;
     else if (w !== "None" && w !== "Draw!") s = -1e9;
     else if (w === "Draw!") s = 0;
-    else s = evaluateState(next, me);
+    else {
+      s = evaluateState(next, me);
+      if (a.type === "freeze") s -= 20;
+      if (a.type === "swap") s -= 15;
+      if (a.type === "bomb") {
+        s -= 25;
+        let myHit = 0;
+        let oppHit = 0;
+        let frozenHit = 0;
+        for (let dx = -1; dx <= 1; dx++) {
+          for (let dy = -1; dy <= 1; dy++) {
+            const r = a.row + dx;
+            const c = a.col + dy;
+            if (r < 0 || c < 0 || r >= state.boardSize || c >= state.boardSize)
+              continue;
+            const cell = state.board[r][c];
+            if (cell.isFrozen) frozenHit++;
+            if (cell.fillWith === me) myHit++;
+            if (cell.fillWith === otherPlayer(me)) oppHit++;
+          }
+        }
+        if (oppHit === 0 && frozenHit === 0) s -= 80;
+        s -= myHit * 10;
+      }
+    }
 
-    const jitter = rng ? (rng() - 0.5) * 1e-3 : 0;
-    return { a, s: s + jitter };
+    return { a, s };
   });
 
   scored.sort((x, y) => y.s - x.s);
   return scored.slice(0, cap).map((x) => x.a);
 }
 
-function minimax(state, me, depth, alpha, beta, actionCap, rng) {
+function minimax(state, me, depth, alpha, beta, actionCap) {
   const w = getWinner(state);
   if (state.forcedDraw) return { score: 0, action: null };
   if (w !== "None") {
@@ -244,8 +284,7 @@ function minimax(state, me, depth, alpha, beta, actionCap, rng) {
     state,
     me,
     getLegalActions(state),
-    actionCap,
-    rng
+    actionCap
   );
 
   let bestAction = actions[0] || null;
@@ -254,20 +293,9 @@ function minimax(state, me, depth, alpha, beta, actionCap, rng) {
     let bestScore = -Infinity;
     for (const a of actions) {
       const next = applyAction(state, a);
-      const { score } = minimax(
-        next,
-        me,
-        depth - 1,
-        alpha,
-        beta,
-        actionCap,
-        rng
-      );
+      const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
       if (score > bestScore) {
         bestScore = score;
-        bestAction = a;
-      }
-      if (score === bestScore && rng && rng() < 0.5) {
         bestAction = a;
       }
       alpha = Math.max(alpha, bestScore);
@@ -279,12 +307,9 @@ function minimax(state, me, depth, alpha, beta, actionCap, rng) {
   let bestScore = Infinity;
   for (const a of actions) {
     const next = applyAction(state, a);
-    const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap, rng);
+    const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
     if (score < bestScore) {
       bestScore = score;
-      bestAction = a;
-    }
-    if (score === bestScore && rng && rng() < 0.5) {
       bestAction = a;
     }
     beta = Math.min(beta, bestScore);
@@ -304,7 +329,7 @@ export function chooseBotAction(state, difficulty) {
     return { action: null, debug: { reason: "no_legal_actions" } };
 
   if (difficulty === "easy") {
-    const mistakeProb = 0.3;
+    const mistakeProb = 0.18;
     if (rng() < mistakeProb) {
       const places = legal.filter((a) => a.type === "place");
       const pick = (places.length ? places : legal)[
@@ -313,22 +338,26 @@ export function chooseBotAction(state, difficulty) {
       return { action: pick, debug: { reason: "easy_random" } };
     }
 
-    const top = prioritizeActions(state, me, legal, 8, rng);
-    const pick =
-      top[
-        Math.min(top.length - 1, Math.floor(rng() * Math.min(2, top.length)))
-      ];
+    const top = prioritizeActions(state, me, legal, 10);
+    const r = rng();
+    const idx =
+      r < 0.7
+        ? 0
+        : r < 0.9
+        ? Math.min(1, top.length - 1)
+        : Math.min(2, top.length - 1);
+    const pick = top[idx];
     return { action: pick, debug: { reason: "easy_topk" } };
   }
 
   if (difficulty === "medium") {
     const depth = 1;
     const actionCap = 18;
-    const res = minimax(state, me, depth, -Infinity, Infinity, actionCap, rng);
+    const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
 
     const noiseProb = 0.25;
     if (rng() < noiseProb) {
-      const top = prioritizeActions(state, me, legal, 6, rng);
+      const top = prioritizeActions(state, me, legal, 6);
       const pick =
         top[
           Math.min(
@@ -344,7 +373,34 @@ export function chooseBotAction(state, difficulty) {
 
   const depth = 4;
   const actionCap = 50;
-  const res = minimax(state, me, depth, -Infinity, Infinity, actionCap, rng);
-
+  const candidates = prioritizeActions(
+    state,
+    me,
+    legal,
+    Math.min(8, legal.length)
+  );
+  let bestScore = -Infinity;
+  const best = [];
+  for (const a of candidates) {
+    const next = applyAction(state, a);
+    const { score } = minimax(
+      next,
+      me,
+      depth - 1,
+      -Infinity,
+      Infinity,
+      actionCap
+    );
+    if (score > bestScore) {
+      bestScore = score;
+      best.length = 0;
+      best.push(a);
+    } else if (score === bestScore) {
+      best.push(a);
+    }
+  }
+  const pick = best.length ? best[Math.floor(rng() * best.length)] : null;
+  if (pick) return { action: pick, debug: { reason: "hard_minimax_d4" } };
+  const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
   return { action: res.action, debug: { reason: "hard_minimax_d4" } };
 }
