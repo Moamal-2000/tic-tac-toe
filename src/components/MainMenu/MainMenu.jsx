@@ -20,7 +20,8 @@ const MainMenu = () => {
   return (
     <div className={s.menuOverlay}>
       <section className={`${s.mainMenu} ${menuButtonsClass}`}>
-        <DifficultySelector />
+        {!displayMultiplayerMenu ||
+          (isWaitingForOpponent && <DifficultySelector />)}
         {displayMainMenuButtons && <MainMenuButtons />}
         {displayMultiplayerMenu && <MultiPlayerMenu />}
         {isWaitingForOpponent && <LoadingMenu />}
