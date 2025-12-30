@@ -2,10 +2,10 @@ import { create } from "zustand";
 
 export const useGlobalStore = create((set, get) => ({
   isAboutModelActive: false,
-  isMainMenuActive: true,
+  menuActive: true,
   gameMode: null, // "local" | "computer" | "online"
   aiDifficulty: "medium", // "easy" | "medium" | "hard"
-  isWaitingForOpponent: false,
+  waitingOpponent: false,
 
   toggleAboutModel: (value) => {
     set({ isAboutModelActive: value ? value : !get().isAboutModelActive });
@@ -14,8 +14,8 @@ export const useGlobalStore = create((set, get) => ({
     const shouldShowMenu = !gameMode || gameMode === "online";
     set({
       gameMode,
-      isMainMenuActive: shouldShowMenu,
-      isWaitingForOpponent: false,
+      menuActive: shouldShowMenu,
+      waitingOpponent: false,
     });
   },
   updateGlobalState: (state) => set(state),

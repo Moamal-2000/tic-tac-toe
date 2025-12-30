@@ -8,23 +8,22 @@ import MainMenuButtons from "./MainMenuButtons/MainMenuButtons";
 import MultiPlayerMenu from "./MultiPlayerMenu/MultiPlayerMenu";
 
 const MainMenu = () => {
-  const { isMainMenuActive, gameMode, isWaitingForOpponent } = useGlobalStore();
+  const { waitingOpponent, menuActive, gameMode } = useGlobalStore();
 
-  if (!isMainMenuActive && !isWaitingForOpponent) return null;
+  if (!menuActive && !waitingOpponent) return null;
 
-  const displayMainMenuButtons = gameMode !== "online";
-  const displayMultiplayerMenu = gameMode === "online" && !isWaitingForOpponent;
+  const showMainButtons = gameMode !== "online";
+  const showMultiplayerMenu = gameMode === "online" && !waitingOpponent;
 
-  const menuButtonsClass = displayMainMenuButtons ? s.menuButtons : "";
+  const menuLayoutClass = showMainButtons ? s.menuButtons : "";
 
   return (
     <div className={s.menuOverlay}>
-      <section className={`${s.mainMenu} ${menuButtonsClass}`}>
-        {!displayMultiplayerMenu ||
-          (isWaitingForOpponent && <DifficultySelector />)}
-        {displayMainMenuButtons && <MainMenuButtons />}
-        {displayMultiplayerMenu && <MultiPlayerMenu />}
-        {isWaitingForOpponent && <LoadingMenu />}
+      <section className={`${s.mainMenu} ${menuLayoutClass}`}>
+        {!showMultiplayerMenu || (waitingOpponent && <DifficultySelector />)}
+        {showMainButtons && <MainMenuButtons />}
+        {showMultiplayerMenu && <MultiPlayerMenu />}
+        {waitingOpponent && <LoadingMenu />}
       </section>
     </div>
   );

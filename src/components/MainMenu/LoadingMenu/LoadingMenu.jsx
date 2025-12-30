@@ -26,8 +26,8 @@ const LoadingMenu = () => {
       timerActive,
     } = state;
 
-    updateGlobalState({ isMainMenuActive: false });
-    updateGlobalState({ isWaitingForOpponent: false });
+    updateGlobalState({ menuActive: false });
+    updateGlobalState({ waitingOpponent: false });
 
     // If the game has ended (winner or draw), update multiplayer stats
     if (winner || draw) {
@@ -74,7 +74,7 @@ const LoadingMenu = () => {
 
   function handleBackButton() {
     socket.emit("cancel-matchmaking");
-    updateGlobalState({ isWaitingForOpponent: false });
+    updateGlobalState({ waitingOpponent: false });
     playSound(BUTTON_SOUND);
   }
 

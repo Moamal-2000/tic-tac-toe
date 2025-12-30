@@ -8,17 +8,17 @@ import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
   const { updateMultiplayerState, playerTurn } = useMultiplayerStore();
-  const [isWaitingForOpponent, setIsWaitingForOpponent] = useState(false);
+  const [waitingOpponent, setWaitingOpponent] = useState(false);
   const [showDeclineNotification, setShowDeclineNotification] = useState(false);
 
   useEffect(() => {
     socket.on("rematch-request-rejected", () => {
-      setIsWaitingForOpponent(false);
+      setWaitingOpponent(false);
       setShowDeclineNotification(true);
     });
 
     socket.on("rematch-accepted", () => {
-      setIsWaitingForOpponent(false);
+      setWaitingOpponent(false);
       updateMultiplayerState({ isRematchMenuActive: false });
     });
 
@@ -33,13 +33,13 @@ const RematchMenu = () => {
 
     if (!isOverlayClick) return;
 
-    if (!isWaitingForOpponent) {
+    if (!waitingOpponent) {
       updateMultiplayerState({ isRematchMenuActive: false });
     }
   }
 
   function handleRematch() {
-    setIsWaitingForOpponent(true);
+    setWaitingOpponent(true);
     socket.emit("requestRematch", { playerWhoRequested: playerTurn });
   }
 
@@ -55,7 +55,7 @@ const RematchMenu = () => {
   return (
     <div className={s.overlay} onClick={closeRematchMenu}>
       <div className={s.rematchMenu}>
-        {!isWaitingForOpponent && (
+        {!waitingOpponent && (
           <>
             <h2>Ask for a rematch?</h2>
 
@@ -66,7 +66,7 @@ const RematchMenu = () => {
           </>
         )}
 
-        {isWaitingForOpponent && (
+        {waitingOpponent && (
           <>
             <h2>Waiting for opponent...</h2>
             <p>

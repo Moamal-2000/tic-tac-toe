@@ -19,7 +19,7 @@ const MultiPlayerMenu = () => {
   function handleSubmit(event) {
     event?.preventDefault();
     socket.emit("matchmaking", selectedBoardSize);
-    updateGlobalState({ isWaitingForOpponent: true });
+    updateGlobalState({ waitingOpponent: true });
     playSound(BUTTON_SOUND);
   }
 
