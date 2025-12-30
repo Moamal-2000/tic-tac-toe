@@ -11,7 +11,7 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useEffect } from "react";
 
 export default function useComputerBot() {
-  const { gameMode, aiDifficulty } = useGlobalStore();
+  const { gameMode, botDifficulty } = useGlobalStore();
   const {
     hasGameStart,
     winner,
@@ -97,7 +97,7 @@ export default function useComputerBot() {
         };
       }
 
-      const { action } = chooseBotAction(stateForBot, aiDifficulty);
+      const { action } = chooseBotAction(stateForBot, botDifficulty);
       if (!action) return;
 
       if (action.type === "place") {

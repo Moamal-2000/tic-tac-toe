@@ -7,12 +7,12 @@ import { useGlobalStore } from "@/stores/global.store/global.store";
 import s from "./DifficultySelector.module.scss";
 
 const DifficultySelector = () => {
-  const { aiDifficulty, updateGlobalState } = useGlobalStore();
+  const { botDifficulty, updateGlobalState } = useGlobalStore();
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
-  function handleDifficultyChange(aiDifficulty) {
+  function handleDifficultyChange(botDifficulty) {
     playSound(BUTTON_SOUND);
-    updateGlobalState({ aiDifficulty });
+    updateGlobalState({ botDifficulty });
   }
 
   return (
@@ -20,7 +20,7 @@ const DifficultySelector = () => {
       {DIFFICULTY_OPTIONS.map(({ label, value }) => (
         <button
           type="button"
-          className={`${s.option} ${aiDifficulty === value ? s.active : ""}`}
+          className={`${s.option} ${botDifficulty === value ? s.active : ""}`}
           key={value}
           onClick={() => handleDifficultyChange(value)}
         >
