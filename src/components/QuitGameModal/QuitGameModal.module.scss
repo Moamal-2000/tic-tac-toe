@@ -1,0 +1,134 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px;
+  user-select: text;
+}
+
+.modal {
+  background-color: #111525;
+  border: 2px solid #ffd93d;
+  border-radius: 16px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 217, 61, 0.4);
+  transform: translateY(0);
+  animation: modal-fade-in 200ms ease-out;
+}
+
+.content {
+  position: relative;
+}
+
+.title {
+  color: #ffd93d;
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.message {
+  color: #d4d6d8;
+  font-size: clamp(0.8rem, 3vw, 0.98rem);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.button {
+  outline: none;
+  padding: 10px 30px;
+  background-color: #ffd93d;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+  min-width: 80px;
+
+  &:hover {
+    background-color: #ffd015;
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.4);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.4);
+  }
+
+  &:focus-visible {
+    outline: solid 2px #fff;
+    outline-offset: 2px;
+  }
+}
+
+.buttonSecondary {
+  background-color: transparent;
+  color: #ffd93d;
+  border: 2px solid #ffd93d;
+
+  &:hover {
+    background-color: rgba(255, 217, 61, 0.1);
+    box-shadow: 0 0 0 2px rgba(255, 217, 61, 0.4);
+  }
+
+  &:active {
+    background-color: rgba(255, 217, 61, 0.05);
+  }
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .modal {
+    padding: 24px 20px;
+    margin: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+    min-width: unset;
+  }
+}

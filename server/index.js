@@ -102,6 +102,12 @@ io.on("connection", (socket) => {
     socket.emit("online-players-count", { count });
   });
 
+  socket.on("leave-room", () => {
+    console.log(`Socket leaving room: ${socket.id}`);
+    gameManager.handlePlayerDisconnect(socket.id);
+    broadcastOnlinePlayersCount();
+  });
+
   socket.on("disconnect", () => {
     console.log(`Socket disconnected: ${socket.id}`);
     gameManager.handlePlayerDisconnect(socket.id);
