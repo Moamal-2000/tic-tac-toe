@@ -14,6 +14,7 @@ const PowerUps = ({ player }) => {
   // Determine if this is the active player's panel (for styling)
   const isPlayer1Turn = playerTurn === SYMBOL_O;
   const isPlayer2Turn = playerTurn === SYMBOL_X;
+
   const isActivePanel =
     (player === "player1" && isPlayer1Turn) ||
     (player === "player2" && isPlayer2Turn);
@@ -25,8 +26,8 @@ const PowerUps = ({ player }) => {
 
   // Determine if buttons should be disabled because it's not this player's turn
   const isMyTurn =
-    (player === "player2" && !isPlayer2Turn) ||
-    (player === "player1" && !isPlayer1Turn);
+    (player === "player1" && isPlayer1Turn) ||
+    (player === "player2" && isPlayer2Turn);
 
   const classes = [
     s.powerUps,

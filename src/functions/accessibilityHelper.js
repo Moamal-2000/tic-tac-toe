@@ -59,7 +59,9 @@ export function shouldDisablePowerUp({
   isMultiplayer = false,
 }) {
   if (isMultiplayer) {
-    return powerUps.hasActivePowerUp || !available || winner || draw;
+    return (
+      powerUps.hasActivePowerUp || !available || winner || draw || !isMyTurn
+    );
   }
 
   // For single player, calculate locally
