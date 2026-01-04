@@ -17,6 +17,8 @@ export default async function RootLayout({ children, params }) {
   const { locale } = await params;
   const messages = await getMessages();
 
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -24,7 +26,7 @@ export default async function RootLayout({ children, params }) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir="en">
+    <html lang={locale} dir={dir}>
       <NextIntlClientProvider locale={locale} messages={messages}>
         <body>
           <MainMenu />
