@@ -3,13 +3,15 @@
 import { KEY_DEBOUNCE_DELAY_MS } from "@/data/constants";
 import { enterFullScreen, isFullScreenSupported } from "@/functions/helper";
 import useFunctionOnKey from "@/hooks/useFunctionOnKey";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import s from "./FullscreenToggleButton.module.scss";
 
 const FullscreenToggleButton = ({ playClickSound }) => {
+  const t = useTranslations("header");
   const [isFullScreen, setIsFullScreen] = useState(false);
   useFunctionOnKey(toggleFullScreen, ["KeyF"], KEY_DEBOUNCE_DELAY_MS, true);
-  const title = isFullScreen ? "Exit Full Screen" : "Enter Full Screen";
+  const title = t(`fullscreen.${isFullScreen ? "exit" : "enter"}`);
 
   function toggleFullScreen() {
     playClickSound?.();

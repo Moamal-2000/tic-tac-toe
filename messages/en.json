@@ -1,3 +1,26 @@
 {
-  "hello": "hello world"
+  "header": {
+    "about": "About",
+    "menu": "Menu",
+    "reset": "Reset",
+    "rematch": "Rematch",
+    "fullscreen": {
+      "enter": "Enter Full Screen",
+      "exit": "Exit Full Screen"
+    },
+    "volume": {
+      "mute": "Mute Sound",
+      "unmute": "Unmute Sound"
+    },
+    "install": {
+      "button": "Install",
+      "button_app": "Install App",
+      "title": "Install App",
+      "ios_title": "Tap the share icon and select 'Add to Home Screen'"
+    },
+    "playModes": {
+      "classic": "Classic",
+      "autoHide": "Auto Hide Mode"
+    }
+  }
 }

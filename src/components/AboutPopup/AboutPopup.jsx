@@ -3,7 +3,6 @@
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
-import { useTranslations } from "next-intl";
 import { useRef } from "react";
 import AboutHeader from "./AboutHeader/AboutHeader";
 import s from "./AboutPopup.module.scss";
@@ -17,9 +16,6 @@ const AboutPopup = () => {
   const aboutArticleRef = useRef(null);
   const showClass = isAboutModelActive ? s.show : "";
   const playSound = usePreloadSounds({ click: soundFiles.click });
-  const t = useTranslations();
-
-  console.log(t("hello"));
 
   function handleOverlayClick(event) {
     const popupElement = aboutArticleRef.current;

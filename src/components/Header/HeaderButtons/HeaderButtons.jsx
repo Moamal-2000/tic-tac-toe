@@ -7,6 +7,7 @@ import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import { useTranslations } from "next-intl";
 import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
 import s from "./HeaderButtons.module.scss";
@@ -14,6 +15,7 @@ import PlayModeSelector from "./PlayModeSelector/PlayModeSelector";
 import VolumeButton from "./VolumeButton/VolumeButton";
 
 const HeaderButtons = () => {
+  const t = useTranslations("header");
   const resetStats = useXOStore((s) => s.resetStats);
   const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore();
   const { updateMultiplayerState } = useMultiplayerStore((s) => s);
@@ -51,10 +53,10 @@ const HeaderButtons = () => {
         />
         <VolumeButton />
         <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
-        <Button onClick={handleAboutClick}>About</Button>
-        <Button onClick={handleMenuClick}>Menu</Button>
+        <Button onClick={handleAboutClick}>{t("about")}</Button>
+        <Button onClick={handleMenuClick}>{t("menu")}</Button>
         <Button onClick={handleResetClick}>
-          {isOnlineMode ? "Rematch" : "Reset"}
+          {isOnlineMode ? t("rematch") : t("reset")}
         </Button>
       </div>
     </div>

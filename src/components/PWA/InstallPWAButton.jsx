@@ -2,9 +2,11 @@
 
 import s from "@/components/Shared/Button/Button.module.scss";
 import { isInStandaloneMode, isIOS, isStandalone } from "@/functions/helper";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const InstallPWAButton = ({ playClickSound }) => {
+  const t = useTranslations("header");
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isAppInstalled, setIsAppInstalled] = useState(false);
   const [showIosInstall, setShowIosInstall] = useState(false);
@@ -46,9 +48,8 @@ const InstallPWAButton = ({ playClickSound }) => {
     setDeferredPrompt(null);
   }
 
-  const title = showIosInstall
-    ? "Tap the share icon and select 'Add to Home Screen'"
-    : "Install App";
+  const title = t(`install.${showIosInstall ? "ios_title" : "title"}`);
+  const text = t(`install.${showIosInstall ? "button_app" : "button"}`);
   const showInstallButton =
     (deferredPrompt && !isAppInstalled) || showIosInstall;
 
@@ -60,7 +61,7 @@ const InstallPWAButton = ({ playClickSound }) => {
         className={s.button}
         title={title}
       >
-        {showIosInstall ? "Install App" : "Install"}
+        {text}
       </button>
     )
   );

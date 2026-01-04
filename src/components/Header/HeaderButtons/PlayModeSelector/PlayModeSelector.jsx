@@ -3,9 +3,11 @@
 import { PLAY_MODES } from "@/data/constants";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import { useTranslations } from "next-intl";
 import s from "./PlayModeSelector.module.scss";
 
 const PlayModeSelector = ({ playClickSound }) => {
+  const t = useTranslations("header");
   const {
     playMode,
     updateXOStoreState,
@@ -30,13 +32,13 @@ const PlayModeSelector = ({ playClickSound }) => {
 
   return (
     <div className={s.playModeSelector}>
-      {PLAY_MODES.map(({ name, type, id }) => (
+      {PLAY_MODES.map(({ type, id }) => (
         <button
           key={`${type}-${id}`}
           className={type === playMode ? s.active : ""}
           onClick={() => handleClick(type)}
         >
-          {name}
+          {t(`playModes.${type === "autoHideMode" ? "autoHide" : "classic"}`)}
         </button>
       ))}
     </div>
