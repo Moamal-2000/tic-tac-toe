@@ -1,7 +1,10 @@
+import createNextIntlPlugin from "next-intl/plugin";
+
 const nextConfig = {
   devIndicators: false,
   reactCompiler: true,
   productionBrowserSourceMaps: true,
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.js");
+export default withNextIntl(nextConfig);
