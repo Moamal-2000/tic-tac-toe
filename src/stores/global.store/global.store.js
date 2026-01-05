@@ -6,6 +6,7 @@ export const useGlobalStore = create((set, get) => ({
   gameMode: null, // "local" | "computer" | "online"
   botDifficulty: "medium", // "easy" | "medium" | "hard"
   waitingOpponent: false,
+  isLangMenuActive: false,
 
   toggleAboutModel: (value) => {
     set({ isAboutModelActive: value ? value : !get().isAboutModelActive });

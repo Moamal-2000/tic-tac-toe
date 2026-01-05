@@ -1,0 +1,27 @@
+{
+  "header": {
+    "about": "À propos",
+    "menu": "Menu",
+    "reset": "Réinitialiser",
+    "rematch": "Rejouer",
+    "language": "Langue",
+    "fullscreen": {
+      "enter": "Plein écran",
+      "exit": "Quitter le plein écran"
+    },
+    "volume": {
+      "mute": "Couper le son",
+      "unmute": "Activer le son"
+    },
+    "install": {
+      "button": "Installer",
+      "button_app": "Installer l'application",
+      "title": "Installer l'application",
+      "ios_title": "Appuyez sur l'icône de partage et sélectionnez 'Ajouter à l'écran d'accueil'"
+    },
+    "playModes": {
+      "classic": "Classique",
+      "autoHide": "Mode masquage automatique"
+    }
+  }
+}

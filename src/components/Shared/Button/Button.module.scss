@@ -8,6 +8,9 @@
   border-radius: 8px;
   font-size: .75rem;
   text-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   transition: background .2s ease, border-color .2s ease;
 
   &:hover {
@@ -27,9 +30,6 @@
 }
 
 .button>svg {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 4px;
   width: 14px;
   height: 14px;
   flex-shrink: 0;

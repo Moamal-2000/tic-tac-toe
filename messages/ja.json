@@ -1,0 +1,27 @@
+{
+  "header": {
+    "about": "について",
+    "menu": "メニュー",
+    "reset": "リセット",
+    "rematch": "再試合",
+    "language": "言語",
+    "fullscreen": {
+      "enter": "フルスクリーン表示",
+      "exit": "フルスクリーン終了"
+    },
+    "volume": {
+      "mute": "ミュート",
+      "unmute": "ミュート解除"
+    },
+    "install": {
+      "button": "インストール",
+      "button_app": "アプリをインストール",
+      "title": "アプリをインストール",
+      "ios_title": "共有アイコンをタップして「ホーム画面に追加」を選択してください"
+    },
+    "playModes": {
+      "classic": "クラシック",
+      "autoHide": "自動非表示モード"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "header": {
+    "about": "Névjegy",
+    "menu": "Menü",
+    "reset": "Visszaállítás",
+    "rematch": "Újra játszás",
+    "language": "Nyelv",
+    "fullscreen": {
+      "enter": "Teljes képernyő",
+      "exit": "Kilépés a teljes képernyőből"
+    },
+    "volume": {
+      "mute": "Hang némítása",
+      "unmute": "Hang visszajátszása"
+    },
+    "install": {
+      "button": "Telepítés",
+      "button_app": "Alkalmazás telepítése",
+      "title": "Alkalmazás telepítése",
+      "ios_title": "Koppintson a megosztás ikonra és válassza a 'Hozzáadás a kezdőképernyőhöz' opciót"
+    },
+    "playModes": {
+      "classic": "Klasszikus",
+      "autoHide": "Automatikus elrejtés mód"
+    }
+  }
+}
