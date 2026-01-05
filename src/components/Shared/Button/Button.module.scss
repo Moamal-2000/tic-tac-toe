@@ -25,3 +25,14 @@
     border-color: #777c84;
   }
 }
+
+.button>svg {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  pointer-events: none;
+  fill: #e9e9ec;
+}

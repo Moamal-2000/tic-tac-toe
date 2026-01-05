@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .button {
   -webkit-tap-highlight-color: transparent;
   outline: none;
@@ -30,7 +32,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@include m.small {
   .button {
     position: static;
   }

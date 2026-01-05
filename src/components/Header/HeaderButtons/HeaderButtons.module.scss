@@ -6,7 +6,11 @@
   align-items: center;
 }
 
-@include m.medium {
+.headerButtons>* {
+  flex: 1;
+}
+
+@include m.large {
   .headerButtons.onlineMode {
     align-items: flex-start;
     gap: 0;
@@ -17,12 +21,27 @@
   }
 }
 
-@media (max-width: 500px) {
+@include m.small {
+  .headerButtons {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .headerButtons:not(.onlineMode) {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (max-width: 535px) {
   .headerButtons {
     width: 100%;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+  }
+
+  .headerButtons:not(.onlineMode) {
+    flex-direction: column;
   }
 }
 
@@ -32,27 +51,19 @@
   align-items: center;
 }
 
-@include m.medium {
-  .headerButtons .wrapper2 {
-    align-self: flex-end;
+@include m.small {
+  .headerButtons :where(.wrapper1, .wrapper2) {
+    gap: 8px;
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 535px) {
   .headerButtons :where(.wrapper1, .wrapper2) {
     flex-wrap: wrap;
-  }
-
-  .headerButtons .wrapper2 {
-    align-self: flex-start;
-  }
-}
-
-@media (max-width: 500px) {
-  .headerButtons :where(.wrapper1, .wrapper2) {
     width: 100%;
 
-    &>* {
+    &>*,
+    &>*>* {
       flex: 1;
     }
   }

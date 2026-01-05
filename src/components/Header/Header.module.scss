@@ -2,22 +2,18 @@
 
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   max-width: 867px;
   margin-bottom: 30px;
-  gap: 30px;
+}
+
+.header>* {
+  flex: 1;
 }
 
 @include m.small {
   .header {
     margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 620px) {
-  .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
@@ -29,9 +25,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 0;
 }
 
 .header .logo {
+  position: fixed;
+  left: 20px;
+  top: 20px;
   outline: solid 2px transparent;
   border-radius: 1px;
   outline-offset: 12px;
@@ -40,5 +42,11 @@
 
   &:focus-visible {
     outline-color: #fff;
+  }
+}
+
+@include m.small {
+  .header .logo {
+    position: static;
   }
 }
