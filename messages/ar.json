@@ -23,5 +23,30 @@
       "classic": "كلاسيكي",
       "autoHide": "وضع الإخفاء التلقائي"
     }
+  },
+  "main_menu": {
+    "game_modes": {
+      "vs_computer": "العب ضد الكمبيوتر",
+      "local": "العب محلياً",
+      "online": "العب عبر الإنترنت"
+    },
+    "difficulty": {
+      "easy": "سهل",
+      "medium": "متوسط",
+      "hard": "صعب"
+    },
+    "multiplayer": {
+      "setup": {
+        "title": "إعداد اللاعبين المتعددين",
+        "subtitle": "تكوين إعدادات اللعبة",
+        "online_players": "اللاعبون المتصلون",
+        "find_match": "ابحث عن مباراة"
+      },
+      "board_size": "حجم اللوحة",
+      "loading": {
+        "finding_match": "جاري البحث عن مباراة...",
+        "waiting": "يرجى الانتظار بينما نوصلك بلاعب آخر"
+      }
+    }
   }
 }

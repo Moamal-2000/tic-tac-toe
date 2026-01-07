@@ -23,5 +23,30 @@
       "classic": "Classique",
       "autoHide": "Mode masquage automatique"
     }
+  },
+  "main_menu": {
+    "game_modes": {
+      "vs_computer": "Jouer contre l'ordinateur",
+      "local": "Jouer localement",
+      "online": "Jouer en ligne"
+    },
+    "difficulty": {
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile"
+    },
+    "multiplayer": {
+      "setup": {
+        "title": "Configuration multijoueur",
+        "subtitle": "Configurez vos paramètres de jeu",
+        "online_players": "Joueurs en ligne",
+        "find_match": "Trouver une partie"
+      },
+      "board_size": "Taille du plateau",
+      "loading": {
+        "finding_match": "Recherche d'une partie...",
+        "waiting": "Veuillez patienter pendant que nous vous connectons à un autre joueur"
+      }
+    }
   }
 }

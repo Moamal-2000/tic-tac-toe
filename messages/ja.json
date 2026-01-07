@@ -23,5 +23,30 @@
       "classic": "クラシック",
       "autoHide": "自動非表示モード"
     }
+  },
+  "main_menu": {
+    "game_modes": {
+      "vs_computer": "コンピューター対戦",
+      "local": "ローカルプレイ",
+      "online": "オンラインプレイ"
+    },
+    "difficulty": {
+      "easy": "簡単",
+      "medium": "普通",
+      "hard": "難しい"
+    },
+    "multiplayer": {
+      "setup": {
+        "title": "マルチプレイヤー設定",
+        "subtitle": "ゲーム設定を構成する",
+        "online_players": "オンラインプレイヤー",
+        "find_match": "マッチを探す"
+      },
+      "board_size": "ボードサイズ",
+      "loading": {
+        "finding_match": "マッチを探しています...",
+        "waiting": "他のプレイヤーと接続するまでお待ちください"
+      }
+    }
   }
 }

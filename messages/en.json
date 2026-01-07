@@ -23,5 +23,30 @@
       "classic": "Classic",
       "autoHide": "Auto Hide Mode"
     }
+  },
+  "main_menu": {
+    "game_modes": {
+      "vs_computer": "Play vs Computer",
+      "local": "Play Locally",
+      "online": "Play Online"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "multiplayer": {
+      "setup": {
+        "title": "Multiplayer Setup",
+        "subtitle": "Configure your game settings",
+        "online_players": "Online Players",
+        "find_match": "Find Match"
+      },
+      "board_size": "Board Size",
+      "loading": {
+        "finding_match": "Finding Match...",
+        "waiting": "Please wait while we connect you with another player"
+      }
+    }
   }
 }

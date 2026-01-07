@@ -23,5 +23,30 @@
       "classic": "Klasszikus",
       "autoHide": "Automatikus elrejtés mód"
     }
+  },
+  "main_menu": {
+    "game_modes": {
+      "vs_computer": "Játék a számítógép ellen",
+      "local": "Helyi játék",
+      "online": "Online játék"
+    },
+    "difficulty": {
+      "easy": "Könnyű",
+      "medium": "Közepes",
+      "hard": "Nehéz"
+    },
+    "multiplayer": {
+      "setup": {
+        "title": "Többjátékos beállítás",
+        "subtitle": "Konfigurálja a játék beállításait",
+        "online_players": "Online játékosok",
+        "find_match": "Párosítás keresése"
+      },
+      "board_size": "Játéktér mérete",
+      "loading": {
+        "finding_match": "Párosítás keresése...",
+        "waiting": "Kérjük, várjon, amíg összekötjük egy másik játékossal"
+      }
+    }
   }
 }
