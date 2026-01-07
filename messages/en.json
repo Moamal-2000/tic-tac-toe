@@ -48,5 +48,15 @@
         "waiting": "Please wait while we connect you with another player"
       }
     }
+  },
+  "game_stats": {
+    "p1_wins": "P1 Wins",
+    "draws": "Draws",
+    "p2_wins": "P2 Wins"
+  },
+  "power_ups": {
+    "freeze": "Freeze",
+    "bomb": "Bomb",
+    "swap": "Swap"
   }
 }

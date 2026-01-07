@@ -48,5 +48,15 @@
         "waiting": "Kérjük, várjon, amíg összekötjük egy másik játékossal"
       }
     }
+  },
+  "game_stats": {
+    "p1_wins": "1. játékos győzelmei",
+    "draws": "Döntetlenek",
+    "p2_wins": "2. játékos győzelmei"
+  },
+  "power_ups": {
+    "freeze": "Fagyasztás",
+    "bomb": "Bomba",
+    "swap": "Csere"
   }
 }

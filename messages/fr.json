@@ -48,5 +48,15 @@
         "waiting": "Veuillez patienter pendant que nous vous connectons à un autre joueur"
       }
     }
+  },
+  "game_stats": {
+    "p1_wins": "Victoires J1",
+    "draws": "Matchs nuls",
+    "p2_wins": "Victoires J2"
+  },
+  "power_ups": {
+    "freeze": "Geler",
+    "bomb": "Bombe",
+    "swap": "Échanger"
   }
 }
