@@ -1,15 +1,12 @@
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
+import { useTranslations } from "next-intl";
 
 const GameObjectiveCard = () => {
+  const t = useTranslations("about.game_objective");
+
   return (
-    <InfoCard title="Game Objective">
-      <p>
-        Tic Tac Toe is a classic strategy game where two players take turns
-        placing their symbols on a grid. The first player to get three (or more
-        on larger boards) of their symbols in a row, either{" "}
-        <strong>horizontally</strong>, <strong>vertically</strong>, or{" "}
-        <strong>diagonally</strong>, wins!
-      </p>
+    <InfoCard title={t("title")}>
+      <p>{t("description")}</p>
     </InfoCard>
   );
 };

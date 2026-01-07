@@ -84,12 +84,10 @@
       "freeze": {
         "title": "Power-Up Geler",
         "description": "Le power-up Geler vous permet d'immobiliser l'un des symboles actifs de votre adversaire sur le plateau. Une fois qu'un symbole est gelé, il devient inactif, ce qui signifie :",
-        "list": [
-          "Il ne peut pas être écrasé.",
-          "Il ne contribue à aucune combinaison gagnante.",
-          "Il agit efficacement comme un bloc dans la stratégie de votre adversaire.",
-          "Il peut encore être échangé en utilisant le power-up Échanger."
-        ],
+        "list_item_1": "Il ne peut pas être écrasé.",
+        "list_item_2": "Il ne contribue à aucune combinaison gagnante.",
+        "list_item_3": "Il agit efficacement comme un bloc dans la stratégie de votre adversaire.",
+        "list_item_4": "Il peut encore être échangé en utilisant le power-up Échanger.",
         "defensive_tool": "Ce power-up est un outil défensif utilisé pour perturber les lignes gagnantes potentielles. Il ne peut cibler que les symboles adverses existants, pas les vôtres ou les cellules vides. Cependant, si un power-up Bombe frappe une cellule gelée, il la dégelera du plateau sans retirer le symbole.",
         "example": "Dans cet exemple, le Joueur 1 ({symbol}) a utilisé le power-up Geler sur le symbole du Joueur 2 ({symbol2}) dans la cellule du milieu supérieur. Ce {symbol2} est maintenant gelé, le rendant inutilisable dans les futurs mouvements et bloquant le Joueur 2 de compléter des lignes verticales, diagonales ou horizontales à travers ce carré."
       },

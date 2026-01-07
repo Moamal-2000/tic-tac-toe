@@ -84,12 +84,10 @@
       "freeze": {
         "title": "Fagyasztás Power-up",
         "description": "A Fagyasztás power-up lehetővé teszi, hogy immobilizálja az ellenfele egyik aktív szimbólumát a táblán. Ha egy szimbólum megfagy, inaktívvá válik, ami azt jelenti:",
-        "list": [
-          "Nem lehet felülírni.",
-          "Nem járul hozzá semmilyen győzelmi kombinációhoz.",
-          "Hatékonyan blokkként működik az ellenfél stratégiájában.",
-          "Még mindig felcserélhető a Csere power-up használatával."
-        ],
+        "list_item_1": "Nem lehet felülírni.",
+        "list_item_2": "Nem járul hozzá semmilyen győzelmi kombinációhoz.",
+        "list_item_3": "Hatékonyan blokkként működik az ellenfél stratégiájában.",
+        "list_item_4": "Még mindig felcserélhető a Csere power-up használatával.",
         "defensive_tool": "Ez a power-up egy védekező eszköz a lehetséges győzelmi sorok megszakítására. Csak meglévő ellenfél szimbólumokat célozhat meg, nem a sajátjait vagy az üres cellákat. Azonban, ha egy Bomba power-up eltalál egy fagyott cellát, felolvasztja azt a tábláról a szimbólum eltávolítása nélkül.",
         "example": "Ebben a példában az 1. játékos ({symbol}) a Fagyasztás power-upot használta a 2. játékos ({symbol2}) szimbólumán a felső-középső cellában. Ez a {symbol2} most megfagyott, használhatatlanná téve a jövőbeli lépésekben és blokkolva a 2. játékost a függőleges, átlós vagy vízszintes sorok befejezésében ezen a négyzeten keresztül."
       },

@@ -84,12 +84,10 @@
       "freeze": {
         "title": "Freeze Power-Up",
         "description": "The Freeze power-up allows you to immobilize one of your opponent's active symbols on the board. Once a symbol is frozen, it becomes inactive, meaning:",
-        "list": [
-          "It cannot be overwritten.",
-          "It does not contribute to any winning combinations.",
-          "It effectively acts as a block in your opponent's strategy.",
-          "It can still be exchanged using the Swap power-up."
-        ],
+        "list_item_1": "It cannot be overwritten.",
+        "list_item_2": "It does not contribute to any winning combinations.",
+        "list_item_3": "It effectively acts as a block in your opponent's strategy.",
+        "list_item_4": "It can still be exchanged using the Swap power-up.",
         "defensive_tool": "This power-up is a defensive tool used to disrupt potential winning lines. It can only target existing opponent symbols, not your own or empty cells. However, if a Bomb power-up hits a frozen cell, it will unfreeze it from the board without remove the symbol.",
         "example": "In this example, Player 1 ({symbol}) has used the Freeze power-up on Player 2's ({symbol2}) symbol in the top-middle cell. This {symbol2} is now frozen, making it unusable in future moves and blocking Player 2 from completing vertical, diagonal, or horizontal lines through that square."
       },
