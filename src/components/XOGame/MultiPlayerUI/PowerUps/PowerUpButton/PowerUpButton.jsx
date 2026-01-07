@@ -4,6 +4,7 @@ import { soundFiles, UNSELECT_SOUND } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import s from "./PowerUpButton.module.scss";
 
@@ -11,9 +12,12 @@ const PowerUpButton = ({
   data: { name, available, coolDown, player },
   disabled,
 }) => {
-  const { powerUps } = useMultiplayerStore((s) => s);
+  const powerUps = useMultiplayerStore((s) => s.powerUps);
+  const t = useTranslations("power_ups");
+
   const { selectedPower, whoUsingPower } = powerUps;
   const isSelected = selectedPower === name && whoUsingPower === player;
+
   const playSound = usePreloadSounds({ unselect: soundFiles.unselect });
 
   const classes = [
@@ -47,7 +51,7 @@ const PowerUpButton = ({
         height={21}
         priority
       />
-      <span className={s.powerName}>{name}</span>
+      <span className={s.powerName}>{t(name)}</span>
       {coolDown > 0 && <span className={s.coolDown}>{coolDown}</span>}
     </button>
   );
