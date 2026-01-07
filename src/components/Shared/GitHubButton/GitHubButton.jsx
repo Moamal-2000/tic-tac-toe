@@ -1,5 +1,6 @@
 "use client";
 
+import { GITHUB_URL } from "@/data/links";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import s from "./GitHubButton.module.scss";
@@ -9,7 +10,7 @@ const GitHubButton = () => {
 
   return (
     <a
-      href="https://github.com/Moamal-2000/tic-tac-toe"
+      href={GITHUB_URL}
       target="_blank"
       className={s.button}
       rel="noreferrer"
