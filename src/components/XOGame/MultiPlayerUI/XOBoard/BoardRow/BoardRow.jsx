@@ -144,7 +144,7 @@ const BoardRow = ({ row, rowIndex }) => {
   }
 
   return (
-    <div className={s.row}>
+    <div className={s.row} dir="ltr">
       {row.map((squareData, columnIndex) => {
         const compatibleSquareData = {
           fillWith: squareData.owner,
