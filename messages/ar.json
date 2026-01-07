@@ -22,7 +22,8 @@
     "playModes": {
       "classic": "كلاسيكي",
       "autoHide": "وضع الإخفاء التلقائي"
-    }
+    },
+    "github": "زيارة مستودع GitHub"
   },
   "main_menu": {
     "game_modes": {

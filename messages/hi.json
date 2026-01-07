@@ -22,7 +22,8 @@
     "playModes": {
       "classic": "क्लासिक",
       "autoHide": "ऑटो हाइड मोड"
-    }
+    },
+    "github": "GitHub रिपॉजिटरी पर जाएं"
   },
   "main_menu": {
     "game_modes": {

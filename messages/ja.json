@@ -22,7 +22,8 @@
     "playModes": {
       "classic": "クラシック",
       "autoHide": "自動非表示モード"
-    }
+    },
+    "github": "GitHubリポジトリにアクセス"
   },
   "main_menu": {
     "game_modes": {

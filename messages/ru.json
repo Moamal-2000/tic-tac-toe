@@ -22,7 +22,8 @@
     "playModes": {
       "classic": "Классический",
       "autoHide": "Режим автоскрытия"
-    }
+    },
+    "github": "Посетить GitHub репозиторий"
   },
   "main_menu": {
     "game_modes": {

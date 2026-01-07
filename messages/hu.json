@@ -22,7 +22,8 @@
     "playModes": {
       "classic": "Klasszikus",
       "autoHide": "Automatikus elrejtés mód"
-    }
+    },
+    "github": "GitHub adattár meglátogatása"
   },
   "main_menu": {
     "game_modes": {
