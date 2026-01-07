@@ -44,7 +44,7 @@
       },
       "board_size": "Taille du plateau",
       "loading": {
-        "finding_match": "Recherche d'une partie...",
+        "finding_match": "Recherche d'une partie ...",
         "waiting": "Veuillez patienter pendant que nous vous connectons à un autre joueur"
       }
     }

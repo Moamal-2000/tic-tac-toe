@@ -44,7 +44,7 @@
       },
       "board_size": "Játéktér mérete",
       "loading": {
-        "finding_match": "Párosítás keresése...",
+        "finding_match": "Párosítás keresése ...",
         "waiting": "Kérjük, várjon, amíg összekötjük egy másik játékossal"
       }
     }

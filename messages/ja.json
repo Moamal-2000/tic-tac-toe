@@ -44,7 +44,7 @@
       },
       "board_size": "ボードサイズ",
       "loading": {
-        "finding_match": "マッチを探しています...",
+        "finding_match": "マッチを探しています ...",
         "waiting": "他のプレイヤーと接続するまでお待ちください"
       }
     }
