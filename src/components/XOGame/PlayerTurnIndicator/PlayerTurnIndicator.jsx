@@ -2,6 +2,7 @@
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import { getPlayerIndicatorClasses } from "@/functions/classNames";
+import { useTranslations } from "next-intl";
 import s from "./PlayerTurnIndicator.module.scss";
 
 const PlayerTurnIndicator = ({
@@ -12,9 +13,10 @@ const PlayerTurnIndicator = ({
   showOn,
   hideUntilShow,
 }) => {
+  const t = useTranslations("global");
+
   const p1ActiveClass = playerTurn === SYMBOL_O ? s.active : "";
   const p2ActiveClass = playerTurn === SYMBOL_X ? s.active : "";
-
   const containerClasses = getPlayerIndicatorClasses({
     cssModule: s,
     boardSize,
@@ -33,7 +35,7 @@ const PlayerTurnIndicator = ({
           </svg>
         </div>
 
-        <span className={s.label}>P1</span>
+        <span className={s.label}>{t("player")} 1</span>
       </div>
 
       <div className={`${s.player} ${s.p2} ${p2ActiveClass}`}>
@@ -43,7 +45,7 @@ const PlayerTurnIndicator = ({
           </svg>
         </div>
 
-        <span className={s.label}>P2</span>
+        <span className={s.label}>{t("player")} 2</span>
       </div>
     </div>
   );

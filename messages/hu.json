@@ -105,5 +105,8 @@
         "example_after": "A {symbol} és {symbol2} sikeresen felcserélte a helyét. Ez a stratégiai lépés lehetővé tette a 2. játékos ({symbol2}) számára, hogy azonnal befejezzen egy függőleges győzelmi sort a második oszlopon keresztül, biztosítva győzelmüket. A Csere power-up kihasználásával még egy fagyott szimbólummal {symbol2} képes volt egy védekező pozíciót győzelmi pozícióvá alakítani."
       }
     }
+  },
+  "global": {
+    "player": "Játékos"
   }
 }

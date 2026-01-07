@@ -105,5 +105,8 @@
         "example_after": "The {symbol} and {symbol2} have successfully swapped places. This strategic move allowed Player 2 ({symbol2}) to immediately complete a vertical winning line through the second column, securing their victory. By leveraging the Swap power-up even with a frozen symbol {symbol2} was able to turn a defensive position into a winning one."
       }
     }
+  },
+  "global": {
+    "player": "player"
   }
 }

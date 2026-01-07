@@ -105,5 +105,8 @@
         "example_after": "Le {symbol} et {symbol2} ont échangé leurs places avec succès. Ce mouvement stratégique a permis au Joueur 2 ({symbol2}) de compléter immédiatement une ligne gagnante verticale à travers la deuxième colonne, assurant leur victoire. En exploitant le power-up Échanger même avec un symbole gelé {symbol2} a pu transformer une position défensive en position gagnante."
       }
     }
+  },
+  "global": {
+    "player": "Joueur"
   }
 }
