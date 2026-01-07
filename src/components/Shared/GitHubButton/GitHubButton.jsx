@@ -19,7 +19,7 @@ const GitHubButton = () => {
       <svg aria-hidden="true">
         <use href={"/icons-sprite.svg#github"} />
       </svg>
-      GitHub
+      <span>GitHub</span>
     </a>
   );
 };

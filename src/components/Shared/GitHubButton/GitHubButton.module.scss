@@ -3,17 +3,16 @@
 .button {
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  background: #313946;
-  border: 1px solid #5a606a;
-  color: #e9e9ec;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: .75rem;
   position: fixed;
-  display: flex;
-  align-items: center;
   left: 20px;
   bottom: 40px;
+  background: #313946;
+  border: 1px solid #5a606a;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   transition: background .2s ease, border-color .2s ease;
 
   &:hover {
@@ -32,6 +31,12 @@
   }
 }
 
+.button>span {
+  font-size: .75rem;
+  color: #e9e9ec;
+  height: 16px;
+}
+
 @include m.small {
   .button {
     position: static;
@@ -39,7 +44,6 @@
 }
 
 .button>svg {
-  margin-right: 8px;
   width: 16px;
   height: 16px;
   fill: rgba(255, 255, 255, .8);
