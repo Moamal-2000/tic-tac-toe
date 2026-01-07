@@ -4,12 +4,13 @@
   background: #313946;
   border: 1px solid #5a606a;
   color: #e9e9ec;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 8px;
   font-size: .75rem;
   text-wrap: nowrap;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   transition: background .2s ease, border-color .2s ease;
 
