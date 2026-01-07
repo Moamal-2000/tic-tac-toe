@@ -58,5 +58,53 @@
     "freeze": "Geler",
     "bomb": "Bombe",
     "swap": "Échanger"
+  },
+  "about": {
+    "title": "À propos de Tic Tac Toe",
+    "close_aria": "Fermer la fenêtre À propos",
+    "game_objective": {
+      "title": "Objectif du jeu",
+      "description": "Tic Tac Toe est un jeu de stratégie classique où deux joueurs placent tour à tour leurs symboles sur une grille. Le premier joueur à obtenir trois (ou plus sur les plateaux plus grands) de ses symboles alignés, soit horizontalement, verticalement ou en diagonale, gagne !"
+    },
+    "how_to_play": {
+      "title": "Comment jouer",
+      "player1_starts": "Le Joueur 1 ({symbol}) commence toujours la partie en plaçant son symbole en premier. Le Joueur 2 ({symbol2}) suit.",
+      "click_to_place": "Cliquez simplement sur n'importe quelle cellule vide du plateau de jeu pour placer votre symbole.",
+      "get_in_row": "Alignez vos symboles (horizontal, vertical ou diagonal) pour gagner.",
+      "draw_if_full": "Si toutes les cellules sont remplies sans vainqueur, c'est un match nul."
+    },
+    "winning_example": {
+      "title": "Exemple de victoire",
+      "description": "Voici une illustration claire de la manière dont le Joueur 1 ({symbol}) peut obtenir la victoire avec une connexion diagonale sur un plateau standard 4x4 :",
+      "scenario": "Dans ce scénario, le Joueur 1 aligne avec succès quatre symboles {symbol} le long d'un chemin diagonal, assurant la victoire."
+    },
+    "power_ups": {
+      "title": "Power-Ups",
+      "description": "Des avantages stratégiques vous attendent ! Chaque joueur a accès à trois power-ups uniques qui peuvent radicalement modifier le déroulement du jeu. Les power-ups ont une période de recharge après utilisation, ce qui signifie qu'ils ne redeviennent disponibles qu'après un certain nombre de tours. Les utiliser au bon moment est la clé pour maîtriser le jeu !",
+      "freeze": {
+        "title": "Power-Up Geler",
+        "description": "Le power-up Geler vous permet d'immobiliser l'un des symboles actifs de votre adversaire sur le plateau. Une fois qu'un symbole est gelé, il devient inactif, ce qui signifie :",
+        "list": [
+          "Il ne peut pas être écrasé.",
+          "Il ne contribue à aucune combinaison gagnante.",
+          "Il agit efficacement comme un bloc dans la stratégie de votre adversaire.",
+          "Il peut encore être échangé en utilisant le power-up Échanger."
+        ],
+        "defensive_tool": "Ce power-up est un outil défensif utilisé pour perturber les lignes gagnantes potentielles. Il ne peut cibler que les symboles adverses existants, pas les vôtres ou les cellules vides. Cependant, si un power-up Bombe frappe une cellule gelée, il la dégelera du plateau sans retirer le symbole.",
+        "example": "Dans cet exemple, le Joueur 1 ({symbol}) a utilisé le power-up Geler sur le symbole du Joueur 2 ({symbol2}) dans la cellule du milieu supérieur. Ce {symbol2} est maintenant gelé, le rendant inutilisable dans les futurs mouvements et bloquant le Joueur 2 de compléter des lignes verticales, diagonales ou horizontales à travers ce carré."
+      },
+      "bomb": {
+        "title": "Power-Up Bombe",
+        "description": "Le power-up Bombe vous donne la capacité de cibler n'importe quelle case unique sur le plateau. Lorsqu'il est activé, la case sélectionnée et toutes les 8 cases adjacentes environnantes (si elles existent dans les limites du plateau) seront instantanément effacées de tous symboles. Si une case ciblée était gelée, la bombe retirera efficacement l'effet de gel mais pas le symbole.",
+        "example_before": "Le Joueur 1 ({symbol}) s'apprête à déployer le power-up Bombe, ciblant le {symbol2} marqué dans la deuxième rangée, deuxième colonne. Remarquez les symboles qui l'entourent.",
+        "example_after": "Le {symbol2} et tous ses symboles adjacents ont été effacés avec succès, ouvrant de nouvelles possibilités stratégiques pour les deux joueurs."
+      },
+      "swap": {
+        "title": "Power-Up Échanger",
+        "description": "Le power-up Échanger vous permet d'échanger les positions de deux symboles existants sur le plateau. Ce power-up n'est actif que lorsque deux cases occupées sont sélectionnées ; il ne peut pas être utilisé si vous choisissez une case vide. Utilisez ce power-up pour perturber instantanément les lignes gagnantes presque complètes de votre adversaire, ou pour former immédiatement votre propre combinaison gagnante !",
+        "example_before": "Le Joueur 2 ({symbol2}) a activé stratégiquement le power-up Échanger. Ils ont sélectionné leur propre {symbol2} dans le coin inférieur droit même s'il est gelé et un symbole adverse {symbol} dans la même rangée. Ces deux symboles sont sur le point d'échanger leurs places, permettant au Joueur 2 de briser la configuration de l'adversaire et peut-être de mettre en place une ligne gagnante pour eux-mêmes. Le power-up Échanger peut même échanger des symboles gelés, en faisant un outil puissant pour renverser le cours du jeu.",
+        "example_after": "Le {symbol} et {symbol2} ont échangé leurs places avec succès. Ce mouvement stratégique a permis au Joueur 2 ({symbol2}) de compléter immédiatement une ligne gagnante verticale à travers la deuxième colonne, assurant leur victoire. En exploitant le power-up Échanger même avec un symbole gelé {symbol2} a pu transformer une position défensive en position gagnante."
+      }
+    }
   }
 }

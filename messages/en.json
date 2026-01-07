@@ -58,5 +58,53 @@
     "freeze": "Freeze",
     "bomb": "Bomb",
     "swap": "Swap"
+  },
+  "about": {
+    "title": "About Tic Tac Toe",
+    "close_aria": "Close About Popup",
+    "game_objective": {
+      "title": "Game Objective",
+      "description": "Tic Tac Toe is a classic strategy game where two players take turns placing their symbols on a grid. The first player to get three (or more on larger boards) of their symbols in a row, either horizontally, vertically, or diagonally, wins!"
+    },
+    "how_to_play": {
+      "title": "How to Play",
+      "player1_starts": "Player 1 ({symbol}) always starts the game by placing their symbol first. Player 2 ({symbol2}) follows.",
+      "click_to_place": "Simply click on any empty cell on the game board to place your symbol.",
+      "get_in_row": "Get your symbols in a row (horizontal, vertical, or diagonal) to win.",
+      "draw_if_full": "If all cells are filled with no winner, it's a draw."
+    },
+    "winning_example": {
+      "title": "Winning Example",
+      "description": "Here's a clear illustration of how Player 1 ({symbol}) can achieve victory with a diagonal connection on a standard 4x4 board:",
+      "scenario": "In this scenario, Player 1 successfully connects Four {symbol} symbols along a diagonal path, securing the win."
+    },
+    "power_ups": {
+      "title": "Power-Ups",
+      "description": "Strategic advantages await! Each player has access to three unique power-ups that can dramatically alter the game's flow. Power-ups have a cooldown period after use, meaning they become available again only after a certain number of turns have passed. Using them at the right moment is key to mastering the game!",
+      "freeze": {
+        "title": "Freeze Power-Up",
+        "description": "The Freeze power-up allows you to immobilize one of your opponent's active symbols on the board. Once a symbol is frozen, it becomes inactive, meaning:",
+        "list": [
+          "It cannot be overwritten.",
+          "It does not contribute to any winning combinations.",
+          "It effectively acts as a block in your opponent's strategy.",
+          "It can still be exchanged using the Swap power-up."
+        ],
+        "defensive_tool": "This power-up is a defensive tool used to disrupt potential winning lines. It can only target existing opponent symbols, not your own or empty cells. However, if a Bomb power-up hits a frozen cell, it will unfreeze it from the board without remove the symbol.",
+        "example": "In this example, Player 1 ({symbol}) has used the Freeze power-up on Player 2's ({symbol2}) symbol in the top-middle cell. This {symbol2} is now frozen, making it unusable in future moves and blocking Player 2 from completing vertical, diagonal, or horizontal lines through that square."
+      },
+      "bomb": {
+        "title": "Bomb Power-Up",
+        "description": "The Bomb power-up grants you the ability to target any single square on the board. When activated, the selected square and all 8 surrounding adjacent squares (if they exist within the board's boundaries) will be instantly cleared of any symbols. If a targeted square happened to be frozen, the bomb will effectively remove the freeze effect but not the symbol.",
+        "example_before": "Player 1 ({symbol}) is about to deploy the Bomb power-up, targeting the marked {symbol2} in the second row, second column. Notice the symbols surrounding it.",
+        "example_after": "The {symbol2} and all its adjacent symbols have been successfully cleared, opening up new strategic possibilities for both players."
+      },
+      "swap": {
+        "title": "Swap Power-Up",
+        "description": "The Swap power-up allows you to exchange the positions of any two existing symbols on the board. This power-up is only active when two occupied squares are selected; it cannot be used if you choose an empty square. Utilize this power-up to instantly disrupt your opponent's almost-complete winning lines, or to immediately form your own winning combination!",
+        "example_before": "Player 2 ({symbol2}) has strategically activated the Swap power-up. They selected their own {symbol2} in the bottom-right corner even though it's frozen and an opponent's {symbol} in the same row. These two symbols are about to swap places, allowing Player 2 to break the opponent's setup and possibly set up a winning line of their own. The Swap power-up can even exchange symbols that are frozen, making it a powerful tool to turn the tide of the game.",
+        "example_after": "The {symbol} and {symbol2} have successfully swapped places. This strategic move allowed Player 2 ({symbol2}) to immediately complete a vertical winning line through the second column, securing their victory. By leveraging the Swap power-up even with a frozen symbol {symbol2} was able to turn a defensive position into a winning one."
+      }
+    }
   }
 }

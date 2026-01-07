@@ -58,5 +58,53 @@
     "freeze": "Fagyasztás",
     "bomb": "Bomba",
     "swap": "Csere"
+  },
+  "about": {
+    "title": "Névjegy - Tic Tac Toe",
+    "close_aria": "Névjegy ablak bezárása",
+    "game_objective": {
+      "title": "Játék célja",
+      "description": "A Tic Tac Toe egy klasszikus stratégiai játék, ahol két játékos felváltva helyezi el a szimbólumait egy rácsán. Az első játékos, aki három (vagy több nagyobb táblákon) szimbólumot egymás mellé helyez vízszintesen, függőlegesen vagy átlósan, nyer!"
+    },
+    "how_to_play": {
+      "title": "Hogyan kell játszani",
+      "player1_starts": "Az 1. játékos ({symbol}) mindig elkezdi a játékot azzal, hogy elsőként helyezi el a szimbólumát. A 2. játékos ({symbol2}) következik.",
+      "click_to_place": "Egyszerűen kattintson bármely üres cellára a játéktáblán a szimbólumának elhelyezéséhez.",
+      "get_in_row": "Helyezze el a szimbólumait egy sorba (vízszintes, függőleges vagy átlós) a győzelemért.",
+      "draw_if_full": "Ha minden cella megtelik győztes nélkül, az döntetlen."
+    },
+    "winning_example": {
+      "title": "Győzelmi példa",
+      "description": "Itt egyértelmű illusztrációja, hogyan érhet el győzelmet az 1. játékos ({symbol}) átlós kapcsolattal egy szabványos 4x4 táblán:",
+      "scenario": "Ebben a forgatókönyvben az 1. játékos sikeresen összekötött négy {symbol} szimbólumot egy átlós útvonalon, biztosítva a győzelmet."
+    },
+    "power_ups": {
+      "title": "Power-upok",
+      "description": "Stratégiai előnyök várnak! Minden játékos három egyedi power-uphoz férhet hozzá, amelyek drámaian megváltoztathatják a játék folyamatát. A power-upoknak használat után hűtési idejük van, ami azt jelenti, hogy csak bizonyos számú kör után válnak újra elérhetővé. A megfelelő pillanatban való használatuk a játék mesterségének kulcsa!",
+      "freeze": {
+        "title": "Fagyasztás Power-up",
+        "description": "A Fagyasztás power-up lehetővé teszi, hogy immobilizálja az ellenfele egyik aktív szimbólumát a táblán. Ha egy szimbólum megfagy, inaktívvá válik, ami azt jelenti:",
+        "list": [
+          "Nem lehet felülírni.",
+          "Nem járul hozzá semmilyen győzelmi kombinációhoz.",
+          "Hatékonyan blokkként működik az ellenfél stratégiájában.",
+          "Még mindig felcserélhető a Csere power-up használatával."
+        ],
+        "defensive_tool": "Ez a power-up egy védekező eszköz a lehetséges győzelmi sorok megszakítására. Csak meglévő ellenfél szimbólumokat célozhat meg, nem a sajátjait vagy az üres cellákat. Azonban, ha egy Bomba power-up eltalál egy fagyott cellát, felolvasztja azt a tábláról a szimbólum eltávolítása nélkül.",
+        "example": "Ebben a példában az 1. játékos ({symbol}) a Fagyasztás power-upot használta a 2. játékos ({symbol2}) szimbólumán a felső-középső cellában. Ez a {symbol2} most megfagyott, használhatatlanná téve a jövőbeli lépésekben és blokkolva a 2. játékost a függőleges, átlós vagy vízszintes sorok befejezésében ezen a négyzeten keresztül."
+      },
+      "bomb": {
+        "title": "Bomba Power-up",
+        "description": "A Bomba power-up lehetővé teszi, hogy bármely egyetlen cellát megcélozzon a táblán. Aktiváláskor a kiválasztott cella és az összes 8 környező szomszédos cella (ha léteznek a tábla határain belül) azonnal törlődik minden szimbólumról. Ha egy célzott cella megfagyott volt, a bomba hatékonyan eltávolítja a fagyás hatást, de nem a szimbólumot.",
+        "example_before": "Az 1. játékos ({symbol}) éppen a Bomba power-upot telepíti, a második sorban, második oszlopban lévő megjelölt {symbol2}-t célozva. Figyelje meg a körülötte lévő szimbólumokat.",
+        "example_after": "A {symbol2} és az összes szomszédos szimbólum sikeresen törlődött, új stratégiai lehetőségeket nyitva mindkét játékos számára."
+      },
+      "swap": {
+        "title": "Csere Power-up",
+        "description": "A Csere power-up lehetővé teszi, hogy felcserélje bármely két meglévő szimbólum pozícióját a táblán. Ez a power-up csak akkor aktív, ha két elfoglalt cellát választanak ki; nem használható, ha üres cellát választ. Használja ezt a power-upot, hogy azonnal megszakítsa ellenfele majdnem kész győzelmi sorait, vagy azonnal formálja saját győzelmi kombinációját!",
+        "example_before": "A 2. játékos ({symbol2}) stratégikusan aktiválta a Csere power-upot. Kiválasztotta saját {symbol2}-jét a jobb alsó sarokban, bár az fagyott, és egy ellenfél {symbol}-ját ugyanabban a sorban. Ez a két szimbólum hamarosan felcserél helyet, lehetővé téve a 2. játékos számára, hogy megtörje az ellenfél felállítását és esetleg saját győzelmi sort állítson fel. A Csere power-up még a fagyott szimbólumokat is felcserélheti, így hatékony eszköz a játék menetének megfordítására.",
+        "example_after": "A {symbol} és {symbol2} sikeresen felcserélte a helyét. Ez a stratégiai lépés lehetővé tette a 2. játékos ({symbol2}) számára, hogy azonnal befejezzen egy függőleges győzelmi sort a második oszlopon keresztül, biztosítva győzelmüket. A Csere power-up kihasználásával még egy fagyott szimbólummal {symbol2} képes volt egy védekező pozíciót győzelmi pozícióvá alakítani."
+      }
+    }
   }
 }
