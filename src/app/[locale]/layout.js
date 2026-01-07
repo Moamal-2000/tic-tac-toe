@@ -5,7 +5,7 @@ import { METADATA } from "@/data/metadata";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import "../../styles/globals.scss";
+import "../../styles/global.scss";
 
 export const metadata = METADATA;
 

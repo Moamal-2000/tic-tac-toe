@@ -9,6 +9,14 @@
   margin: 0;
 }
 
+html * {
+  font-family: var(--font-inter);
+}
+
+html[lang=ar] * {
+  font-family: var(--font-vazirmatn);
+}
+
 body {
   background: var(--app-background-gradient);
   color: #fff;
@@ -18,15 +26,6 @@ body {
   align-items: center;
   padding: 20px 20px 36px 20px;
 }
-
-html * {
-  font-family: var(--font-inter);
-}
-
-html[lang=ar] * {
-  font-family: var(--font-vazirmatn);
-}
-
 
 @media (max-width: 500px) {
   main {
