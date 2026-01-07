@@ -6,11 +6,13 @@ import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import MPBoardSelection from "./MPBoardSelection/MPBoardSelection";
 import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
+  const t = useTranslations("main_menu");
   const { updateGameMode, updateGlobalState } = useGlobalStore();
   const selectedBoardSize = useMultiplayerStore((s) => s.selectedBoardSize);
   const playSound = usePreloadSounds({ click: soundFiles.click });
@@ -47,25 +49,24 @@ const MultiPlayerMenu = () => {
     <div className={s.mpContent}>
       <BackButton onClick={handleBackButton} />
 
-      <div
-        className={s.playerCount}
-        aria-label={`Online players: ${onlinePlayers}`}
-      >
+      <div className={s.playerCount}>
         <span className={s.playerCountDot} />
-        <span className={s.playerCountLabel}>Online Players</span>
+        <span className={s.playerCountLabel}>
+          {t("multiplayer.setup.online_players")}
+        </span>
         <span className={s.playerCountValue}>{onlinePlayers}</span>
       </div>
 
       <header className={s.header}>
         <div className={s.headerText}>
-          <h1>Multiplayer Setup</h1>
-          <p>Configure your game settings</p>
+          <h1>{t("multiplayer.setup.title")}</h1>
+          <p>{t("multiplayer.setup.subtitle")}</p>
         </div>
       </header>
 
       <form className={s.mpForm} onSubmit={handleSubmit}>
         <MPBoardSelection />
-        <button type="submit">Find Match</button>
+        <button type="submit">{t("multiplayer.setup.find_match")}</button>
       </form>
     </div>
   );

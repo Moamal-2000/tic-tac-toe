@@ -7,6 +7,7 @@ import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import s from "./MainMenuButtons.module.scss";
 
@@ -14,11 +15,10 @@ const MainMenuButtons = () => {
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [pendingMode, setPendingMode] = useState(null);
 
+  const t = useTranslations("main_menu");
   const updateGameMode = useGlobalStore((s) => s.updateGameMode);
   const playSound = usePreloadSounds({ click: soundFiles.click });
-  const { hasGameStarted, resetMultiplayerState } = useMultiplayerStore(
-    (s) => s
-  );
+  const { hasGameStarted, resetMultiplayerState } = useMultiplayerStore();
 
   function handleClick(mode) {
     // Check if player is in an active multiplayer game and trying to switch to local/computer
@@ -54,7 +54,7 @@ const MainMenuButtons = () => {
   return (
     <>
       <div className={s.buttons}>
-        {GAME_MODES_BUTTONS.map(({ label, iconName, mode, id }) => (
+        {GAME_MODES_BUTTONS.map(({ iconName, mode, id }) => (
           <button
             type="button"
             className={s.button}
@@ -64,7 +64,7 @@ const MainMenuButtons = () => {
             <svg aria-hidden="true">
               <use href={`/icons-sprite.svg#${iconName}`} />
             </svg>
-            {label}
+            {t(`game_modes.${mode}`)}
           </button>
         ))}
       </div>

@@ -26,7 +26,7 @@
   },
   "main_menu": {
     "game_modes": {
-      "vs_computer": "Play vs Computer",
+      "computer": "Play vs Computer",
       "local": "Play Locally",
       "online": "Play Online"
     },

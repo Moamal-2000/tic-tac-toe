@@ -14,14 +14,10 @@ export const TURN_TIMER_DURATION = 30; // seconds
 export const CIRCLE_LENGTH = 2 * Math.PI * 45;
 export const INITIAL_PLAY_MODE = "classicMode"; // "classicMode" | "autoHideMode"
 export const INITIAL_SQUARE_HIDDEN_TIME = 6;
+export const DIFFICULTY_OPTIONS = ["easy", "medium", "hard"];
 export const PLAY_MODES = [
   { name: "Classic", type: "classicMode", id: 1 },
   { name: "Auto Hide Mode", type: "autoHideMode", id: 2 },
-];
-export const DIFFICULTY_OPTIONS = [
-  { label: "Easy", value: "easy" },
-  { label: "Medium", value: "medium" },
-  { label: "Hard", value: "hard" },
 ];
 export const SCREEN_SIZES = {
   large: {

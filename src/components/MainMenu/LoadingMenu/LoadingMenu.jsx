@@ -8,8 +8,10 @@ import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";
 import s from "./LoadingMenu.module.scss";
+import { useTranslations } from "next-intl";
 
 const LoadingMenu = () => {
+  const t = useTranslations("main_menu");
   const updateGlobalState = useGlobalStore((s) => s.updateGlobalState);
   const { updateGameStates, updateStatsOnResult } = useMultiplayerStore();
   const playSound = usePreloadSounds({ click: soundFiles.click });
@@ -89,8 +91,8 @@ const LoadingMenu = () => {
           </svg>
         </div>
 
-        <h2>Finding Match...</h2>
-        <p>Please wait while we connect you with another player</p>
+        <h2>{t("multiplayer.loading.finding_match")}</h2>
+        <p>{t("multiplayer.loading.waiting")}</p>
       </div>
     </div>
   );
