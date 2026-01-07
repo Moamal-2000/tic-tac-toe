@@ -50,3 +50,8 @@
     position: static;
   }
 }
+
+html[lang=ar] .header .logo {
+  left: auto;
+  right: 20px;
+}

@@ -2,7 +2,7 @@ import s from "./Logo.module.scss";
 
 const Logo = () => {
   return (
-    <div className={s.logo}>
+    <div className={s.logo} dir="ltr">
       <ul className={s.logoGrid} role="presentation" aria-hidden="true">
         <li />
         <li />
