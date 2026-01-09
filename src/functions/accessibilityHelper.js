@@ -1,14 +1,15 @@
 import { getPlacedSymbolCount, opponentSymbolExists } from "./gameUtility";
 
-export function getSquareAriaLabel(squareData) {
-  if (squareData.fillWith === "") return "Empty square, click to make a move";
+export function getSquareAriaLabel(squareData, t) {
+  const translationKey = "aria_labels";
 
-  if (squareData.swapSelected)
-    return "Selected square, click on opponent square to swap";
+  if (squareData.fillWith === "") return t(`${translationKey}.empty_square`);
+  if (squareData.swapSelected) return t(`${translationKey}.selected_square`);
+  if (squareData.isFrozen) return t(`${translationKey}.frozen_square`);
 
-  if (squareData.isFrozen) return "Frozen square, cannot make a move";
-
-  return `${squareData.fillWith} symbol, occupied square`;
+  return t(`${translationKey}.occupied_square`, {
+    symbol: squareData.fillWith,
+  });
 }
 
 export function shouldDisableSquare({

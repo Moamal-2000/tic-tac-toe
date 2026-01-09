@@ -3,6 +3,7 @@ import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
 import { getSquareClasses } from "@/functions/classNames";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import s from "./XOSquare.module.scss";
 
 const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
@@ -15,6 +16,7 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
     opponentHoveredSquare,
     updateMultiplayerState,
   } = useMultiplayerStore();
+  const t = useTranslations();
 
   const { owner, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
@@ -84,7 +86,7 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       disabled={disabled}
-      aria-label={getSquareAriaLabel(compatibleSquareData)}
+      aria-label={getSquareAriaLabel(compatibleSquareData, t)}
       data-opponent-hover={isOpponentHovering}
     >
       {owner && (
