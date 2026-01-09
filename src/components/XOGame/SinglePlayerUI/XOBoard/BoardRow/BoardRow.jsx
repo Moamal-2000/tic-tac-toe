@@ -15,8 +15,9 @@ const BoardRow = ({ row, rowIndex }) => {
     playerTurn,
     winner,
     squaresToSwap,
-  } = useXOStore((s) => s);
-  const { gameMode } = useGlobalStore();
+  } = useXOStore();
+  const gameMode = useGlobalStore((s) => s.gameMode);
+
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
 

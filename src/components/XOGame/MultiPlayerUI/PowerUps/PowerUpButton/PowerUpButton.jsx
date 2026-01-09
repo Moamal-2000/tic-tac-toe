@@ -13,12 +13,11 @@ const PowerUpButton = ({
   disabled,
 }) => {
   const powerUps = useMultiplayerStore((s) => s.powerUps);
-  const t = useTranslations("power_ups");
-
   const { selectedPower, whoUsingPower } = powerUps;
   const isSelected = selectedPower === name && whoUsingPower === player;
 
   const playSound = usePreloadSounds({ unselect: soundFiles.unselect });
+  const t = useTranslations("power_ups");
 
   const classes = [
     s.powerUp,

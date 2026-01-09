@@ -6,8 +6,8 @@ import MultiPlayerUI from "./MultiPlayerUI/MultiPlayerUI";
 import SinglePlayerUI from "./SinglePlayerUI/SinglePlayerUI";
 
 const XOGame = () => {
-  const gameMode = useGlobalStore((s) => s.gameMode);
   const hasGameStarted = useMultiplayerStore((s) => s.hasGameStarted);
+  const gameMode = useGlobalStore((s) => s.gameMode);
 
   return (
     <>

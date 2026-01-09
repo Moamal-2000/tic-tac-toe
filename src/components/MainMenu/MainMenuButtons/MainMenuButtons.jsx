@@ -15,10 +15,11 @@ const MainMenuButtons = () => {
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [pendingMode, setPendingMode] = useState(null);
 
-  const t = useTranslations("main_menu");
   const updateGameMode = useGlobalStore((s) => s.updateGameMode);
-  const playSound = usePreloadSounds({ click: soundFiles.click });
   const { hasGameStarted, resetMultiplayerState } = useMultiplayerStore();
+
+  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const t = useTranslations("main_menu");
 
   function handleClick(mode) {
     // Check if player is in an active multiplayer game and trying to switch to local/computer

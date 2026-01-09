@@ -13,10 +13,12 @@ import s from "./MultiPlayerMenu.module.scss";
 
 const MultiPlayerMenu = () => {
   const t = useTranslations("main_menu");
+
   const { updateGameMode, updateGlobalState } = useGlobalStore();
   const selectedBoardSize = useMultiplayerStore((s) => s.selectedBoardSize);
-  const playSound = usePreloadSounds({ click: soundFiles.click });
   const [onlinePlayers, setOnlinePlayers] = useState(0);
+
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleSubmit(event) {
     event?.preventDefault();

@@ -10,7 +10,9 @@ import s from "./GameStats.module.scss";
 
 const GameStats = ({ stats }) => {
   const t = useTranslations("game_stats");
+
   const gameMode = useGlobalStore((s) => s.gameMode);
+
   const isSinglePlayerMode = gameMode === "local" || gameMode === "computer";
 
   const { boardSize, playerTurn, winner } = isSinglePlayerMode

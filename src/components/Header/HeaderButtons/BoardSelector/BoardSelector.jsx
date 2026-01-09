@@ -6,7 +6,7 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./BoardSelector.module.scss";
 
 const BoardSelector = ({ playClickSound }) => {
-  const { boardSize, updateBoardSize, playMode } = useXOStore((s) => s);
+  const { boardSize, updateBoardSize, playMode } = useXOStore();
   const gameMode = useGlobalStore((s) => s.gameMode);
 
   if (gameMode === "online") return null;

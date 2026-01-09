@@ -8,7 +8,7 @@ import s from "./SinglePlayerUI.module.scss";
 import XOBoard from "./XOBoard/XOBoard";
 
 const SinglePlayerUI = () => {
-  const { playerTurn, boardSize, stats, winner } = useXOStore((s) => s);
+  const { playerTurn, boardSize, stats, winner } = useXOStore();
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   useComputerBot();

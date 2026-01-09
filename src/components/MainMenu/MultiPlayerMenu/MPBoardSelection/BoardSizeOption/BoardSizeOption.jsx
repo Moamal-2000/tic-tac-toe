@@ -4,9 +4,7 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import s from "./BoardSizeOption.module.scss";
 
 const BoardSizeOption = ({ size }) => {
-  const { selectedBoardSize, updateMultiplayerState } = useMultiplayerStore(
-    (s) => s
-  );
+  const { selectedBoardSize, updateMultiplayerState } = useMultiplayerStore();
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleChange(event) {

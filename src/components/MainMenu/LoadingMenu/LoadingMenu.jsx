@@ -12,8 +12,10 @@ import { useTranslations } from "next-intl";
 
 const LoadingMenu = () => {
   const t = useTranslations("main_menu");
+
   const updateGlobalState = useGlobalStore((s) => s.updateGlobalState);
   const { updateGameStates, updateStatsOnResult } = useMultiplayerStore();
+
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function syncNewGameState(state) {

@@ -8,13 +8,14 @@ import s from "./PlayModeSelector.module.scss";
 
 const PlayModeSelector = ({ playClickSound }) => {
   const t = useTranslations("header");
+
   const {
     playMode,
     updateXOStoreState,
     startNewGame,
     boardSize,
     updateBoardSize,
-  } = useXOStore((s) => s);
+  } = useXOStore();
   const gameMode = useGlobalStore((s) => s.gameMode);
 
   if (gameMode === "online") return null;

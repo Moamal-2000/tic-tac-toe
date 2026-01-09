@@ -22,7 +22,8 @@ const MultiPlayerUI = () => {
     updateMultiplayerState,
     updateGameStates,
     updateStatsOnResult,
-  } = useMultiplayerStore((s) => s);
+  } = useMultiplayerStore();
+
   const board3Class = boardSize === 3 ? s.x3 : "";
 
   function syncGameState(state) {

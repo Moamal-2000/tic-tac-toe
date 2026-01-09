@@ -14,7 +14,8 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
     squaresToSwap,
     opponentHoveredSquare,
     updateMultiplayerState,
-  } = useMultiplayerStore((s) => s);
+  } = useMultiplayerStore();
+
   const { owner, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
   const shouldSwap = hasSelectSquares && swapSelected;

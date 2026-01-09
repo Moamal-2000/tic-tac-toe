@@ -5,7 +5,8 @@ import WinnerPopUp from "./WinnerPopUp/WinnerPopUp";
 import s from "./XOBoard.module.scss";
 
 const XOBoard = () => {
-  const { board, playerTurn, draw } = useMultiplayerStore((s) => s);
+  const { board, playerTurn, draw } = useMultiplayerStore();
+
   const playerTurnClass = playerTurn === SYMBOL_X ? s.xTurn : s.oTurn;
   const drawClass = draw ? s.draw : "";
 

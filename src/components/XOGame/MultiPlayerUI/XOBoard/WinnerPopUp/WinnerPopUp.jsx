@@ -12,7 +12,7 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import s from "./WinnerPopUp.module.scss";
 
 const WinnerPopUp = () => {
-  const { winner, draw, isWinnerPopupVisible } = useMultiplayerStore((s) => s);
+  const { winner, draw, isWinnerPopupVisible } = useMultiplayerStore();
   const playSound = usePreloadSounds(soundFiles);
 
   const isP1Win = winner === SYMBOL_O;

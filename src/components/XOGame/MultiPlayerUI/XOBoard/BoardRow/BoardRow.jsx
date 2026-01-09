@@ -23,7 +23,8 @@ const BoardRow = ({ row, rowIndex }) => {
     squaresToSwap,
     updateMultiplayerState,
     mySymbol,
-  } = useMultiplayerStore((s) => s);
+  } = useMultiplayerStore();
+
   const { selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
   const isMyTurn = playerTurn === mySymbol;

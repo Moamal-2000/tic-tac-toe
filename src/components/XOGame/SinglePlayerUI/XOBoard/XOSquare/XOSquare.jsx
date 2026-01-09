@@ -5,7 +5,7 @@ import s from "./XOSquare.module.scss";
 
 const XOSquare = ({ squareData, disabled, onClick }) => {
   const { boardSize, powerUps, squaresToSwap, playerTurn, playMode } =
-    useXOStore((s) => s);
+    useXOStore();
 
   const { fillWith, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
