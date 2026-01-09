@@ -108,5 +108,11 @@
   },
   "global": {
     "player": "プレイヤー"
+  },
+  "aria_labels": {
+    "empty_square": "空のマス、クリックして移動",
+    "selected_square": "選択されたマス、相手のマスをクリックして交換",
+    "frozen_square": "凍結されたマス、移動できません",
+    "occupied_square": "{symbol}シンボル、占有されたマス"
   }
 }

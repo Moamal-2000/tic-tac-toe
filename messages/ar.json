@@ -108,5 +108,11 @@
   },
   "global": {
     "player": "لاعب"
+  },
+  "aria_labels": {
+    "empty_square": "مربع فارغ، انقر للقيام بحركة",
+    "selected_square": "مربع محدد، انقر على مربع الخصم للتبديل",
+    "frozen_square": "مربع مجمد، لا يمكن القيام بحركة",
+    "occupied_square": "رمز {symbol}، مربع محتل"
   }
 }

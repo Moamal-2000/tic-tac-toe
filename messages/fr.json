@@ -108,5 +108,11 @@
   },
   "global": {
     "player": "Joueur"
+  },
+  "aria_labels": {
+    "empty_square": "Case vide, cliquez pour faire un mouvement",
+    "selected_square": "Case sélectionnée, cliquez sur la case adverse pour échanger",
+    "frozen_square": "Case gelée, impossible de faire un mouvement",
+    "occupied_square": "Symbole {symbol}, case occupée"
   }
 }

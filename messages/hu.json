@@ -108,5 +108,11 @@
   },
   "global": {
     "player": "Játékos"
+  },
+  "aria_labels": {
+    "empty_square": "Üres négyzet, kattintson a lépéshez",
+    "selected_square": "Kiválasztott négyzet, kattintson az ellenfél négyzetére a cseréhez",
+    "frozen_square": "Fagyasztott négyzet, nem lehet lépni",
+    "occupied_square": "{symbol} szimbólum, elfoglalt négyzet"
   }
 }
