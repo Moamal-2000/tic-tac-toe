@@ -100,24 +100,6 @@ const HeaderButtons = () => {
                 <Image src={flag} alt={alt} width={20} height={12} />
               </button>
             ))}
-            {/* <button>
-              English
-              <Image
-                src="/flags/usa.webp"
-                alt="USA flag"
-                width={20}
-                height={12}
-              />
-            </button>
-            <button>
-              العربية
-              <Image
-                src="/flags/saudi.webp"
-                alt="Saudi flag"
-                width={20}
-                height={12}
-              />
-            </button> */}
           </div>
         </div>
         <Button onClick={handleAboutClick}>{t("about")}</Button>
