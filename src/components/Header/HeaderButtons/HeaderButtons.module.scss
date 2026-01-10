@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+@include m.small {
+  .headerButtons {
+    width: 100%;
+  }
+}
+
 .headerButtons>* {
   flex: 1;
 }
@@ -32,7 +38,7 @@
   }
 }
 
-@media (max-width: 535px) {
+@include m.small {
   .headerButtons {
     width: 100%;
     flex-direction: column;
@@ -58,10 +64,11 @@
 @include m.small {
   .headerButtons :where(.wrapper1, .wrapper2) {
     gap: 8px;
+    width: 100%;
   }
 }
 
-@media (max-width: 535px) {
+@include m.small {
   .headerButtons :where(.wrapper1, .wrapper2) {
     flex-wrap: wrap;
     width: 100%;

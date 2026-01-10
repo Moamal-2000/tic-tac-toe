@@ -29,9 +29,8 @@ export default async function RootLayout({ children, params }) {
     <html lang={locale} dir={dir}>
       <NextIntlClientProvider locale={locale} messages={messages}>
         <body>
-          <MainMenu />
-
           <div className="main-content">
+            <MainMenu />
             <Header />
             {children}
           </div>

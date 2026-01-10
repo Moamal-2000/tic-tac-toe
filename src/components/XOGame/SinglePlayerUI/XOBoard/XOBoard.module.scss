@@ -24,7 +24,7 @@
   }
 }
 
-@media (max-width: 500px) {
+@include m.small {
   .board {
     width: 100%;
   }

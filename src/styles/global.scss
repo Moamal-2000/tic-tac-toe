@@ -33,6 +33,12 @@ body {
   flex-direction: column;
 }
 
+@include m.small {
+  .main-content {
+    max-width: 330px;
+  }
+}
+
 @media (max-width: 500px) {
   main {
     width: 100%;
