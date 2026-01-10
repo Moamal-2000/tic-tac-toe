@@ -30,8 +30,12 @@ export default async function RootLayout({ children, params }) {
       <NextIntlClientProvider locale={locale} messages={messages}>
         <body>
           <MainMenu />
-          <Header />
-          {children}
+
+          <div className="main-content">
+            <Header />
+            {children}
+          </div>
+
           <UpdateNotification />
         </body>
       </NextIntlClientProvider>

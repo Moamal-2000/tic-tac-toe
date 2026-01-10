@@ -51,6 +51,10 @@
   align-items: center;
 }
 
+.headerButtons .wrapper2 {
+  justify-content: flex-end;
+}
+
 @include m.small {
   .headerButtons :where(.wrapper1, .wrapper2) {
     gap: 8px;

@@ -27,6 +27,12 @@ body {
   padding: 20px 20px 36px 20px;
 }
 
+.main-content {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 500px) {
   main {
     width: 100%;

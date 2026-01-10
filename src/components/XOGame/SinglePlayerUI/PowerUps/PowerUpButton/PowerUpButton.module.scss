@@ -12,8 +12,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  min-width: 70px;
+  min-width: 72px;
   position: relative;
   transition:
     background .3s ease,
@@ -39,7 +40,7 @@
 
 @media (max-width: 500px) {
   .powerUp {
-    aspect-ratio: 1.7/1;
+    aspect-ratio: 1.5/1;
   }
 }
 
