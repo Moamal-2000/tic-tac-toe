@@ -49,6 +49,11 @@
       }
     }
   },
+  "winner_popup": {
+    "p1_wins": "Player 1 Wins!",
+    "draws": "It's a Draw!",
+    "p2_wins": "Player 2 Wins!"
+  },
   "game_stats": {
     "p1_wins": "P1 Wins",
     "draws": "Draws",

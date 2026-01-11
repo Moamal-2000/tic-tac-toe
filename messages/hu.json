@@ -49,6 +49,11 @@
       }
     }
   },
+  "winner_popup": {
+    "p1_wins": "Az 1. Játékos Nyert!",
+    "draws": "Döntetlen!",
+    "p2_wins": "A 2. Játékos Nyert!"
+  },
   "game_stats": {
     "p1_wins": "1. játékos győzelmei",
     "draws": "Döntetlenek",

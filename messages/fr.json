@@ -49,6 +49,11 @@
       }
     }
   },
+  "winner_popup": {
+    "p1_wins": "Le Joueur 1 Gagne!",
+    "draws": "C'est Match Nul!",
+    "p2_wins": "Le Joueur 2 Gagne!"
+  },
   "game_stats": {
     "p1_wins": "Victoires J1",
     "draws": "Matchs nuls",

@@ -15,7 +15,7 @@ import s from "./WinnerPopUp.module.scss";
 const WinnerPopUp = () => {
   const { winner, isWinnerPopupVisible } = useXOStore();
   const playSound = usePreloadSounds(soundFiles);
-  const t = useTranslations("game_stats");
+  const t = useTranslations("winner_popup");
 
   const isDraw = winner === "Draw!";
   const isP1Win = winner === SYMBOL_O;
