@@ -28,17 +28,19 @@
 }
 
 .languageSelect button {
-  outline: none;
+  border: none;
+  background: none;
+  outline: solid 1px transparent;
+  outline-offset: -1px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding: 6px 10px;
-  border: none;
-  background: none;
   cursor: pointer;
   color: #e9e9ec;
+  transition: background .2s ease, outline-color .2s ease;
 
   &:hover {
     background: #3b4350;
@@ -47,6 +49,19 @@
   &:active {
     background: #474e59;
   }
+
+  &:focus-visible {
+    background: #3b4350;
+    outline-color: #fff;
+  }
+}
+
+.languageSelect button:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.languageSelect button:last-child {
+  border-radius: 0 0 8px 8px;
 }
 
 .languageSelect button img {
