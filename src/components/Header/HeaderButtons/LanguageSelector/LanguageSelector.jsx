@@ -1,13 +1,15 @@
 "use client";
 
 import Button from "@/components/Shared/Button/Button";
-import { soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import useEventListener from "@/hooks/useEventListener";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { languagesMenu } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { useRef } from "react";
 import s from "./LanguageSelector.module.scss";
 
 const LanguageSelector = () => {
@@ -18,11 +20,23 @@ const LanguageSelector = () => {
   const pathname = usePathname();
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
+  const langContainerRef = useRef(null);
+
+  useEventListener(window, "click", handleClickOutside);
+
+  function handleClickOutside(event) {
+    const isClickOutsideLangMenu = !langContainerRef.current.contains(
+      event.target
+    );
+
+    if (isClickOutsideLangMenu) updateGlobalState({ isLangMenuActive: false });
+  }
+
   function handleToggleLangMenu({ isOpen } = {}) {
     updateGlobalState({
       isLangMenuActive: isOpen !== undefined ? isOpen : !isLangMenuActive,
     });
-    playSound("click");
+    playSound(BUTTON_SOUND);
   }
 
   function handleLangClick(countryCode) {
@@ -31,7 +45,7 @@ const LanguageSelector = () => {
   }
 
   return (
-    <div className={s.languageSection}>
+    <div className={s.languageSection} ref={langContainerRef}>
       <Button onClick={handleToggleLangMenu}>
         {t("language")}
         <svg aria-hidden="true">
