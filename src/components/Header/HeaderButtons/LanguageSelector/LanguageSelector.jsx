@@ -21,6 +21,7 @@ const LanguageSelector = () => {
   const playSound = usePreloadSounds({ click: soundFiles.click });
 
   const langContainerRef = useRef(null);
+  const langMenuRef = useRef(null);
 
   useEventListener(window, "click", handleClickOutside);
 
@@ -32,11 +33,12 @@ const LanguageSelector = () => {
     if (isClickOutsideLangMenu) updateGlobalState({ isLangMenuActive: false });
   }
 
-  function handleToggleLangMenu({ isOpen } = {}) {
+  function handleToggleLangMenu({ isOpen, sound = true } = {}) {
     updateGlobalState({
       isLangMenuActive: isOpen !== undefined ? isOpen : !isLangMenuActive,
     });
-    playSound(BUTTON_SOUND);
+
+    sound && playSound(BUTTON_SOUND);
   }
 
   function handleLangClick(countryCode) {
@@ -55,6 +57,9 @@ const LanguageSelector = () => {
 
       <div
         className={`${s.languageSelect} ${isLangMenuActive ? s.active : ""}`}
+        ref={langMenuRef}
+        onBlur={() => handleToggleLangMenu({ isOpen: false, sound: false })}
+        onFocus={() => handleToggleLangMenu({ isOpen: true, sound: false })}
       >
         {languagesMenu.map(({ code, name, flag, alt }) => (
           <button
