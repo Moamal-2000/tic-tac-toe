@@ -23,7 +23,11 @@ const LanguageSelector = () => {
   const langContainerRef = useRef(null);
   const langMenuRef = useRef(null);
 
-  useEventListener(window, "click", handleClickOutside);
+  useEventListener(
+    typeof window !== "undefined" ? window : null,
+    "click",
+    handleClickOutside
+  );
 
   function handleClickOutside(event) {
     const isClickOutsideLangMenu = !langContainerRef.current.contains(
