@@ -18,7 +18,7 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
 - **Auto Hide mode**: symbols disappear after a set number of turns, dynamically based on board size
 - Local multiplayer support for playing with a friend on the same device
 - Play against a computer-controlled opponent locally
-- Online multiplayer support for playing with friends *(requires the workspace to remain open to keep the server active due to hosting limitations)*
+- Online multiplayer support for playing with friends _(requires the workspace to remain open to keep the server active due to hosting limitations)_
 - Sound effects for player actions and power-ups
 - Fully responsive and mobile-friendly
 - Accessible with keyboard and screen reader support
@@ -79,6 +79,14 @@ Click the **Install** button inside the app to add it to your device's home scre
 
 Developed by [Moamal Alaa Karem](https://moamalalaa.netlify.app)
 Design inspired by classic games with a modern UX approach.
+
+---
+
+## License
+
+This project is licensed under a proprietary license.
+All rights are reserved. Unauthorized copying, modification,
+distribution, or commercial use is strictly prohibited.
 
 ---
 
