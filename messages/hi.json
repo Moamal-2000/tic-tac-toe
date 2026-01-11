@@ -4,7 +4,6 @@
     "menu": "मेनू",
     "reset": "रीसेट",
     "rematch": "फिर से खेलें",
-    "language": "भाषा",
     "fullscreen": {
       "enter": "फुल स्क्रीन में प्रवेश करें",
       "exit": "फुल स्क्रीन से बाहर निकलें"
@@ -108,6 +107,7 @@
   },
   "global": {
     "player": "खिलाड़ी",
+    "language": "भाषा",
     "languages": {
       "arabic": "अरबी",
       "english": "अंग्रेज़ी",

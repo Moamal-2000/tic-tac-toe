@@ -4,7 +4,6 @@
     "menu": "القائمة",
     "reset": "بدء مباراة جديدة",
     "rematch": "إعادة المباراة",
-    "language": "اللغة",
     "fullscreen": {
       "enter": "دخول ملء الشاشة",
       "exit": "خروج من ملء الشاشة"
@@ -108,6 +107,7 @@
   },
   "global": {
     "player": "لاعب",
+    "language": "اللغة",
     "languages": {
       "arabic": "العربية",
       "english": "الإنكليزية",

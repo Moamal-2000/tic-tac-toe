@@ -13,7 +13,7 @@ import { useRef } from "react";
 import s from "./LanguageSelector.module.scss";
 
 const LanguageSelector = () => {
-  const t = useTranslations("header");
+  const t = useTranslations("global");
   const { updateGlobalState, isLangMenuActive } = useGlobalStore();
 
   const router = useRouter();
@@ -67,7 +67,7 @@ const LanguageSelector = () => {
             type="button"
             onClick={() => handleLangClick(code)}
           >
-            {name}
+            {t(`languages.${name.toLowerCase()}`)}
             <Image src={flag} alt={alt} width={20} height={12} />
           </button>
         ))}

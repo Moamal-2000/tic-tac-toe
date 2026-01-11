@@ -4,7 +4,6 @@
     "menu": "Menü",
     "reset": "Visszaállítás",
     "rematch": "Újra játszás",
-    "language": "Nyelv",
     "fullscreen": {
       "enter": "Teljes képernyő",
       "exit": "Kilépés a teljes képernyőből"
@@ -108,6 +107,7 @@
   },
   "global": {
     "player": "Játékos",
+    "language": "Nyelv",
     "languages": {
       "arabic": "Arab",
       "english": "Angol",

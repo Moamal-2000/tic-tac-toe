@@ -18,7 +18,7 @@ export const languagesMenu = [
   },
   {
     code: "fr",
-    name: "Français",
+    name: "French",
     flag: `${flagBaseUrl}/france.webp`,
     alt: "France flag",
   },

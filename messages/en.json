@@ -4,7 +4,6 @@
     "menu": "Menu",
     "reset": "Reset",
     "rematch": "Rematch",
-    "language": "Language",
     "fullscreen": {
       "enter": "Enter Full Screen",
       "exit": "Exit Full Screen"
@@ -108,6 +107,7 @@
   },
   "global": {
     "player": "player",
+    "language": "Language",
     "languages": {
       "arabic": "Arabic",
       "english": "English",

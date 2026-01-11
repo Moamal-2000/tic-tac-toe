@@ -4,7 +4,6 @@
     "menu": "Menu",
     "reset": "Réinitialiser",
     "rematch": "Rejouer",
-    "language": "Langue",
     "fullscreen": {
       "enter": "Plein écran",
       "exit": "Quitter le plein écran"
@@ -108,6 +107,7 @@
   },
   "global": {
     "player": "Joueur",
+    "language": "Langue",
     "languages": {
       "arabic": "Arabe",
       "english": "Anglais",
