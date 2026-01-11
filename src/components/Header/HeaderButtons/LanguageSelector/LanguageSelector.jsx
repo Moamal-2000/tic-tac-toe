@@ -1,6 +1,8 @@
 "use client";
 
 import Button from "@/components/Shared/Button/Button";
+import { soundFiles } from "@/data/sounds";
+import usePreloadSounds from "@/hooks/usePreloadSounds";
 import { languagesMenu } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useGlobalStore } from "@/stores/global.store/global.store";
@@ -14,11 +16,13 @@ const LanguageSelector = () => {
 
   const router = useRouter();
   const pathname = usePathname();
+  const playSound = usePreloadSounds({ click: soundFiles.click });
 
   function handleToggleLangMenu({ isOpen } = {}) {
     updateGlobalState({
       isLangMenuActive: isOpen !== undefined ? isOpen : !isLangMenuActive,
     });
+    playSound("click");
   }
 
   function handleLangClick(countryCode) {
