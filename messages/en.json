@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "player"
+    "player": "player",
+    "languages": {
+      "arabic": "Arabic",
+      "english": "English",
+      "french": "French",
+      "hindi": "Hindi",
+      "hungarian": "Hungarian",
+      "japanese": "Japanese",
+      "russian": "Russian"
+    }
   },
   "aria_labels": {
     "empty_square": "Empty square, click to make a move",

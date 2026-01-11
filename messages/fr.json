@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "Joueur"
+    "player": "Joueur",
+    "languages": {
+      "arabic": "Arabe",
+      "english": "Anglais",
+      "french": "Français",
+      "hindi": "Hindi",
+      "hungarian": "Hongrois",
+      "japanese": "Japonais",
+      "russian": "Russe"
+    }
   },
   "aria_labels": {
     "empty_square": "Case vide, cliquez pour faire un mouvement",

@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "Játékos"
+    "player": "Játékos",
+    "languages": {
+      "arabic": "Arab",
+      "english": "Angol",
+      "french": "Francia",
+      "hindi": "Hindi",
+      "hungarian": "Magyar",
+      "japanese": "Japán",
+      "russian": "Orosz"
+    }
   },
   "aria_labels": {
     "empty_square": "Üres négyzet, kattintson a lépéshez",

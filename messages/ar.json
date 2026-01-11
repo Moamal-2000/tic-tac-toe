@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "لاعب"
+    "player": "لاعب",
+    "languages": {
+      "arabic": "العربية",
+      "english": "الإنكليزية",
+      "french": "الفرنسية",
+      "hindi": "الهندية",
+      "hungarian": "الهنغارية",
+      "japanese": "اليابانية",
+      "russian": "الروسية"
+    }
   },
   "aria_labels": {
     "empty_square": "مربع فارغ، انقر للقيام بحركة",

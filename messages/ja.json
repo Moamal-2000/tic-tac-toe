@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "プレイヤー"
+    "player": "プレイヤー",
+    "languages": {
+      "arabic": "アラビア語",
+      "english": "英語",
+      "french": "フランス語",
+      "hindi": "ヒンディー語",
+      "hungarian": "ハンガリー語",
+      "japanese": "日本語",
+      "russian": "ロシア語"
+    }
   },
   "aria_labels": {
     "empty_square": "空のマス、クリックして移動",

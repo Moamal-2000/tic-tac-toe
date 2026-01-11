@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "खिलाड़ी"
+    "player": "खिलाड़ी",
+    "languages": {
+      "arabic": "अरबी",
+      "english": "अंग्रेज़ी",
+      "french": "फ्रेंच",
+      "hindi": "हिंदी",
+      "hungarian": "हंगेरियन",
+      "japanese": "जापानी",
+      "russian": "रूसी"
+    }
   },
   "aria_labels": {
     "empty_square": "खाली वर्ग, चाल चलने के लिए क्लिक करें",

@@ -107,7 +107,16 @@
     }
   },
   "global": {
-    "player": "Игрок"
+    "player": "Игрок",
+    "languages": {
+      "arabic": "Арабский",
+      "english": "Английский",
+      "french": "Французский",
+      "hindi": "Хинди",
+      "hungarian": "Венгерский",
+      "japanese": "Японский",
+      "russian": "Русский"
+    }
   },
   "aria_labels": {
     "empty_square": "Пустая клетка, нажмите для хода",
