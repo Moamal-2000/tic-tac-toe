@@ -1,7 +1,7 @@
 import { SYMBOL_X } from "@/data/constants";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import WinnerPopUp from "../../SinglePlayerUI/XOBoard/WinnerPopUp/WinnerPopUp";
 import BoardRow from "./BoardRow/BoardRow";
-import WinnerPopUp from "./WinnerPopUp/WinnerPopUp";
 import s from "./XOBoard.module.scss";
 
 const XOBoard = () => {

@@ -8,33 +8,42 @@ import {
   WINNER_SOUNDS,
 } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/usePreloadSounds";
+import { useGlobalStore } from "@/stores/global.store/global.store";
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";
 import s from "./WinnerPopUp.module.scss";
 
 const WinnerPopUp = () => {
-  const { winner, isWinnerPopupVisible } = useXOStore();
+  const gameMode = useGlobalStore((s) => s.gameMode);
+  const isSinglePlayerMode = gameMode === "local" || gameMode === "computer";
+
+  const {
+    winner,
+    isWinnerPopupVisible,
+    draw = winner === "Draw!",
+  } = isSinglePlayerMode ? useXOStore() : useMultiplayerStore();
+
   const playSound = usePreloadSounds(soundFiles);
   const t = useTranslations("winner_popup");
 
-  const isDraw = winner === "Draw!";
   const isP1Win = winner === SYMBOL_O;
   const isP2Win = winner === SYMBOL_X;
 
   const classes = [
     s.winner,
-    isDraw ? s.draw : "",
+    draw ? s.draw : "",
     isP1Win ? s.p1 : "",
     isP2Win ? s.p2 : "",
     isWinnerPopupVisible ? s.show : "",
   ].join(" ");
 
   function getWinnerMessage() {
-    return t(`${isDraw ? "draws" : isP1Win ? "p1_wins" : "p2_wins"}`);
+    return t(`${draw ? "draws" : isP1Win ? "p1_wins" : "p2_wins"}`);
   }
 
   if (isWinnerPopupVisible) {
-    if (isDraw) {
+    if (draw) {
       playSound(DRAW_SOUND, 0.1);
     }
 
