@@ -57,6 +57,12 @@
   align-items: center;
 }
 
+@include m.very-small {
+  html[lang=fr] .headerButtons .wrapper1 {
+    flex-direction: column;
+  }
+}
+
 .headerButtons .wrapper2 {
   justify-content: flex-end;
 }

@@ -17,6 +17,10 @@ html[lang=ar] * {
   font-family: var(--font-vazirmatn);
 }
 
+html[lang=fr] {
+  font-size: 14px;
+}
+
 body {
   background: var(--app-background-gradient);
   color: #fff;

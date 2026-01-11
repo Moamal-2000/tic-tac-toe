@@ -1,3 +1,5 @@
+@use '@/styles/mixins.scss' as m;
+
 .boardSelector {
   display: flex;
   background: #28303a;
@@ -5,6 +7,13 @@
   padding: 4px;
   gap: 2px;
   border: 1px solid #484f57;
+}
+
+@include m.very-small {
+  html[lang=fr] .boardSelector {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .boardSelector>button {

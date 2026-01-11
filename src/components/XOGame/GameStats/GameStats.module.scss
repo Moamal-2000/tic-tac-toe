@@ -28,7 +28,19 @@
 .gameStats .stats {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 40px
+}
+
+@include m.small {
+  html[lang=fr] .gameStats .stats {
+    gap: 20px;
+  }
+}
+
+@include m.very-small {
+  html[lang=fr] .gameStats .stats {
+    gap: 10px;
+  }
 }
 
 .gameStats .stat {
@@ -67,4 +79,10 @@
   color: #a8abb0;
   text-transform: uppercase;
   text-wrap: nowrap;
+}
+
+@include m.very-small {
+  .gameStats .stats .label {
+    font-size: .7rem;
+  }
 }
