@@ -118,6 +118,14 @@
       "russian": "ロシア語"
     }
   },
+  "modals": {
+    "quit_game_modal": {
+      "title": "アクティブな試合",
+      "message": "アクティブな試合中です。終了しますか？",
+      "confirm": "はい",
+      "cancel": "いいえ"
+    }
+  },
   "aria_labels": {
     "empty_square": "空のマス、クリックして移動",
     "selected_square": "選択されたマス、相手のマスをクリックして交換",

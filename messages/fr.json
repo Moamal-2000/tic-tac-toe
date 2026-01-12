@@ -123,6 +123,14 @@
       "russian": "Russe"
     }
   },
+  "modals": {
+    "quit_game_modal": {
+      "title": "Partie en cours",
+      "message": "Vous êtes dans une partie en cours, voulez-vous quitter ?",
+      "confirm": "Oui",
+      "cancel": "Non"
+    }
+  },
   "aria_labels": {
     "empty_square": "Case vide, cliquez pour faire un mouvement",
     "selected_square": "Case sélectionnée, cliquez sur la case adverse pour échanger",

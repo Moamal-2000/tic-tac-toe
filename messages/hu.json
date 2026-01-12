@@ -123,6 +123,14 @@
       "russian": "Orosz"
     }
   },
+  "modals": {
+    "quit_game_modal": {
+      "title": "Aktív mérkőzés",
+      "message": "Aktív mérkőzésben van, szeretne kilépni?",
+      "confirm": "Igen",
+      "cancel": "Nem"
+    }
+  },
   "aria_labels": {
     "empty_square": "Üres négyzet, kattintson a lépéshez",
     "selected_square": "Kiválasztott négyzet, kattintson az ellenfél négyzetére a cseréhez",

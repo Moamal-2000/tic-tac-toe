@@ -123,6 +123,14 @@
       "russian": "Russian"
     }
   },
+  "modals": {
+    "quit_game_modal": {
+      "title": "Active Match",
+      "message": "You are in an active match, would you like to quit?",
+      "confirm": "Yes",
+      "cancel": "No"
+    }
+  },
   "aria_labels": {
     "empty_square": "Empty square, click to make a move",
     "selected_square": "Selected square, click on opponent square to swap",

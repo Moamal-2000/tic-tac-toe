@@ -123,6 +123,14 @@
       "russian": "الروسية"
     }
   },
+  "modals": {
+    "quit_game_modal": {
+      "title": "مباراة نشطة",
+      "message": "أنت في مباراة نشطة، هل تريد الخروج؟",
+      "confirm": "نعم",
+      "cancel": "لا"
+    }
+  },
   "aria_labels": {
     "empty_square": "مربع فارغ، انقر للقيام بحركة",
     "selected_square": "مربع محدد، انقر على مربع الخصم للتبديل",
