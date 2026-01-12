@@ -1,22 +1,34 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useEventListener from "./useEventListener";
 
 const useKeyPress = () => {
   const [keyData, setKeyData] = useState({});
   const [key, setKey] = useState("");
 
-  function handleKeyPress(event) {
-    const { altKey, ctrlKey, shiftKey, target, timeStamp, keyCode } = event;
-    const extractedInfo = { altKey, ctrlKey, shiftKey, target, timeStamp, keyCode };
-    setKeyData(extractedInfo);
-    setKey(event.code);
-  }
+  const documentElement = typeof document !== "undefined" ? document : null;
 
-  useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, []);
+  useEventListener(documentElement, "keydown", (event) => {
+    setKeyData(extractKeyData(event));
+    setKey(event.code);
+  });
 
   return [key, keyData];
 };
 
 export default useKeyPress;
+
+const extractKeyData = ({
+  altKey,
+  ctrlKey,
+  shiftKey,
+  target,
+  timeStamp,
+  keyCode,
+}) => ({
+  altKey,
+  ctrlKey,
+  shiftKey,
+  target,
+  timeStamp,
+  keyCode,
+});
