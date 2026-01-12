@@ -3,26 +3,28 @@ import useKeyPress from "./useKeyPress";
 
 const useFunctionOnKey = (
   callback,
-  keysNames,
+  allowedKeys,
   delay = 200,
-  disableMainKeys = false,
-  disableOnFocus = false
+  ignoreModifierKeys = false,
+  ignoreWhenInputFocused = false
 ) => {
-  const [pressedKey, pressInfo] = useKeyPress();
-  useDebounce(() => executeOnClick(), delay, [pressedKey, pressInfo]);
+  const [key, keyData] = useKeyPress();
+  useDebounce(() => handleKeyPress(), delay, [key, keyData]);
 
-  function executeOnClick() {
-    const { shiftKey, altKey, ctrlKey } = pressInfo;
-    const isOneOfMainKeysPressed = shiftKey || altKey || ctrlKey;
+  function handleKeyPress() {
+    const { shiftKey, altKey, ctrlKey } = keyData;
+    const isModifierKeyPressed = shiftKey || altKey || ctrlKey;
+
     const focusElement = document.activeElement?.tagName;
     const isFocusOnInput = /^(input|textarea)$/i.test(focusElement);
-    const shouldRejectExecution =
-      (disableMainKeys || disableOnFocus) &&
-      (isOneOfMainKeysPressed || isFocusOnInput);
 
-    if (shouldRejectExecution) return;
+    const shouldIgnore =
+      (ignoreModifierKeys || ignoreWhenInputFocused) &&
+      (isModifierKeyPressed || isFocusOnInput);
 
-    if (keysNames.includes(pressedKey)) callback();
+    if (shouldIgnore) return;
+
+    if (allowedKeys.includes(key)) callback();
   }
 };
 

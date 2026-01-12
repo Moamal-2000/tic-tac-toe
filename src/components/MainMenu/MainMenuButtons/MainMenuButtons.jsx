@@ -12,7 +12,7 @@ import { useState } from "react";
 import s from "./MainMenuButtons.module.scss";
 
 const MainMenuButtons = () => {
-  const [showQuitModal, setShowQuitModal] = useState(true);
+  const [showQuitModal, setShowQuitModal] = useState(false);
   const [pendingMode, setPendingMode] = useState(null);
 
   const updateGameMode = useGlobalStore((s) => s.updateGameMode);
