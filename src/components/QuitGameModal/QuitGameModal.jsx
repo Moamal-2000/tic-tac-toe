@@ -1,19 +1,11 @@
 "use client";
 
 import { MODEL_CLOSE_KEYS } from "@/data/constants";
-import { useEffect } from "react";
+import useFunctionOnKey from "@/hooks/useFunctionOnKey";
 import s from "./QuitGameModal.module.scss";
 
 const QuitGameModal = ({ isVisible, onConfirm, onCancel }) => {
-  useEffect(() => {
-    const handleEscape = (e) => {
-      const shouldClose = MODEL_CLOSE_KEYS.includes(e.key) && isVisible;
-      if (shouldClose) onCancel();
-    };
-
-    document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, [isVisible, onCancel]);
+  useFunctionOnKey(onCancel, MODEL_CLOSE_KEYS, 0, false, true);
 
   if (!isVisible) return null;
 
