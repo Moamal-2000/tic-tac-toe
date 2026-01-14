@@ -64,7 +64,7 @@
   width: 100%;
 }
 
-html:is([lang="ru"], [lang="hu"]) .game .wrapper {
+html:is([lang=ru], [lang=hu], [lang=ja]) .game .wrapper {
   gap: 20px;
 }
 

@@ -58,7 +58,7 @@
 }
 
 @media (max-width: 1300px) {
-  html:is([lang="ru"], [lang="hu"]) .headerButtons .wrapper1 {
+  html:is([lang=ru], [lang=hu], [lang=fr], [lang=ja]) .headerButtons .wrapper1 {
     justify-content: flex-end;
   }
 }
