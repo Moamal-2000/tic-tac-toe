@@ -14,9 +14,19 @@
   }
 }
 
+@include m.large {
+  html[lang=hu] .powerUps {
+    padding: 8px;
+  }
+}
+
 @include m.medium {
   .powerUps {
     flex-direction: column;
+  }
+  
+  html[lang=hu] .powerUps {
+    padding: 15px;
   }
 }
 

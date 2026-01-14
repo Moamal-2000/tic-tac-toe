@@ -31,7 +31,7 @@
   gap: 40px
 }
 
-html[lang=ru] .gameStats .stats {
+html:is([lang="ru"], [lang="hu"]) .gameStats .stats {
   gap: 20px;
 }
 
@@ -39,11 +39,19 @@ html[lang=ru] .gameStats .stats {
   html[lang=fr] .gameStats .stats {
     gap: 20px;
   }
+
+  html[lang=hu] .gameStats .stats {
+    gap: 10px;
+  }
 }
 
 @include m.very-small {
   html[lang=fr] .gameStats .stats {
     gap: 10px;
+  }
+
+  html[lang=hu] .gameStats .stats {
+    gap: 46px;
   }
 }
 
@@ -89,8 +97,12 @@ html[lang=ru] .gameStats .stats {
   .gameStats .stats .label {
     font-size: .7rem;
   }
+
+  html[lang=hu] .gameStats .stats .label {
+    display: none;
+  }
 }
 
-html[lang=ru] .gameStats .stats .label {
+html:is([lang="ru"], [lang="hu"]) .gameStats .stats .label {
   font-size: .7rem;
 }

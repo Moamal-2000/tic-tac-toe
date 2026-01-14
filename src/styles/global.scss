@@ -17,8 +17,7 @@ html[lang=ar] * {
   font-family: var(--font-vazirmatn);
 }
 
-html[lang=fr],
-html[lang=ru] {
+html:is([lang=fr], [lang=ru], [lang=hu]) {
   font-size: 14px;
 }
 
@@ -41,6 +40,10 @@ body {
 @include m.small {
   .main-content {
     max-width: 330px;
+  }
+
+  html[lang=hu] .main-content {
+    max-width: 340px;
   }
 }
 

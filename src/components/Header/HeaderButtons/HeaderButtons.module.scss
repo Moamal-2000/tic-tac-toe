@@ -57,6 +57,12 @@
   align-items: center;
 }
 
+@media (max-width: 1300px) {
+  html:is([lang="ru"], [lang="hu"]) .headerButtons .wrapper1 {
+    justify-content: flex-end;
+  }
+}
+
 @include m.very-small {
   html[lang=fr] .headerButtons .wrapper1 {
     flex-direction: column;
