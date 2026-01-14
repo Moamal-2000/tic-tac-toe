@@ -127,6 +127,10 @@
   margin-bottom: 5px;
 }
 
+html:is([lang=fr], [lang=ru]) .mpContent .headerText>h1 {
+  font-size: 1.4rem;
+}
+
 .mpContent .headerText>p {
   color: #a0a0a0;
   font-size: .875rem;

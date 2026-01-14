@@ -51,15 +51,15 @@ const MultiPlayerMenu = () => {
     <div className={s.mpContent}>
       <BackButton onClick={handleBackButton} />
 
-      <div className={s.playerCount}>
-        <span className={s.playerCountDot} />
-        <span className={s.playerCountLabel}>
-          {t("multiplayer.setup.online_players")}
-        </span>
-        <span className={s.playerCountValue}>{onlinePlayers}</span>
-      </div>
-
       <header className={s.header}>
+        <div className={s.playerCount}>
+          <span className={s.playerCountDot} />
+          <span className={s.playerCountLabel}>
+            {t("multiplayer.setup.online_players")}
+          </span>
+          <span className={s.playerCountValue}>{onlinePlayers}</span>
+        </div>
+
         <div className={s.headerText}>
           <h1>{t("multiplayer.setup.title")}</h1>
           <p>{t("multiplayer.setup.subtitle")}</p>
