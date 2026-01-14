@@ -31,6 +31,10 @@
   gap: 40px
 }
 
+html[lang=ru] .gameStats .stats {
+  gap: 20px;
+}
+
 @include m.small {
   html[lang=fr] .gameStats .stats {
     gap: 20px;
@@ -85,4 +89,8 @@
   .gameStats .stats .label {
     font-size: .7rem;
   }
+}
+
+html[lang=ru] .gameStats .stats .label {
+  font-size: .7rem;
 }

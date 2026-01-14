@@ -63,3 +63,7 @@
 .game.x3 .wrapper {
   width: 100%;
 }
+
+html[lang=ru] .game .wrapper {
+  gap: 20px;
+}

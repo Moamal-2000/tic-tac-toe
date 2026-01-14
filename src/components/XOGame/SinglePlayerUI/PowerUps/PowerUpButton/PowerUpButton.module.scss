@@ -44,6 +44,10 @@
   }
 }
 
+html[lang=ru] .powerUp {
+  width: 80px;
+}
+
 .powerUp:not(:disabled):where(:hover, .selected, :focus-visible) {
   background-color: #3a424d;
   border-color: #4ecdc4;
