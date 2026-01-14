@@ -1,0 +1,118 @@
+@use "@/styles/mixins" as m;
+
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  display: grid;
+  gap: 10px;
+  align-items: center;
+}
+
+@include m.medium {
+  .header {
+    grid-template-columns: 1fr auto;
+    text-align: left;
+  }
+}
+
+@include m.very-small {
+  .header {
+    gap: 8px;
+  }
+}
+
+.playerCount {
+  @include m.flex-center;
+  gap: 8px;
+  padding: 6px 9px;
+  color: #e0e0e0;
+  width: fit-content;
+  position: absolute;
+  top: -30px;
+  right: -30px;
+}
+
+@include m.medium {
+  .playerCount {
+    margin: 0;
+    justify-self: end;
+    align-self: start;
+  }
+}
+
+@include m.small {
+  .playerCount {
+    right: -20px;
+  }
+}
+
+@include m.very-small {
+  .playerCount {
+    top: 26px;
+    right: 20px;
+  }
+}
+
+.playerCountDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4a9eff;
+  position: relative;
+}
+
+.playerCountDot::before {
+  content: '';
+  position: absolute;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: inherit;
+  border: inherit;
+  border: 1px solid #4a9eff;
+  animation: pulse 1.4s ease infinite;
+}
+
+.playerCountLabel {
+  font-size: .7rem;
+  letter-spacing: .6px;
+  color: #a9cfff;
+}
+
+.playerCountValue {
+  font-size: .8rem;
+  color: #e0e0e0;
+  padding-left: 6px;
+  border-left: 1px solid rgba(224, 224, 224, 0.12);
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@include m.medium {
+  .headerText {
+    align-items: flex-start;
+  }
+}
+
+.headerText>h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e0e0e0;
+  margin-bottom: 5px;
+}
+
+html:is([lang=fr], [lang=ru]) .headerText>h1 {
+  font-size: 1.4rem;
+}
+
+.headerText>p {
+  color: #a0a0a0;
+  font-size: .875rem;
+}
