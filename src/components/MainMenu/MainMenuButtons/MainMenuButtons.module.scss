@@ -12,6 +12,10 @@
   .buttons {
     width: 230px;
   }
+
+  html[lang=fr] .buttons {
+    width: 100%;
+  }
 }
 
 .button {
@@ -56,6 +60,10 @@
     padding: 15px 20px;
     min-height: 50px;
   }
+
+  html[lang=fr] .button {
+    font-size: clamp(.8rem, 4.5vw, 1rem);
+  }
 }
 
 .button::before {
@@ -83,9 +91,13 @@ $button-colors: #57f857, #ff4757, #4a9eff;
   }
 }
 
+html[lang=fr] .button {
+  padding-left: 20px;
+}
 
 .button>svg {
   width: 22px;
   height: 22px;
   fill: #e0e0e0;
+  flex-shrink: 0;
 }

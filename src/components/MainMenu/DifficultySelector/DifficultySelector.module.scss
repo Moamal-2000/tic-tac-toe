@@ -6,7 +6,7 @@
   padding: 3px 2px;
   position: relative;
   left: 88%;
-  top: 48px;
+  top: 49px;
 }
 
 @include m.medium {
@@ -33,6 +33,7 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  word-break: keep-all;
   transition: all 0.2s ease;
 
   &:hover {
@@ -47,9 +48,18 @@
   }
 }
 
+html:not([lang=en], [lang=hi]) .option {
+  font-size: .85rem;
+  min-width: 78px;
+}
+
 @include m.very-small {
   .option {
     padding: 8px 0;
     font-size: .85rem;
+  }
+
+  html:not([lang=en], [lang=hi]) .option {
+    min-width: 72px;
   }
 }
