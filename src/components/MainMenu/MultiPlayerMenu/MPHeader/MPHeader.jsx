@@ -1,26 +1,11 @@
-import { socket } from "@/socket/socket";
+import useOnlinePlayersCount from "@/hooks/useOnlinePlayersCount";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 import s from "./MPHeader.module.scss";
 
 const MPHeader = () => {
   const t = useTranslations("main_menu");
 
-  const [onlinePlayers, setOnlinePlayers] = useState(0);
-
-  useEffect(() => {
-    socket.emit("get-online-players");
-
-    function handleOnlinePlayersCount({ count }) {
-      setOnlinePlayers(count);
-    }
-
-    socket.on("online-players-count", handleOnlinePlayersCount);
-
-    return () => {
-      socket.off("online-players-count", handleOnlinePlayersCount);
-    };
-  }, []);
+  const onlinePlayers = useOnlinePlayersCount();
 
   return (
     <header className={s.header}>
