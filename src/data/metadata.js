@@ -58,6 +58,7 @@ export const GLOBAL_METADATA = {
   authors: [{ name: author }],
   publisher: author,
   creator: author,
+  other: { google: "notranslate" },
 };
 
 export function getOpenGraphMetadata(pagePath = "") {
@@ -84,6 +85,5 @@ export function getOpenGraphMetadata(pagePath = "") {
     },
   };
 }
-
 
 export const METADATA = { ...GLOBAL_METADATA, ...PWA_METADATA };
