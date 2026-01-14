@@ -7,7 +7,7 @@ import {
   UNSELECT_SOUND,
 } from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import XOSquare from "../XOSquare/XOSquare";

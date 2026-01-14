@@ -1,4 +1,4 @@
-import useOnlinePlayersCount from "@/hooks/useOnlinePlayersCount";
+import useOnlinePlayersCount from "@/hooks/app/useOnlinePlayersCount";
 import { useTranslations } from "next-intl";
 import s from "./MPHeader.module.scss";
 

@@ -2,8 +2,8 @@
 
 import Button from "@/components/Shared/Button/Button";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import useEventListener from "@/hooks/useEventListener";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
+import useEventListener from "@/hooks/helper/useEventListener";
 import { languagesMenu } from "@/i18n/config";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useGlobalStore } from "@/stores/global.store/global.store";

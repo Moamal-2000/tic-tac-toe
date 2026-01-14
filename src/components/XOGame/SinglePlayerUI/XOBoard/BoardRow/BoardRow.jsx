@@ -1,6 +1,6 @@
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { shouldDisableSquare } from "@/functions/accessibilityHelper";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import XOSquare from "../XOSquare/XOSquare";

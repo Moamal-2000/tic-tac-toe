@@ -1,7 +1,7 @@
 "use client";
 
 import { MODEL_CLOSE_KEYS } from "@/data/constants";
-import useFunctionOnKey from "@/hooks/useFunctionOnKey";
+import useFunctionOnKey from "@/hooks/helper/useFunctionOnKey";
 import { useTranslations } from "next-intl";
 import s from "./QuitGameModal.module.scss";
 

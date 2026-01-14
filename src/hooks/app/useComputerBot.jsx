@@ -5,7 +5,7 @@ import { normalizeFromStore } from "@/ai/engine";
 import { BOT_MOVE_DELAY_MS, SYMBOL_X } from "@/data/constants";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { POWER_UPS } from "@/data/staticData";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useEffect } from "react";

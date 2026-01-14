@@ -1,7 +1,7 @@
 "use client";
 
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useRef } from "react";
 import AboutHeader from "./AboutHeader/AboutHeader";

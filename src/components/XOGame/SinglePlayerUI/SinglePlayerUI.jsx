@@ -1,5 +1,5 @@
 import { SCREEN_SIZES } from "@/data/constants";
-import useComputerBot from "@/hooks/useComputerBot";
+import useComputerBot from "@/hooks/app/useComputerBot";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";

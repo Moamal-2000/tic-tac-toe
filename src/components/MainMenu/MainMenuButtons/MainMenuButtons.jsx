@@ -3,7 +3,7 @@
 import QuitGameModal from "@/components/QuitGameModal/QuitGameModal";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { GAME_MODES_BUTTONS } from "@/data/staticData";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";

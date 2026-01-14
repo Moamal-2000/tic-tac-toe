@@ -1,7 +1,7 @@
 "use client";
 
 import { soundFiles, UNSELECT_SOUND } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";

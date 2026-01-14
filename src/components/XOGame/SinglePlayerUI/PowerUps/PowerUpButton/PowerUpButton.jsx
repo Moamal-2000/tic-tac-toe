@@ -1,7 +1,7 @@
 "use client";
 
 import { soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";
 import Image from "next/image";

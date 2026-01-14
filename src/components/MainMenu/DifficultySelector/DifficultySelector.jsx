@@ -2,7 +2,7 @@
 
 import { DIFFICULTY_OPTIONS } from "@/data/constants";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useTranslations } from "next-intl";
 import s from "./DifficultySelector.module.scss";

@@ -7,7 +7,7 @@ import {
   soundFiles,
   WINNER_SOUNDS,
 } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";

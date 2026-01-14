@@ -2,7 +2,7 @@
 
 import { KEY_DEBOUNCE_DELAY_MS } from "@/data/constants";
 import { enterFullScreen, isFullScreenSupported } from "@/functions/helper";
-import useFunctionOnKey from "@/hooks/useFunctionOnKey";
+import useFunctionOnKey from "@/hooks/helper/useFunctionOnKey";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import s from "./FullscreenToggleButton.module.scss";

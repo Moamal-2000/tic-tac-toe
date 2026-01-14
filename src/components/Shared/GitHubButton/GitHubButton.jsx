@@ -2,7 +2,7 @@
 
 import { GITHUB_URL } from "@/data/links";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useTranslations } from "next-intl";
 import s from "./GitHubButton.module.scss";
 

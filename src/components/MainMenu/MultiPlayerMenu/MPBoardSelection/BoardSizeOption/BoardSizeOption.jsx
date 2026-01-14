@@ -1,5 +1,5 @@
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import s from "./BoardSizeOption.module.scss";
 

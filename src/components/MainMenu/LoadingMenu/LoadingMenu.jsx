@@ -2,13 +2,13 @@
 
 import BackButton from "@/components/Shared/BackButton/BackButton";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import usePreloadSounds from "@/hooks/usePreloadSounds";
+import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import s from "./LoadingMenu.module.scss";
-import { useTranslations } from "next-intl";
 
 const LoadingMenu = () => {
   const t = useTranslations("main_menu");
