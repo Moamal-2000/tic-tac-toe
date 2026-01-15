@@ -5,12 +5,14 @@ import { refreshPage } from "@/functions/helper";
 import { useEffect, useState } from "react";
 import s from "./UpdateNotification.module.scss";
 
-export default function UpdateNotification() {
+function UpdateNotification() {
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     registerSWWithUpdate(setShowNotification);
   }, []);
+
+  if (!showNotification) return null;
 
   function handleRefreshPage() {
     if (navigator.serviceWorker.controller) {
@@ -20,20 +22,21 @@ export default function UpdateNotification() {
   }
 
   return (
-    showNotification && (
-      <div className={s.updateNotification}>
-        <p>A new version is available!</p>
-        <button
-          type="button"
-          className={s.refreshButton}
-          onClick={handleRefreshPage}
-        >
-          Refresh
-        </button>
-      </div>
-    )
+    <div className={s.updateNotification}>
+      <p>A new version is available!</p>
+      <button
+        type="button"
+        className={s.refreshButton}
+        onClick={handleRefreshPage}
+      >
+        Refresh
+      </button>
+    </div>
   );
 }
+
+export default UpdateNotification;
+
 async function registerSWWithUpdate(setShowNotification) {
   if (!("serviceWorker" in navigator) || !IS_PRODUCTION) return;
 
