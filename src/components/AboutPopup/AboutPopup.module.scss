@@ -31,6 +31,12 @@
   overflow-y: auto;
 }
 
+@include m.medium {
+  .aboutArticle {
+    padding: 24px;
+  }
+}
+
 .aboutArticle::-webkit-scrollbar {
   background: rgba(255, 255, 255, .03);
   width: 8px;
