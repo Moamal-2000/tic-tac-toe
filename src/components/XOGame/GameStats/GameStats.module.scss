@@ -63,10 +63,13 @@ html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  height: 51px;
 }
 
 .gameStats .stat .value {
+  display: block;
+  height: 30px;
   font-size: 1.5rem;
   font-weight: bold;
   background: linear-gradient(135deg, #4ecdc4, #44a08d);

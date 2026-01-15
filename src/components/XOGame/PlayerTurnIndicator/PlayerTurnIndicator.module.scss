@@ -40,7 +40,8 @@ html[lang=ja] .indicator {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  height: 89px;
 }
 
 .indicator .player .symbol {
