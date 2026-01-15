@@ -91,6 +91,20 @@
   }
 }
 
+@mixin slide-up {
+  @keyframes slide-up {
+    from {
+      transform: translateX(-50%) translateY(100px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
 @mixin modal-fade-in {
   @keyframes modal-fade-in {
     from {

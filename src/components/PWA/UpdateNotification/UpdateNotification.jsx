@@ -1,6 +1,5 @@
 "use client";
 
-import Button from "@/components/Shared/Button/Button";
 import { IS_PRODUCTION } from "@/data/env";
 import { refreshPage } from "@/functions/helper";
 import { useEffect, useState } from "react";
@@ -23,8 +22,14 @@ export default function UpdateNotification() {
   return (
     showNotification && (
       <div className={s.updateNotification}>
-        <span>A new version is available!</span>
-        <Button onClick={handleRefreshPage}>Refresh</Button>
+        <p>A new version is available!</p>
+        <button
+          type="button"
+          className={s.refreshButton}
+          onClick={handleRefreshPage}
+        >
+          Refresh
+        </button>
       </div>
     )
   );

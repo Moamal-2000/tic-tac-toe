@@ -1,21 +1,29 @@
 @use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
-@include keyframe.slide-in;
+@include keyframe.slide-up;
 
 .updateNotification {
   position: fixed;
-  left: 0;
+  left: 50%;
   bottom: 32px;
-  background-color: #0d85fd;
+  transform: translateX(-50%) translateY(100px);
+  background: linear-gradient(135deg, #0d85fd 0, #0969da 100%);
   color: #fff;
-  padding: 16px 24px;
-  border-radius: 0 12px 12px 0;
+  padding: 10px 20px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  animation: slide-in .3s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 24px rgba(13, 133, 253, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slide-up .3s ease-out forwards;
   z-index: 1001;
+  font-family: var(--font-inter);
+  font-size: .9rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
 }
 
 @include m.very-small {
@@ -29,4 +37,49 @@
 
 .updateNotification span {
   font-size: .9rem;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.3px;
+}
+
+.updateNotification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent 0,
+      rgba(255, 255, 255, 0.4) 50%,
+      transparent 100%);
+}
+
+.refreshButton {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: .8rem;
+  font-weight: 500;
+  font-family: var(--font-inter);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 2px;
+  }
 }
