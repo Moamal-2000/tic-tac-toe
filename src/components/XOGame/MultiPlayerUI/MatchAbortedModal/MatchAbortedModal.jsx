@@ -2,6 +2,7 @@
 
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import s from "./MatchAbortedModal.module.scss";
@@ -12,6 +13,7 @@ const MatchAbortedModal = () => {
     useMultiplayerStore();
   const { updateGameMode } = useGlobalStore();
   const backToMenuButtonRef = useRef(null);
+  const t = useTranslations("modals.match_aborted_modal");
 
   function handleBackToMenu() {
     resetMultiplayerState();
@@ -53,18 +55,15 @@ const MatchAbortedModal = () => {
         aria-labelledby="match-aborted-title"
         aria-describedby="match-aborted-description"
       >
-        <h2 id="match-aborted-title">Match Aborted!</h2>
-        <p id="match-aborted-description">
-          Your opponent has withdrawn from the game. You will be returned to the
-          main menu.
-        </p>
+        <h2 id="match-aborted-title">{t("title")}</h2>
+        <p id="match-aborted-description">{t("description")}</p>
         <button
           type="button"
           onClick={handleBackToMenu}
           className={s.button}
           ref={backToMenuButtonRef}
         >
-          Back to Menu
+          {t("back_to_menu")}
         </button>
       </div>
     </div>

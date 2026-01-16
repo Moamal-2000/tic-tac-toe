@@ -130,6 +130,11 @@
       "message": "アクティブな試合中です。終了しますか？",
       "confirm": "はい",
       "cancel": "いいえ"
+    },
+    "match_aborted_modal": {
+      "title": "試合が中止されました！",
+      "description": "相手がゲームから退出しました。メインメニューに戻ります。",
+      "back_to_menu": "メニューに戻る"
     }
   },
   "aria_labels": {

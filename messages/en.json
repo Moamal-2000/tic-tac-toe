@@ -131,6 +131,11 @@
       "message": "You are in an active match, would you like to quit?",
       "confirm": "Yes",
       "cancel": "No"
+    },
+    "match_aborted_modal": {
+      "title": "Match Aborted!",
+      "description": "Your opponent has withdrawn from the game. You will be returned to the main menu.",
+      "back_to_menu": "Back to Menu"
     }
   },
   "aria_labels": {

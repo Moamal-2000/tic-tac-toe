@@ -131,6 +131,11 @@
       "message": "Aktív mérkőzésben van, szeretne kilépni?",
       "confirm": "Igen",
       "cancel": "Nem"
+    },
+    "match_aborted_modal": {
+      "title": "Mérkőzés megszakítva!",
+      "description": "Az ellenfél kilépett a játékból. Vissza lesz irányítva a főmenübe.",
+      "back_to_menu": "Vissza a menübe"
     }
   },
   "aria_labels": {

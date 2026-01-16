@@ -131,6 +131,11 @@
       "message": "Vous êtes dans une partie en cours, voulez-vous quitter ?",
       "confirm": "Oui",
       "cancel": "Non"
+    },
+    "match_aborted_modal": {
+      "title": "Partie annulée !",
+      "description": "Votre adversaire s'est retiré du jeu. Vous serez redirigé vers le menu principal.",
+      "back_to_menu": "Retour au menu"
     }
   },
   "aria_labels": {
