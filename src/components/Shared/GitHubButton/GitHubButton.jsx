@@ -18,6 +18,7 @@ const GitHubButton = () => {
       rel="noreferrer"
       title={t("github")}
       onClick={() => playSound(BUTTON_SOUND)}
+      dir="ltr"
     >
       <svg aria-hidden="true">
         <use href={"/icons-sprite.svg#github"} />

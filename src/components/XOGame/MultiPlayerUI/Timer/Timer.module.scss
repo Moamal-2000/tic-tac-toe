@@ -23,6 +23,11 @@
   }
 }
 
+html[lang=ar] .timerContainer {
+  right: auto;
+  left: 15px;
+}
+
 .timerCircle {
   position: absolute;
   rotate: -90deg;

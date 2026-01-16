@@ -31,6 +31,11 @@
   }
 }
 
+html[lang=ar] .button {
+  left: auto;
+  right: 20px;
+}
+
 .button>span {
   font-size: .75rem;
   color: #e9e9ec;
