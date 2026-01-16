@@ -14,7 +14,7 @@ export class GameManager {
       `[Room] Created room ${roomId} with players ${socketO.id} (O) and ${socketX.id} (X)`
     );
 
-    const game = new Game(roomId, socketO, socketX, boardSize);
+    const game = new Game(roomId, socketO, socketX, boardSize, this.io);
     this.rooms.set(roomId, game);
 
     socketO.join(roomId);

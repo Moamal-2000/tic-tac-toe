@@ -9,8 +9,9 @@ import { Board } from "./Board.js";
 import { Player } from "./Player.js";
 
 export class Game {
-  constructor(id, socketO, socketX, boardSize) {
+  constructor(id, socketO, socketX, boardSize, io) {
     this.id = id;
+    this.io = io;
     this.board = new Board(boardSize);
     this.players = {
       [SYMBOL_O]: new Player(socketO.id, SYMBOL_O, boardSize),
@@ -89,10 +90,12 @@ export class Game {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = true;
-    this.timerCallback = callback; // Store callback for reuse
+    this.timerCallback = callback;
+    this.broadcastTimerUpdate();
 
     this.timerInterval = setInterval(() => {
       this.timeRemaining--;
+      this.broadcastTimerUpdate();
 
       if (this.timeRemaining <= 0) {
         this.stopTimer();
@@ -101,12 +104,20 @@ export class Game {
     }, SECOND_IN_MS);
   }
 
+  broadcastTimerUpdate() {
+    this.io.to(this.id).emit("timer-update", {
+      timeRemaining: this.timeRemaining,
+      timerActive: this.timerActive,
+    });
+  }
+
   stopTimer() {
     if (this.timerInterval) {
       clearInterval(this.timerInterval);
       this.timerInterval = null;
     }
     this.timerActive = false;
+    this.broadcastTimerUpdate();
   }
 
   resetTimer() {

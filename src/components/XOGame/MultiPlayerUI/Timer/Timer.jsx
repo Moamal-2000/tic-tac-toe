@@ -1,11 +1,10 @@
 "use client";
 
 import { CIRCLE_LENGTH, TURN_TIMER_DURATION } from "@/data/constants";
-import { stopTimer } from "@/functions/helper";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import s from "./Timer.module.scss";
 
 const Timer = () => {
@@ -13,22 +12,26 @@ const Timer = () => {
 
   const { timeRemaining, timerActive, hasGameStarted, winner } =
     useMultiplayerStore();
-  const intervalRef = useRef(null);
 
   const isTimerRunning = timerActive && hasGameStarted && !winner;
 
   useEffect(() => {
-    if (!isTimerRunning) {
-      stopTimer(intervalRef);
-      return;
-    }
+    const handleTimerUpdate = ({
+      timeRemaining: serverTimeRemaining,
+      timerActive: serverTimerActive,
+    }) => {
+      useMultiplayerStore.setState({
+        timeRemaining: serverTimeRemaining,
+        timerActive: serverTimerActive,
+      });
+    };
 
-    intervalRef.current = setInterval(() => tick(intervalRef), 1000);
+    socket.on("timer-update", handleTimerUpdate);
 
     return () => {
-      stopTimer(intervalRef);
+      socket.off("timer-update", handleTimerUpdate);
     };
-  }, [timerActive, hasGameStarted, winner]);
+  }, []);
 
   if (!isTimerRunning) return null;
 
@@ -57,20 +60,6 @@ const Timer = () => {
 };
 
 export default Timer;
-
-function tick(intervalRef) {
-  useMultiplayerStore.setState((state) => {
-    const nextTime = state.timeRemaining - 1;
-
-    if (nextTime <= 0) {
-      stopTimer(intervalRef);
-      socket.emit("time-up");
-      return state;
-    }
-
-    return { timeRemaining: nextTime };
-  });
-}
 
 function calculateTimerVisuals(timeRemaining) {
   return {
