@@ -113,6 +113,7 @@
   "global": {
     "player": "player",
     "language": "Language",
+    "left": "left",
     "languages": {
       "arabic": "Arabic",
       "english": "English",

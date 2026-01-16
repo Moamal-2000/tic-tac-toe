@@ -113,6 +113,7 @@
   "global": {
     "player": "プレイヤー",
     "language": "言語",
+    "left": "残り",
     "languages": {
       "arabic": "アラビア語",
       "english": "英語",

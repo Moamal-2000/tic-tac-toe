@@ -113,6 +113,7 @@
   "global": {
     "player": "Joueur",
     "language": "Langue",
+    "left": "restant",
     "languages": {
       "arabic": "Arabe",
       "english": "Anglais",

@@ -113,6 +113,7 @@
   "global": {
     "player": "لاعب",
     "language": "اللغة",
+    "left": "متبقي",
     "languages": {
       "arabic": "العربية",
       "english": "الإنكليزية",

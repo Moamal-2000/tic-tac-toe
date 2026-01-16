@@ -4,10 +4,13 @@ import { CIRCLE_LENGTH, TURN_TIMER_DURATION } from "@/data/constants";
 import { stopTimer } from "@/functions/helper";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import s from "./Timer.module.scss";
 
 const Timer = () => {
+  const t = useTranslations("global");
+
   const { timeRemaining, timerActive, hasGameStarted, winner } =
     useMultiplayerStore();
   const intervalRef = useRef(null);
@@ -45,8 +48,9 @@ const Timer = () => {
           style={{ strokeDashoffset }}
         />
       </svg>
-      <div className={s.timerText}>
-        {timeRemaining}s<span className={s.word}> left</span>
+      <div className={s.timerText} dir="ltr">
+        {timeRemaining}
+        <span className={s.word}>{t("left")}</span>
       </div>
     </div>
   );
