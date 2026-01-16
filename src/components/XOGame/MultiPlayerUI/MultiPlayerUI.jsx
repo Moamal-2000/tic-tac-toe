@@ -4,8 +4,8 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import { useEffect } from "react";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
+import MatchAbortedModal from "./MatchAbortedModal/MatchAbortedModal";
 import s from "./MultiPlayerUI.module.scss";
-import OpponentDisconnectedModal from "./OpponentDisconnectedModal/OpponentDisconnectedModal";
 import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
 import RematchRequestNotification from "./RematchRequestNotification/RematchRequestNotification";
@@ -117,7 +117,7 @@ const MultiPlayerUI = () => {
       />
       {isRematchMenuActive && <RematchMenu />}
       <RematchRequestNotification />
-      <OpponentDisconnectedModal />
+      <MatchAbortedModal />
     </section>
   );
 };
