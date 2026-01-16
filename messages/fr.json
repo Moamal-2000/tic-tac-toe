@@ -28,7 +28,8 @@
     "game_modes": {
       "computer": "Jouer contre l'ordinateur",
       "local": "Jouer localement",
-      "online": "Jouer en ligne"
+      "online": "Jouer en ligne",
+      "return_to_match": "Retour à la partie"
     },
     "difficulty": {
       "easy": "Facile",

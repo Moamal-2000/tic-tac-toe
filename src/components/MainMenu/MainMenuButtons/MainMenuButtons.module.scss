@@ -77,7 +77,7 @@
   transition: box-shadow .15s ease;
 }
 
-$button-colors: #57f857, #ff4757, #4a9eff;
+$button-colors: #57f857, #ff4757, #4a9eff, #ffe91f;
 
 @for $i from 1 through list.length($button-colors) {
   .button:nth-child(#{$i})::before {

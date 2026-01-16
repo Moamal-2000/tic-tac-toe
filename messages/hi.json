@@ -28,7 +28,8 @@
     "game_modes": {
       "computer": "कंप्यूटर के खिलाफ खेलें",
       "local": "स्थानीय रूप से खेलें",
-      "online": "ऑनलाइन खेलें"
+      "online": "ऑनलाइन खेलें",
+      "return_to_match": "मैच पर वापस जाएं"
     },
     "difficulty": {
       "easy": "आसान",

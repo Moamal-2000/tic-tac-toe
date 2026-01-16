@@ -28,7 +28,8 @@
     "game_modes": {
       "computer": "Számítógép ellen",
       "local": "Helyi játék",
-      "online": "Online játék"
+      "online": "Online játék",
+      "return_to_match": "Vissza a mérkőzéshez"
     },
     "difficulty": {
       "easy": "Könnyű",

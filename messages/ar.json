@@ -28,7 +28,8 @@
     "game_modes": {
       "computer": "العب ضد الكمبيوتر",
       "local": "العب محلياً",
-      "online": "العب عبر الإنترنت"
+      "online": "العب عبر الإنترنت",
+      "return_to_match": "العودة إلى المباراة"
     },
     "difficulty": {
       "easy": "سهل",

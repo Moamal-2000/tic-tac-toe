@@ -15,13 +15,20 @@ const MainMenuButtons = () => {
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [pendingMode, setPendingMode] = useState(null);
 
-  const updateGameMode = useGlobalStore((s) => s.updateGameMode);
+  const { updateGameMode, updateGlobalState } = useGlobalStore();
   const { hasGameStarted, resetMultiplayerState } = useMultiplayerStore();
 
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const t = useTranslations("main_menu");
 
   function handleClick(mode) {
+    if (mode === "return_to_match") {
+      updateGameMode("online");
+      updateGlobalState({ menuActive: false });
+      playSound(BUTTON_SOUND);
+      return;
+    }
+
     // Check if player is in an active multiplayer game and trying to switch to local/computer
     if (hasGameStarted && (mode === "local" || mode === "computer")) {
       setPendingMode(mode);
@@ -55,19 +62,23 @@ const MainMenuButtons = () => {
   return (
     <>
       <div className={s.buttons}>
-        {GAME_MODES_BUTTONS.map(({ iconName, mode, id }) => (
-          <button
-            type="button"
-            className={s.button}
-            key={`${mode}-${id}`}
-            onClick={() => handleClick(mode)}
-          >
-            <svg aria-hidden="true">
-              <use href={`/icons-sprite.svg#${iconName}`} />
-            </svg>
-            {t(`game_modes.${mode}`)}
-          </button>
-        ))}
+        {GAME_MODES_BUTTONS.map(({ iconName, mode, id }) => {
+          if (mode === "return_to_match" && !hasGameStarted) return null;
+
+          return (
+            <button
+              type="button"
+              className={s.button}
+              key={`${mode}-${id}`}
+              onClick={() => handleClick(mode)}
+            >
+              <svg aria-hidden="true">
+                <use href={`/icons-sprite.svg#${iconName}`} />
+              </svg>
+              {t(`game_modes.${mode}`)}
+            </button>
+          );
+        })}
       </div>
       <QuitGameModal
         isVisible={showQuitModal}

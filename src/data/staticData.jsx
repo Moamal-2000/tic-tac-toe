@@ -176,4 +176,10 @@ export const GAME_MODES_BUTTONS = [
     mode: "online",
     id: 3,
   },
+  {
+    label: "Return to Match",
+    iconName: "arrowLeft",
+    mode: "return_to_match",
+    id: 4,
+  },
 ];
