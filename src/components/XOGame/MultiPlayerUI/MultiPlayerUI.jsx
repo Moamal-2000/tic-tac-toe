@@ -8,7 +8,7 @@ import MatchAbortedModal from "./MatchAbortedModal/MatchAbortedModal";
 import s from "./MultiPlayerUI.module.scss";
 import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "./RematchMenu/RematchMenu";
-import RematchRequestNotification from "./RematchRequestNotification/RematchRequestNotification";
+import RematchPrompt from "./RematchPrompt/RematchPrompt";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 
@@ -116,7 +116,7 @@ const MultiPlayerUI = () => {
         hideOn={SCREEN_SIZES.medium.size}
       />
       {isRematchMenuActive && <RematchMenu />}
-      <RematchRequestNotification />
+      <RematchPrompt />
       <MatchAbortedModal />
     </section>
   );

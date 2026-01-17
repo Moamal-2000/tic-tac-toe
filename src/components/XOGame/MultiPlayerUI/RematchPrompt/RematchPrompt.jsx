@@ -4,9 +4,9 @@ import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import s from "./RematchRequestNotification.module.scss";
+import s from "./RematchPrompt.module.scss";
 
-const RematchRequestNotification = () => {
+const RematchPrompt = () => {
   const { updateMultiplayerState, rematchRequest } = useMultiplayerStore();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,4 +52,4 @@ const RematchRequestNotification = () => {
   );
 };
 
-export default RematchRequestNotification;
+export default RematchPrompt;
