@@ -9,6 +9,7 @@ import s from "./RematchRequestNotification.module.scss";
 const RematchRequestNotification = () => {
   const { updateMultiplayerState, rematchRequest } = useMultiplayerStore();
   const [isVisible, setIsVisible] = useState(false);
+
   const t = useTranslations("modals.rematch_request_notification");
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const RematchRequestNotification = () => {
     };
   }, [updateMultiplayerState]);
 
+  if (!isVisible || rematchRequest !== "pending") return null;
+
   function handleAccept() {
     socket.emit("rematch-accepted");
     updateMultiplayerState({ rematchRequest: null });
@@ -33,8 +36,6 @@ const RematchRequestNotification = () => {
     updateMultiplayerState({ rematchRequest: null });
     setIsVisible(false);
   }
-
-  if (!isVisible || rematchRequest !== "pending") return null;
 
   return (
     <div className={s.overlay}>
