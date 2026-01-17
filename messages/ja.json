@@ -135,6 +135,12 @@
       "title": "試合が中止されました！",
       "description": "相手がゲームから退出しました。メインメニューに戻ります。",
       "back_to_menu": "メニューに戻る"
+    },
+    "rematch_request_notification": {
+      "title": "ゲームリセット要求",
+      "description": "相手がすべての結果と統計をリセットして最初からやり直したいと思っています！",
+      "accept": "承諾",
+      "decline": "拒否"
     }
   },
   "aria_labels": {

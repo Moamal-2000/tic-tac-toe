@@ -136,6 +136,12 @@
       "title": "Match Aborted!",
       "description": "Your opponent has withdrawn from the game. You will be returned to the main menu.",
       "back_to_menu": "Back to Menu"
+    },
+    "rematch_request_notification": {
+      "title": "Reset Game Request",
+      "description": "Your opponent wants to start fresh with all results and statistics reset!",
+      "accept": "Accept",
+      "decline": "Decline"
     }
   },
   "aria_labels": {

@@ -136,6 +136,12 @@
       "title": "Partie annulée !",
       "description": "Votre adversaire s'est retiré du jeu. Vous serez redirigé vers le menu principal.",
       "back_to_menu": "Retour au menu"
+    },
+    "rematch_request_notification": {
+      "title": "Demande de réinitialisation",
+      "description": "Votre adversaire veut repartir à zéro avec tous les résultats et statistiques réinitialisés !",
+      "accept": "Accepter",
+      "decline": "Refuser"
     }
   },
   "aria_labels": {
