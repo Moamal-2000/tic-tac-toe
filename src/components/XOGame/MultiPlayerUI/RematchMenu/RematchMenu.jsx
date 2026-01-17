@@ -4,7 +4,7 @@ import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import RematchDeclineNotification from "./RematchDeclineNotification/RematchDeclineNotification";
+import DeclineNotice from "./DeclineNotice/DeclineNotice";
 import s from "./RematchMenu.module.scss";
 
 const RematchMenu = () => {
@@ -47,7 +47,7 @@ const RematchMenu = () => {
 
   if (showDeclineNotification) {
     return (
-      <RematchDeclineNotification
+      <DeclineNotice
         isVisible={showDeclineNotification}
         onHide={() => setShowDeclineNotification(false)}
       />

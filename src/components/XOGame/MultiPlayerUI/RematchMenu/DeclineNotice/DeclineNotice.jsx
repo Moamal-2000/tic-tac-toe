@@ -3,9 +3,9 @@
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import s from "./RematchDeclineNotification.module.scss";
+import s from "./DeclineNotice.module.scss";
 
-const RematchDeclineNotification = ({ isVisible, onHide }) => {
+const DeclineNotice = ({ isVisible, onHide }) => {
   const { updateMultiplayerState } = useMultiplayerStore();
   const t = useTranslations("modals.rematch_decline_notification");
 
@@ -32,4 +32,4 @@ const RematchDeclineNotification = ({ isVisible, onHide }) => {
   );
 };
 
-export default RematchDeclineNotification;
+export default DeclineNotice;
