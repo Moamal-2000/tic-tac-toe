@@ -142,6 +142,17 @@
       "description": "Votre adversaire veut repartir à zéro avec tous les résultats et statistiques réinitialisés !",
       "accept": "Accepter",
       "decline": "Refuser"
+    },
+    "rematch_menu": {
+      "ask_rematch": "Demander une revanche ?",
+      "yes": "Oui",
+      "no": "Non",
+      "waiting_opponent": "En attente de l'adversaire...",
+      "waiting_message": "Veuillez patienter pendant que l'adversaire répond à votre demande de revanche."
+    },
+    "rematch_decline_notification": {
+      "title": "Revanche refusée",
+      "message": "Votre adversaire a refusé la demande de revanche."
     }
   },
   "aria_labels": {

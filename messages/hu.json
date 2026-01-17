@@ -142,6 +142,17 @@
       "description": "Az ellenfeled minden eredményt és statisztikát visszaállítva elölről kezdeni!",
       "accept": "Elfogad",
       "decline": "Elutasít"
+    },
+    "rematch_menu": {
+      "ask_rematch": "Szeretne újrajátszani?",
+      "yes": "Igen",
+      "no": "Nem",
+      "waiting_opponent": "Várakozás az ellenfélre...",
+      "waiting_message": "Kérem, várjon, amíg az ellenfél válaszol az újrajátszási kérésére."
+    },
+    "rematch_decline_notification": {
+      "title": "Újrajátszás elutasítva",
+      "message": "Az ellenfeled elutasította az újrajátszási kérést."
     }
   },
   "aria_labels": {

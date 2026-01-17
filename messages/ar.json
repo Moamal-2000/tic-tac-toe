@@ -142,6 +142,17 @@
       "description": "خصمك يريد البدء من جديد مع تصفير جميع النتائج والإحصائيات.",
       "accept": "قبول",
       "decline": "رفض"
+    },
+    "rematch_menu": {
+      "ask_rematch": "طلب لإعادة المباراة؟",
+      "yes": "نعم",
+      "no": "لا",
+      "waiting_opponent": "في انتظار الخصم...",
+      "waiting_message": "يرجى الانتظار بينما يرد الخصم على طلب إعادة المباراة."
+    },
+    "rematch_decline_notification": {
+      "title": "تم رفض إعادة المباراة",
+      "message": "خصمك رفض طلب إعادة المباراة."
     }
   },
   "aria_labels": {

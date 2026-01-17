@@ -142,6 +142,17 @@
       "description": "Your opponent wants to start fresh with all results and statistics reset!",
       "accept": "Accept",
       "decline": "Decline"
+    },
+    "rematch_menu": {
+      "ask_rematch": "Ask for a rematch?",
+      "yes": "Yes",
+      "no": "No",
+      "waiting_opponent": "Waiting for opponent...",
+      "waiting_message": "Please wait while the opponent responds to your rematch request."
+    },
+    "rematch_decline_notification": {
+      "title": "Rematch Declined",
+      "message": "Your opponent declined the rematch request."
     }
   },
   "aria_labels": {

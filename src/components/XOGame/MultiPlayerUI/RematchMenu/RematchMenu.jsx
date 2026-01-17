@@ -2,6 +2,7 @@
 
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import RematchDeclineNotification from "./RematchDeclineNotification/RematchDeclineNotification";
 import s from "./RematchMenu.module.scss";
@@ -10,6 +11,7 @@ const RematchMenu = () => {
   const { updateMultiplayerState, playerTurn } = useMultiplayerStore();
   const [waitingOpponent, setWaitingOpponent] = useState(false);
   const [showDeclineNotification, setShowDeclineNotification] = useState(false);
+  const t = useTranslations("modals.rematch_menu");
 
   useEffect(() => {
     socket.on("rematch-request-rejected", () => {
@@ -57,21 +59,19 @@ const RematchMenu = () => {
       <div className={s.rematchMenu}>
         {!waitingOpponent && (
           <>
-            <h2>Ask for a rematch?</h2>
+            <h2>{t("ask_rematch")}</h2>
 
             <div className={s.buttons}>
-              <button onClick={handleRematch}>Yes</button>
-              <button onClick={closeRematchMenu}>No</button>
+              <button onClick={handleRematch}>{t("yes")}</button>
+              <button onClick={closeRematchMenu}>{t("no")}</button>
             </div>
           </>
         )}
 
         {waitingOpponent && (
           <>
-            <h2>Waiting for opponent...</h2>
-            <p>
-              Please wait while the opponent responds to your rematch request.
-            </p>
+            <h2>{t("waiting_opponent")}</h2>
+            <p>{t("waiting_message")}</p>
           </>
         )}
       </div>

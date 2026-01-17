@@ -141,6 +141,17 @@
       "description": "相手がすべての結果と統計をリセットして最初からやり直したいと思っています！",
       "accept": "承諾",
       "decline": "拒否"
+    },
+    "rematch_menu": {
+      "ask_rematch": "再戦を要求しますか？",
+      "yes": "はい",
+      "no": "いいえ",
+      "waiting_opponent": "相手の応答を待っています...",
+      "waiting_message": "相手が再戦要求に応答するまでお待ちください。"
+    },
+    "rematch_decline_notification": {
+      "title": "再戦が拒否されました",
+      "message": "相手が再戦要求を拒否しました。"
     }
   },
   "aria_labels": {

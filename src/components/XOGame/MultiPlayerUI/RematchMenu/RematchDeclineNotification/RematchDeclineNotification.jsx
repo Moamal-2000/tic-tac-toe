@@ -1,11 +1,13 @@
 "use client";
 
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
+import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import s from "./RematchDeclineNotification.module.scss";
 
 const RematchDeclineNotification = ({ isVisible, onHide }) => {
   const { updateMultiplayerState } = useMultiplayerStore();
+  const t = useTranslations("modals.rematch_decline_notification");
 
   useEffect(() => {
     if (!isVisible) return;
@@ -23,8 +25,8 @@ const RematchDeclineNotification = ({ isVisible, onHide }) => {
   return (
     <div className={s.notificationOverlay}>
       <div className={s.notification}>
-        <h3>Rematch Declined</h3>
-        <p>Your opponent declined the rematch request.</p>
+        <h3>{t("title")}</h3>
+        <p>{t("message")}</p>
       </div>
     </div>
   );
