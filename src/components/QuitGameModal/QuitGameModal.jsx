@@ -18,7 +18,8 @@ const QuitGameModal = ({ isVisible, onConfirm, onCancel }) => {
         <div className={s.content}>
           <h2 className={s.title}>{t("title")}</h2>
           <p className={s.message}>{t("message")}</p>
-          <div className={s.buttons}>
+
+          <div className={s.buttons} dir="ltr">
             <button
               type="button"
               className={s.button}
