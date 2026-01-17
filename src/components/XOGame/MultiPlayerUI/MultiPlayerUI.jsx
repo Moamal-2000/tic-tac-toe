@@ -4,11 +4,11 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import { useEffect } from "react";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
-import MatchAbortedModal from "./MatchAbortedModal/MatchAbortedModal";
+import MatchAbortedModal from "../../Shared/Modals/MatchAbortedModal/MatchAbortedModal";
 import s from "./MultiPlayerUI.module.scss";
 import PowerUps from "./PowerUps/PowerUps";
-import RematchMenu from "./RematchMenu/RematchMenu";
-import RematchPrompt from "./RematchPrompt/RematchPrompt";
+import RematchMenu from "../../Shared/Modals/RematchMenu/RematchMenu";
+import RematchPrompt from "../../Shared/Modals/RematchPrompt/RematchPrompt";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 

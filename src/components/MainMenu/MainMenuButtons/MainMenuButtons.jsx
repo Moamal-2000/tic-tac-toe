@@ -1,6 +1,6 @@
 "use client";
 
-import QuitGameModal from "@/components/QuitGameModal/QuitGameModal";
+import QuitGameModal from "@/components/Shared/Modals/QuitGameModal/QuitGameModal";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import { GAME_MODES_BUTTONS } from "@/data/staticData";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
