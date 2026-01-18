@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .languageSection {
   position: relative;
 }
@@ -12,7 +14,7 @@
   right: 0;
   background: #313946;
   border: 1px solid #5a606a;
-  width: 138px;
+  width: 172px;
   border-radius: 8px;
   z-index: 10;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
@@ -20,7 +22,10 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(90, 96, 106, 0.8);
 
@@ -31,8 +36,11 @@
   }
 }
 
-html[lang=ru] .languageSelect {
-  width: 172px;
+@include m.very-small {
+  html[lang=ar] .languageSelect {
+    right: auto;
+    left: 0;
+  }
 }
 
 .languageSelect button {
@@ -48,7 +56,9 @@ html[lang=ru] .languageSelect {
   padding: 6px 10px;
   cursor: pointer;
   color: #e9e9ec;
-  transition: background .2s ease, outline-color .2s ease;
+  transition:
+    background 0.2s ease,
+    outline-color 0.2s ease;
 
   &:hover {
     background: #3b4350;
