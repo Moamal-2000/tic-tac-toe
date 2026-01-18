@@ -41,6 +41,13 @@ const Timer = () => {
 
   return (
     <div className={timerClasses}>
+      <div className={s.timerBar}>
+        <div
+          className={s.timerProgressLine}
+          style={{ width: `${(timeRemaining / TURN_TIMER_DURATION) * 100}%` }}
+        />
+      </div>
+
       <svg className={s.timerCircle} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" className={s.timerBg} />
         <circle

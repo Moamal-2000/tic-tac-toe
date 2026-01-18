@@ -23,7 +23,7 @@
   }
 }
 
-html[lang=ar] .timerContainer {
+html[lang="ar"] .timerContainer {
   right: auto;
   left: 15px;
 }
@@ -35,7 +35,7 @@ html[lang=ar] .timerContainer {
 
 .timerBg {
   fill: none;
-  stroke: rgba(78, 205, 196, .2);
+  stroke: rgba(78, 205, 196, 0.2);
   stroke-width: 3;
 }
 
@@ -46,7 +46,9 @@ html[lang=ar] .timerContainer {
   stroke-dasharray: 282.743;
   stroke-dashoffset: 282.743;
   stroke-linecap: round;
-  transition: stroke-dashoffset .3s linear, stroke .2s ease;
+  transition:
+    stroke-dashoffset 0.3s linear,
+    stroke 0.2s ease;
 }
 
 .timerText {
@@ -54,17 +56,11 @@ html[lang=ar] .timerContainer {
   font-weight: 500;
   color: #4ecdc4;
   z-index: 1;
-  text-shadow: 0 0 10px rgba(78, 205, 196, .5);
+  text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
 }
 
 .timerText .word {
   display: none;
-}
-
-@media (max-width: 620px) {
-  .timerText .word {
-    display: block;
-  }
 }
 
 .timerContainer.lowTime {
@@ -74,28 +70,28 @@ html[lang=ar] .timerContainer {
 
   .timerText {
     color: #ffd93d;
-    text-shadow: 0 0 10px rgba(255, 217, 61, .5);
+    text-shadow: 0 0 10px rgba(255, 217, 61, 0.5);
   }
 
   .timerBg {
-    stroke: rgba(255, 217, 61, .2);
+    stroke: rgba(255, 217, 61, 0.2);
   }
 }
 
 .timerContainer.veryLowTime {
   .timerProgress {
     stroke: #ff6b6b;
-    animation: pulse .5s ease-in-out infinite;
+    animation: pulse 0.5s ease-in-out infinite;
   }
 
   .timerText {
     color: #ff6b6b;
-    text-shadow: 0 0 15px rgba(255, 107, 107, .7);
-    animation: pulse-text .5s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+    animation: pulse-text 0.5s ease-in-out infinite;
   }
 
   .timerBg {
-    stroke: rgba(255, 107, 107, .2);
+    stroke: rgba(255, 107, 107, 0.2);
   }
 }
 
@@ -107,7 +103,7 @@ html[lang=ar] .timerContainer {
   }
 
   50% {
-    opacity: .6;
+    opacity: 0.6;
   }
 }
 
@@ -125,19 +121,72 @@ html[lang=ar] .timerContainer {
 
 @media (max-width: 620px) {
   .timerContainer {
-    position: static;
-    width: fit-content;
-    height: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 999;
+  }
+
+  .timerBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: rgba(78, 205, 196, 0.2);
+  }
+
+  .timerProgressLine {
+    height: 100%;
+    background: #4ecdc4;
+    transition:
+      width 0.3s linear,
+      background 0.2s ease;
   }
 
   .timerText {
-    font-size: 1.5rem;
+    position: fixed;
+    top: 8px;
+    left: 10px;
+    font-size: 0.9rem;
+    font-weight: 400;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    z-index: 999;
+  }
+
+  html[lang="ar"] .timerText {
+    left: auto;
+    right: 10px;
+  }
+
+  .timerText .word {
+    display: block;
+    font-size: 0.8rem;
   }
 
   .timerCircle {
     display: none;
+  }
+
+  .timerContainer.lowTime .timerProgressLine {
+    background: #ffd93d;
+  }
+
+  .timerContainer.lowTime .timerBar {
+    background: rgba(255, 217, 61, 0.2);
+  }
+
+  .timerContainer.veryLowTime .timerProgressLine {
+    background: #ff6b6b;
+    animation: pulse 0.5s ease-in-out infinite;
+  }
+
+  .timerContainer.veryLowTime .timerBar {
+    background: rgba(255, 107, 107, 0.2);
   }
 }
