@@ -18,10 +18,10 @@ import VolumeButton from "./VolumeButton/VolumeButton";
 const HeaderButtons = () => {
   const t = useTranslations("header");
 
-  const resetStats = useXOStore((s) => s.resetStats);
   const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore();
+  const resetStats = useXOStore((s) => s.resetStats);
   const updateMultiplayerState = useMultiplayerStore(
-    (s) => s.updateMultiplayerState
+    (s) => s.updateMultiplayerState,
   );
 
   const playSound = usePreloadSounds({ click: soundFiles.click });

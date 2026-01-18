@@ -24,15 +24,15 @@
   }
 }
 
-@media (max-width: 500px) {
-  .board {
-    width: 100%;
-  }
-}
-
 @include m.medium {
   .board {
     padding: 12px;
+  }
+}
+
+@include m.small {
+  .board {
+    width: 100%;
   }
 }
 

@@ -73,9 +73,14 @@
   justify-content: flex-end;
 }
 
-@include m.small {
+@include m.medium {
   .headerButtons :where(.wrapper1, .wrapper2) {
     gap: 8px;
+  }
+}
+
+@include m.small {
+  .headerButtons :where(.wrapper1, .wrapper2) {
     width: 100%;
   }
 }

@@ -87,7 +87,7 @@
   height: 40%;
 }
 
-@media (max-width: 500px) {
+@include m.small {
   .square {
     --size: auto !important;
     flex: 1;
