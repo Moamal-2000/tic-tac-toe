@@ -1,0 +1,69 @@
+.inputContainer {
+  display: flex;
+  gap: 8px;
+  padding: 16px 12px;
+  background: rgba(15, 20, 25, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.messageInput {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-color: #4a9eff;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sendButton {
+  background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5aa8ff 0%, #3d8de2 100%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #4a9eff;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
