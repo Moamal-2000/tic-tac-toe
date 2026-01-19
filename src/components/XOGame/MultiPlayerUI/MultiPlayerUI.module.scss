@@ -55,3 +55,20 @@
 .game.x3 .wrapper {
   width: 100%;
 }
+
+.game .chatWrapper {
+  position: fixed;
+  right: 15px;
+  bottom: 0;
+  z-index: 10;
+}
+
+@include m.medium {
+  .game .chatWrapper {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    top: auto;
+    z-index: 1000;
+  }
+}

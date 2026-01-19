@@ -2,13 +2,14 @@ import { SCREEN_SIZES } from "@/data/constants";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";
-import GameStats from "../GameStats/GameStats";
-import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
 import MatchAbortedModal from "../../Shared/Modals/MatchAbortedModal/MatchAbortedModal";
-import s from "./MultiPlayerUI.module.scss";
-import PowerUps from "./PowerUps/PowerUps";
 import RematchMenu from "../../Shared/Modals/RematchMenu/RematchMenu";
 import RematchPrompt from "../../Shared/Modals/RematchPrompt/RematchPrompt";
+import GameStats from "../GameStats/GameStats";
+import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
+import Chat from "./Chat/Chat";
+import s from "./MultiPlayerUI.module.scss";
+import PowerUps from "./PowerUps/PowerUps";
 import Timer from "./Timer/Timer";
 import XOBoard from "./XOBoard/XOBoard";
 
@@ -106,6 +107,10 @@ const MultiPlayerUI = () => {
         <PowerUps player="player1" />
         <GameStats boardSize={boardSize} stats={stats} />
         <PowerUps player="player2" />
+      </div>
+
+      <div className={s.chatWrapper}>
+        <Chat />
       </div>
 
       <XOBoard />

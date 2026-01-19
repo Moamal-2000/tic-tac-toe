@@ -85,6 +85,30 @@ io.on("connection", (socket) => {
     io.to(roomId).emit("square-hover", { row, col, power });
   });
 
+  socket.on("chat-message", (messageData) => {
+    const roomId = socket.data.roomId;
+    if (roomId) {
+      // Broadcast the message to all players in the room
+      io.to(roomId).emit("chat-message", messageData);
+    }
+  });
+
+  socket.on("user-typing", ({ sender }) => {
+    const roomId = socket.data.roomId;
+    if (roomId) {
+      // Broadcast typing indicator to other player in the room
+      socket.to(roomId).emit("user-typing", { sender });
+    }
+  });
+
+  socket.on("user-stop-typing", ({ sender }) => {
+    const roomId = socket.data.roomId;
+    if (roomId) {
+      // Broadcast stop typing indicator to other player in the room
+      socket.to(roomId).emit("user-stop-typing", { sender });
+    }
+  });
+
   socket.on("requestRematch", ({ playerWhoRequested }) => {
     gameManager.handleRequestRematch(socket, playerWhoRequested);
   });
