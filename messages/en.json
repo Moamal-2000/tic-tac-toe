@@ -160,5 +160,16 @@
     "selected_square": "Selected square, click on opponent square to swap",
     "frozen_square": "Frozen square, cannot make a move",
     "occupied_square": "{symbol} symbol, occupied square"
+  },
+  "chat": {
+    "title": "Chat",
+    "no_messages_yet": "No messages yet",
+    "type_message": "Type a message...",
+    "send": "Send message",
+    "you": "You",
+    "opponent": "Opponent",
+    "opponent_typing": "Opponent is typing",
+    "close_chat": "Close chat",
+    "open_chat": "Open chat"
   }
 }

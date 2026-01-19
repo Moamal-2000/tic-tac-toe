@@ -6,6 +6,7 @@ import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect, useRef, useState } from "react";
 import s from "./Chat.module.scss";
+import { useTranslations } from "next-intl";
 
 const Chat = () => {
   const [messages, setMessages] = useState([]);
@@ -17,6 +18,7 @@ const Chat = () => {
   const inputRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const playSound = usePreloadSounds({ button: BUTTON_SOUND });
+  const t = useTranslations("chat");
 
   const { mySymbol } = useMultiplayerStore();
 
@@ -123,10 +125,10 @@ const Chat = () => {
       <button
         className={s.chatHeader}
         onClick={toggleChat}
-        aria-label={isChatOpen ? "Close chat" : "Open chat"}
+        aria-label={isChatOpen ? t("close_chat") : t("open_chat")}
         aria-expanded={isChatOpen}
       >
-        <span>Chat</span>
+        <span>{t("title")}</span>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {unseenCount > 0 && (
             <span className={s.notificationBadge}>
@@ -156,7 +158,7 @@ const Chat = () => {
         <div className={s.messagesContainer}>
           {messages.length === 0 ? (
             <div className={s.emptyState}>
-              <p>No messages yet</p>
+              <p>{t("no_messages_yet")}</p>
             </div>
           ) : (
             messages.map((message, index) => (
@@ -168,7 +170,7 @@ const Chat = () => {
               >
                 <div className={s.messageHeader}>
                   <span className={s.sender}>
-                    {message.sender === mySymbol ? "You" : "Opponent"}
+                    {message.sender === mySymbol ? t("you") : t("opponent")}
                   </span>
                   <span className={s.timestamp}>
                     {formatTime(message.timestamp)}
@@ -181,7 +183,7 @@ const Chat = () => {
           <div ref={messagesEndRef} />
           {isOpponentTyping && (
             <div className={s.typingIndicator}>
-              <span className={s.typingText}>Opponent is typing</span>
+              <span className={s.typingText}>{t("opponent_typing")}</span>
               <div className={s.typingDots}>
                 <span></span>
                 <span></span>
@@ -197,7 +199,7 @@ const Chat = () => {
             type="text"
             value={inputMessage}
             onChange={handleInputChange}
-            placeholder="Type a message..."
+            placeholder={t("type_message")}
             className={s.messageInput}
             aria-label="Type a message"
             maxLength={200}

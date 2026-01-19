@@ -160,5 +160,16 @@
     "selected_square": "Case sélectionnée, cliquez sur la case adverse pour échanger",
     "frozen_square": "Case gelée, impossible de faire un mouvement",
     "occupied_square": "Symbole {symbol}, case occupée"
+  },
+  "chat": {
+    "title": "Chat",
+    "no_messages_yet": "Aucun message pour le moment",
+    "type_message": "Tapez un message...",
+    "send": "Envoyer un message",
+    "you": "Vous",
+    "opponent": "Adversaire",
+    "opponent_typing": "L'adversaire est en train d'écrire",
+    "close_chat": "Fermer le chat",
+    "open_chat": "Ouvrir le chat"
   }
 }

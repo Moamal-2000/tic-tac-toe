@@ -160,5 +160,16 @@
     "selected_square": "Kiválasztott négyzet, kattintson az ellenfél négyzetére a cseréhez",
     "frozen_square": "Fagyasztott négyzet, nem lehet lépni",
     "occupied_square": "{symbol} szimbólum, elfoglalt négyzet"
+  },
+  "chat": {
+    "title": "Csevegés",
+    "no_messages_yet": "Még nincsen üzenetek",
+    "type_message": "Írjon üzenetet...",
+    "send": "Üzenet küldése",
+    "you": "Te",
+    "opponent": "Ellenfél",
+    "opponent_typing": "Ellenfél gépel",
+    "close_chat": "Csevegés bezárása",
+    "open_chat": "Csevegés megnyitása"
   }
 }

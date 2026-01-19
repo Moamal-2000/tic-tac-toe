@@ -160,5 +160,16 @@
     "selected_square": "مربع محدد، انقر على مربع الخصم للتبديل",
     "frozen_square": "مربع مجمد، لا يمكن القيام بحركة",
     "occupied_square": "رمز {symbol}، مربع محتل"
+  },
+  "chat": {
+    "title": "الدردشة",
+    "no_messages_yet": "لا توجد رسائل بعد",
+    "type_message": "اكتب رسالة...",
+    "send": "إرسال رسالة",
+    "you": "أنت",
+    "opponent": "الخصم",
+    "opponent_typing": "الخصم يكتب",
+    "close_chat": "إغلاق الدردشة",
+    "open_chat": "فتح الدردشة"
   }
 }

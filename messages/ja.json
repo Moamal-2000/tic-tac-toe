@@ -159,5 +159,16 @@
     "selected_square": "選択されたマス、相手のマスをクリックして交換",
     "frozen_square": "凍結されたマス、移動できません",
     "occupied_square": "{symbol}シンボル、占有されたマス"
+  },
+  "chat": {
+    "title": "チャット",
+    "no_messages_yet": "まだメッセージがありません",
+    "type_message": "メッセージを入力...",
+    "send": "メッセージを送信",
+    "you": "あなた",
+    "opponent": "相手",
+    "opponent_typing": "相手が入力中",
+    "close_chat": "チャットを閉じる",
+    "open_chat": "チャットを開く"
   }
 }
