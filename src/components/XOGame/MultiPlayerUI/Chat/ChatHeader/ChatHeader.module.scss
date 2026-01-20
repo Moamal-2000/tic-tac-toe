@@ -47,7 +47,13 @@
   }
 }
 
-.notificationBadge {
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wrapper .notificationBadge {
   background: #ff4444;
   color: #fff;
   border-radius: 50%;

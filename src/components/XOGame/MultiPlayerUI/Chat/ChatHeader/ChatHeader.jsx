@@ -8,20 +8,23 @@ const ChatHeader = ({ unseenCount, onToggle }) => {
   const isChatOpen = useMultiplayerStore((s) => s.isChatOpen);
   const t = useTranslations("chat");
 
+  const label = t(`${isChatOpen ? "close_chat" : "open_chat"}`);
+  const badgeText = unseenCount > 99 ? "99+" : unseenCount;
+
   return (
     <button
       className={s.chatHeader}
       onClick={onToggle}
-      aria-label={isChatOpen ? t("close_chat") : t("open_chat")}
+      aria-label={label}
       aria-expanded={isChatOpen}
     >
-      <span>{t("title")}</span>
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      {t("title")}
+
+      <div className={s.wrapper}>
         {unseenCount > 0 && (
-          <span className={s.notificationBadge}>
-            {unseenCount > 99 ? "99+" : unseenCount}
-          </span>
+          <span className={s.notificationBadge}>{badgeText}</span>
         )}
+
         <svg
           width="20"
           height="20"
