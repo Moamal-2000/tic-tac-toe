@@ -68,7 +68,7 @@ const Chat = () => {
       socket.off("user-typing");
       socket.off("user-stop-typing");
     };
-  }, [isChatOpen, mySymbol]);
+  }, [isChatOpen, mySymbol, unreadMessagesCount]);
 
   function sendMessage(e) {
     e.preventDefault();
