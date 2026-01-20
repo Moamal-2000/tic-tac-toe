@@ -108,13 +108,13 @@ const Chat = () => {
 
   function toggleChat() {
     updateMultiplayerState({ isChatOpen: !isChatOpen });
-    if (!isChatOpen) {
-      updateMultiplayerState({ unreadMessagesCount: 0 });
 
-      setTimeout(() => {
-        document.querySelector('[class*="messageInput"]')?.focus();
-      }, 100);
-    }
+    if (isChatOpen) return;
+
+    setTimeout(() => {
+      updateMultiplayerState({ unreadMessagesCount: 0 });
+      document.querySelector('[class*="messageInput"]')?.focus();
+    }, 100);
   }
 
   return (
