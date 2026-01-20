@@ -54,3 +54,7 @@ export function stopTimer(ref) {
     ref.current = null;
   }
 }
+
+export function scrollToElementBottom(ref) {
+  ref.current?.scrollIntoView({ behavior: "smooth" });
+}
