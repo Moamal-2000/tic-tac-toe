@@ -28,6 +28,7 @@ export const useMultiplayerStore = create((set, get) => ({
     hasActivePowerUp: false,
   },
   isChatOpen: true,
+  unreadMessagesCount: 0,
 
   updateGameStates: ({
     boardSize,

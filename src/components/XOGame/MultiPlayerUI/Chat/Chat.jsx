@@ -12,12 +12,11 @@ import MessageList from "./MessageList/MessageList";
 import TypingIndicator from "./TypingIndicator/TypingIndicator";
 
 const Chat = () => {
-  const { mySymbol, isChatOpen, updateMultiplayerState } =
+  const { mySymbol, isChatOpen, updateMultiplayerState, unreadMessagesCount } =
     useMultiplayerStore();
 
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [unseenCount, setUnseenCount] = useState(0);
   const [isOpponentTyping, setIsOpponentTyping] = useState(false);
 
   const messagesEndRef = useRef(null);
@@ -44,7 +43,9 @@ const Chat = () => {
 
       // Increment unseen count only if chat is closed and message is not from current user
       if (!isChatOpen && message.sender !== mySymbol) {
-        setUnseenCount((prev) => prev + 1);
+        updateMultiplayerState({
+          unreadMessagesCount: unreadMessagesCount + 1,
+        });
       }
     });
 
@@ -108,8 +109,8 @@ const Chat = () => {
   const toggleChat = () => {
     updateMultiplayerState({ isChatOpen: !isChatOpen });
     if (!isChatOpen) {
-      // Reset unseen count when opening chat
-      setUnseenCount(0);
+      updateMultiplayerState({ unreadMessagesCount: 0 });
+
       setTimeout(() => {
         document.querySelector('[class*="messageInput"]')?.focus();
       }, 100);
@@ -118,7 +119,7 @@ const Chat = () => {
 
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
-      <ChatHeader unseenCount={unseenCount} onToggle={toggleChat} />
+      <ChatHeader onToggle={toggleChat} />
 
       <div className={s.chatContent}>
         <div className={s.messagesContainer}>
