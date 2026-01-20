@@ -106,20 +106,9 @@ const Chat = () => {
     }
   }
 
-  function toggleChat() {
-    updateMultiplayerState({ isChatOpen: !isChatOpen });
-
-    if (isChatOpen) return;
-
-    setTimeout(() => {
-      updateMultiplayerState({ unreadMessagesCount: 0 });
-      document.querySelector('[class*="messageInput"]')?.focus();
-    }, 100);
-  }
-
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
-      <ChatHeader onToggle={toggleChat} />
+      <ChatHeader />
 
       <div className={s.chatContent}>
         <div className={s.messagesContainer}>

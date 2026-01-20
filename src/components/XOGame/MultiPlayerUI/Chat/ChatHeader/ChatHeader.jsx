@@ -4,18 +4,30 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import { useTranslations } from "next-intl";
 import s from "./ChatHeader.module.scss";
 
-const ChatHeader = ({ onToggle }) => {
-  const { isChatOpen, unreadMessagesCount } = useMultiplayerStore();
-  const t = useTranslations("chat");
+const ChatHeader = () => {
+  const { isChatOpen, unreadMessagesCount, updateMultiplayerState } =
+    useMultiplayerStore();
 
+  const t = useTranslations("chat");
   const label = t(`${isChatOpen ? "close_chat" : "open_chat"}`);
   const badgeText = unreadMessagesCount > 99 ? "99+" : unreadMessagesCount;
   const iconHref = `/icons-sprite.svg#${isChatOpen ? "x-symbol" : "message"}`;
 
+  function toggleChat() {
+    updateMultiplayerState({ isChatOpen: !isChatOpen });
+
+    if (isChatOpen) return;
+
+    setTimeout(() => {
+      updateMultiplayerState({ unreadMessagesCount: 0 });
+      document.querySelector('[class*="messageInput"]')?.focus();
+    }, 100);
+  }
+
   return (
     <button
       className={s.chatHeader}
-      onClick={onToggle}
+      onClick={toggleChat}
       aria-label={label}
       aria-expanded={isChatOpen}
     >
