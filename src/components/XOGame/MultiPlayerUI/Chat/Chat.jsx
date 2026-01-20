@@ -85,18 +85,19 @@ const Chat = () => {
     playSound(BUTTON_SOUND, 0.3);
   }
 
-  function handleInputChange(e) {
-    const value = e.target.value;
+  function handleInputChange(event) {
+    const value = event.target.value;
     setInputMessage(value);
 
-    // Emit typing event only if user starts typing and hasn't typed recently
-    if (value.trim() && !typingTimeoutRef.current) {
+    const inputHasText = value.trim() && !typingTimeoutRef.current;
+    const shouldClearTyping = !value.trim() && typingTimeoutRef.current;
+
+    if (inputHasText) {
       socket.emit("user-typing", { sender: mySymbol });
       typingTimeoutRef.current = true;
     }
 
-    // Clear typing indicator if input becomes empty
-    if (!value.trim() && typingTimeoutRef.current) {
+    if (shouldClearTyping) {
       socket.emit("user-stop-typing", { sender: mySymbol });
       typingTimeoutRef.current = null;
     }
