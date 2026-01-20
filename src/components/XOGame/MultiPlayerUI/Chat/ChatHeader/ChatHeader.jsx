@@ -1,9 +1,11 @@
 "use client";
 
+import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import s from "./ChatHeader.module.scss";
 
-const ChatHeader = ({ isChatOpen, unseenCount, onToggle }) => {
+const ChatHeader = ({ unseenCount, onToggle }) => {
+  const isChatOpen = useMultiplayerStore((s) => s.isChatOpen);
   const t = useTranslations("chat");
 
   return (

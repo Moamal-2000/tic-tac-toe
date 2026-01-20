@@ -14,14 +14,14 @@ import TypingIndicator from "./TypingIndicator/TypingIndicator";
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [isChatOpen, setIsChatOpen] = useState(true);
   const [unseenCount, setUnseenCount] = useState(0);
   const [isOpponentTyping, setIsOpponentTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
   const playSound = usePreloadSounds({ button: BUTTON_SOUND });
 
-  const { mySymbol } = useMultiplayerStore();
+  const { mySymbol, isChatOpen, updateMultiplayerState } =
+    useMultiplayerStore();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -104,7 +104,7 @@ const Chat = () => {
   };
 
   const toggleChat = () => {
-    setIsChatOpen(!isChatOpen);
+    updateMultiplayerState({ isChatOpen: !isChatOpen });
     if (!isChatOpen) {
       // Reset unseen count when opening chat
       setUnseenCount(0);
@@ -116,11 +116,7 @@ const Chat = () => {
 
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
-      <ChatHeader
-        isChatOpen={isChatOpen}
-        unseenCount={unseenCount}
-        onToggle={toggleChat}
-      />
+      <ChatHeader unseenCount={unseenCount} onToggle={toggleChat} />
 
       <div className={s.chatContent}>
         <div className={s.messagesContainer}>
