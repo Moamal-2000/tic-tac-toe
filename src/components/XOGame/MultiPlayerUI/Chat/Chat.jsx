@@ -25,6 +25,42 @@ const Chat = () => {
 
   const playSound = usePreloadSounds({ button: BUTTON_SOUND });
 
+  function sendMessage(event) {
+    event.preventDefault();
+    if (inputMessage.trim() === "") return;
+
+    const messageData = {
+      text: inputMessage.trim(),
+      sender: mySymbol,
+      timestamp: new Date().toISOString(),
+    };
+
+    socket.emit("chat-message", messageData);
+    socket.emit("user-stop-typing", { sender: mySymbol });
+
+    setInputMessage("");
+    typingTimeoutRef.current = null;
+    playSound(BUTTON_SOUND, 0.3);
+  }
+
+  function handleInputChange(event) {
+    const value = event.target.value;
+    setInputMessage(value);
+
+    const inputHasText = value.trim() && !typingTimeoutRef.current;
+    const shouldClearTyping = !value.trim() && typingTimeoutRef.current;
+
+    if (inputHasText) {
+      socket.emit("user-typing", { sender: mySymbol });
+      typingTimeoutRef.current = true;
+    }
+
+    if (shouldClearTyping) {
+      socket.emit("user-stop-typing", { sender: mySymbol });
+      typingTimeoutRef.current = null;
+    }
+  }
+
   useEffect(() => {
     scrollToElementBottom(messagesEndRef);
   }, [messages]);
@@ -66,42 +102,6 @@ const Chat = () => {
       socket.off("user-stop-typing");
     };
   }, [isChatOpen, mySymbol, unreadMessagesCount]);
-
-  function sendMessage(event) {
-    event.preventDefault();
-    if (inputMessage.trim() === "") return;
-
-    const messageData = {
-      text: inputMessage.trim(),
-      sender: mySymbol,
-      timestamp: new Date().toISOString(),
-    };
-
-    socket.emit("chat-message", messageData);
-    socket.emit("user-stop-typing", { sender: mySymbol });
-
-    setInputMessage("");
-    typingTimeoutRef.current = null;
-    playSound(BUTTON_SOUND, 0.3);
-  }
-
-  function handleInputChange(event) {
-    const value = event.target.value;
-    setInputMessage(value);
-
-    const inputHasText = value.trim() && !typingTimeoutRef.current;
-    const shouldClearTyping = !value.trim() && typingTimeoutRef.current;
-
-    if (inputHasText) {
-      socket.emit("user-typing", { sender: mySymbol });
-      typingTimeoutRef.current = true;
-    }
-
-    if (shouldClearTyping) {
-      socket.emit("user-stop-typing", { sender: mySymbol });
-      typingTimeoutRef.current = null;
-    }
-  }
 
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
