@@ -67,23 +67,22 @@ const Chat = () => {
     };
   }, [isChatOpen, mySymbol, unreadMessagesCount]);
 
-  function sendMessage(e) {
-    e.preventDefault();
-    if (inputMessage.trim()) {
-      const messageData = {
-        text: inputMessage.trim(),
-        sender: mySymbol,
-        timestamp: new Date().toISOString(),
-      };
+  function sendMessage(event) {
+    event.preventDefault();
+    if (inputMessage.trim() === "") return;
 
-      socket.emit("chat-message", messageData);
-      socket.emit("user-stop-typing", { sender: mySymbol });
-      setInputMessage("");
-      typingTimeoutRef.current = null;
+    const messageData = {
+      text: inputMessage.trim(),
+      sender: mySymbol,
+      timestamp: new Date().toISOString(),
+    };
 
-      // Play sound when sending message
-      playSound(BUTTON_SOUND, 0.3);
-    }
+    socket.emit("chat-message", messageData);
+    socket.emit("user-stop-typing", { sender: mySymbol });
+
+    setInputMessage("");
+    typingTimeoutRef.current = null;
+    playSound(BUTTON_SOUND, 0.3);
   }
 
   function handleInputChange(e) {
