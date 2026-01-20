@@ -24,9 +24,9 @@ const Chat = () => {
 
   const playSound = usePreloadSounds({ button: BUTTON_SOUND });
 
-  const scrollToBottom = () => {
+  function scrollToBottom() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  }
 
   useEffect(() => {
     scrollToBottom();
@@ -70,7 +70,7 @@ const Chat = () => {
     };
   }, [isChatOpen, mySymbol]);
 
-  const sendMessage = (e) => {
+  function sendMessage(e) {
     e.preventDefault();
     if (inputMessage.trim()) {
       const messageData = {
@@ -87,9 +87,9 @@ const Chat = () => {
       // Play sound when sending message
       playSound(BUTTON_SOUND, 0.3);
     }
-  };
+  }
 
-  const handleInputChange = (e) => {
+  function handleInputChange(e) {
     const value = e.target.value;
     setInputMessage(value);
 
@@ -104,9 +104,9 @@ const Chat = () => {
       socket.emit("user-stop-typing", { sender: mySymbol });
       typingTimeoutRef.current = null;
     }
-  };
+  }
 
-  const toggleChat = () => {
+  function toggleChat() {
     updateMultiplayerState({ isChatOpen: !isChatOpen });
     if (!isChatOpen) {
       updateMultiplayerState({ unreadMessagesCount: 0 });
@@ -115,7 +115,7 @@ const Chat = () => {
         document.querySelector('[class*="messageInput"]')?.focus();
       }, 100);
     }
-  };
+  }
 
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
