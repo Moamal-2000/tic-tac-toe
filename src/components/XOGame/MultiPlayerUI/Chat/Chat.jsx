@@ -12,16 +12,18 @@ import MessageList from "./MessageList/MessageList";
 import TypingIndicator from "./TypingIndicator/TypingIndicator";
 
 const Chat = () => {
+  const { mySymbol, isChatOpen, updateMultiplayerState } =
+    useMultiplayerStore();
+
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [unseenCount, setUnseenCount] = useState(0);
   const [isOpponentTyping, setIsOpponentTyping] = useState(false);
+
   const messagesEndRef = useRef(null);
   const typingTimeoutRef = useRef(null);
-  const playSound = usePreloadSounds({ button: BUTTON_SOUND });
 
-  const { mySymbol, isChatOpen, updateMultiplayerState } =
-    useMultiplayerStore();
+  const playSound = usePreloadSounds({ button: BUTTON_SOUND });
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
