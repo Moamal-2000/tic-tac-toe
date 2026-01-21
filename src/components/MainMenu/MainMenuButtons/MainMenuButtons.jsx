@@ -29,8 +29,7 @@ const MainMenuButtons = () => {
       return;
     }
 
-    // Check if player is in an active multiplayer game and trying to switch to local/computer
-    if (hasGameStarted && (mode === "local" || mode === "computer")) {
+    if (hasGameStarted) {
       setPendingMode(mode);
       setShowQuitModal(true);
       playSound(BUTTON_SOUND);
