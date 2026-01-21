@@ -1,29 +1,38 @@
 .inputContainer {
   display: flex;
   gap: 8px;
-  padding: 16px 12px;
-  background: rgba(15, 20, 25, 0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  background: linear-gradient(180deg,
+      rgba(15, 20, 25, 0.75) 0%,
+      rgba(15, 20, 25, 0.92) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
 }
 
 .messageInput {
   flex: 1;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 10px 12px;
   color: #fff;
   font-size: 14px;
   outline: none;
-  transition: all 0.2s ease;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
 
   &:focus {
-    border-color: #4a9eff;
-    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(74, 158, 255, 0.75);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 0 0 3px rgba(74, 158, 255, 0.18),
+      0 10px 20px rgba(0, 0, 0, 0.25);
   }
 
   &:disabled {
@@ -36,16 +45,21 @@
 .sendButton {
   background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 10px 12px;
   color: white;
   cursor: pointer;
-  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
+  box-shadow:
+    0 10px 20px rgba(45, 125, 210, 0.22),
+    0 10px 20px rgba(0, 0, 0, 0.28);
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease;
 
   &:hover:not(:disabled) {
     background: linear-gradient(135deg, #5aa8ff 0%, #3d8de2 100%);
@@ -59,7 +73,8 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
   }
 
   svg {

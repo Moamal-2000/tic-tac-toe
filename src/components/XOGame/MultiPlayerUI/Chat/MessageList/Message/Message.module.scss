@@ -1,8 +1,10 @@
 .message {
   max-width: 85%;
-  padding: 10px 14px;
-  border-radius: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
   animation: slide-in 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(8px);
 }
 
 .ownMessage {
@@ -10,14 +12,20 @@
   background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
   color: white;
   border-bottom-right-radius: 4px;
+  box-shadow:
+    0 10px 26px rgba(45, 125, 210, 0.25),
+    0 10px 22px rgba(0, 0, 0, 0.24);
 }
 
 .opponentMessage {
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom-left-radius: 4px;
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .messageHeader {
@@ -26,7 +34,7 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 11px;
   opacity: 0.8;
 }
 
@@ -41,7 +49,7 @@
 
 .messageText {
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.45;
   word-wrap: break-word;
   user-select: text;
 }
