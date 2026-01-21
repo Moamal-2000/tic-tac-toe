@@ -105,7 +105,7 @@ const Chat = () => {
 
   return (
     <div className={`${s.chat} ${isChatOpen ? s.open : ""}`}>
-      <ChatHeader />
+      <ChatHeader messagesEndRef={messagesEndRef} />
 
       <div className={s.chatContent}>
         <div className={s.messagesContainer}>

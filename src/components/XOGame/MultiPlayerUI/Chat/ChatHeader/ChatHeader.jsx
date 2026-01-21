@@ -1,10 +1,11 @@
 "use client";
 
+import { scrollToElementBottom } from "@/functions/helper";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import s from "./ChatHeader.module.scss";
 
-const ChatHeader = () => {
+const ChatHeader = ({ messagesEndRef }) => {
   const { isChatOpen, unreadMessagesCount, updateMultiplayerState } =
     useMultiplayerStore();
 
@@ -21,6 +22,10 @@ const ChatHeader = () => {
     setTimeout(() => {
       updateMultiplayerState({ unreadMessagesCount: 0 });
       document.querySelector('[class*="messageInput"]')?.focus();
+
+      if (unreadMessagesCount > 0) {
+        scrollToElementBottom(messagesEndRef);
+      }
     }, 100);
   }
 
