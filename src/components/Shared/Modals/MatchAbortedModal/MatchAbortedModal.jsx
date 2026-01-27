@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import s from "./MatchAbortedModal.module.scss";
 
 const MatchAbortedModal = () => {
+  const updateGameMode = useGlobalStore((s) => s.updateGameMode);
   const {
     isOpponentDisconnected,
     resetMultiplayerState,
@@ -15,7 +16,6 @@ const MatchAbortedModal = () => {
     updateMultiplayerState,
     hasGameStarted,
   } = useMultiplayerStore();
-  const { updateGameMode } = useGlobalStore();
 
   const router = useRouter();
   const closeButtonRef = useRef(null);
@@ -32,13 +32,8 @@ const MatchAbortedModal = () => {
   }
 
   useEffect(() => {
-    if (!isOpponentDisconnected) {
-      return;
-    }
-
-    if (closeButtonRef.current) {
-      closeButtonRef.current.focus();
-    }
+    if (!isOpponentDisconnected) return;
+    if (closeButtonRef.current) closeButtonRef.current.focus();
 
     function handleKeyDown(event) {
       if (event.key === "Escape") {
