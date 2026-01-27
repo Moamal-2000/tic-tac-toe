@@ -50,7 +50,12 @@
   }
 }
 
-.button {
+.buttons {
+  @include m.flex-center;
+  gap: 10px;
+}
+
+.buttons button {
   outline: none;
   margin-top: 20px;
   padding: 10px 30px;

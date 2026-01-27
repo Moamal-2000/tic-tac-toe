@@ -16,7 +16,12 @@ const MainMenuButtons = () => {
   const [pendingMode, setPendingMode] = useState(null);
 
   const { updateGameMode, updateGlobalState } = useGlobalStore();
-  const { hasGameStarted, resetMultiplayerState } = useMultiplayerStore();
+  const {
+    exploreMode,
+    hasGameStarted,
+    resetMultiplayerState,
+    updateMultiplayerState,
+  } = useMultiplayerStore();
 
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const t = useTranslations("main_menu");
@@ -29,14 +34,23 @@ const MainMenuButtons = () => {
       return;
     }
 
+    if (exploreMode) {
+      updateGameMode(mode);
+      resetMultiplayerState();
+      playSound(BUTTON_SOUND);
+      return;
+    }
+
     if (hasGameStarted) {
       setPendingMode(mode);
       setShowQuitModal(true);
+      updateMultiplayerState({ exploreMode: false });
       playSound(BUTTON_SOUND);
       return;
     }
 
     updateGameMode(mode);
+    updateMultiplayerState({ exploreMode: false });
     playSound(BUTTON_SOUND);
   }
 
@@ -51,6 +65,7 @@ const MainMenuButtons = () => {
     // Reset modal state
     setShowQuitModal(false);
     setPendingMode(null);
+    updateMultiplayerState({ exploreMode: false });
   }
 
   function handleCancelQuit() {

@@ -8,12 +8,22 @@ import { useEffect, useRef } from "react";
 import s from "./MatchAbortedModal.module.scss";
 
 const MatchAbortedModal = () => {
-  const router = useRouter();
-  const { isOpponentDisconnected, resetMultiplayerState } =
-    useMultiplayerStore();
+  const {
+    isOpponentDisconnected,
+    resetMultiplayerState,
+    exploreMode,
+    updateMultiplayerState,
+    hasGameStarted,
+  } = useMultiplayerStore();
   const { updateGameMode } = useGlobalStore();
+
+  const router = useRouter();
   const backToMenuButtonRef = useRef(null);
   const t = useTranslations("modals.match_aborted_modal");
+
+  function handleClose() {
+    updateMultiplayerState({ exploreMode: true });
+  }
 
   function handleBackToMenu() {
     resetMultiplayerState();
@@ -44,7 +54,10 @@ const MatchAbortedModal = () => {
     };
   }, [isOpponentDisconnected]);
 
-  if (!isOpponentDisconnected) return null;
+  const hideComponent =
+    !isOpponentDisconnected || exploreMode || !hasGameStarted;
+
+  if (hideComponent) return null;
 
   return (
     <div className={s.modalOverlay} role="presentation">
@@ -57,14 +70,19 @@ const MatchAbortedModal = () => {
       >
         <h2 id="match-aborted-title">{t("title")}</h2>
         <p id="match-aborted-description">{t("description")}</p>
-        <button
-          type="button"
-          onClick={handleBackToMenu}
-          className={s.button}
-          ref={backToMenuButtonRef}
-        >
-          {t("back_to_menu")}
-        </button>
+
+        <div className={s.buttons}>
+          <button type="button" onClick={handleClose}>
+            Close
+          </button>
+          <button
+            type="button"
+            onClick={handleBackToMenu}
+            ref={backToMenuButtonRef}
+          >
+            {t("back_to_menu")}
+          </button>
+        </div>
       </div>
     </div>
   );
