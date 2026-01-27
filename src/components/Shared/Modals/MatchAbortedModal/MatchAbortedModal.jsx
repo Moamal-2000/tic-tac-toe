@@ -18,7 +18,7 @@ const MatchAbortedModal = () => {
   const { updateGameMode } = useGlobalStore();
 
   const router = useRouter();
-  const backToMenuButtonRef = useRef(null);
+  const closeButtonRef = useRef(null);
   const t = useTranslations("modals.match_aborted_modal");
 
   function handleClose() {
@@ -36,8 +36,8 @@ const MatchAbortedModal = () => {
       return;
     }
 
-    if (backToMenuButtonRef.current) {
-      backToMenuButtonRef.current.focus();
+    if (closeButtonRef.current) {
+      closeButtonRef.current.focus();
     }
 
     function handleKeyDown(event) {
@@ -72,14 +72,10 @@ const MatchAbortedModal = () => {
         <p id="match-aborted-description">{t("description")}</p>
 
         <div className={s.buttons}>
-          <button type="button" onClick={handleClose}>
+          <button type="button" onClick={handleClose} ref={closeButtonRef}>
             Close
           </button>
-          <button
-            type="button"
-            onClick={handleBackToMenu}
-            ref={backToMenuButtonRef}
-          >
+          <button type="button" onClick={handleBackToMenu}>
             {t("back_to_menu")}
           </button>
         </div>
