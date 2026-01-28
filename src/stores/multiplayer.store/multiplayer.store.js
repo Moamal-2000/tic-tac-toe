@@ -1,4 +1,9 @@
-import { INITIAL_BOARD_SIZE, SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import {
+  INITIAL_BOARD_SIZE,
+  isMobileScreen,
+  SYMBOL_O,
+  SYMBOL_X,
+} from "@/data/constants";
 import { create } from "zustand";
 import { initialPlayerPowerUps } from "../xo.store/states";
 
@@ -27,7 +32,7 @@ export const useMultiplayerStore = create((set, get) => ({
     whoUsingPower: null,
     hasActivePowerUp: false,
   },
-  isChatOpen: true,
+  isChatOpen: !isMobileScreen,
   unreadMessagesCount: 0,
   exploreMode: false,
 
