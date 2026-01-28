@@ -135,7 +135,7 @@
     },
     "match_aborted_modal": {
       "title": "試合が中止されました！",
-      "description": "相手がゲームから退出しました。メインメニューに戻ります。"
+      "description": "相手がゲームから退出しました。"
     },
     "rematch_request_notification": {
       "title": "ゲームリセット要求",

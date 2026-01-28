@@ -136,7 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "Mérkőzés megszakítva!",
-      "description": "Az ellenfél kilépett a játékból. Vissza lesz irányítva a főmenübe."
+      "description": "Az ellenfél kilépett a játékból."
     },
     "rematch_request_notification": {
       "title": "Játék visszaállítási kérés",

@@ -136,7 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "تم إلغاء المباراة!",
-      "description": "انسحب خصمك من اللعبة. سيتم إعادتك إلى القائمة الرئيسية."
+      "description": "انسحب خصمك من اللعبة."
     },
     "rematch_request_notification": {
       "title": "طلب إعادة تعيين اللعبة",

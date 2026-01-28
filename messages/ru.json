@@ -135,7 +135,7 @@
     },
     "match_aborted_modal": {
       "title": "Игра прервана!",
-      "description": "Ваш противник вышел из игры. Вы будете возвращены в главное меню."
+      "description": "Ваш противник вышел из игры."
     },
     "rematch_request_notification": {
       "title": "Запрос на сброс игры",

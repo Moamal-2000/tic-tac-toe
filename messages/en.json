@@ -136,7 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "Match Aborted!",
-      "description": "Your opponent has withdrawn from the game. You will be returned to the main menu."
+      "description": "Your opponent has withdrawn from the game."
     },
     "rematch_request_notification": {
       "title": "Reset Game Request",
