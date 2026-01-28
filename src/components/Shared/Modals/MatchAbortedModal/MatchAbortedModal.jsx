@@ -72,7 +72,7 @@ const MatchAbortedModal = () => {
             {tGlobal("close")}
           </button>
           <button type="button" onClick={handleBackToMenu}>
-            {t("back_to_menu")}
+            {tGlobal("main_menu")}
           </button>
         </div>
       </div>

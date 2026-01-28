@@ -116,6 +116,7 @@
     "language": "Nyelv",
     "left": "hátralévő",
     "close": "Bezárás",
+    "main_menu": "Főmenü",
     "languages": {
       "arabic": "Arab",
       "english": "Angol",
@@ -135,8 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "Mérkőzés megszakítva!",
-      "description": "Az ellenfél kilépett a játékból. Vissza lesz irányítva a főmenübe.",
-      "back_to_menu": "Vissza a menübe"
+      "description": "Az ellenfél kilépett a játékból. Vissza lesz irányítva a főmenübe."
     },
     "rematch_request_notification": {
       "title": "Játék visszaállítási kérés",

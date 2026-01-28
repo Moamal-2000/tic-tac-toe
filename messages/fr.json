@@ -116,6 +116,7 @@
     "language": "Langue",
     "left": "restant",
     "close": "Fermer",
+    "main_menu": "Menu Principal",
     "languages": {
       "arabic": "Arabe",
       "english": "Anglais",
@@ -135,8 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "Partie annulée !",
-      "description": "Votre adversaire s'est retiré du jeu. Vous serez redirigé vers le menu principal.",
-      "back_to_menu": "Retour au menu"
+      "description": "Votre adversaire s'est retiré du jeu. Vous serez redirigé vers le menu principal."
     },
     "rematch_request_notification": {
       "title": "Demande de réinitialisation",

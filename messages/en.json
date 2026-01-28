@@ -116,6 +116,7 @@
     "language": "Language",
     "left": "left",
     "close": "Close",
+    "main_menu": "Main Menu",
     "languages": {
       "arabic": "Arabic",
       "english": "English",
@@ -135,8 +136,7 @@
     },
     "match_aborted_modal": {
       "title": "Match Aborted!",
-      "description": "Your opponent has withdrawn from the game. You will be returned to the main menu.",
-      "back_to_menu": "Back to Menu"
+      "description": "Your opponent has withdrawn from the game. You will be returned to the main menu."
     },
     "rematch_request_notification": {
       "title": "Reset Game Request",

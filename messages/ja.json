@@ -115,6 +115,7 @@
     "language": "言語",
     "left": "残り",
     "close": "閉じる",
+    "main_menu": "メインメニュー",
     "languages": {
       "arabic": "アラビア語",
       "english": "英語",
@@ -134,8 +135,7 @@
     },
     "match_aborted_modal": {
       "title": "試合が中止されました！",
-      "description": "相手がゲームから退出しました。メインメニューに戻ります。",
-      "back_to_menu": "メニューに戻る"
+      "description": "相手がゲームから退出しました。メインメニューに戻ります。"
     },
     "rematch_request_notification": {
       "title": "ゲームリセット要求",
