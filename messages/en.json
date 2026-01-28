@@ -115,6 +115,7 @@
     "player": "player",
     "language": "Language",
     "left": "left",
+    "close": "Close",
     "languages": {
       "arabic": "Arabic",
       "english": "English",

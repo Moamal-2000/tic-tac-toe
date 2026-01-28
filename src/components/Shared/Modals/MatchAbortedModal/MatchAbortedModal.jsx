@@ -20,6 +20,7 @@ const MatchAbortedModal = () => {
   const router = useRouter();
   const closeButtonRef = useRef(null);
   const t = useTranslations("modals.match_aborted_modal");
+  const tGlobal = useTranslations("global");
 
   function handleClose() {
     updateMultiplayerState({ exploreMode: true });
@@ -68,7 +69,7 @@ const MatchAbortedModal = () => {
 
         <div className={s.buttons}>
           <button type="button" onClick={handleClose} ref={closeButtonRef}>
-            Close
+            {tGlobal("close")}
           </button>
           <button type="button" onClick={handleBackToMenu}>
             {t("back_to_menu")}
