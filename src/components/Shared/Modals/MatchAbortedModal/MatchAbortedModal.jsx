@@ -22,16 +22,6 @@ const MatchAbortedModal = () => {
   const t = useTranslations("modals.match_aborted_modal");
   const tGlobal = useTranslations("global");
 
-  function handleClose() {
-    updateMultiplayerState({ exploreMode: true });
-  }
-
-  function handleBackToMenu() {
-    resetMultiplayerState();
-    updateGameMode(null);
-    router.push("/");
-  }
-
   useEffect(() => {
     if (!isOpponentDisconnected) return;
     if (closeButtonRef.current) closeButtonRef.current.focus();
@@ -54,6 +44,16 @@ const MatchAbortedModal = () => {
     !isOpponentDisconnected || exploreMode || !hasGameStarted;
 
   if (hideComponent) return null;
+
+  function handleClose() {
+    updateMultiplayerState({ exploreMode: true });
+  }
+
+  function handleBackToMenu() {
+    resetMultiplayerState();
+    updateGameMode(null);
+    router.push("/");
+  }
 
   return (
     <div className={s.modalOverlay} role="presentation">
