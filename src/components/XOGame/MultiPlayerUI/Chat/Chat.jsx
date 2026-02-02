@@ -108,7 +108,7 @@ const Chat = () => {
       <ChatHeader messagesEndRef={messagesEndRef} />
 
       <div className={s.chatContent}>
-        <div className={s.messagesContainer}>
+        <div className={s.messagesContainer} dir="ltr">
           <MessageList messages={messages} />
           <TypingIndicator isVisible={isOpponentTyping} />
           <div ref={messagesEndRef} />
