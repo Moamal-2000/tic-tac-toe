@@ -1,6 +1,6 @@
 "use client";
 
-import { CIRCLE_LENGTH, TURN_TIMER_DURATION } from "@/data/constants";
+import { TURN_TIMER_DURATION } from "@/data/constants";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
@@ -13,18 +13,10 @@ const Timer = () => {
   const { timeRemaining, timerActive, hasGameStarted, winner } =
     useMultiplayerStore();
 
-  const isTimerRunning = timerActive && hasGameStarted && !winner;
-
   useEffect(() => {
-    const handleTimerUpdate = ({
-      timeRemaining: serverTimeRemaining,
-      timerActive: serverTimerActive,
-    }) => {
-      useMultiplayerStore.setState({
-        timeRemaining: serverTimeRemaining,
-        timerActive: serverTimerActive,
-      });
-    };
+    function handleTimerUpdate({ timeRemaining, timerActive }) {
+      useMultiplayerStore.setState({ timeRemaining, timerActive });
+    }
 
     socket.on("timer-update", handleTimerUpdate);
 
@@ -33,31 +25,22 @@ const Timer = () => {
     };
   }, []);
 
+  const isTimerRunning = timerActive && hasGameStarted && !winner;
   if (!isTimerRunning) return null;
 
-  const { isLowTime, isVeryLowTime, strokeDashoffset } =
-    calculateTimerVisuals(timeRemaining);
-  const timerClasses = getTimerClasses(s, isLowTime, isVeryLowTime);
+  const isLowTime = timeRemaining <= 10;
+  const isCriticalTime = timeRemaining <= 5;
+  const timerClasses = getTimerClasses(s, isLowTime, isCriticalTime);
+  const progressLineStyles = {
+    width: `${(timeRemaining / TURN_TIMER_DURATION) * 100}%`,
+  };
 
   return (
     <div className={timerClasses}>
-      <div className={s.timerBar}>
-        <div
-          className={s.timerProgressLine}
-          style={{ width: `${(timeRemaining / TURN_TIMER_DURATION) * 100}%` }}
-        />
+      <div className={s.bar}>
+        <div className={s.progressLine} style={progressLineStyles} />
       </div>
 
-      <svg className={s.timerCircle} viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" className={s.timerBg} />
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          className={s.timerProgress}
-          style={{ strokeDashoffset }}
-        />
-      </svg>
       <div className={s.timerText} dir="ltr">
         {timeRemaining}
         <span className={s.word}>{t("left")}</span>
@@ -68,22 +51,11 @@ const Timer = () => {
 
 export default Timer;
 
-function calculateTimerVisuals(timeRemaining) {
-  return {
-    isLowTime: timeRemaining <= 10,
-    isVeryLowTime: timeRemaining <= 5,
-    strokeDashoffset:
-      (CIRCLE_LENGTH * (TURN_TIMER_DURATION - timeRemaining)) /
-      TURN_TIMER_DURATION,
-  };
-}
-
-function getTimerClasses(cssModule, isLowTime, isVeryLowTime) {
-  return [
-    cssModule.timerContainer,
+function getTimerClasses(cssModule, isLowTime, isCriticalTime) {
+  const classes = [
+    cssModule.container,
     isLowTime && cssModule.lowTime,
-    isVeryLowTime && cssModule.veryLowTime,
-  ]
-    .filter(Boolean)
-    .join(" ");
+    isCriticalTime && cssModule.criticalTime,
+  ];
+  return classes.filter(Boolean).join(" ");
 }
