@@ -23,7 +23,7 @@
 @include m.small {
   .bar {
     height: 2px;
-    width: calc(100% - 50px);
+    width: calc(100% - 55px);
   }
 }
 
@@ -45,13 +45,22 @@
   gap: 3px;
 }
 
+html[lang=ar] .timerText {
+  right: auto;
+  left: 10px;
+}
+
 @include m.small {
   .container.chatOpen .timerText {
     display: none;
   }
 
   .timerText {
-    right: 80px;
+    right: 55px;
+  }
+
+  html[lang=ar] .timerText {
+    left: 55px;
   }
 }
 

@@ -63,6 +63,11 @@
   z-index: 10;
 }
 
+html[lang=ar] .game .chatWrapper {
+  right: auto;
+  left: 0;
+}
+
 @include m.small {
   .game .chatWrapper {
     bottom: auto;
