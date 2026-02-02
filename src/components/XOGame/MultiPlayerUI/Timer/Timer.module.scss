@@ -20,6 +20,13 @@
   background: rgba(78, 205, 196, 0.2);
 }
 
+@include m.small {
+  .bar {
+    height: 2px;
+    width: calc(100% - 50px);
+  }
+}
+
 .progressLine {
   height: 100%;
   background: #4ecdc4;
@@ -36,14 +43,23 @@
   display: flex;
   align-items: center;
   gap: 3px;
-  z-index: 999;
+}
+
+@include m.small {
+  .container.chatOpen .timerText {
+    display: none;
+  }
+
+  .timerText {
+    right: 80px;
+  }
 }
 
 @include m.very-small {
   .timerText {
     background-color: rgba(0, 0, 0, .5);
     padding: 2px 5px;
-    right: 0;
+    right: 50px;
     top: 4px;
   }
 }

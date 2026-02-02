@@ -31,12 +31,12 @@ const ChatHeader = ({ messagesEndRef }) => {
 
   return (
     <button
-      className={s.chatHeader}
+      className={`${s.chatHeader} ${isChatOpen ? s.open : ""}`}
       onClick={toggleChat}
       aria-label={label}
       aria-expanded={isChatOpen}
     >
-      {t("title")}
+      <span className={s.title}>{t("title")}</span>
 
       <div className={s.wrapper}>
         {unreadMessagesCount > 0 && (

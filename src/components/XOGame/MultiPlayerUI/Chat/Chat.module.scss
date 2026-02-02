@@ -4,12 +4,13 @@
   width: 320px;
   height: 490px;
   background: linear-gradient(180deg,
-      rgba(26, 35, 50, 0.92) 0%,
+      rgba(26, 35, 50, 0.92) 0,
       rgba(15, 20, 25, 0.92) 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
+  border-radius: 14px 14px 0 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   backdrop-filter: blur(10px);
   box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.35),
@@ -19,10 +20,9 @@
     box-shadow 0.25s ease,
     border-color 0.25s ease,
     height 0.25s ease;
-  overflow: hidden;
 
   &:not(.open) {
-    height: 56px;
+    height: 50px;
   }
 
   &:hover {
@@ -30,6 +30,29 @@
     box-shadow:
       0 18px 48px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+@include m.small {
+  .chat {
+    border: none;
+    background: linear-gradient(180deg,
+        rgba(26, 35, 50, 0.8) 0%,
+        rgba(15, 20, 25, 0.8) 100%);
+    backdrop-filter: none;
+    border-radius: 10px;
+    overflow: visible;
+    transition: none;
+
+    &:not(.open) {
+      width: 46px;
+      height: 46px;
+    }
+
+    &.open {
+      height: 100dvh;
+      width: calc(100dvw - 15px);
+    }
   }
 }
 
@@ -347,40 +370,6 @@
     opacity: 0.5;
     cursor: not-allowed;
     background: rgba(255, 255, 255, 0.1);
-  }
-}
-
-// Mobile responsiveness
-@include m.medium {
-  .chat {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    z-index: 1000;
-    transform: translateY(calc(100% - 60px));
-    border-radius: 12px 12px 0 0;
-
-    &.open {
-      transform: translateY(0);
-      border-radius: 12px;
-    }
-  }
-
-  .chatHeader {
-    cursor: pointer;
-    user-select: none;
-  }
-}
-
-@include m.small {
-  .chat {
-    width: calc(100vw - 40px);
-    height: 350px;
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
   }
 }
 

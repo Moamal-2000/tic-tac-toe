@@ -10,7 +10,7 @@ import s from "./Timer.module.scss";
 const Timer = () => {
   const t = useTranslations("global");
 
-  const { timeRemaining, timerActive, hasGameStarted, winner } =
+  const { timeRemaining, timerActive, hasGameStarted, winner, isChatOpen } =
     useMultiplayerStore();
 
   useEffect(() => {
@@ -30,10 +30,16 @@ const Timer = () => {
 
   const isLowTime = timeRemaining <= 10;
   const isCriticalTime = timeRemaining <= 5;
-  const timerClasses = getTimerClasses(s, isLowTime, isCriticalTime);
   const progressLineStyles = {
     width: `${(timeRemaining / TURN_TIMER_DURATION) * 100}%`,
   };
+
+  const timerClasses = getTimerClasses({
+    cssModule: s,
+    isLowTime,
+    isCriticalTime,
+    isChatOpen,
+  });
 
   return (
     <div className={timerClasses}>
@@ -51,11 +57,17 @@ const Timer = () => {
 
 export default Timer;
 
-function getTimerClasses(cssModule, isLowTime, isCriticalTime) {
+function getTimerClasses({
+  cssModule,
+  isLowTime,
+  isCriticalTime,
+  isChatOpen,
+} = {}) {
   const classes = [
     cssModule.container,
     isLowTime && cssModule.lowTime,
     isCriticalTime && cssModule.criticalTime,
+    isChatOpen && cssModule.chatOpen,
   ];
   return classes.filter(Boolean).join(" ");
 }

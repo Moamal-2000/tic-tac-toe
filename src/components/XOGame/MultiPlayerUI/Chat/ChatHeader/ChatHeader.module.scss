@@ -1,3 +1,5 @@
+@use "@/styles/mixins" as m;
+
 .chatHeader {
   display: flex;
   justify-content: space-between;
@@ -19,7 +21,6 @@
   &:focus-visible {
     outline: 2px solid #4a9eff;
     outline-offset: 2px;
-    border-radius: 14px 14px 0 0;
   }
 
   span:first-child {
@@ -27,9 +28,38 @@
     letter-spacing: 0.5px;
   }
 
-  &:hover svg {
+  &:hover svg,
+  &:focus-visible svg {
     color: #fff;
     stroke: #fff;
+  }
+}
+
+@include m.small {
+  .chatHeader {
+    border-radius: 10px;
+    justify-content: flex-end;
+    padding: 0;
+    width: 46px;
+    height: 46px;
+    @include m.flex-center;
+
+    &.open {
+      width: 46px;
+      height: 46px;
+      position: relative;
+      left: calc(100% - 46px);
+      border-radius: 10px;
+    }
+  }
+
+  .chatHeader .title {
+    display: none;
+  }
+
+  html[lang=ar] .chatHeader.open {
+    left: auto;
+    right: 0;
   }
 }
 
@@ -52,6 +82,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
 }
 
 .wrapper .notificationBadge {
@@ -60,15 +91,22 @@
   border-radius: 50%;
   min-width: 20px;
   height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include m.flex-center;
   font-size: 11px;
   font-weight: 600;
   line-height: 1;
   padding: 0 4px;
   box-shadow: 0 2px 4px rgba(255, 68, 68, 0.3);
   animation: pulse 2s infinite;
+}
+
+@include m.small {
+  .wrapper .notificationBadge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    scale: .9;
+  }
 }
 
 @keyframes pulse {
