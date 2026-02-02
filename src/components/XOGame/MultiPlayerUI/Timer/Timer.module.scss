@@ -39,6 +39,15 @@
   z-index: 999;
 }
 
+@include m.very-small {
+  .timerText {
+    background-color: rgba(0, 0, 0, .5);
+    padding: 2px 5px;
+    right: 0;
+    top: 4px;
+  }
+}
+
 .timerText .word {
   display: block;
   font-size: 0.8rem;
