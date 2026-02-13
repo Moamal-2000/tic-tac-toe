@@ -68,6 +68,70 @@ function linesForBoard(board) {
   return lines;
 }
 
+function countPlacedOnBoard(board) {
+  let placed = 0;
+  for (const row of board) {
+    for (const cell of row) {
+      if (cell.fillWith) placed++;
+    }
+  }
+  return placed;
+}
+
+function isCrowdedBoard(state) {
+  const total = state.boardSize * state.boardSize;
+  const placed = countPlacedOnBoard(state.board);
+  return placed >= Math.ceil(total * 0.65);
+}
+
+function scoreBombRemoval(state, me, action) {
+  let removed = 0;
+  let oppRemoved = 0;
+  let myRemoved = 0;
+
+  for (let dx = -1; dx <= 1; dx++) {
+    for (let dy = -1; dy <= 1; dy++) {
+      const r = action.row + dx;
+      const c = action.col + dy;
+      if (r < 0 || c < 0 || r >= state.boardSize || c >= state.boardSize)
+        continue;
+      const cell = state.board[r][c];
+      // Frozen squares are only unfrozen by bomb, not removed.
+      if (cell.isFrozen || !cell.fillWith) continue;
+      removed++;
+      if (cell.fillWith === me) myRemoved++;
+      else oppRemoved++;
+    }
+  }
+
+  return {
+    removed,
+    score: removed * 100 + oppRemoved * 12 - myRemoved * 8,
+  };
+}
+
+function pickCrowdedBoardBomb(state, me, legalActions) {
+  if (!isCrowdedBoard(state)) return null;
+
+  const bombActions = legalActions.filter((a) => a.type === "bomb");
+  if (!bombActions.length) return null;
+
+  let best = null;
+  let bestScore = -Infinity;
+  let bestRemoved = 0;
+
+  for (const action of bombActions) {
+    const { removed, score } = scoreBombRemoval(state, me, action);
+    if (score > bestScore) {
+      best = action;
+      bestScore = score;
+      bestRemoved = removed;
+    }
+  }
+
+  return bestRemoved >= 2 ? best : null;
+}
+
 function evalLine(board, coords, me) {
   const opp = otherPlayer(me);
   let meCount = 0;
@@ -369,6 +433,19 @@ export function chooseBotAction(state, difficulty) {
     }
 
     return { action: res.action, debug: { reason: "medium_minimax_d1" } };
+  }
+
+  const immediateWin = legal.find((action) => {
+    const next = applyAction(state, action);
+    return getWinner(next) === me;
+  });
+  if (immediateWin) {
+    return { action: immediateWin, debug: { reason: "hard_immediate_win" } };
+  }
+
+  const crowdedBomb = pickCrowdedBoardBomb(state, me, legal);
+  if (crowdedBomb) {
+    return { action: crowdedBomb, debug: { reason: "hard_crowded_bomb" } };
   }
 
   const depth = 4;
