@@ -50,6 +50,133 @@ function randomUint32() {
   return (Math.floor(Math.random() * 4294967296) >>> 0) >>> 0;
 }
 
+function get3x3PlaceActions(board) {
+  const actions = [];
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      if (!board[r][c].fillWith) {
+        actions.push({ type: "place", row: r, col: c });
+      }
+    }
+  }
+  return actions;
+}
+
+function apply3x3Place(board, action, symbol) {
+  const next = board.map((row) => row.map((cell) => ({ ...cell })));
+  next[action.row][action.col].fillWith = symbol;
+  return next;
+}
+
+function has3x3Empty(board) {
+  for (const row of board) {
+    for (const cell of row) {
+      if (!cell.fillWith) return true;
+    }
+  }
+  return false;
+}
+
+function findWinningPlace3x3(board, player) {
+  const actions = get3x3PlaceActions(board);
+  for (const action of actions) {
+    const next = apply3x3Place(board, action, player);
+    if (whoWins(next) === player) return action;
+  }
+  return null;
+}
+
+function minimax3x3(board, turn, me, ply, alpha, beta) {
+  const winner = whoWins(board);
+  if (winner === me) return 10 - ply;
+  if (winner !== "None") return ply - 10;
+  if (!has3x3Empty(board)) return 0;
+
+  const actions = get3x3PlaceActions(board);
+  const maximizing = turn === me;
+  let bestScore = maximizing ? -Infinity : Infinity;
+
+  for (const action of actions) {
+    const next = apply3x3Place(board, action, turn);
+    const score = minimax3x3(
+      next,
+      otherPlayer(turn),
+      me,
+      ply + 1,
+      alpha,
+      beta
+    );
+
+    if (maximizing) {
+      bestScore = Math.max(bestScore, score);
+      alpha = Math.max(alpha, bestScore);
+    } else {
+      bestScore = Math.min(bestScore, score);
+      beta = Math.min(beta, bestScore);
+    }
+
+    if (beta <= alpha) break;
+  }
+
+  return bestScore;
+}
+
+function choose3x3Action(state, difficulty, rng) {
+  const me = state.playerTurn;
+  const opp = otherPlayer(me);
+  const actions = get3x3PlaceActions(state.board);
+
+  if (!actions.length) {
+    return { action: null, debug: { reason: "3x3_no_legal_actions" } };
+  }
+
+  const immediateWin = findWinningPlace3x3(state.board, me);
+  const immediateBlock = findWinningPlace3x3(state.board, opp);
+
+  const scored = actions
+    .map((action) => {
+      const next = apply3x3Place(state.board, action, me);
+      const score = minimax3x3(next, opp, me, 1, -Infinity, Infinity);
+      return { action, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  const bestScore = scored[0].score;
+  const bestActions = scored
+    .filter((entry) => entry.score === bestScore)
+    .map((entry) => entry.action);
+  const pickBest = () => bestActions[Math.floor(rng() * bestActions.length)];
+  const pickAny = () => actions[Math.floor(rng() * actions.length)];
+
+  if (difficulty === "hard") {
+    return { action: pickBest(), debug: { reason: "3x3_hard_perfect" } };
+  }
+
+  if (difficulty === "medium") {
+    if (immediateWin) {
+      return { action: immediateWin, debug: { reason: "3x3_medium_win" } };
+    }
+    if (immediateBlock && rng() < 0.9) {
+      return { action: immediateBlock, debug: { reason: "3x3_medium_block" } };
+    }
+    if (rng() < 0.72) {
+      return { action: pickBest(), debug: { reason: "3x3_medium_best" } };
+    }
+    return { action: pickAny(), debug: { reason: "3x3_medium_noise" } };
+  }
+
+  if (immediateWin && rng() < 0.65) {
+    return { action: immediateWin, debug: { reason: "3x3_easy_win" } };
+  }
+  if (immediateBlock && rng() < 0.35) {
+    return { action: immediateBlock, debug: { reason: "3x3_easy_block" } };
+  }
+  if (rng() < 0.25) {
+    return { action: pickBest(), debug: { reason: "3x3_easy_best" } };
+  }
+  return { action: pickAny(), debug: { reason: "3x3_easy_random" } };
+}
+
 function linesForBoard(board) {
   const n = board.length;
   const lines = [];
@@ -409,6 +536,10 @@ export function chooseBotAction(state, difficulty) {
   callNonce = (callNonce + 1) >>> 0;
   const seed = (hashState(state) ^ randomUint32() ^ callNonce) >>> 0;
   const rng = makeRng(seed);
+
+  if (state.boardSize === 3) {
+    return choose3x3Action(state, difficulty, rng);
+  }
 
   const legal = getLegalActions(state);
   if (!legal.length)
