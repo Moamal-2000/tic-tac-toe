@@ -5,57 +5,72 @@ import { whoWins } from "@/functions/gameUtility";
 function hashState(state) {
   const parts = [state.boardSize, state.playerTurn];
   for (const row of state.board) {
-    for (const c of row) {
-      parts.push(c.fillWith || "_");
-      parts.push(c.isFrozen ? "F" : "_");
+    for (const cell of row) {
+      const fillWith = cell.fillWith || "_";
+      let frozenMarker = "_";
+      if (cell.isFrozen) {
+        frozenMarker = "F";
+      }
+
+      parts.push(fillWith);
+      parts.push(frozenMarker);
     }
   }
-  const pu = state.powerUps;
-  for (const p of [SYMBOL_O, SYMBOL_X]) {
-    for (const k of ["freeze", "bomb", "swap"]) {
-      const v = pu[p][k];
-      parts.push(p, k, v.available ? "1" : "0", String(v.coolDown));
+  const powerUps = state.powerUps;
+  for (const symbol of [SYMBOL_O, SYMBOL_X]) {
+    for (const powerUpType of ["freeze", "bomb", "swap"]) {
+      const powerUp = powerUps[symbol][powerUpType];
+      let availableFlag = "0";
+      if (powerUp.available) {
+        availableFlag = "1";
+      }
+      parts.push(symbol, powerUpType, availableFlag, String(powerUp.coolDown));
     }
   }
+
   // simple string hash to uint32
-  let h = 2166136261;
-  const s = parts.join("|");
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 16777619);
+  let hashValue = 2166136261;
+  const serialized = parts.join("|");
+  for (let index = 0; index < serialized.length; index++) {
+    hashValue ^= serialized.charCodeAt(index);
+    hashValue = Math.imul(hashValue, 16777619);
   }
-  return h >>> 0;
+  return hashValue >>> 0;
 }
 
 function makeRng(seed) {
-  let x = seed || 1;
+  let rngState = seed;
+  if (!rngState) {
+    rngState = 1;
+  }
+
   return () => {
     // xorshift32
-    x ^= x << 13;
-    x ^= x >>> 17;
-    x ^= x << 5;
-    return (x >>> 0) / 4294967296;
+    rngState ^= rngState << 13;
+    rngState ^= rngState >>> 17;
+    rngState ^= rngState << 5;
+    return (rngState >>> 0) / 4294967296;
   };
 }
 
 let callNonce = 0;
 
 function randomUint32() {
-  const c = globalThis.crypto;
-  if (c && typeof c.getRandomValues === "function") {
-    const a = new Uint32Array(1);
-    c.getRandomValues(a);
-    return a[0] >>> 0;
+  const cryptoApi = globalThis.crypto;
+  if (cryptoApi && typeof cryptoApi.getRandomValues === "function") {
+    const randomBuffer = new Uint32Array(1);
+    cryptoApi.getRandomValues(randomBuffer);
+    return randomBuffer[0] >>> 0;
   }
   return (Math.floor(Math.random() * 4294967296) >>> 0) >>> 0;
 }
 
 function get3x3PlaceActions(board) {
   const actions = [];
-  for (let r = 0; r < 3; r++) {
-    for (let c = 0; c < 3; c++) {
-      if (!board[r][c].fillWith) {
-        actions.push({ type: "place", row: r, col: c });
+  for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+    for (let colIndex = 0; colIndex < 3; colIndex++) {
+      if (!board[rowIndex][colIndex].fillWith) {
+        actions.push({ type: "place", row: rowIndex, col: colIndex });
       }
     }
   }
@@ -94,7 +109,10 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
 
   const actions = get3x3PlaceActions(board);
   const maximizing = turn === me;
-  let bestScore = maximizing ? -Infinity : Infinity;
+  let bestScore = -Infinity;
+  if (!maximizing) {
+    bestScore = Infinity;
+  }
 
   for (const action of actions) {
     const next = apply3x3Place(board, action, turn);
@@ -116,7 +134,7 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
 
 function choose3x3Action(state, difficulty, rng) {
   const me = state.playerTurn;
-  const opp = otherPlayer(me);
+  const opponent = otherPlayer(me);
   const actions = get3x3PlaceActions(state.board);
 
   if (!actions.length) {
@@ -124,15 +142,15 @@ function choose3x3Action(state, difficulty, rng) {
   }
 
   const immediateWin = findWinningPlace3x3(state.board, me);
-  const immediateBlock = findWinningPlace3x3(state.board, opp);
+  const immediateBlock = findWinningPlace3x3(state.board, opponent);
 
   const scored = actions
     .map((action) => {
       const next = apply3x3Place(state.board, action, me);
-      const score = minimax3x3(next, opp, me, 1, -Infinity, Infinity);
+      const score = minimax3x3(next, opponent, me, 1, -Infinity, Infinity);
       return { action, score };
     })
-    .sort((a, b) => b.score - a.score);
+    .sort((left, right) => right.score - left.score);
 
   const bestScore = scored[0].score;
   const bestActions = scored
@@ -171,19 +189,29 @@ function choose3x3Action(state, difficulty, rng) {
 }
 
 function linesForBoard(board) {
-  const n = board.length;
+  const boardSize = board.length;
   const lines = [];
 
-  for (let r = 0; r < n; r++) {
-    lines.push(board[r].map((_, c) => [r, c]));
+  for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+    lines.push(board[rowIndex].map((_, colIndex) => [rowIndex, colIndex]));
   }
 
-  for (let c = 0; c < n; c++) {
-    lines.push(board.map((_, r) => [r, c]));
+  for (let colIndex = 0; colIndex < boardSize; colIndex++) {
+    lines.push(board.map((_, rowIndex) => [rowIndex, colIndex]));
   }
 
-  lines.push(Array.from({ length: n }, (_, i) => [i, i]));
-  lines.push(Array.from({ length: n }, (_, i) => [i, n - 1 - i]));
+  lines.push(
+    Array.from({ length: boardSize }, (_, diagonalIndex) => [
+      diagonalIndex,
+      diagonalIndex,
+    ]),
+  );
+  lines.push(
+    Array.from({ length: boardSize }, (_, diagonalIndex) => [
+      diagonalIndex,
+      boardSize - 1 - diagonalIndex,
+    ]),
+  );
 
   return lines;
 }
@@ -217,11 +245,16 @@ function scoreBombRemoval(state, me, action) {
 
   for (let dx = -1; dx <= 1; dx++) {
     for (let dy = -1; dy <= 1; dy++) {
-      const r = action.row + dx;
-      const c = action.col + dy;
-      if (r < 0 || c < 0 || r >= state.boardSize || c >= state.boardSize)
+      const rowIndex = action.row + dx;
+      const colIndex = action.col + dy;
+      if (
+        rowIndex < 0 ||
+        colIndex < 0 ||
+        rowIndex >= state.boardSize ||
+        colIndex >= state.boardSize
+      )
         continue;
-      const cell = state.board[r][c];
+      const cell = state.board[rowIndex][colIndex];
       // Frozen squares are only unfrozen by bomb, not removed.
       if (cell.isFrozen || !cell.fillWith) continue;
       removed++;
@@ -239,7 +272,9 @@ function scoreBombRemoval(state, me, action) {
 function pickCrowdedBoardBomb(state, me, legalActions) {
   if (!isCrowdedBoard(state)) return null;
 
-  const bombActions = legalActions.filter((a) => a.type === "bomb");
+  const bombActions = legalActions.filter(
+    (candidateAction) => candidateAction.type === "bomb",
+  );
   if (!bombActions.length) return null;
 
   let best = null;
@@ -255,7 +290,10 @@ function pickCrowdedBoardBomb(state, me, legalActions) {
     }
   }
 
-  return bestRemoved >= 2 ? best : null;
+  if (bestRemoved >= 2) {
+    return best;
+  }
+  return null;
 }
 
 function getHardSearchConfig(boardSize) {
@@ -275,21 +313,20 @@ function getHardSearchConfig(boardSize) {
 }
 
 function evalLine(board, coords, me) {
-  const opp = otherPlayer(me);
   let meCount = 0;
-  let oppCount = 0;
+  let opponentCount = 0;
   let emptyCount = 0;
   let frozenCount = 0;
 
-  for (const [r, c] of coords) {
-    const cell = board[r][c];
+  for (const [rowIndex, colIndex] of coords) {
+    const cell = board[rowIndex][colIndex];
     if (cell.isFrozen) {
       frozenCount++;
       continue;
     }
     if (!cell.fillWith) emptyCount++;
     else if (cell.fillWith === me) meCount++;
-    else oppCount++;
+    else opponentCount++;
   }
 
   // Any frozen in a line makes it impossible to win by that line (per rules)
@@ -298,16 +335,16 @@ function evalLine(board, coords, me) {
     return 0;
   }
 
-  if (meCount > 0 && oppCount > 0) return 0;
+  if (meCount > 0 && opponentCount > 0) return 0;
 
   // Threats: size-1 and 1 empty
-  const n = coords.length;
-  if (meCount === n - 1 && emptyCount === 1) return 500;
-  if (oppCount === n - 1 && emptyCount === 1) return -550;
+  const lineLength = coords.length;
+  if (meCount === lineLength - 1 && emptyCount === 1) return 500;
+  if (opponentCount === lineLength - 1 && emptyCount === 1) return -550;
 
   // Preference for building uncontested lines
-  if (oppCount === 0) return meCount * meCount * 12;
-  if (meCount === 0) return -(oppCount * oppCount * 12);
+  if (opponentCount === 0) return meCount * meCount * 12;
+  if (meCount === 0) return -(opponentCount * opponentCount * 12);
 
   return 0;
 }
@@ -315,10 +352,10 @@ function evalLine(board, coords, me) {
 export function evaluateState(state, me) {
   if (state.forcedDraw) return 0;
 
-  const wAny = getWinner(state);
-  if (wAny === me) return 100000;
-  if (wAny === "Draw!") return 0;
-  if (wAny !== "None" && wAny !== me) return -100000;
+  const winner = getWinner(state);
+  if (winner === me) return 100000;
+  if (winner === "Draw!") return 0;
+  if (winner !== "None" && winner !== me) return -100000;
 
   const board = state.board;
   let score = 0;
@@ -328,10 +365,10 @@ export function evaluateState(state, me) {
   }
 
   // Mild preference for center control on odd boards
-  const n = board.length;
-  if (n % 2 === 1) {
-    const mid = Math.floor(n / 2);
-    const center = board[mid][mid];
+  const boardSize = board.length;
+  if (boardSize % 2 === 1) {
+    const middleIndex = Math.floor(boardSize / 2);
+    const center = board[middleIndex][middleIndex];
     if (!center.isFrozen) {
       if (center.fillWith === me) score += 10;
       if (center.fillWith === otherPlayer(me)) score -= 10;
@@ -339,80 +376,117 @@ export function evaluateState(state, me) {
   }
 
   // Power-up availability is valuable (more so on larger boards)
-  const pu = state.powerUps[me];
-  const avail = (k) => (pu[k].available ? 1 : 0);
-  score += 8 * avail("freeze") + 10 * avail("bomb") + 14 * avail("swap");
+  const myPowerUps = state.powerUps[me];
+  const availableCount = (powerUpType) => {
+    if (myPowerUps[powerUpType].available) {
+      return 1;
+    }
+    return 0;
+  };
+  score +=
+    8 * availableCount("freeze") +
+    10 * availableCount("bomb") +
+    14 * availableCount("swap");
 
   return score;
 }
 
 export function getLegalActions(state) {
-  const n = state.boardSize;
+  const boardSize = state.boardSize;
   const me = state.playerTurn;
-  const opp = otherPlayer(me);
+  const opponent = otherPlayer(me);
   const actions = [];
 
   // Place
-  for (let r = 0; r < n; r++) {
-    for (let c = 0; c < n; c++) {
-      if (!state.board[r][c].fillWith)
-        actions.push({ type: "place", row: r, col: c });
+  for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+    for (let colIndex = 0; colIndex < boardSize; colIndex++) {
+      if (!state.board[rowIndex][colIndex].fillWith) {
+        actions.push({ type: "place", row: rowIndex, col: colIndex });
+      }
     }
   }
 
-  const pu = state.powerUps[me];
+  const myPowerUps = state.powerUps[me];
 
   // Freeze
-  if (pu.freeze.available) {
-    for (let r = 0; r < n; r++) {
-      for (let c = 0; c < n; c++) {
-        const cell = state.board[r][c];
-        if (cell.fillWith === opp && !cell.isFrozen) {
-          actions.push({ type: "freeze", row: r, col: c });
+  if (myPowerUps.freeze.available) {
+    for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+      for (let colIndex = 0; colIndex < boardSize; colIndex++) {
+        const cell = state.board[rowIndex][colIndex];
+        if (cell.fillWith === opponent && !cell.isFrozen) {
+          actions.push({ type: "freeze", row: rowIndex, col: colIndex });
         }
       }
     }
   }
 
   // Bomb
-  if (pu.bomb.available) {
-    for (let r = 0; r < n; r++) {
-      for (let c = 0; c < n; c++) {
+  if (myPowerUps.bomb.available) {
+    for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+      for (let colIndex = 0; colIndex < boardSize; colIndex++) {
         let hasEffect = false;
         for (let dx = -1; dx <= 1 && !hasEffect; dx++) {
           for (let dy = -1; dy <= 1; dy++) {
-            const rr = r + dx;
-            const cc = c + dy;
-            if (rr < 0 || cc < 0 || rr >= n || cc >= n) continue;
-            const cell = state.board[rr][cc];
+            const targetRowIndex = rowIndex + dx;
+            const targetColIndex = colIndex + dy;
+            if (
+              targetRowIndex < 0 ||
+              targetColIndex < 0 ||
+              targetRowIndex >= boardSize ||
+              targetColIndex >= boardSize
+            ) {
+              continue;
+            }
+            const cell = state.board[targetRowIndex][targetColIndex];
             if (cell.isFrozen || cell.fillWith) {
               hasEffect = true;
               break;
             }
           }
         }
-        if (hasEffect) actions.push({ type: "bomb", row: r, col: c });
+        if (hasEffect) {
+          actions.push({ type: "bomb", row: rowIndex, col: colIndex });
+        }
       }
     }
   }
 
   // Swap (only occupied squares)
-  if (pu.swap.available) {
-    const occ = [];
-    for (let r = 0; r < n; r++) {
-      for (let c = 0; c < n; c++) {
-        if (state.board[r][c].fillWith) occ.push([r, c]);
+  if (myPowerUps.swap.available) {
+    const occupiedSquares = [];
+    for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+      for (let colIndex = 0; colIndex < boardSize; colIndex++) {
+        if (state.board[rowIndex][colIndex].fillWith) {
+          occupiedSquares.push([rowIndex, colIndex]);
+        }
       }
     }
 
-    if (occ.length >= 2) {
-      for (let i = 0; i < occ.length; i++) {
-        for (let j = i + 1; j < occ.length; j++) {
-          const [r1, c1] = occ[i];
-          const [r2, c2] = occ[j];
-          const v1 = state.board[r1][c1].fillWith;
-          const v2 = state.board[r2][c2].fillWith;
-          if (v1 !== v2) actions.push({ type: "swap", a: occ[i], b: occ[j] });
+    if (occupiedSquares.length >= 2) {
+      for (
+        let firstSquareIndex = 0;
+        firstSquareIndex < occupiedSquares.length;
+        firstSquareIndex++
+      ) {
+        for (
+          let secondSquareIndex = firstSquareIndex + 1;
+          secondSquareIndex < occupiedSquares.length;
+          secondSquareIndex++
+        ) {
+          const [firstRowIndex, firstColIndex] =
+            occupiedSquares[firstSquareIndex];
+          const [secondRowIndex, secondColIndex] =
+            occupiedSquares[secondSquareIndex];
+          const firstValue = state.board[firstRowIndex][firstColIndex].fillWith;
+          const secondValue =
+            state.board[secondRowIndex][secondColIndex].fillWith;
+          if (firstValue !== secondValue) {
+            actions.push({
+              type: "swap",
+              a: occupiedSquares[firstSquareIndex],
+              b: occupiedSquares[secondSquareIndex],
+            });
+          }
         }
       }
     }
@@ -423,63 +497,68 @@ export function getLegalActions(state) {
 
 function prioritizeActions(state, me, actions, cap) {
   // Lightweight ordering: immediate win > block immediate loss > best heuristic delta.
-  const scored = actions.map((a) => {
-    const next = applyAction(state, a);
+  const scored = actions.map((action) => {
+    const nextState = applyAction(state, action);
 
     // swap special-case: if both win => forced draw
-    if (a.type === "swap") {
+    if (action.type === "swap") {
       const bothWon =
-        whoWins(next.board, SYMBOL_O) !== "None" &&
-        whoWins(next.board, SYMBOL_X) !== "None";
+        whoWins(nextState.board, SYMBOL_O) !== "None" &&
+        whoWins(nextState.board, SYMBOL_X) !== "None";
       if (bothWon) {
-        next.forcedDraw = true;
+        nextState.forcedDraw = true;
       }
     }
 
-    const w = getWinner(next);
-    let s = 0;
-    if (w === me) s = 1e9;
-    else if (w !== "None" && w !== "Draw!") s = -1e9;
-    else if (w === "Draw!") s = 0;
+    const winner = getWinner(nextState);
+    let score = 0;
+    if (winner === me) score = 1e9;
+    else if (winner !== "None" && winner !== "Draw!") score = -1e9;
+    else if (winner === "Draw!") score = 0;
     else {
-      s = evaluateState(next, me);
-      if (a.type === "freeze") s -= 20;
-      if (a.type === "swap") s -= 15;
-      if (a.type === "bomb") {
-        s -= 25;
+      score = evaluateState(nextState, me);
+      if (action.type === "freeze") score -= 20;
+      if (action.type === "swap") score -= 15;
+      if (action.type === "bomb") {
+        score -= 25;
         let myHit = 0;
-        let oppHit = 0;
+        let opponentHit = 0;
         let frozenHit = 0;
         for (let dx = -1; dx <= 1; dx++) {
           for (let dy = -1; dy <= 1; dy++) {
-            const r = a.row + dx;
-            const c = a.col + dy;
-            if (r < 0 || c < 0 || r >= state.boardSize || c >= state.boardSize)
+            const rowIndex = action.row + dx;
+            const colIndex = action.col + dy;
+            if (
+              rowIndex < 0 ||
+              colIndex < 0 ||
+              rowIndex >= state.boardSize ||
+              colIndex >= state.boardSize
+            )
               continue;
-            const cell = state.board[r][c];
+            const cell = state.board[rowIndex][colIndex];
             if (cell.isFrozen) frozenHit++;
             if (cell.fillWith === me) myHit++;
-            if (cell.fillWith === otherPlayer(me)) oppHit++;
+            if (cell.fillWith === otherPlayer(me)) opponentHit++;
           }
         }
-        if (oppHit === 0 && frozenHit === 0) s -= 80;
-        s -= myHit * 10;
+        if (opponentHit === 0 && frozenHit === 0) score -= 80;
+        score -= myHit * 10;
       }
     }
 
-    return { a, s };
+    return { action, score };
   });
 
-  scored.sort((x, y) => y.s - x.s);
-  return scored.slice(0, cap).map((x) => x.a);
+  scored.sort((left, right) => right.score - left.score);
+  return scored.slice(0, cap).map((entry) => entry.action);
 }
 
 function minimax(state, me, depth, alpha, beta, actionCap) {
-  const w = getWinner(state);
+  const winner = getWinner(state);
   if (state.forcedDraw) return { score: 0, action: null };
-  if (w !== "None") {
-    if (w === me) return { score: 100000, action: null };
-    if (w === "Draw!") return { score: 0, action: null };
+  if (winner !== "None") {
+    if (winner === me) return { score: 100000, action: null };
+    if (winner === "Draw!") return { score: 0, action: null };
     return { score: -100000, action: null };
   }
 
@@ -497,12 +576,19 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
 
   if (maximizing) {
     let bestScore = -Infinity;
-    for (const a of actions) {
-      const next = applyAction(state, a);
-      const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
+    for (const action of actions) {
+      const nextState = applyAction(state, action);
+      const { score } = minimax(
+        nextState,
+        me,
+        depth - 1,
+        alpha,
+        beta,
+        actionCap,
+      );
       if (score > bestScore) {
         bestScore = score;
-        bestAction = a;
+        bestAction = action;
       }
       alpha = Math.max(alpha, bestScore);
       if (beta <= alpha) break;
@@ -511,12 +597,12 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
   }
 
   let bestScore = Infinity;
-  for (const a of actions) {
-    const next = applyAction(state, a);
-    const { score } = minimax(next, me, depth - 1, alpha, beta, actionCap);
+  for (const action of actions) {
+    const nextState = applyAction(state, action);
+    const { score } = minimax(nextState, me, depth - 1, alpha, beta, actionCap);
     if (score < bestScore) {
       bestScore = score;
-      bestAction = a;
+      bestAction = action;
     }
     beta = Math.min(beta, bestScore);
     if (beta <= alpha) break;
@@ -540,23 +626,41 @@ export function chooseBotAction(state, difficulty) {
 
   if (difficulty === "easy") {
     const is4x4 = state.boardSize === 4;
-    const mistakeProb = is4x4 ? 0.12 : 0.18;
+    let mistakeProb = 0.18;
+    if (is4x4) {
+      mistakeProb = 0.12;
+    }
+
     if (rng() < mistakeProb) {
-      const places = legal.filter((a) => a.type === "place");
-      const pick = (places.length ? places : legal)[
-        Math.floor(rng() * (places.length ? places.length : legal.length))
-      ];
+      const places = legal.filter(
+        (candidateAction) => candidateAction.type === "place",
+      );
+      let placePool = legal;
+      if (places.length) {
+        placePool = places;
+      }
+
+      const pick = placePool[Math.floor(rng() * placePool.length)];
       return { action: pick, debug: { reason: "easy_random" } };
     }
 
     const top = prioritizeActions(state, me, legal, 10);
-    const r = rng();
-    const idx =
-      r < (is4x4 ? 0.8 : 0.7)
-        ? 0
-        : r < (is4x4 ? 0.95 : 0.9)
-          ? Math.min(1, top.length - 1)
-          : Math.min(2, top.length - 1);
+    const randomValue = rng();
+    let topOneThreshold = 0.7;
+    let topTwoThreshold = 0.9;
+    if (is4x4) {
+      topOneThreshold = 0.8;
+      topTwoThreshold = 0.95;
+    }
+
+    let pickIndex = Math.min(2, top.length - 1);
+    if (randomValue < topOneThreshold) {
+      pickIndex = 0;
+    } else if (randomValue < topTwoThreshold) {
+      pickIndex = Math.min(1, top.length - 1);
+    }
+
+    const idx = pickIndex;
     const pick = top[idx];
     return { action: pick, debug: { reason: "easy_topk" } };
   }
@@ -569,13 +673,10 @@ export function chooseBotAction(state, difficulty) {
     const noiseProb = 0.25;
     if (rng() < noiseProb) {
       const top = prioritizeActions(state, me, legal, 6);
-      const pick =
-        top[
-          Math.min(
-            top.length - 1,
-            1 + Math.floor(rng() * Math.min(2, top.length - 1)),
-          )
-        ];
+      const maxOffset = Math.min(2, top.length - 1);
+      const offset = 1 + Math.floor(rng() * maxOffset);
+      const clampedIndex = Math.min(top.length - 1, offset);
+      const pick = top[clampedIndex];
       return { action: pick, debug: { reason: "medium_noise" } };
     }
 
@@ -606,8 +707,8 @@ export function chooseBotAction(state, difficulty) {
   );
   let bestScore = -Infinity;
   const best = [];
-  for (const a of candidates) {
-    const next = applyAction(state, a);
+  for (const candidateAction of candidates) {
+    const next = applyAction(state, candidateAction);
     const { score } = minimax(
       next,
       me,
@@ -619,12 +720,15 @@ export function chooseBotAction(state, difficulty) {
     if (score > bestScore) {
       bestScore = score;
       best.length = 0;
-      best.push(a);
+      best.push(candidateAction);
     } else if (score === bestScore) {
-      best.push(a);
+      best.push(candidateAction);
     }
   }
-  const pick = best.length ? best[Math.floor(rng() * best.length)] : null;
+  let pick = null;
+  if (best.length) {
+    pick = best[Math.floor(rng() * best.length)];
+  }
   if (pick) return { action: pick, debug: { reason: "hard_minimax_d4" } };
   const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
   return { action: res.action, debug: { reason: "hard_minimax_d4" } };
