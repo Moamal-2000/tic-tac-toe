@@ -78,10 +78,16 @@ function countPlacedOnBoard(board) {
   return placed;
 }
 
+function getCrowdedRatioByBoardSize(boardSize) {
+  if (boardSize <= 3) return 0.78;
+  return 0.65;
+}
+
 function isCrowdedBoard(state) {
   const total = state.boardSize * state.boardSize;
   const placed = countPlacedOnBoard(state.board);
-  return placed >= Math.ceil(total * 0.65);
+  const crowdedRatio = getCrowdedRatioByBoardSize(state.boardSize);
+  return placed >= Math.ceil(total * crowdedRatio);
 }
 
 function scoreBombRemoval(state, me, action) {
@@ -130,6 +136,22 @@ function pickCrowdedBoardBomb(state, me, legalActions) {
   }
 
   return bestRemoved >= 2 ? best : null;
+}
+
+function getHardSearchConfig(boardSize) {
+  if (boardSize <= 3) {
+    return {
+      depth: 8,
+      actionCap: 64,
+      candidateCap: 9,
+    };
+  }
+
+  return {
+    depth: 4,
+    actionCap: 50,
+    candidateCap: 8,
+  };
 }
 
 function evalLine(board, coords, me) {
@@ -348,7 +370,7 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
     state,
     me,
     getLegalActions(state),
-    actionCap
+    actionCap,
   );
 
   let bestAction = actions[0] || null;
@@ -408,8 +430,8 @@ export function chooseBotAction(state, difficulty) {
       r < 0.7
         ? 0
         : r < 0.9
-        ? Math.min(1, top.length - 1)
-        : Math.min(2, top.length - 1);
+          ? Math.min(1, top.length - 1)
+          : Math.min(2, top.length - 1);
     const pick = top[idx];
     return { action: pick, debug: { reason: "easy_topk" } };
   }
@@ -426,7 +448,7 @@ export function chooseBotAction(state, difficulty) {
         top[
           Math.min(
             top.length - 1,
-            1 + Math.floor(rng() * Math.min(2, top.length - 1))
+            1 + Math.floor(rng() * Math.min(2, top.length - 1)),
           )
         ];
       return { action: pick, debug: { reason: "medium_noise" } };
@@ -448,13 +470,14 @@ export function chooseBotAction(state, difficulty) {
     return { action: crowdedBomb, debug: { reason: "hard_crowded_bomb" } };
   }
 
-  const depth = 4;
-  const actionCap = 50;
+  const { depth, actionCap, candidateCap } = getHardSearchConfig(
+    state.boardSize,
+  );
   const candidates = prioritizeActions(
     state,
     me,
     legal,
-    Math.min(8, legal.length)
+    Math.min(candidateCap, legal.length),
   );
   let bestScore = -Infinity;
   const best = [];
@@ -466,7 +489,7 @@ export function chooseBotAction(state, difficulty) {
       depth - 1,
       -Infinity,
       Infinity,
-      actionCap
+      actionCap,
     );
     if (score > bestScore) {
       bestScore = score;

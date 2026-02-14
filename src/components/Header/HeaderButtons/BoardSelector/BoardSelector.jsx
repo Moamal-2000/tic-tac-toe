@@ -19,6 +19,7 @@ const BoardSelector = ({ playClickSound }) => {
   return (
     <div className={s.boardSelector}>
       {BOARD_SIZES.map((size) => {
+        if (gameMode === "computer" && size === 5) return null;
         if (playMode === "autoHideMode" && size === 5) return null;
 
         return (
