@@ -98,14 +98,7 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
 
   for (const action of actions) {
     const next = apply3x3Place(board, action, turn);
-    const score = minimax3x3(
-      next,
-      otherPlayer(turn),
-      me,
-      ply + 1,
-      alpha,
-      beta
-    );
+    const score = minimax3x3(next, otherPlayer(turn), me, ply + 1, alpha, beta);
 
     if (maximizing) {
       bestScore = Math.max(bestScore, score);
@@ -546,7 +539,8 @@ export function chooseBotAction(state, difficulty) {
     return { action: null, debug: { reason: "no_legal_actions" } };
 
   if (difficulty === "easy") {
-    const mistakeProb = 0.18;
+    const is4x4 = state.boardSize === 4;
+    const mistakeProb = is4x4 ? 0.12 : 0.18;
     if (rng() < mistakeProb) {
       const places = legal.filter((a) => a.type === "place");
       const pick = (places.length ? places : legal)[
@@ -558,9 +552,9 @@ export function chooseBotAction(state, difficulty) {
     const top = prioritizeActions(state, me, legal, 10);
     const r = rng();
     const idx =
-      r < 0.7
+      r < (is4x4 ? 0.8 : 0.7)
         ? 0
-        : r < 0.9
+        : r < (is4x4 ? 0.95 : 0.9)
           ? Math.min(1, top.length - 1)
           : Math.min(2, top.length - 1);
     const pick = top[idx];
