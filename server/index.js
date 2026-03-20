@@ -21,6 +21,10 @@ app.use(cors({ origin: ORIGIN }));
 
 app.get("/health", (_, res) => res.send("OK"));
 
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 const gameManager = new GameManager(io);
 
 function getOnlinePlayersCount() {
