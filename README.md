@@ -92,8 +92,8 @@ distribution, or commercial use is strictly prohibited.
 
 ## Future Enhancements
 
-- [x] ~~Online multiplayer mode~~ ✅ **In Progress**
-- [x] ~~AI opponent with difficulty levels~~ ✅ **In Progress**
+- [x] ~~Online multiplayer mode~~ ✅ **Done**
+- [x] ~~AI opponent with difficulty levels~~ ✅ **Done**
 - [ ] Additional power-ups and visual themes
 
 > Note: These enhancements are under consideration and not confirmed 100%.
