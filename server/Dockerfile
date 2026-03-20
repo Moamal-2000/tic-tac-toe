@@ -12,11 +12,6 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
-# Install pnpm
-ARG PNPM_VERSION=latest
-RUN npm install -g pnpm@$PNPM_VERSION
-
-
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
@@ -25,12 +20,12 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
 # Install node modules
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json package-lock.json ./
+
+RUN npm ci
 
 # Copy application code
 COPY . .
-
 
 # Final stage for app image
 FROM base
@@ -38,6 +33,9 @@ FROM base
 # Copy built application
 COPY --from=build /app /app
 
-# Start the server by default, this can be overwritten at runtime
+RUN npm prune --production
+
+# Start the server by default
 EXPOSE 3000
-CMD [ "pnpm", "run", "start" ]
+
+CMD [ "npm", "run", "start" ]
