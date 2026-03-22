@@ -319,6 +319,7 @@ export class GameManager {
     if (!roomId || !this.rooms.has(roomId)) return;
 
     const game = this.rooms.get(roomId);
+    game.pauseTimer();
 
     // Determine who requested the rematch
     const playerSymbol =
@@ -368,6 +369,7 @@ export class GameManager {
     if (!roomId || !this.rooms.has(roomId)) return;
 
     const game = this.rooms.get(roomId);
+    game.resumeTimer();
 
     // Determine who requested the rematch (the one who did NOT reject)
     const playerSymbol =

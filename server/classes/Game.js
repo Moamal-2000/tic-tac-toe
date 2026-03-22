@@ -24,6 +24,7 @@ export class Game {
     this.isWinnerPopupVisible = false;
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
+    this.timerPaused = false;
     this.timerInterval = null;
     this.powerUpsState = {
       selectedPower: null,
@@ -90,18 +91,10 @@ export class Game {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = true;
+    this.timerPaused = false;
     this.timerCallback = callback;
     this.broadcastTimerUpdate();
-
-    this.timerInterval = setInterval(() => {
-      this.timeRemaining--;
-      this.broadcastTimerUpdate();
-
-      if (this.timeRemaining <= 0) {
-        this.stopTimer();
-        if (this.timerCallback) this.timerCallback();
-      }
-    }, SECOND_IN_MS);
+    this.startTimerInterval();
   }
 
   broadcastTimerUpdate() {
@@ -117,6 +110,7 @@ export class Game {
       this.timerInterval = null;
     }
     this.timerActive = false;
+    this.timerPaused = false;
     this.broadcastTimerUpdate();
   }
 
@@ -124,20 +118,48 @@ export class Game {
     this.stopTimer();
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
+    this.timerPaused = false;
+  }
+
+  pauseTimer() {
+    if (!this.timerActive) return;
+
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+
+    this.timerActive = false;
+    this.timerPaused = true;
+    this.broadcastTimerUpdate();
+  }
+
+  resumeTimer() {
+    if (!this.timerPaused || this.timerInterval || !this.timerCallback) return;
+
+    this.timerActive = true;
+    this.timerPaused = false;
+    this.broadcastTimerUpdate();
+    this.startTimerInterval();
   }
 
   // Ensure timer is running without resetting the time
   ensureTimerRunning() {
     if (!this.timerInterval && this.timerActive && this.timerCallback) {
-      this.timerInterval = setInterval(() => {
-        this.timeRemaining--;
-
-        if (this.timeRemaining <= 0) {
-          this.stopTimer();
-          if (this.timerCallback) this.timerCallback();
-        }
-      }, SECOND_IN_MS);
+      this.startTimerInterval();
     }
+  }
+
+  startTimerInterval() {
+    this.timerInterval = setInterval(() => {
+      this.timeRemaining--;
+      this.broadcastTimerUpdate();
+
+      if (this.timeRemaining <= 0) {
+        this.stopTimer();
+        if (this.timerCallback) this.timerCallback();
+      }
+    }, SECOND_IN_MS);
   }
 
   getOpponentSymbol() {
@@ -496,6 +518,7 @@ export class Game {
     this.isWinnerPopupVisible = false;
     this.timeRemaining = TURN_TIMER_DURATION;
     this.timerActive = false;
+    this.timerPaused = false;
     this.powerUpsState = { selectedPower: null, whoUsingPower: null };
 
     // Reset all player cooldowns
