@@ -54,22 +54,6 @@
   }
 }
 
-.closeButton {
-  width: 38px;
-  height: 38px;
-  border: 1px solid rgba(125, 145, 176, 0.45);
-  border-radius: 999px;
-  background: rgba(20, 28, 44, 0.95);
-  color: #f5f7fb;
-  font-size: 1rem;
-  cursor: pointer;
-
-  &:hover,
-  &:focus-visible {
-    border-color: #f5f7fb;
-  }
-}
-
 .emptyState {
   display: grid;
   place-items: center;

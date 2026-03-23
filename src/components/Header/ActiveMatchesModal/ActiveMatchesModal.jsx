@@ -1,5 +1,6 @@
 "use client";
 
+import CloseButton from "@/components/Shared/Buttons/CloseButton/CloseButton";
 import XOBoard from "@/components/XOGame/MultiPlayerUI/XOBoard/XOBoard";
 import { MAX_LIVE_MATCHES } from "@/data/constants";
 import { socket } from "@/socket/socket";
@@ -52,14 +53,7 @@ const ActiveMatchesModal = ({ isOpen, onClose }) => {
             <h2 id="active-matches-title">{t("title")}</h2>
             <p>{t("subtitle")}</p>
           </div>
-          <button
-            type="button"
-            className={s.closeButton}
-            onClick={onClose}
-            aria-label={t("close_aria")}
-          >
-            x
-          </button>
+          <CloseButton onClick={onClose} ariaLabel={t("close_aria")} />
         </div>
 
         {matches.length === 0 ? (

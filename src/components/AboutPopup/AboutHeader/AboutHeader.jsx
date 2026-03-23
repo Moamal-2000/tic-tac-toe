@@ -1,5 +1,6 @@
 "use client";
 
+import CloseButton from "@/components/Shared/Buttons/CloseButton/CloseButton";
 import { BUTTON_SOUND } from "@/data/sounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useTranslations } from "next-intl";
@@ -18,16 +19,10 @@ const AboutHeader = ({ playSound }) => {
     <header className={s.header}>
       <h2 className={s.title}>{t("title")}</h2>
 
-      <button
-        type="button"
-        className={s.closeBtn}
+      <CloseButton
         onClick={handleCloseButtonClick}
-        aria-label={t("close_aria")}
-      >
-        <svg aria-hidden="true">
-          <use href="/icons-sprite.svg#x-symbol" />
-        </svg>
-      </button>
+        ariaLabel={t("close_aria")}
+      />
     </header>
   );
 };

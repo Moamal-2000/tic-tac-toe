@@ -1,0 +1,41 @@
+@use "@/styles/mixins" as m;
+
+.closeButton {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #444950;
+  border-radius: 999px;
+  background: #232831;
+  outline: 1px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    outline-color 0.2s ease;
+  @include m.flex-center;
+
+  &:hover {
+    background: #4c2c33;
+    border-color: #ff6b6b;
+  }
+
+  &:focus-visible {
+    background: #4c2c33;
+    border-color: #ff6b6b;
+    outline-color: #fff;
+  }
+}
+
+.closeButton > svg {
+  width: 18px;
+  height: 18px;
+  stroke: #bdbfc2;
+  transition: stroke 0.2s ease;
+}
+
+.closeButton:where(:hover, :focus-visible) > svg {
+  stroke: #ff6b6b;
+}
