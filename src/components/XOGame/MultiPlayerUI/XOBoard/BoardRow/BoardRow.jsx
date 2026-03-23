@@ -13,7 +13,14 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import XOSquare from "../XOSquare/XOSquare";
 import s from "./BoardRow.module.scss";
 
-const BoardRow = ({ row, rowIndex }) => {
+const BoardRow = ({
+  row,
+  rowIndex,
+  readOnly = false,
+  boardSize: previewBoardSize,
+  playerTurn: previewPlayerTurn,
+  compact = false,
+}) => {
   const {
     hasGameStarted,
     playerTurn,
@@ -23,11 +30,15 @@ const BoardRow = ({ row, rowIndex }) => {
     squaresToSwap,
     updateMultiplayerState,
     mySymbol,
+    boardSize,
   } = useMultiplayerStore();
+
+  const resolvedBoardSize = previewBoardSize ?? boardSize;
+  const resolvedPlayerTurn = previewPlayerTurn ?? playerTurn;
 
   const { selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
-  const isMyTurn = playerTurn === mySymbol;
+  const isMyTurn = resolvedPlayerTurn === mySymbol;
 
   function handleSquareClick(rowIndex, columnIndex) {
     if (!hasGameStarted || winner || draw) return;
@@ -147,6 +158,8 @@ const BoardRow = ({ row, rowIndex }) => {
   return (
     <div className={s.row} dir="ltr">
       {row.map((squareData, columnIndex) => {
+        if (!squareData) return null;
+
         const compatibleSquareData = {
           fillWith: squareData.owner,
           isFrozen: squareData.isFrozen,
@@ -154,13 +167,21 @@ const BoardRow = ({ row, rowIndex }) => {
           swapSelected: squareData.swapSelected,
         };
 
-        const disable = shouldDisableSquare({
-          hasGameStarted,
-          squareData: compatibleSquareData,
-          playerTurn,
-          selectedPower,
-          hasActivePowerUp,
-        });
+        const disable = readOnly
+          ? shouldDisableSquare({
+              hasGameStart: hasGameStarted,
+              squareData: compatibleSquareData,
+              playerTurn: resolvedPlayerTurn,
+              selectedPower,
+              hasActivePowerUp,
+            })
+          : shouldDisableSquare({
+              hasGameStarted,
+              squareData: compatibleSquareData,
+              playerTurn,
+              selectedPower,
+              hasActivePowerUp,
+            });
 
         return (
           <XOSquare
@@ -168,8 +189,16 @@ const BoardRow = ({ row, rowIndex }) => {
             squareData={squareData}
             rowIndex={rowIndex}
             columnIndex={columnIndex}
-            disabled={!disable || !isMyTurn}
-            onClick={() => handleSquareClick(rowIndex, columnIndex)}
+            disabled={readOnly ? true : !disable || !isMyTurn}
+            onClick={
+              readOnly
+                ? undefined
+                : () => handleSquareClick(rowIndex, columnIndex)
+            }
+            boardSize={resolvedBoardSize}
+            playerTurn={resolvedPlayerTurn}
+            readOnly={readOnly}
+            compact={compact}
           />
         );
       })}

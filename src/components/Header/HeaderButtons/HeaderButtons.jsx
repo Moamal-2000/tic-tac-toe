@@ -8,6 +8,8 @@ import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import ActiveMatchesModal from "../ActiveMatchesModal/ActiveMatchesModal";
 import BoardSelector from "./BoardSelector/BoardSelector";
 import FullscreenToggleButton from "./FullscreenToggleButton/FullscreenToggleButton";
 import s from "./HeaderButtons.module.scss";
@@ -17,6 +19,7 @@ import VolumeButton from "./VolumeButton/VolumeButton";
 
 const HeaderButtons = () => {
   const t = useTranslations("header");
+  const [isActiveMatchesOpen, setIsActiveMatchesOpen] = useState(false);
 
   const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore();
   const resetStats = useXOStore((s) => s.resetStats);
@@ -45,27 +48,47 @@ const HeaderButtons = () => {
     playSound(BUTTON_SOUND);
   }
 
+  function handleActiveMatchesClick() {
+    setIsActiveMatchesOpen(true);
+    playSound(BUTTON_SOUND);
+  }
+
+  function handleCloseActiveMatches() {
+    setIsActiveMatchesOpen(false);
+    playSound(BUTTON_SOUND);
+  }
+
   return (
-    <div className={`${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""}`}>
-      <div className={s.wrapper1}>
-        <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
-        <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+    <>
+      <div className={`${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""}`}>
+        <div className={s.wrapper1}>
+          <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+          <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+        </div>
+
+        <div className={s.wrapper2}>
+          <FullscreenToggleButton
+            playClickSound={() => playSound(BUTTON_SOUND)}
+          />
+          <VolumeButton />
+          <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
+          <LanguageSelector />
+          <Button onClick={handleActiveMatchesClick}>
+            {t("live_matches.button")}
+          </Button>
+          <Button onClick={handleAboutClick}>{t("about")}</Button>
+          <Button onClick={handleMenuClick}>{t("menu")}</Button>
+          <Button onClick={handleResetClick}>
+            {isOnlineMode ? t("rematch") : t("reset")}
+          </Button>
+        </div>
       </div>
 
-      <div className={s.wrapper2}>
-        <FullscreenToggleButton
-          playClickSound={() => playSound(BUTTON_SOUND)}
-        />
-        <VolumeButton />
-        <InstallPWAButton playClickSound={() => playSound(BUTTON_SOUND)} />
-        <LanguageSelector />
-        <Button onClick={handleAboutClick}>{t("about")}</Button>
-        <Button onClick={handleMenuClick}>{t("menu")}</Button>
-        <Button onClick={handleResetClick}>
-          {isOnlineMode ? t("rematch") : t("reset")}
-        </Button>
-      </div>
-    </div>
+      <ActiveMatchesModal
+        isOpen={isActiveMatchesOpen}
+        onClose={handleCloseActiveMatches}
+      />
+    </>
   );
 };
 

@@ -22,7 +22,18 @@
       "classic": "क्लासिक",
       "autoHide": "ऑटो हाइड मोड"
     },
-    "github": "GitHub रिपॉजिटरी पर जाएं"
+    "github": "GitHub रिपॉजिटरी पर जाएं",
+    "live_matches": {
+      "button": "लाइव मैच",
+      "title": "सक्रिय मल्टीप्लेयर मैच",
+      "subtitle": "अभी चल रहे अधिकतम 9 ऑनलाइन मैचों का लाइव दृश्य।",
+      "empty": "इस समय कोई सक्रिय मल्टीप्लेयर मैच नहीं है।",
+      "close_aria": "सक्रिय मैच पॉप-अप बंद करें",
+      "match_label": "मैच {id}",
+      "turn": "{symbol} की चाल",
+      "winner": "विजेता: {symbol}",
+      "draw": "ड्रॉ"
+    }
   },
   "main_menu": {
     "game_modes": {

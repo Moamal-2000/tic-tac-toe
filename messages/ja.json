@@ -22,7 +22,18 @@
       "classic": "クラシック",
       "autoHide": "自動非表示モード"
     },
-    "github": "GitHubリポジトリにアクセス"
+    "github": "GitHubリポジトリにアクセス",
+    "live_matches": {
+      "button": "ライブ対戦",
+      "title": "進行中のマルチプレイヤー対戦",
+      "subtitle": "最大9件のオンライン対戦をライブ表示します。",
+      "empty": "現在進行中のマルチプレイヤー対戦はありません。",
+      "close_aria": "進行中の対戦ポップアップを閉じる",
+      "match_label": "対戦 {id}",
+      "turn": "{symbol} の手番",
+      "winner": "勝者: {symbol}",
+      "draw": "引き分け"
+    }
   },
   "main_menu": {
     "game_modes": {

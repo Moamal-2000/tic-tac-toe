@@ -130,6 +130,12 @@ io.on("connection", (socket) => {
     socket.emit("online-players-count", { count });
   });
 
+  socket.on("get-active-matches", () => {
+    socket.emit("active-matches-update", {
+      matches: gameManager.getActiveMatches(),
+    });
+  });
+
   socket.on("leave-room", () => {
     console.log(`Socket leaving room: ${socket.id}`);
     gameManager.handlePlayerDisconnect(socket.id);

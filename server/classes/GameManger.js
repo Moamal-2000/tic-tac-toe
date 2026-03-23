@@ -381,6 +381,25 @@ export class GameManager {
     this.io.to(opponentId).emit("rematch-request-rejected");
   }
 
+  getActiveMatches() {
+    return [...this.rooms.values()].map((game) => ({
+      roomId: game.id,
+      boardSize: game.board.size,
+      board: game.board.grid.map((row) =>
+        row.map((cell) => ({
+          owner: cell.owner,
+          isFrozen: cell.frozen,
+          isBombed: cell.bombed,
+          swapSelected: cell.swapSelected,
+        }))
+      ),
+      turn: game.turn,
+      winner: game.winner,
+      draw: game.draw || !game.board.hasFreeCell(),
+      hasGameStarted: game.hasGameStarted,
+    }));
+  }
+
   syncRoom(roomId) {
     const game = this.rooms.get(roomId);
     if (!game) {
@@ -411,6 +430,7 @@ export class GameManager {
     this.io
       .to(roomId)
       .emit("square-hover", { row: null, col: null, power: null });
+
   }
 
   handlePlayerDisconnect(socketId) {

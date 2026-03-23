@@ -60,6 +60,18 @@
   }
 }
 
+.square.compact {
+  --size: 46px;
+
+  &.x4 {
+    --size: 33px;
+  }
+
+  &.x5 {
+    --size: 25px;
+  }
+}
+
 @include m.medium {
   .square {
     &.x4 {
@@ -96,6 +108,20 @@
 
   :where(.square.x4, .square.x5) {
     font-weight: 400;
+  }
+}
+
+@include m.small {
+  .square.compact {
+    --size: 40px !important;
+
+    &.x4 {
+      --size: 29px !important;
+    }
+
+    &.x5 {
+      --size: 22px !important;
+    }
   }
 }
 

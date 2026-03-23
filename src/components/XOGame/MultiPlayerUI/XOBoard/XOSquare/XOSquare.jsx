@@ -6,7 +6,17 @@ import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.stor
 import { useTranslations } from "next-intl";
 import s from "./XOSquare.module.scss";
 
-const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
+const XOSquare = ({
+  squareData,
+  disabled,
+  onClick,
+  rowIndex,
+  columnIndex,
+  boardSize: previewBoardSize,
+  playerTurn: previewPlayerTurn,
+  readOnly = false,
+  compact = false,
+}) => {
   const {
     boardSize,
     playerTurn,
@@ -17,6 +27,9 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
     updateMultiplayerState,
   } = useMultiplayerStore();
   const t = useTranslations();
+
+  const resolvedBoardSize = previewBoardSize ?? boardSize;
+  const resolvedPlayerTurn = previewPlayerTurn ?? playerTurn;
 
   const { owner, isFrozen, isBombed, swapSelected } = squareData;
   const hasSelectSquares = squaresToSwap.length >= 2;
@@ -32,10 +45,12 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
 
   // Only show power-up hover effects for the current player
   const isMyTurn =
-    (playerTurn === SYMBOL_O && mySymbol === SYMBOL_O) ||
-    (playerTurn === SYMBOL_X && mySymbol === SYMBOL_X);
+    (resolvedPlayerTurn === SYMBOL_O && mySymbol === SYMBOL_O) ||
+    (resolvedPlayerTurn === SYMBOL_X && mySymbol === SYMBOL_X);
 
-  const powerUpsForClasses = isMyTurn
+  const powerUpsForClasses = readOnly
+    ? { selectedPower: null, whoUsingPower: null }
+    : isMyTurn
     ? powerUps
     : { selectedPower: null, whoUsingPower: null };
 
@@ -70,13 +85,13 @@ const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
 
   const classes = getSquareClasses({
     cssModule: s,
-    boardSize,
+    boardSize: resolvedBoardSize,
     powerUps: powerUpsForClasses,
     fillWith: owner,
-    playerTurn,
+    playerTurn: resolvedPlayerTurn,
     hasSelectSquares,
     swapSelected,
-  });
+  }) + (compact ? ` ${s.compact}` : "");
 
   return (
     <button

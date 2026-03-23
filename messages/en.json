@@ -22,7 +22,18 @@
       "classic": "Classic",
       "autoHide": "Auto Hide Mode"
     },
-    "github": "Visit GitHub Repository"
+    "github": "Visit GitHub Repository",
+    "live_matches": {
+      "button": "Live Matches",
+      "title": "Active Multiplayer Matches",
+      "subtitle": "A live snapshot of up to 9 current online games.",
+      "empty": "No active multiplayer matches right now.",
+      "close_aria": "Close active matches popup",
+      "match_label": "Match {id}",
+      "turn": "{symbol} to move",
+      "winner": "{symbol} is winning",
+      "draw": "Draw"
+    }
   },
   "main_menu": {
     "game_modes": {

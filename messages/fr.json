@@ -22,7 +22,18 @@
       "classic": "Classique",
       "autoHide": "Mode masquage automatique"
     },
-    "github": "Visiter le dépôt GitHub"
+    "github": "Visiter le dépôt GitHub",
+    "live_matches": {
+      "button": "Matchs en direct",
+      "title": "Matchs multijoueur actifs",
+      "subtitle": "Aperçu en direct de 9 parties en ligne maximum.",
+      "empty": "Aucun match multijoueur actif pour le moment.",
+      "close_aria": "Fermer la fenêtre des matchs actifs",
+      "match_label": "Match {id}",
+      "turn": "Au tour de {symbol}",
+      "winner": "Vainqueur : {symbol}",
+      "draw": "Match nul"
+    }
   },
   "main_menu": {
     "game_modes": {

@@ -22,7 +22,18 @@
       "classic": "Klasszikus",
       "autoHide": "Automatikus elrejtés mód"
     },
-    "github": "GitHub adattár meglátogatása"
+    "github": "GitHub adattár meglátogatása",
+    "live_matches": {
+      "button": "Élő meccsek",
+      "title": "Aktív többjátékos meccsek",
+      "subtitle": "Legfeljebb 9 jelenlegi online játék élő pillanatképe.",
+      "empty": "Jelenleg nincs aktív többjátékos meccs.",
+      "close_aria": "Az aktív meccsek ablak bezárása",
+      "match_label": "Meccs {id}",
+      "turn": "{symbol} következik",
+      "winner": "Győztes: {symbol}",
+      "draw": "Döntetlen"
+    }
   },
   "main_menu": {
     "game_modes": {

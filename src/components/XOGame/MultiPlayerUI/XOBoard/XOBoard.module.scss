@@ -24,6 +24,13 @@
   }
 }
 
+.board.compact {
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px;
+  justify-self: center;
+}
+
 @include m.medium {
   .board {
     padding: 12px;
