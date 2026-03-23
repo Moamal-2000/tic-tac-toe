@@ -15,9 +15,6 @@ export const CIRCLE_LENGTH = 2 * Math.PI * 45;
 export const INITIAL_PLAY_MODE = "classicMode"; // "classicMode" | "autoHideMode"
 export const INITIAL_SQUARE_HIDDEN_TIME = 6;
 export const MAX_LIVE_MATCHES = 9;
-export const isMobileScreen =
-  typeof window !== "undefined" &&
-  window.matchMedia("(max-width: 768px)").matches;
 
 export const MODEL_CLOSE_KEYS = ["Escape", "Backspace"];
 export const DIFFICULTY_OPTIONS = ["easy", "medium", "hard"];
