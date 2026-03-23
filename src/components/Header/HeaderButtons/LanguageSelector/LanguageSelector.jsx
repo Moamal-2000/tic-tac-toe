@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Shared/Button/Button";
+import Button from "@/components/Shared/Buttons/Button/Button";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import useEventListener from "@/hooks/helper/useEventListener";
@@ -26,12 +26,12 @@ const LanguageSelector = () => {
   useEventListener(
     typeof window !== "undefined" ? window : null,
     "click",
-    handleClickOutside
+    handleClickOutside,
   );
 
   function handleClickOutside(event) {
     const isClickOutsideLangMenu = !langContainerRef.current.contains(
-      event.target
+      event.target,
     );
 
     if (isClickOutsideLangMenu) updateGlobalState({ isLangMenuActive: false });

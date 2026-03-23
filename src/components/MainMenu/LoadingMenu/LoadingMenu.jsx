@@ -1,6 +1,6 @@
 "use client";
 
-import BackButton from "@/components/Shared/BackButton/BackButton";
+import BackButton from "@/components/Shared/Buttons/BackButton/BackButton";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";

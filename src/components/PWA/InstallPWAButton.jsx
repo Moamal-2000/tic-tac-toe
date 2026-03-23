@@ -1,6 +1,6 @@
 "use client";
 
-import s from "@/components/Shared/Button/Button.module.scss";
+import s from "@/components/Shared/Buttons/Button/Button.module.scss";
 import { isInStandaloneMode, isIOS, isStandalone } from "@/functions/helper";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -31,7 +31,7 @@ const InstallPWAButton = ({ playClickSound }) => {
     return () => {
       window.removeEventListener(
         "beforeinstallprompt",
-        handleBeforeInstallPrompt
+        handleBeforeInstallPrompt,
       );
       window.removeEventListener("appinstalled", handleAppInstalled);
     };

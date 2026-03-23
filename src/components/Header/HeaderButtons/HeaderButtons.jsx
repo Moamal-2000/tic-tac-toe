@@ -1,7 +1,7 @@
 "use client";
 
 import InstallPWAButton from "@/components/PWA/InstallPWAButton";
-import Button from "@/components/Shared/Button/Button";
+import Button from "@/components/Shared/Buttons/Button/Button";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";

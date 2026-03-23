@@ -1,5 +1,5 @@
 import Link from "next/link";
-import GitHubButton from "../Shared/GitHubButton/GitHubButton";
+import GitHubButton from "../Shared/Buttons/GitHubButton/GitHubButton";
 import s from "./Header.module.scss";
 import HeaderButtons from "./HeaderButtons/HeaderButtons";
 import Logo from "./Logo/Logo";
