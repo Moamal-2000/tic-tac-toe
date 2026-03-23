@@ -148,7 +148,3 @@ io.on("connection", (socket) => {
     broadcastOnlinePlayersCount();
   });
 });
-
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});

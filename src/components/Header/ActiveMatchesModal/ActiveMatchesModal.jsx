@@ -23,15 +23,27 @@ const ActiveMatchesModal = ({ isOpen, onClose }) => {
       if (event.key === "Escape") onClose();
     }
 
-    socket.on("active-matches-update", handleActiveMatchesUpdate);
-    socket.emit("get-active-matches");
-    const refreshInterval = setInterval(() => {
+    function requestActiveMatches() {
       socket.emit("get-active-matches");
+    }
+
+    socket.on("active-matches-update", handleActiveMatchesUpdate);
+    socket.on("connect", requestActiveMatches);
+
+    if (socket.connected) {
+      requestActiveMatches();
+    } else {
+      socket.connect();
+    }
+
+    const refreshInterval = setInterval(() => {
+      if (socket.connected) requestActiveMatches();
     }, 3000);
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       socket.off("active-matches-update", handleActiveMatchesUpdate);
+      socket.off("connect", requestActiveMatches);
       clearInterval(refreshInterval);
       document.removeEventListener("keydown", handleKeyDown);
     };
