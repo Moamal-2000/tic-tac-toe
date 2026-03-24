@@ -93,7 +93,7 @@ distribution, or commercial use is strictly prohibited.
 ## Future Enhancements
 
 - [x] ~~Online multiplayer mode~~ ✅ **Done**
-- [x] ~~AI opponent with difficulty levels~~ ✅ **Done**
+- [x] ~~Play with Computer mode~~ ✅ **Done**
 - [ ] Additional power-ups and visual themes
 
 > Note: These enhancements are under consideration and not confirmed 100%.

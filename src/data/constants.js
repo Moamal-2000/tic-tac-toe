@@ -17,7 +17,6 @@ export const INITIAL_SQUARE_HIDDEN_TIME = 6;
 export const MAX_LIVE_MATCHES = 9;
 
 export const MODEL_CLOSE_KEYS = ["Escape", "Backspace"];
-export const DIFFICULTY_OPTIONS = ["easy", "medium", "hard"];
 export const PLAY_MODES = [
   { name: "Classic", type: "classicMode", id: 1 },
   { name: "Auto Hide Mode", type: "autoHideMode", id: 2 },

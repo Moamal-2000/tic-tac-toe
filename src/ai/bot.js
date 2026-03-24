@@ -132,7 +132,7 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
   return bestScore;
 }
 
-function choose3x3Action(state, difficulty, rng) {
+function choose3x3Action(state, rng) {
   const me = state.playerTurn;
   const opponent = otherPlayer(me);
   const actions = get3x3PlaceActions(state.board);
@@ -157,35 +157,8 @@ function choose3x3Action(state, difficulty, rng) {
     .filter((entry) => entry.score === bestScore)
     .map((entry) => entry.action);
   const pickBest = () => bestActions[Math.floor(rng() * bestActions.length)];
-  const pickAny = () => actions[Math.floor(rng() * actions.length)];
 
-  if (difficulty === "hard") {
-    return { action: pickBest(), debug: { reason: "3x3_hard_perfect" } };
-  }
-
-  if (difficulty === "medium") {
-    if (immediateWin) {
-      return { action: immediateWin, debug: { reason: "3x3_medium_win" } };
-    }
-    if (immediateBlock && rng() < 0.9) {
-      return { action: immediateBlock, debug: { reason: "3x3_medium_block" } };
-    }
-    if (rng() < 0.72) {
-      return { action: pickBest(), debug: { reason: "3x3_medium_best" } };
-    }
-    return { action: pickAny(), debug: { reason: "3x3_medium_noise" } };
-  }
-
-  if (immediateWin && rng() < 0.65) {
-    return { action: immediateWin, debug: { reason: "3x3_easy_win" } };
-  }
-  if (immediateBlock && rng() < 0.35) {
-    return { action: immediateBlock, debug: { reason: "3x3_easy_block" } };
-  }
-  if (rng() < 0.25) {
-    return { action: pickBest(), debug: { reason: "3x3_easy_best" } };
-  }
-  return { action: pickAny(), debug: { reason: "3x3_easy_random" } };
+  return { action: pickBest(), debug: { reason: "3x3_hard_perfect" } };
 }
 
 function linesForBoard(board) {
@@ -610,78 +583,19 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
   return { score: bestScore, action: bestAction };
 }
 
-export function chooseBotAction(state, difficulty) {
+export function chooseBotAction(state) {
   const me = state.playerTurn;
   callNonce = (callNonce + 1) >>> 0;
   const seed = (hashState(state) ^ randomUint32() ^ callNonce) >>> 0;
   const rng = makeRng(seed);
 
   if (state.boardSize === 3) {
-    return choose3x3Action(state, difficulty, rng);
+    return choose3x3Action(state, rng);
   }
 
   const legal = getLegalActions(state);
   if (!legal.length)
     return { action: null, debug: { reason: "no_legal_actions" } };
-
-  if (difficulty === "easy") {
-    const is4x4 = state.boardSize === 4;
-    let mistakeProb = 0.18;
-    if (is4x4) {
-      mistakeProb = 0.12;
-    }
-
-    if (rng() < mistakeProb) {
-      const places = legal.filter(
-        (candidateAction) => candidateAction.type === "place",
-      );
-      let placePool = legal;
-      if (places.length) {
-        placePool = places;
-      }
-
-      const pick = placePool[Math.floor(rng() * placePool.length)];
-      return { action: pick, debug: { reason: "easy_random" } };
-    }
-
-    const top = prioritizeActions(state, me, legal, 10);
-    const randomValue = rng();
-    let topOneThreshold = 0.7;
-    let topTwoThreshold = 0.9;
-    if (is4x4) {
-      topOneThreshold = 0.8;
-      topTwoThreshold = 0.95;
-    }
-
-    let pickIndex = Math.min(2, top.length - 1);
-    if (randomValue < topOneThreshold) {
-      pickIndex = 0;
-    } else if (randomValue < topTwoThreshold) {
-      pickIndex = Math.min(1, top.length - 1);
-    }
-
-    const idx = pickIndex;
-    const pick = top[idx];
-    return { action: pick, debug: { reason: "easy_topk" } };
-  }
-
-  if (difficulty === "medium") {
-    const depth = 1;
-    const actionCap = 18;
-    const res = minimax(state, me, depth, -Infinity, Infinity, actionCap);
-
-    const noiseProb = 0.25;
-    if (rng() < noiseProb) {
-      const top = prioritizeActions(state, me, legal, 6);
-      const maxOffset = Math.min(2, top.length - 1);
-      const offset = 1 + Math.floor(rng() * maxOffset);
-      const clampedIndex = Math.min(top.length - 1, offset);
-      const pick = top[clampedIndex];
-      return { action: pick, debug: { reason: "medium_noise" } };
-    }
-
-    return { action: res.action, debug: { reason: "medium_minimax_d1" } };
-  }
 
   const immediateWin = legal.find((action) => {
     const next = applyAction(state, action);

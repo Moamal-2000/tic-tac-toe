@@ -4,7 +4,6 @@ export const useGlobalStore = create((set, get) => ({
   isAboutModelActive: false,
   menuActive: true,
   gameMode: null, // "local" | "computer" | "online"
-  botDifficulty: "medium", // "easy" | "medium" | "hard"
   waitingOpponent: false,
   isLangMenuActive: false,
 
