@@ -1,4 +1,4 @@
-const CACHE_NAME = "tic-tac-toe-v3.9.0";
+const CACHE_NAME = "tic-tac-toe-v3.9.1";
 
 const soundFiles = [
   "/sounds/click.mp3",
@@ -17,6 +17,13 @@ const assets = [
   "/PWA/icons/maskable-icon.webp",
   ...soundFiles,
 ];
+
+function isCacheableRequest(request) {
+  if (request.method !== "GET") return false;
+
+  const url = new URL(request.url);
+  return url.protocol === "http:" || url.protocol === "https:";
+}
 
 async function installServiceWorker() {
   try {
@@ -76,6 +83,7 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
+  if (!isCacheableRequest(event.request)) return;
   event.respondWith(handleFetchRequest(event));
 });
 
