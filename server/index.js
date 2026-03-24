@@ -131,8 +131,12 @@ io.on("connection", (socket) => {
   });
 
   socket.on("get-active-matches", () => {
+    const matches = gameManager.getActiveMatches();
+    console.log(
+      `[ActiveMatches] Request from ${socket.id} in room ${socket.data.roomId || "none"} -> emitting ${matches.length} matches`
+    );
     socket.emit("active-matches-update", {
-      matches: gameManager.getActiveMatches(),
+      matches,
     });
   });
 

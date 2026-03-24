@@ -30,6 +30,9 @@ export class GameManager {
       this.handleTimeUp(roomId);
     });
 
+    console.log(
+      `[Room] Active rooms after create: ${JSON.stringify(this.getActiveMatches())}`
+    );
     console.log(`[Room] Syncing room ${roomId} with initial game state`);
     this.syncRoom(roomId);
   }
@@ -382,7 +385,7 @@ export class GameManager {
   }
 
   getActiveMatches() {
-    return [...this.rooms.values()].map((game) => ({
+    const matches = [...this.rooms.values()].map((game) => ({
       roomId: game.id,
       boardSize: game.board.size,
       board: game.board.grid.map((row) =>
@@ -398,6 +401,22 @@ export class GameManager {
       draw: game.draw || !game.board.hasFreeCell(),
       hasGameStarted: game.hasGameStarted,
     }));
+
+    console.log(
+      `[ActiveMatches] Computed ${matches.length} matches: ${JSON.stringify(
+        matches.map((match) => ({
+          roomId: match.roomId,
+          boardSize: match.boardSize,
+          turn: match.turn,
+          winner: match.winner,
+          draw: match.draw,
+          hasGameStarted: match.hasGameStarted,
+          filledCells: match.board.flat().filter((cell) => cell.owner).length,
+        }))
+      )}`
+    );
+
+    return matches;
   }
 
   syncRoom(roomId) {
@@ -464,6 +483,11 @@ export class GameManager {
         // Stop timer and remove room
         game.stopTimer();
         this.rooms.delete(roomId);
+        console.log(
+          `[Disconnect] Removed room ${roomId}. Remaining active rooms: ${JSON.stringify(
+            [...this.rooms.values()].map((activeGame) => activeGame.id)
+          )}`
+        );
         break;
       }
     }
