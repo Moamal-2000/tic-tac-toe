@@ -40,6 +40,7 @@ html[lang=ar] .button {
   font-size: .75rem;
   color: #e9e9ec;
   height: 16px;
+  user-select: none;
 }
 
 @include m.small {
