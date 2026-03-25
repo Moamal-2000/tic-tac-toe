@@ -23,6 +23,7 @@
       "autoHide": "Automatikus elrejtés mód"
     },
     "github": "GitHub adattár meglátogatása",
+    "github_star": "Csillagozd meg GitHubon",
     "live_matches": {
       "button": "Élő meccsek",
       "title": "Aktív többjátékos meccsek",

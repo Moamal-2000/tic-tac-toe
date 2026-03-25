@@ -23,6 +23,7 @@
       "autoHide": "自動非表示モード"
     },
     "github": "GitHubリポジトリにアクセス",
+    "github_star": "GitHubでスターを付ける",
     "live_matches": {
       "button": "ライブ対戦",
       "title": "進行中のマルチプレイヤー対戦",

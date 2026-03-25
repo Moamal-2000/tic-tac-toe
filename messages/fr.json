@@ -23,6 +23,7 @@
       "autoHide": "Mode masquage automatique"
     },
     "github": "Visiter le dépôt GitHub",
+    "github_star": "Mettre une étoile sur GitHub",
     "live_matches": {
       "button": "Matchs en direct",
       "title": "Matchs multijoueur actifs",

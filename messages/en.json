@@ -23,6 +23,7 @@
       "autoHide": "Auto Hide Mode"
     },
     "github": "Visit GitHub Repository",
+    "github_star": "Star on GitHub",
     "live_matches": {
       "button": "Live Matches",
       "title": "Active Multiplayer Matches",
