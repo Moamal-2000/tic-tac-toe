@@ -1,6 +1,7 @@
 import Header from "@/components/Header/Header";
 import MainMenu from "@/components/MainMenu/MainMenu";
 import UpdateNotification from "@/components/PWA/UpdateNotification/UpdateNotification";
+import ConnectionLabelAlert from "@/components/Shared/ConnectionLabelAlert/ConnectionLabelAlert";
 import { METADATA } from "@/data/metadata";
 import { routing } from "@/i18n/routing";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -36,6 +37,7 @@ export default async function RootLayout({ children, params }) {
           </div>
 
           <UpdateNotification />
+          <ConnectionLabelAlert />
         </body>
       </NextIntlClientProvider>
     </html>

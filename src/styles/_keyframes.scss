@@ -118,3 +118,11 @@
     }
   }
 }
+
+@mixin slide-label-down {
+  @keyframes slide-label-down {
+    to {
+      bottom: -60px;
+    }
+  }
+}

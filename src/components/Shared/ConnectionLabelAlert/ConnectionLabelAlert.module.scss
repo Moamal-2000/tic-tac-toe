@@ -1,0 +1,27 @@
+@use "@/styles/keyframes" as keyframe;
+@include keyframe.slide-label-down;
+
+.labelBody {
+  width: calc(100vw - (100% - 100vw));
+  background-color: #212121;
+  color: #fff;
+  text-align: center;
+  font-size: .85rem;
+  padding: 4px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.labelBody.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.labelBody.active {
+  background-color: #078639;
+  animation: slide-label-down 1s 2s 1 forwards;
+}
