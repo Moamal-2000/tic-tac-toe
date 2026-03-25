@@ -27,6 +27,7 @@ const HeaderButtons = () => {
 
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const isOnlineMode = gameMode === "online";
+  const isComputerMode = gameMode === "computer";
 
   function handleAboutClick() {
     toggleAboutModel();
@@ -61,7 +62,9 @@ const HeaderButtons = () => {
       <div className={`${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""}`}>
         <div className={s.wrapper1}>
           <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
-          <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+          {!isComputerMode && (
+            <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+          )}
         </div>
 
         <div className={s.wrapper2}>

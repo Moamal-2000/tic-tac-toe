@@ -92,15 +92,6 @@ function hasEmptyCellOn3x3Board(board) {
   return false;
 }
 
-function findImmediateWinning3x3Placement(board, player) {
-  const actions = getAvailable3x3Placements(board);
-  for (const action of actions) {
-    const next = apply3x3Placement(board, action, player);
-    if (whoWins(next) === player) return action;
-  }
-  return null;
-}
-
 function score3x3MinimaxPosition(board, turn, me, ply, alpha, beta) {
   const winner = whoWins(board);
   if (winner === me) return 10 - ply;
