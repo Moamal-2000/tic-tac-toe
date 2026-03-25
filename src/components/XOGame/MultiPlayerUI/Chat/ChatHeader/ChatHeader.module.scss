@@ -13,14 +13,15 @@
   font-size: 16px;
   font-weight: 600;
   letter-spacing: 0.2px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px 14px 0 0;
   width: 100%;
   cursor: pointer;
 
   &:focus-visible {
     outline: 2px solid #4a9eff;
-    outline-offset: 2px;
+    outline-offset: -2px;
   }
 
   span:first-child {
