@@ -21,9 +21,9 @@ const GitHubButton = () => {
       dir="ltr"
     >
       <svg aria-hidden="true">
-        <use href={"/icons-sprite.svg#github"} />
+        <use href={"/icons-sprite.svg#solid-star"} />
       </svg>
-      <span>GitHub</span>
+      <span>Star on GitHub</span>
     </a>
   );
 };
