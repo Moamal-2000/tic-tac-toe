@@ -54,7 +54,7 @@ html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
     gap: 10px;
   }
 
-  html:is([lang=ru], [lang=ja]) .gameStats .stats {
+  html:is([lang=ru], [lang=ja], [lang=hu]) .gameStats .stats {
     gap: 46px;
   }
 }
@@ -105,7 +105,7 @@ html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
     font-size: .7rem;
   }
 
-  html:is([lang=ru], [lang=ja]) .gameStats .stats .label {
+  html:is([lang=ru], [lang=ja], [lang=hu]) .gameStats .stats .label {
     display: none;
   }
 }

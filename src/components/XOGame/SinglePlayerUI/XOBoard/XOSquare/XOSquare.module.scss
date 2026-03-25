@@ -88,7 +88,10 @@
 }
 
 @include m.small {
-  .square {
+
+  .square,
+  .square.x4,
+  .square.x5 {
     --size: auto !important;
     flex: 1;
     aspect-ratio: 1;

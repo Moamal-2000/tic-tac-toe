@@ -45,6 +45,12 @@
   }
 }
 
+@include m.very-small {
+  .powerUp {
+    aspect-ratio: 1/1;
+  }
+}
+
 html[lang=ru] .powerUp,
 html[lang=hu] .powerUp {
   width: 80px;
@@ -90,10 +96,23 @@ html[lang=hu] .powerUp {
   opacity: .5;
 }
 
+@include m.very-small {
+  .powerUp .icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .powerUp .powerName {
   font-size: .75rem;
   font-weight: 500;
   text-align: center;
+}
+
+@include m.very-small {
+  .powerUp .powerName {
+    display: none;
+  }
 }
 
 .powerUp:disabled .powerName {
