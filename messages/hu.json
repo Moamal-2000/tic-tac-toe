@@ -184,5 +184,9 @@
     "opponent_typing": "Ellenfél gépel",
     "close_chat": "Csevegés bezárása",
     "open_chat": "Csevegés megnyitása"
+  },
+  "connectionLabel": {
+    "internetAvailable": "A kapcsolat helyreállt",
+    "internetUnavailable": "Nincs elérhető internetkapcsolat."
   }
 }

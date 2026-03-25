@@ -183,5 +183,9 @@
     "opponent_typing": "相手が入力中",
     "close_chat": "チャットを閉じる",
     "open_chat": "チャットを開く"
+  },
+  "connectionLabel": {
+    "internetAvailable": "接続が復旧しました",
+    "internetUnavailable": "インターネット接続がありません。"
   }
 }

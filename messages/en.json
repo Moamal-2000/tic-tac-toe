@@ -184,5 +184,9 @@
     "opponent_typing": "Opponent is typing",
     "close_chat": "Close chat",
     "open_chat": "Open chat"
+  },
+  "connectionLabel": {
+    "internetAvailable": "The connection has been restored",
+    "internetUnavailable": "No internet connection available."
   }
 }

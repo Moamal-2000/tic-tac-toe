@@ -184,5 +184,9 @@
     "opponent_typing": "الخصم يكتب",
     "close_chat": "إغلاق الدردشة",
     "open_chat": "فتح الدردشة"
+  },
+  "connectionLabel": {
+    "internetAvailable": "تمت استعادة الاتصال",
+    "internetUnavailable": "لا يوجد اتصال بالإنترنت."
   }
 }

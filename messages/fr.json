@@ -184,5 +184,9 @@
     "opponent_typing": "L'adversaire est en train d'écrire",
     "close_chat": "Fermer le chat",
     "open_chat": "Ouvrir le chat"
+  },
+  "connectionLabel": {
+    "internetAvailable": "La connexion a été rétablie",
+    "internetUnavailable": "Aucune connexion Internet disponible."
   }
 }

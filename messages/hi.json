@@ -184,5 +184,9 @@
     "opponent_typing": "विरोधी टाइप कर रहा है",
     "close_chat": "चैट बंद करें",
     "open_chat": "चैट खोलें"
+  },
+  "connectionLabel": {
+    "internetAvailable": "कनेक्शन फिर से बहाल हो गया है",
+    "internetUnavailable": "इंटरनेट कनेक्शन उपलब्ध नहीं है।"
   }
 }

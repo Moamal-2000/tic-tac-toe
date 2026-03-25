@@ -183,5 +183,9 @@
     "opponent_typing": "Противник печатает",
     "close_chat": "Закрыть чат",
     "open_chat": "Открыть чат"
+  },
+  "connectionLabel": {
+    "internetAvailable": "Соединение восстановлено",
+    "internetUnavailable": "Нет подключения к интернету."
   }
 }
