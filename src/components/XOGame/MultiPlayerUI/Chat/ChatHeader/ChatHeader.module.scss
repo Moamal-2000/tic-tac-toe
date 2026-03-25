@@ -40,8 +40,10 @@
     border-radius: 10px;
     justify-content: flex-end;
     padding: 0;
+    border: 0;
     width: 46px;
     height: 46px;
+    background-color: #19232d;
     @include m.flex-center;
 
     &.open {
