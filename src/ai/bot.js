@@ -2,7 +2,7 @@ import { applyAction, getWinner, otherPlayer } from "@/ai/engine";
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import { whoWins } from "@/functions/gameUtility";
 
-function hashState(state) {
+function hashGameState(state) {
   const parts = [state.boardSize, state.playerTurn];
   for (const row of state.board) {
     for (const cell of row) {
@@ -38,7 +38,7 @@ function hashState(state) {
   return hashValue >>> 0;
 }
 
-function makeRng(seed) {
+function createSeededRng(seed) {
   let rngState = seed;
   if (!rngState) {
     rngState = 1;
@@ -65,7 +65,7 @@ function randomUint32() {
   return (Math.floor(Math.random() * 4294967296) >>> 0) >>> 0;
 }
 
-function get3x3PlaceActions(board) {
+function getAvailable3x3Placements(board) {
   const actions = [];
   for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
     for (let colIndex = 0; colIndex < 3; colIndex++) {
@@ -77,13 +77,13 @@ function get3x3PlaceActions(board) {
   return actions;
 }
 
-function apply3x3Place(board, action, symbol) {
+function apply3x3Placement(board, action, symbol) {
   const next = board.map((row) => row.map((cell) => ({ ...cell })));
   next[action.row][action.col].fillWith = symbol;
   return next;
 }
 
-function has3x3Empty(board) {
+function hasEmptyCellOn3x3Board(board) {
   for (const row of board) {
     for (const cell of row) {
       if (!cell.fillWith) return true;
@@ -92,22 +92,22 @@ function has3x3Empty(board) {
   return false;
 }
 
-function findWinningPlace3x3(board, player) {
-  const actions = get3x3PlaceActions(board);
+function findImmediateWinning3x3Placement(board, player) {
+  const actions = getAvailable3x3Placements(board);
   for (const action of actions) {
-    const next = apply3x3Place(board, action, player);
+    const next = apply3x3Placement(board, action, player);
     if (whoWins(next) === player) return action;
   }
   return null;
 }
 
-function minimax3x3(board, turn, me, ply, alpha, beta) {
+function score3x3MinimaxPosition(board, turn, me, ply, alpha, beta) {
   const winner = whoWins(board);
   if (winner === me) return 10 - ply;
   if (winner !== "None") return ply - 10;
-  if (!has3x3Empty(board)) return 0;
+  if (!hasEmptyCellOn3x3Board(board)) return 0;
 
-  const actions = get3x3PlaceActions(board);
+  const actions = getAvailable3x3Placements(board);
   const maximizing = turn === me;
   let bestScore = -Infinity;
   if (!maximizing) {
@@ -115,8 +115,15 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
   }
 
   for (const action of actions) {
-    const next = apply3x3Place(board, action, turn);
-    const score = minimax3x3(next, otherPlayer(turn), me, ply + 1, alpha, beta);
+    const next = apply3x3Placement(board, action, turn);
+    const score = score3x3MinimaxPosition(
+      next,
+      otherPlayer(turn),
+      me,
+      ply + 1,
+      alpha,
+      beta,
+    );
 
     if (maximizing) {
       bestScore = Math.max(bestScore, score);
@@ -135,19 +142,23 @@ function minimax3x3(board, turn, me, ply, alpha, beta) {
 function choose3x3Action(state, rng) {
   const me = state.playerTurn;
   const opponent = otherPlayer(me);
-  const actions = get3x3PlaceActions(state.board);
+  const actions = getAvailable3x3Placements(state.board);
 
   if (!actions.length) {
     return { action: null, debug: { reason: "3x3_no_legal_actions" } };
   }
 
-  const immediateWin = findWinningPlace3x3(state.board, me);
-  const immediateBlock = findWinningPlace3x3(state.board, opponent);
-
   const scored = actions
     .map((action) => {
-      const next = apply3x3Place(state.board, action, me);
-      const score = minimax3x3(next, opponent, me, 1, -Infinity, Infinity);
+      const next = apply3x3Placement(state.board, action, me);
+      const score = score3x3MinimaxPosition(
+        next,
+        opponent,
+        me,
+        1,
+        -Infinity,
+        Infinity,
+      );
       return { action, score };
     })
     .sort((left, right) => right.score - left.score);
@@ -161,7 +172,7 @@ function choose3x3Action(state, rng) {
   return { action: pickBest(), debug: { reason: "3x3_hard_perfect" } };
 }
 
-function linesForBoard(board) {
+function getWinningLinesForBoard(board) {
   const boardSize = board.length;
   const lines = [];
 
@@ -189,7 +200,7 @@ function linesForBoard(board) {
   return lines;
 }
 
-function countPlacedOnBoard(board) {
+function countOccupiedCells(board) {
   let placed = 0;
   for (const row of board) {
     for (const cell of row) {
@@ -199,15 +210,15 @@ function countPlacedOnBoard(board) {
   return placed;
 }
 
-function getCrowdedRatioByBoardSize(boardSize) {
+function getCrowdedBoardThreshold(boardSize) {
   if (boardSize <= 3) return 0.78;
   return 0.65;
 }
 
 function isCrowdedBoard(state) {
   const total = state.boardSize * state.boardSize;
-  const placed = countPlacedOnBoard(state.board);
-  const crowdedRatio = getCrowdedRatioByBoardSize(state.boardSize);
+  const placed = countOccupiedCells(state.board);
+  const crowdedRatio = getCrowdedBoardThreshold(state.boardSize);
   return placed >= Math.ceil(total * crowdedRatio);
 }
 
@@ -285,7 +296,7 @@ function getHardSearchConfig(boardSize) {
   };
 }
 
-function evalLine(board, coords, me) {
+function evaluateLineControl(board, coords, me) {
   let meCount = 0;
   let opponentCount = 0;
   let emptyCount = 0;
@@ -333,8 +344,8 @@ export function evaluateState(state, me) {
   const board = state.board;
   let score = 0;
 
-  for (const line of linesForBoard(board)) {
-    score += evalLine(board, line, me);
+  for (const line of getWinningLinesForBoard(board)) {
+    score += evaluateLineControl(board, line, me);
   }
 
   // Mild preference for center control on odd boards
@@ -586,8 +597,8 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
 export function chooseBotAction(state) {
   const me = state.playerTurn;
   callNonce = (callNonce + 1) >>> 0;
-  const seed = (hashState(state) ^ randomUint32() ^ callNonce) >>> 0;
-  const rng = makeRng(seed);
+  const seed = (hashGameState(state) ^ randomUint32() ^ callNonce) >>> 0;
+  const rng = createSeededRng(seed);
 
   if (state.boardSize === 3) {
     return choose3x3Action(state, rng);
