@@ -10,11 +10,11 @@ function UpdateNotification() {
   const t = useTranslations("update_notification");
   const [showNotification, setShowNotification] = useState(false);
 
+  const buttonTitle = "Refresh - reload the page";
+
   useEffect(() => {
     registerSWWithUpdate(setShowNotification);
   }, []);
-
-  if (showNotification) return null;
 
   function handleRefreshPage() {
     if (navigator.serviceWorker.controller) {
@@ -24,12 +24,21 @@ function UpdateNotification() {
   }
 
   return (
-    <div className={s.updateNotification}>
+    <div
+      className={s.updateNotification}
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      style={{ display: showNotification ? "flex" : "none" }}
+    >
       <p>{t("message")}</p>
       <button
         type="button"
         className={s.refreshButton}
         onClick={handleRefreshPage}
+        title={buttonTitle}
+        aria-label={buttonTitle}
+        autoFocus={showNotification}
       >
         {t("button")}
       </button>
@@ -48,7 +57,7 @@ async function registerSWWithUpdate(setShowNotification) {
     if (registration.waiting) setShowNotification(true);
 
     registration.addEventListener("updatefound", () =>
-      handleUpdateFound(registration, setShowNotification)
+      handleUpdateFound(registration, setShowNotification),
     );
   } catch (err) {
     console.error(`Error registering service worker: ${err}`);
