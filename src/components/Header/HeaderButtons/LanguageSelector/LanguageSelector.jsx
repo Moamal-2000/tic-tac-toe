@@ -14,7 +14,7 @@ import s from "./LanguageSelector.module.scss";
 
 const LanguageSelector = () => {
   const t = useTranslations("global");
-  const { updateGlobalState, isLangMenuActive } = useGlobalStore();
+  const { updateGlobalState, isLangMenuActive, is404 } = useGlobalStore();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -22,6 +22,8 @@ const LanguageSelector = () => {
 
   const langContainerRef = useRef(null);
   const langMenuRef = useRef(null);
+
+  const langMenuClasses = `${s.languageSelect} ${isLangMenuActive ? s.active : ""} ${is404 ? s.notFoundPage : ""}`;
 
   useEventListener(
     typeof window !== "undefined" ? window : null,
@@ -60,7 +62,7 @@ const LanguageSelector = () => {
       </Button>
 
       <div
-        className={`${s.languageSelect} ${isLangMenuActive ? s.active : ""}`}
+        className={langMenuClasses}
         ref={langMenuRef}
         onBlur={() => handleToggleLangMenu({ isOpen: false, sound: false })}
         onFocus={() => handleToggleLangMenu({ isOpen: true, sound: false })}

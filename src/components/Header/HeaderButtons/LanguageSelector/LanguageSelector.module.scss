@@ -36,6 +36,11 @@
   }
 }
 
+html[lang=ar] .languageSelect.notFoundPage {
+  right: auto;
+  left: 0;
+}
+
 @include m.very-small {
   html[lang=ar] .languageSelect {
     right: auto;
