@@ -15,7 +15,13 @@
 .headerButtons.notFoundPage {
   position: absolute;
   right: 20px;
-  top: 12px;
+  top: 20px;
+}
+
+@include m.large {
+  .headerButtons.notFoundPage {
+    top: 10px;
+  }
 }
 
 html[lang=ar] .headerButtons.notFoundPage {
