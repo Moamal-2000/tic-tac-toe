@@ -10,8 +10,6 @@ function UpdateNotification() {
   const t = useTranslations("update_notification");
   const [showNotification, setShowNotification] = useState(false);
 
-  const buttonTitle = "Refresh - reload the page";
-
   useEffect(() => {
     registerSWWithUpdate(setShowNotification);
   }, []);
@@ -36,8 +34,8 @@ function UpdateNotification() {
         type="button"
         className={s.refreshButton}
         onClick={handleRefreshPage}
-        title={buttonTitle}
-        aria-label={buttonTitle}
+        title={t("button_title")}
+        aria-label={t("button_title")}
         autoFocus={showNotification}
       >
         {t("button")}

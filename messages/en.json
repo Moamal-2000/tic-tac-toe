@@ -194,6 +194,7 @@
   },
   "update_notification": {
     "message": "A new version is available!",
-    "button": "Refresh"
+    "button": "Refresh",
+    "button_title": "Refresh - reload the page"
   }
 }

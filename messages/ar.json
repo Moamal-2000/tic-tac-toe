@@ -194,6 +194,7 @@
   },
   "update_notification": {
     "message": "يتوفر إصدار جديد!",
-    "button": "تحديث"
+    "button": "تحديث",
+    "button_title": "تحديث - إعادة تحميل الصفحة"
   }
 }

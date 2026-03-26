@@ -194,6 +194,7 @@
   },
   "update_notification": {
     "message": "Új verzió érhető el!",
-    "button": "Frissítés"
+    "button": "Frissítés",
+    "button_title": "Frissítés - az oldal újratöltése"
   }
 }

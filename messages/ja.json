@@ -193,6 +193,7 @@
   },
   "update_notification": {
     "message": "新しいバージョンが利用可能です！",
-    "button": "更新"
+    "button": "更新",
+    "button_title": "更新 - ページを再読み込み"
   }
 }

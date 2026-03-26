@@ -194,6 +194,7 @@
   },
   "update_notification": {
     "message": "Une nouvelle version est disponible !",
-    "button": "Actualiser"
+    "button": "Actualiser",
+    "button_title": "Actualiser - recharger la page"
   }
 }
