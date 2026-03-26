@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import "@/styles/global.scss";
 import { useEffect } from "react";
-import s from "./notFoundPage.module.scss";
+import s from "./NotFoundPage.module.scss";
 
 export default function NotFound() {
   const t = useTranslations("not_found");
