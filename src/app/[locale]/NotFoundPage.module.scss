@@ -21,18 +21,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: max-content;
 }
 
 .code {
   font-size: clamp(4.5rem, 16vw, 9rem);
   font-weight: 800;
   padding: 8px 12px;
+  max-height: 190px;
 
   background: linear-gradient(45deg, #ffc834, #ffe18f);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #ffc834;
+
 }
 
 .title {
