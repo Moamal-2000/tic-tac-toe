@@ -26,12 +26,19 @@
   backdrop-filter: blur(10px);
 }
 
-@include m.very-small {
+@include m.small {
   .updateNotification {
     bottom: 0;
     border-radius: 0;
     width: 100%;
     padding: 16px 20px;
+  }
+}
+
+@include m.very-small {
+  .updateNotification {
+    padding-inline: 10px;
+    justify-content: space-between;
   }
 }
 
