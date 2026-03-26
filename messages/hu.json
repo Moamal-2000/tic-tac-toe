@@ -188,5 +188,8 @@
   "connectionLabel": {
     "internetAvailable": "A kapcsolat helyreállt",
     "internetUnavailable": "Nincs elérhető internetkapcsolat."
+  },
+  "not_found": {
+    "title": "Az oldal nem található"
   }
 }

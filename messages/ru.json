@@ -187,5 +187,8 @@
   "connectionLabel": {
     "internetAvailable": "Соединение восстановлено",
     "internetUnavailable": "Нет подключения к интернету."
+  },
+  "not_found": {
+    "title": "Страница не найдена"
   }
 }

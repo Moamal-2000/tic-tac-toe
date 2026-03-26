@@ -188,5 +188,8 @@
   "connectionLabel": {
     "internetAvailable": "تمت استعادة الاتصال",
     "internetUnavailable": "لا يوجد اتصال بالإنترنت."
+  },
+  "not_found": {
+    "title": "الصفحة غير موجودة"
   }
 }

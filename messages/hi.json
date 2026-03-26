@@ -188,5 +188,8 @@
   "connectionLabel": {
     "internetAvailable": "कनेक्शन फिर से बहाल हो गया है",
     "internetUnavailable": "इंटरनेट कनेक्शन उपलब्ध नहीं है।"
+  },
+  "not_found": {
+    "title": "पेज नहीं मिला"
   }
 }

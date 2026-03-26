@@ -188,5 +188,8 @@
   "connectionLabel": {
     "internetAvailable": "The connection has been restored",
     "internetUnavailable": "No internet connection available."
+  },
+  "not_found": {
+    "title": "Page not found"
   }
 }

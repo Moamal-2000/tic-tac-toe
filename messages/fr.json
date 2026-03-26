@@ -188,5 +188,8 @@
   "connectionLabel": {
     "internetAvailable": "La connexion a été rétablie",
     "internetUnavailable": "Aucune connexion Internet disponible."
+  },
+  "not_found": {
+    "title": "Page introuvable"
   }
 }

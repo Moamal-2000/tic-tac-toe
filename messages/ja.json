@@ -187,5 +187,8 @@
   "connectionLabel": {
     "internetAvailable": "接続が復旧しました",
     "internetUnavailable": "インターネット接続がありません。"
+  },
+  "not_found": {
+    "title": "ページが見つかりません"
   }
 }
