@@ -7,9 +7,9 @@ import MainMenuButtons from "./MainMenuButtons/MainMenuButtons";
 import MultiPlayerMenu from "./MultiPlayerMenu/MultiPlayerMenu";
 
 const MainMenu = () => {
-  const { waitingOpponent, menuActive, gameMode } = useGlobalStore();
+  const { waitingOpponent, menuActive, gameMode, is404 } = useGlobalStore();
 
-  if (!menuActive && !waitingOpponent) return null;
+  if ((!menuActive && !waitingOpponent) || is404) return null;
 
   const showMainButtons = gameMode !== "online";
   const showMultiplayerMenu = gameMode === "online" && !waitingOpponent;

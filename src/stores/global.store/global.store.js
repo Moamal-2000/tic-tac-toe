@@ -6,6 +6,7 @@ export const useGlobalStore = create((set, get) => ({
   gameMode: null, // "local" | "computer" | "online"
   waitingOpponent: false,
   isLangMenuActive: false,
+  is404: false,
 
   toggleAboutModel: (value) => {
     set({ isAboutModelActive: value ? value : !get().isAboutModelActive });

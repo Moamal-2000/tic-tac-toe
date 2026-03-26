@@ -19,7 +19,8 @@ const HeaderButtons = () => {
   const t = useTranslations("header");
   // const [isActiveMatchesOpen, setIsActiveMatchesOpen] = useState(false);
 
-  const { toggleAboutModel, gameMode, updateGameMode } = useGlobalStore();
+  const { toggleAboutModel, gameMode, updateGameMode, is404 } =
+    useGlobalStore();
   const resetStats = useXOStore((s) => s.resetStats);
   const updateMultiplayerState = useMultiplayerStore(
     (s) => s.updateMultiplayerState,
@@ -28,6 +29,8 @@ const HeaderButtons = () => {
   const playSound = usePreloadSounds({ click: soundFiles.click });
   const isOnlineMode = gameMode === "online";
   const isComputerMode = gameMode === "computer";
+
+  const classes = `${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""} ${is404 ? s.notFoundPage : ""}`;
 
   function handleAboutClick() {
     toggleAboutModel();
@@ -59,10 +62,12 @@ const HeaderButtons = () => {
 
   return (
     <>
-      <div className={`${s.headerButtons} ${isOnlineMode ? s.onlineMode : ""}`}>
+      <div className={classes}>
         <div className={s.wrapper1}>
-          <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
-          {!isComputerMode && (
+          {!is404 && (
+            <BoardSelector playClickSound={() => playSound(BUTTON_SOUND)} />
+          )}
+          {!isComputerMode && !is404 && (
             <PlayModeSelector playClickSound={() => playSound(BUTTON_SOUND)} />
           )}
         </div>
@@ -77,11 +82,15 @@ const HeaderButtons = () => {
           {/* <Button onClick={handleActiveMatchesClick}>
             {t("live_matches.button")}
           </Button> */}
-          <Button onClick={handleAboutClick}>{t("about")}</Button>
-          <Button onClick={handleMenuClick}>{t("menu")}</Button>
-          <Button onClick={handleResetClick}>
-            {isOnlineMode ? t("rematch") : t("reset")}
-          </Button>
+          {!is404 && (
+            <>
+              <Button onClick={handleAboutClick}>{t("about")}</Button>
+              <Button onClick={handleMenuClick}>{t("menu")}</Button>
+              <Button onClick={handleResetClick}>
+                {isOnlineMode ? t("rematch") : t("reset")}
+              </Button>
+            </>
+          )}
         </div>
       </div>
 

@@ -1,0 +1,54 @@
+@use "@/styles/mixins" as m;
+
+.notFoundPage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: 24px;
+  @include m.flex-center;
+}
+
+@include m.small {
+  .notFoundPage {
+    padding: 0;
+    margin-top: 40px;
+  }
+}
+
+.notFoundPage .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.code {
+  font-size: clamp(4.5rem, 16vw, 9rem);
+  font-weight: 800;
+  padding: 8px 12px;
+
+  background: linear-gradient(45deg, #ffc834, #ffe18f);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffc834;
+}
+
+.title {
+  font-size: clamp(1.8rem, 5.8vw, 3.2rem);
+  line-height: 1.05;
+  margin-bottom: 14px;
+
+  background: linear-gradient(45deg, #e2e8f0, #8b97a8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #f7f8fa;
+}
+
+@include m.small {
+  .notFoundPage {
+    min-height: auto;
+  }
+}

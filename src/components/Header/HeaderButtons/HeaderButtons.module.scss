@@ -12,6 +12,25 @@
   }
 }
 
+.headerButtons.notFoundPage {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+html[lang=ar] .headerButtons.notFoundPage {
+  right: auto;
+  left: 20px;
+}
+
+@include m.small {
+
+  .headerButtons.notFoundPage,
+  html[lang=ar] .headerButtons.notFoundPage {
+    position: static;
+  }
+}
+
 .headerButtons>* {
   flex: 1;
 }
@@ -24,6 +43,10 @@
 
   .headerButtons:not(.onlineMode) {
     flex-direction: column;
+  }
+
+  .headerButtons.is404 {
+    flex-direction: row;
   }
 }
 

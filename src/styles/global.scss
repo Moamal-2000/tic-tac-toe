@@ -24,7 +24,7 @@ html:is([lang=fr], [lang=ru], [lang=hu]) {
 body {
   background: var(--app-background-gradient);
   color: #fff;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
