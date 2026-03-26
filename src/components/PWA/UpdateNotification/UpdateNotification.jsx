@@ -2,17 +2,19 @@
 
 import { IS_PRODUCTION } from "@/data/env";
 import { refreshPage } from "@/functions/helper";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import s from "./UpdateNotification.module.scss";
 
 function UpdateNotification() {
+  const t = useTranslations("update_notification");
   const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     registerSWWithUpdate(setShowNotification);
   }, []);
 
-  if (!showNotification) return null;
+  if (showNotification) return null;
 
   function handleRefreshPage() {
     if (navigator.serviceWorker.controller) {
@@ -23,13 +25,13 @@ function UpdateNotification() {
 
   return (
     <div className={s.updateNotification}>
-      <p>A new version is available!</p>
+      <p>{t("message")}</p>
       <button
         type="button"
         className={s.refreshButton}
         onClick={handleRefreshPage}
       >
-        Refresh
+        {t("button")}
       </button>
     </div>
   );

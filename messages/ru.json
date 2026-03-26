@@ -190,5 +190,9 @@
   },
   "not_found": {
     "title": "Страница не найдена"
+  },
+  "update_notification": {
+    "message": "Доступна новая версия!",
+    "button": "Обновить"
   }
 }

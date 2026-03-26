@@ -191,5 +191,9 @@
   },
   "not_found": {
     "title": "الصفحة غير موجودة"
+  },
+  "update_notification": {
+    "message": "يتوفر إصدار جديد!",
+    "button": "تحديث"
   }
 }

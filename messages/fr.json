@@ -191,5 +191,9 @@
   },
   "not_found": {
     "title": "Page introuvable"
+  },
+  "update_notification": {
+    "message": "Une nouvelle version est disponible !",
+    "button": "Actualiser"
   }
 }

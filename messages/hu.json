@@ -191,5 +191,9 @@
   },
   "not_found": {
     "title": "Az oldal nem található"
+  },
+  "update_notification": {
+    "message": "Új verzió érhető el!",
+    "button": "Frissítés"
   }
 }

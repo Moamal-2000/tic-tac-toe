@@ -191,5 +191,9 @@
   },
   "not_found": {
     "title": "पेज नहीं मिला"
+  },
+  "update_notification": {
+    "message": "नया संस्करण उपलब्ध है!",
+    "button": "रीफ़्रेश करें"
   }
 }

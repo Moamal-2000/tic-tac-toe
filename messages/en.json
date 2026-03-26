@@ -191,5 +191,9 @@
   },
   "not_found": {
     "title": "Page not found"
+  },
+  "update_notification": {
+    "message": "A new version is available!",
+    "button": "Refresh"
   }
 }
