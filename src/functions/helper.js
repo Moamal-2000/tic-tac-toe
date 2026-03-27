@@ -1,5 +1,5 @@
 export function isStandalone() {
-  if (typeof window === "undefined") return false;
+  if (isServer) return false;
 
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
@@ -9,13 +9,13 @@ export function isStandalone() {
 }
 
 export function isIOS() {
-  if (typeof window === "undefined") return false;
+  if (isServer) return false;
 
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
 export function isInStandaloneMode() {
-  if (typeof window === "undefined") return false;
+  if (isServer) return false;
 
   return (
     window.navigator.standalone ||
@@ -58,3 +58,5 @@ export function stopTimer(ref) {
 export function scrollToElementBottom(ref) {
   ref.current?.scrollIntoView({ behavior: "smooth" });
 }
+
+export const isServer = typeof window === "undefined";

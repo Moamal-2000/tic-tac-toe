@@ -2,6 +2,7 @@
 
 import Button from "@/components/Shared/Buttons/Button/Button";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { isServer } from "@/functions/helper";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import useEventListener from "@/hooks/helper/useEventListener";
 import { languagesMenu } from "@/i18n/config";
@@ -25,11 +26,7 @@ const LanguageSelector = () => {
 
   const langMenuClasses = `${s.languageSelect} ${isLangMenuActive ? s.active : ""} ${is404 ? s.notFoundPage : ""}`;
 
-  useEventListener(
-    typeof window !== "undefined" ? window : null,
-    "click",
-    handleClickOutside,
-  );
+  useEventListener(isServer ? null : window, "click", handleClickOutside);
 
   function handleClickOutside(event) {
     const isClickOutsideLangMenu = !langContainerRef.current.contains(

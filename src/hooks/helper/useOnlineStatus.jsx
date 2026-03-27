@@ -1,19 +1,18 @@
 "use client";
 
+import { isServer } from "@/functions/helper";
 import { useEffect, useState } from "react";
 import useEventListener from "./useEventListener";
 
 const useOnlineStatus = () => {
   const [isOnline, setIsOnline] = useState(true);
 
-  const windowElement = typeof window !== "undefined" ? window : null;
-
   useEffect(() => {
     setIsOnline(navigator.onLine);
   }, []);
 
-  useEventListener(windowElement, "online", () => setIsOnline(true));
-  useEventListener(windowElement, "offline", () => setIsOnline(false));
+  useEventListener(isServer ? null : window, "online", () => setIsOnline(true));
+  useEventListener(isServer ? null : window, "offline", () => setIsOnline(false));
 
   return isOnline;
 };
