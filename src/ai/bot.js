@@ -585,6 +585,222 @@ function minimax(state, me, depth, alpha, beta, actionCap) {
   return { score: bestScore, action: bestAction };
 }
 
+function wouldActionLeadToLoss(state, me, action) {
+  // Check if this action would lead to an unavoidable loss
+  const nextState = applyAction(state, action);
+  const opponent = otherPlayer(me);
+
+  // Check if opponent has immediate winning move
+  const opponentLegalActions = getLegalActions(nextState);
+  const opponentWinningMove = opponentLegalActions.find((oppAction) => {
+    const afterOppMove = applyAction(nextState, oppAction);
+    return getWinner(afterOppMove) === opponent;
+  });
+
+  if (opponentWinningMove) {
+    return true; // This action allows opponent to win immediately
+  }
+
+  // Check if opponent would have unblockable multiple threats
+  const opponentThreats = findOpponentThreats(nextState, opponent);
+  if (opponentThreats.length > 1) {
+    // Multiple threats: check if we can block all of them with one move
+    const blockingActions = findOpponentBlockingActions(
+      nextState,
+      opponent,
+      opponentThreats,
+    );
+
+    // If we have fewer unique block positions than threats, it's unblockable
+    const uniqueBlockPositions = new Set();
+    for (const action of blockingActions) {
+      if (action.type === "place") {
+        uniqueBlockPositions.add(`${action.row},${action.col}`);
+      }
+    }
+
+    if (uniqueBlockPositions.size < opponentThreats.length) {
+      return true; // Can't block all threats with one move
+    }
+  }
+
+  return false;
+}
+
+function findOpponentThreats(state, opponent) {
+  // Find cells where opponent has 3 symbols that can lead to a win
+  const threats = [];
+  const boardSize = state.boardSize;
+  const board = state.board;
+
+  for (const line of getWinningLinesForBoard(board)) {
+    let opponentCount = 0;
+    let emptyCount = 0;
+    let emptyCells = [];
+    let frozenCount = 0;
+
+    for (const [rowIndex, colIndex] of line) {
+      const cell = board[rowIndex][colIndex];
+      if (cell.isFrozen) {
+        frozenCount++;
+      } else if (!cell.fillWith) {
+        emptyCount++;
+        emptyCells.push([rowIndex, colIndex]);
+      } else if (cell.fillWith === opponent) {
+        opponentCount++;
+      }
+    }
+
+    // A threat is: opponent has (lineLength - 1) symbols, 1 empty cell, and no frozen cells
+    const lineLength = line.length;
+    if (
+      opponentCount === lineLength - 1 &&
+      emptyCount === 1 &&
+      frozenCount === 0
+    ) {
+      threats.push({
+        emptyCells,
+        opponentCount,
+      });
+    }
+  }
+
+  return threats;
+}
+
+function findOpponentBlockingActions(state, opponent, threats) {
+  // Find power-up or placement actions that block opponent threats
+  const me = state.playerTurn;
+  const blockingActions = [];
+  const myPowerUps = state.powerUps[me];
+
+  // Check power-up based blocking first
+  if (threats.length > 0) {
+    // Freeze power-up: freeze opponent's symbols to break the threat
+    if (myPowerUps.freeze.available) {
+      for (let rowIndex = 0; rowIndex < state.boardSize; rowIndex++) {
+        for (let colIndex = 0; colIndex < state.boardSize; colIndex++) {
+          const cell = state.board[rowIndex][colIndex];
+          if (cell.fillWith === opponent && !cell.isFrozen) {
+            blockingActions.push({
+              type: "freeze",
+              row: rowIndex,
+              col: colIndex,
+              isUsingPowerUp: true,
+            });
+          }
+        }
+      }
+    }
+
+    // Bomb power-up: remove opponent's symbols to break the threat
+    if (myPowerUps.bomb.available) {
+      for (let rowIndex = 0; rowIndex < state.boardSize; rowIndex++) {
+        for (let colIndex = 0; colIndex < state.boardSize; colIndex++) {
+          let hasEffect = false;
+          for (let dx = -1; dx <= 1 && !hasEffect; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              const targetRowIndex = rowIndex + dx;
+              const targetColIndex = colIndex + dy;
+              if (
+                targetRowIndex < 0 ||
+                targetColIndex < 0 ||
+                targetRowIndex >= state.boardSize ||
+                targetColIndex >= state.boardSize
+              ) {
+                continue;
+              }
+              const cell = state.board[targetRowIndex][targetColIndex];
+              if (cell.fillWith === opponent && !cell.isFrozen) {
+                hasEffect = true;
+                break;
+              }
+            }
+          }
+          if (hasEffect) {
+            blockingActions.push({
+              type: "bomb",
+              row: rowIndex,
+              col: colIndex,
+              isUsingPowerUp: true,
+            });
+          }
+        }
+      }
+    }
+
+    // Swap power-up: swap opponent's symbol with one of ours to break the threat
+    if (myPowerUps.swap.available) {
+      const occupiedSquares = [];
+      for (let rowIndex = 0; rowIndex < state.boardSize; rowIndex++) {
+        for (let colIndex = 0; colIndex < state.boardSize; colIndex++) {
+          if (state.board[rowIndex][colIndex].fillWith) {
+            occupiedSquares.push([rowIndex, colIndex]);
+          }
+        }
+      }
+
+      if (occupiedSquares.length >= 2) {
+        for (
+          let firstSquareIndex = 0;
+          firstSquareIndex < occupiedSquares.length;
+          firstSquareIndex++
+        ) {
+          const [firstRowIndex, firstColIndex] =
+            occupiedSquares[firstSquareIndex];
+          const firstValue = state.board[firstRowIndex][firstColIndex].fillWith;
+
+          // Only consider swaps where we swap an opponent symbol with one of ours
+          if (firstValue === opponent) {
+            for (
+              let secondSquareIndex = firstSquareIndex + 1;
+              secondSquareIndex < occupiedSquares.length;
+              secondSquareIndex++
+            ) {
+              const [secondRowIndex, secondColIndex] =
+                occupiedSquares[secondSquareIndex];
+              const secondValue =
+                state.board[secondRowIndex][secondColIndex].fillWith;
+
+              if (secondValue === me) {
+                blockingActions.push({
+                  type: "swap",
+                  a: [firstRowIndex, firstColIndex],
+                  b: [secondRowIndex, secondColIndex],
+                  isUsingPowerUp: true,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // If power-ups available, return them first (higher priority)
+  if (blockingActions.length > 0) {
+    return blockingActions;
+  }
+
+  // If no power-ups, place symbols to block the threat
+  if (threats.length > 0) {
+    const blockPlacements = [];
+    for (const threat of threats) {
+      for (const [rowIndex, colIndex] of threat.emptyCells) {
+        blockPlacements.push({
+          type: "place",
+          row: rowIndex,
+          col: colIndex,
+          isBlocking: true,
+        });
+      }
+    }
+    return blockPlacements;
+  }
+
+  return [];
+}
+
 export function chooseBotAction(state) {
   const me = state.playerTurn;
   callNonce = (callNonce + 1) >>> 0;
@@ -595,9 +811,87 @@ export function chooseBotAction(state) {
     return choose3x3Action(state, rng);
   }
 
-  const legal = getLegalActions(state);
+  let legal = getLegalActions(state);
   if (!legal.length)
     return { action: null, debug: { reason: "no_legal_actions" } };
+
+  // Filter out actions that would lead to unavoidable loss
+  const safeLegalActions = legal.filter(
+    (action) => !wouldActionLeadToLoss(state, me, action),
+  );
+
+  // If all actions lead to loss, keep the original legal actions
+  if (safeLegalActions.length > 0) {
+    legal = safeLegalActions;
+  }
+
+  // Check for opponent threats and handle them first
+  const opponent = otherPlayer(me);
+  const opponentThreats = findOpponentThreats(state, opponent);
+  if (opponentThreats.length > 0) {
+    const blockingActions = findOpponentBlockingActions(
+      state,
+      opponent,
+      opponentThreats,
+    );
+    if (blockingActions.length > 0) {
+      // Filter to only legal actions
+      const legalBlockingActions = blockingActions.filter((action) =>
+        legal.some((la) => {
+          if (la.type === "swap" && action.type === "swap") {
+            return (
+              (la.a[0] === action.a[0] &&
+                la.a[1] === action.a[1] &&
+                la.b[0] === action.b[0] &&
+                la.b[1] === action.b[1]) ||
+              (la.a[0] === action.b[0] &&
+                la.a[1] === action.b[1] &&
+                la.b[0] === action.a[0] &&
+                la.b[1] === action.a[1])
+            );
+          }
+          return (
+            la.type === action.type &&
+            la.row === action.row &&
+            la.col === action.col
+          );
+        }),
+      );
+
+      if (legalBlockingActions.length > 0) {
+        // Prefer power-ups over placement
+        const powerUpActions = legalBlockingActions.filter(
+          (a) => a.isUsingPowerUp,
+        );
+        const actionToTake =
+          powerUpActions.length > 0
+            ? powerUpActions[0]
+            : legalBlockingActions[0];
+
+        const resultAction =
+          actionToTake.type === "swap"
+            ? {
+                type: actionToTake.type,
+                a: actionToTake.a,
+                b: actionToTake.b,
+              }
+            : {
+                type: actionToTake.type,
+                row: actionToTake.row,
+                col: actionToTake.col,
+              };
+
+        return {
+          action: resultAction,
+          debug: {
+            reason: actionToTake.isUsingPowerUp
+              ? "hard_block_threat_with_powerup"
+              : "hard_block_threat",
+          },
+        };
+      }
+    }
+  }
 
   const immediateWin = legal.find((action) => {
     const next = applyAction(state, action);
