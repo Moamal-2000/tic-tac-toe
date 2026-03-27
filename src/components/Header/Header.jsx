@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import GitHubButton from "../Shared/Buttons/GitHubButton/GitHubButton";
 import s from "./Header.module.scss";
 import HeaderButtons from "./HeaderButtons/HeaderButtons";
