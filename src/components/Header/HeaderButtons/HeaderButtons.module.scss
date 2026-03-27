@@ -94,7 +94,6 @@ html[lang=ar] .headerButtons.notFoundPage {
   }
 }
 
-
 @include m.media("very-small") {
   html[lang=fr] .headerButtons .wrapper1 {
     flex-direction: column;
@@ -113,12 +112,6 @@ html[lang=ar] .headerButtons.notFoundPage {
 
 @include m.media("small") {
   .headerButtons :where(.wrapper1, .wrapper2) {
-    width: 100%;
-  }
-}
-
-@include m.media("small") {
-  .headerButtons :where(.wrapper1, .wrapper2) {
     flex-wrap: wrap;
     width: 100%;
 
@@ -126,25 +119,5 @@ html[lang=ar] .headerButtons.notFoundPage {
     &>*>* {
       flex: 1;
     }
-  }
-}
-
-.installBtn {
-  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-  color: white;
-  border: none;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
-  }
-
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
