@@ -33,6 +33,7 @@ A modern twist on the classic Tic Tac Toe game, now with customizable board size
 
 - **Next.js v15** (React framework)
 - **React v19** & **React DOM**
+- **PWA** (Progressive Web App)
 - **SASS** with **CSS Modules** for styling
 - **Socket.IO Client v4** for real-time communication with the server
 - **Zustand v5** for state management
