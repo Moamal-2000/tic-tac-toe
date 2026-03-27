@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .chatHeader {
   display: flex;
@@ -35,7 +35,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .chatHeader {
     border-radius: 10px;
     justify-content: flex-end;
@@ -102,7 +102,7 @@
   animation: pulse 2s infinite;
 }
 
-@include m.small {
+@include m.media("small") {
   .wrapper .notificationBadge {
     position: absolute;
     bottom: 10px;

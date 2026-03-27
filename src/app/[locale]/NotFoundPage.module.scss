@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .notFoundPage {
   position: absolute;
@@ -9,7 +9,7 @@
   @include m.flex-center;
 }
 
-@include m.small {
+@include m.media("small") {
   .notFoundPage {
     padding: 0;
     margin-top: 40px;
@@ -47,7 +47,7 @@
   color: #f7f8fa;
 }
 
-@include m.small {
+@include m.media("small") {
   .notFoundPage {
     min-height: auto;
   }

@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .backButton {
   position: absolute;
@@ -31,13 +31,13 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .backButton {
     left: -10px;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .backButton {
     top: 20px;
     left: 20px;

@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.modal-fade-in;
 
@@ -44,7 +44,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .modal {
     padding: 24px 20px;
   }

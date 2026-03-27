@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.slide-up;
 
@@ -26,7 +26,7 @@
   backdrop-filter: blur(10px);
 }
 
-@include m.small {
+@include m.media("small") {
   .updateNotification {
     bottom: 0;
     border-radius: 0;
@@ -35,7 +35,7 @@
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .updateNotification {
     padding-inline: 10px;
     justify-content: space-between;

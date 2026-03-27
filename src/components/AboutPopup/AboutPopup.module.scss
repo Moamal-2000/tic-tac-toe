@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .aboutOverlay {
   position: fixed;
@@ -31,7 +31,7 @@
   overflow-y: auto;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .aboutArticle {
     padding: 24px;
   }
@@ -54,7 +54,7 @@
   background: rgba(255, 255, 255, .05);
 }
 
-@include m.small {
+@include m.media("small") {
   .aboutArticle {
     padding: 14px;
     width: 100%;
@@ -69,7 +69,7 @@
   color: rgba(255, 255, 255, .88);
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .aboutArticle :where(p, li) {
     font-size: .875rem;
   }

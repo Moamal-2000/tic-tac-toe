@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "sass:list";
 
 .buttons {
@@ -8,7 +8,7 @@
   width: 260px;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .buttons {
     width: 230px;
   }
@@ -55,7 +55,7 @@
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .button {
     padding: 15px 20px;
     min-height: 50px;

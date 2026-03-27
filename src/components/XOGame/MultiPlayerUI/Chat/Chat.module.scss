@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .chat {
   width: 320px;
@@ -22,7 +22,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .chat {
     border: none;
     background: linear-gradient(180deg,

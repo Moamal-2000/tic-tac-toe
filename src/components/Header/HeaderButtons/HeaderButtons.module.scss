@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .headerButtons {
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-@include m.small {
+@include m.media("small") {
   .headerButtons {
     width: 100%;
   }
@@ -18,7 +18,7 @@
   top: 20px;
 }
 
-@include m.large {
+@include m.media("large") {
   .headerButtons.notFoundPage {
     top: 10px;
   }
@@ -29,7 +29,7 @@ html[lang=ar] .headerButtons.notFoundPage {
   left: 20px;
 }
 
-@include m.small {
+@include m.media("small") {
 
   .headerButtons.notFoundPage,
   html[lang=ar] .headerButtons.notFoundPage {
@@ -41,7 +41,7 @@ html[lang=ar] .headerButtons.notFoundPage {
   flex: 1;
 }
 
-@include m.large {
+@include m.media("large") {
   .headerButtons.onlineMode {
     align-items: flex-start;
     gap: 0;
@@ -56,7 +56,7 @@ html[lang=ar] .headerButtons.notFoundPage {
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .headerButtons {
     align-items: flex-start;
     gap: 8px;
@@ -67,7 +67,7 @@ html[lang=ar] .headerButtons.notFoundPage {
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .headerButtons {
     width: 100%;
     flex-direction: column;
@@ -95,7 +95,7 @@ html[lang=ar] .headerButtons.notFoundPage {
 }
 
 
-@include m.very-small {
+@include m.media("very-small") {
   html[lang=fr] .headerButtons .wrapper1 {
     flex-direction: column;
   }
@@ -105,19 +105,19 @@ html[lang=ar] .headerButtons.notFoundPage {
   justify-content: flex-end;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .headerButtons :where(.wrapper1, .wrapper2) {
     gap: 8px;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .headerButtons :where(.wrapper1, .wrapper2) {
     width: 100%;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .headerButtons :where(.wrapper1, .wrapper2) {
     flex-wrap: wrap;
     width: 100%;

@@ -1,4 +1,4 @@
-@use '@/styles/mixins.scss' as m;
+﻿@use '@/styles/mixins.scss' as m;
 
 .playModeSelector {
   display: flex;
@@ -10,7 +10,7 @@
   border: 1px solid #484f57;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   html[lang=fr] .playModeSelector {
     flex-direction: column;
     width: 100%;

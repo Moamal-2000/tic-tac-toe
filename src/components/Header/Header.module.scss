@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .header {
   display: flex;
@@ -10,7 +10,7 @@
   flex: 1;
 }
 
-@include m.small {
+@include m.media("small") {
   .header {
     margin-bottom: 20px;
     flex-direction: column;
@@ -44,7 +44,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .header .logo {
     position: static;
   }

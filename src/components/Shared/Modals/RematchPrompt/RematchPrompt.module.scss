@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.modal-fade-in;
 
@@ -24,7 +24,7 @@
   animation: modal-fade-in .2s ease-out;
 }
 
-@include m.small {
+@include m.media("small") {
   .notification {
     padding: 24px 20px;
   }

@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.spin;
 
@@ -8,7 +8,7 @@
   height: var(--main-menu-content-height);
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .loadingMenu {
     position: static;
   }

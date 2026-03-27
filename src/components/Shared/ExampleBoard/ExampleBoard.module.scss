@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.pulse(1.2, 1);
 @include keyframe.bomb-pulse;
@@ -13,7 +13,7 @@
   width: fit-content;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .board {
     padding: 12px;
     gap: 4px;
@@ -26,7 +26,7 @@
   gap: 6px;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .row {
     gap: 4px;
   }

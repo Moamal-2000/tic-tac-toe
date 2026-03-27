@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .powerUps {
   display: flex;
@@ -14,13 +14,13 @@
   }
 }
 
-@include m.large {
+@include m.media("large") {
   html[lang=hu] .powerUps {
     padding: 8px;
   }
 }
 
-@include m.medium {
+@include m.media("medium") {
   .powerUps {
     flex-direction: column;
   }
@@ -30,7 +30,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .powerUps {
     padding: 10px;
     flex-direction: row;

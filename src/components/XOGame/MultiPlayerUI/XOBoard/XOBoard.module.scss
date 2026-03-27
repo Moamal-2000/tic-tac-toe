@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .board {
   display: grid;
@@ -31,13 +31,13 @@
   justify-self: center;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .board {
     padding: 12px;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .board {
     width: 100%;
   }
@@ -47,7 +47,7 @@
   margin-bottom: 6px;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .board>div:not(:last-child) {
     margin-bottom: 4px;
   }

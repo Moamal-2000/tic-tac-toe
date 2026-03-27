@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.pulse;
 
@@ -18,13 +18,13 @@ html[lang=ja] .indicator {
   width: 220px;
 }
 
-@include m.medium {
+@include m.media("medium") {
   html[lang=ja] .indicator {
     width: 240px;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   html[lang=ja] .indicator {
     width: 220px;
   }
@@ -130,50 +130,50 @@ html[lang=ja] .indicator {
 }
 
 // Show on specific screen sizes
-@include m.large {
+@include m.media("large") {
   .showOnLarge {
     display: flex !important;
   }
 }
 
-@include m.medium {
+@include m.media("medium") {
   .showOnMedium {
     display: flex !important;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .showOnSmall {
     display: flex !important;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .showOnVerySmall {
     display: flex !important;
   }
 }
 
 // Hide on specific screen sizes
-@include m.large {
+@include m.media("large") {
   .hideOnLarge {
     display: none;
   }
 }
 
-@include m.medium {
+@include m.media("medium") {
   .hideOnMedium {
     display: none;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .hideOnSmall {
     display: none;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .hideOnVerySmall {
     display: none;
   }

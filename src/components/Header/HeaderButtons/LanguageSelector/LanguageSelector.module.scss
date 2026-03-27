@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .languageSection {
   position: relative;
@@ -41,7 +41,7 @@ html[lang=ar] .languageSelect.notFoundPage {
   left: 0;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   html[lang=ar] .languageSelect {
     right: auto;
     left: 0;

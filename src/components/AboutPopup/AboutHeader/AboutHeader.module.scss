@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .header {
   display: flex;
@@ -10,7 +10,7 @@
   border-bottom: 1px solid #232831;
 }
 
-@include m.small {
+@include m.media("small") {
   .header {
     margin-top: 20px;
   }
@@ -32,7 +32,7 @@
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   @include m.langs("fr", "ru", "hu") {
     .header .title {
       font-size: clamp(1.2rem, 5vw, 2rem);
@@ -44,7 +44,7 @@
   display: none;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .header .title {
     font-size: clamp(1.2rem, 6.6vw, 2rem);
   }

@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .header {
   width: 100%;
@@ -9,14 +9,14 @@
   align-items: center;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .header {
     grid-template-columns: 1fr auto;
     text-align: left;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .header {
     gap: 8px;
   }
@@ -33,7 +33,7 @@
   right: -30px;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .playerCount {
     margin: 0;
     justify-self: end;
@@ -41,13 +41,13 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .playerCount {
     right: -20px;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .playerCount {
     top: 26px;
     right: 20px;
@@ -95,7 +95,7 @@
   align-items: center;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .headerText {
     align-items: flex-start;
   }

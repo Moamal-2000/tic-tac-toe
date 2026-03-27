@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .powerUp {
   -webkit-tap-highlight-color: transparent;
@@ -33,7 +33,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .powerUp {
     flex: 1;
   }
@@ -45,7 +45,7 @@
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .powerUp {
     aspect-ratio: 1/1;
   }
@@ -96,7 +96,7 @@ html[lang=hu] .powerUp {
   opacity: .5;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .powerUp .icon {
     width: 30px;
     height: 30px;
@@ -109,7 +109,7 @@ html[lang=hu] .powerUp {
   text-align: center;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .powerUp .powerName {
     display: none;
   }

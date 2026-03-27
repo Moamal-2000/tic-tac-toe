@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .menuOverlay {
   --alpha: 1;
@@ -13,7 +13,7 @@
   color: #e0e0e0;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .menuOverlay {
     background: linear-gradient(135deg,
         rgba(15, 20, 25, var(--alpha)) 0,
@@ -36,14 +36,14 @@
   flex-direction: column;
 }
 
-@include m.small {
+@include m.media("small") {
   .mainMenu {
     padding: 40px 20px;
     max-width: 330px;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .mainMenu {
     width: 100dvw;
     height: 100dvh;
@@ -61,7 +61,7 @@
   border: none;
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .mainMenu.menuButtons {
     height: 100dvh;
   }

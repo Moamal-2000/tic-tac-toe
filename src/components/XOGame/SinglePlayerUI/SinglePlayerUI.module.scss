@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .game {
   max-width: 1060px;
@@ -11,20 +11,20 @@
   user-select: none;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .game {
     gap: 20px;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .game {
     padding-bottom: 30px;
     width: 100%;
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .game {
     align-items: stretch;
   }
@@ -36,13 +36,13 @@
   width: 100%;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .game .wrapper {
     gap: 20px;
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .game .wrapper {
     flex-direction: column;
   }
@@ -70,13 +70,13 @@
   }
 }
 
-@include m.large {
+@include m.media("large") {
   html[lang=hu] .game .wrapper {
     gap: 10px;
   }
 }
 
-@include m.medium {
+@include m.media("medium") {
   html[lang=hu] .game .wrapper {
     gap: 20px;
   }

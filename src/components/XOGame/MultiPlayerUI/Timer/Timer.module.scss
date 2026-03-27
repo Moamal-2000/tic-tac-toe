@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 
 .container {
   position: fixed;
@@ -20,7 +20,7 @@
   background: rgba(78, 205, 196, 0.2);
 }
 
-@include m.small {
+@include m.media("small") {
   .bar {
     height: 2px;
     width: calc(100% - 55px);
@@ -50,7 +50,7 @@ html[lang=ar] .timerText {
   left: 10px;
 }
 
-@include m.small {
+@include m.media("small") {
   .container.chatOpen .timerText {
     display: none;
   }
@@ -64,7 +64,7 @@ html[lang=ar] .timerText {
   }
 }
 
-@include m.very-small {
+@include m.media("very-small") {
   .timerText {
     background-color: rgba(0, 0, 0, .5);
     padding: 2px 5px;

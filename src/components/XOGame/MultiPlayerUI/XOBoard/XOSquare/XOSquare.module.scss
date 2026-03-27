@@ -1,4 +1,4 @@
-@use "@/styles/mixins" as m;
+﻿@use "@/styles/mixins" as m;
 @use "@/styles/keyframes" as keyframe;
 @include keyframe.frozen;
 @include keyframe.bomb-pulse;
@@ -72,7 +72,7 @@
   }
 }
 
-@include m.medium {
+@include m.media("medium") {
   .square {
     &.x4 {
       --size: 61px;
@@ -99,7 +99,7 @@
   height: 40%;
 }
 
-@include m.small {
+@include m.media("small") {
   .square {
     --size: auto !important;
     flex: 1;
@@ -111,7 +111,7 @@
   }
 }
 
-@include m.small {
+@include m.media("small") {
   .square.compact {
     --size: 40px !important;
 
@@ -129,7 +129,7 @@
   margin-right: 6px;
 }
 
-@include m.medium {
+@include m.media("medium") {
   .square:not(:last-child) {
     margin-right: 4px;
   }
