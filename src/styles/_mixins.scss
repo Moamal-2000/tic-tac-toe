@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -25,5 +27,17 @@
 @mixin very-small {
   @media (max-width: 376px) {
     @content
+  }
+}
+
+@mixin langs($langs...) {
+  $selectors: ();
+
+  @each $lang in $langs {
+    $selectors: list.append($selectors, "[lang=#{$lang}]", comma);
+  }
+
+  @at-root html:is(#{$selectors}) {
+    @content;
   }
 }

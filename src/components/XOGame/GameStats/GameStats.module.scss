@@ -35,8 +35,10 @@
   gap: 40px
 }
 
-html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
-  gap: 20px;
+@include m.langs("ru", "hu", "ja") {
+  .gameStats .stats {
+    gap: 20px;
+  }
 }
 
 @include m.small {
@@ -54,8 +56,10 @@ html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
     gap: 10px;
   }
 
-  html:is([lang=ru], [lang=ja], [lang=hu]) .gameStats .stats {
-    gap: 46px;
+  @include m.langs("ru", "ja", "hu") {
+    .gameStats .stats {
+      gap: 46px;
+    }
   }
 }
 
@@ -105,11 +109,15 @@ html:is([lang=ru], [lang=hu], [lang=ja]) .gameStats .stats {
     font-size: .7rem;
   }
 
-  html:is([lang=ru], [lang=ja], [lang=hu]) .gameStats .stats .label {
-    display: none;
+  @include m.langs("ru", "ja", "hu") {
+    .gameStats .stats .label {
+      display: none;
+    }
   }
 }
 
-html:is([lang=ru], [lang=hu]) .gameStats .stats .label {
-  font-size: .7rem;
+@include m.langs("ru", "hu") {
+  .gameStats .stats .label {
+    font-size: .7rem;
+  }
 }

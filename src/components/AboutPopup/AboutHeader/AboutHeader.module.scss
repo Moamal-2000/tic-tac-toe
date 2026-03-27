@@ -26,13 +26,17 @@
   letter-spacing: .8px;
 }
 
-html:is([lang=fr], [lang=ru], [lang=hu]) .header .title {
-  font-size: clamp(1.4rem, 5vw, 2rem);
+@include m.langs("fr", "ru", "hu") {
+  .header .title {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
 }
 
 @include m.very-small {
-  html:is([lang=fr], [lang=ru], [lang=hu]) .header .title {
-    font-size: clamp(1.2rem, 5vw, 2rem);
+  @include m.langs("fr", "ru", "hu") {
+    .header .title {
+      font-size: clamp(1.2rem, 5vw, 2rem);
+    }
   }
 }
 

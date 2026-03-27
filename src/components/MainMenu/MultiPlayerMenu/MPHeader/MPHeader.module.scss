@@ -108,8 +108,10 @@
   margin-bottom: 5px;
 }
 
-html:is([lang=fr], [lang=ru]) .headerText>h1 {
-  font-size: 1.4rem;
+@include m.langs("fr", "ru") {
+  .headerText>h1 {
+    font-size: 1.4rem;
+  }
 }
 
 .headerText>p {

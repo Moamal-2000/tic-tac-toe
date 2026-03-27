@@ -87,10 +87,13 @@ html[lang=ar] .headerButtons.notFoundPage {
 }
 
 @media (max-width: 1300px) {
-  html:is([lang=ru], [lang=hu], [lang=fr], [lang=ja]) .headerButtons .wrapper1 {
-    justify-content: flex-end;
+  @include m.langs("ru", "hu", "fr", "ja") {
+    .headerButtons .wrapper1 {
+      justify-content: flex-end;
+    }
   }
 }
+
 
 @include m.very-small {
   html[lang=fr] .headerButtons .wrapper1 {
