@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tictactoe-4x4.netlify.app/sitemap.xml
+Sitemap: https://tictactoe-4x4.vercel.app/sitemap.xml
