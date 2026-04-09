@@ -110,7 +110,7 @@ export const useXOStore = create((set, get) => ({
     if (bothPlayersWonBySwap) {
       set({ winner: "Draw!", hasGameStart: false });
       updateStatsOnWin({ theWinner: "None", isDraw: true });
-      showWinnerPopup();
+      showWinnerPopup("draw-by-swap");
       return;
     }
 
@@ -133,9 +133,14 @@ export const useXOStore = create((set, get) => ({
     return updatedStats;
   },
 
-  showWinnerPopup: () => {
-    const { scores, winner } = get();
-    const updatedScores = getUpdatedScores({ scores, winner, type: "win" });
+  showWinnerPopup: (winType) => {
+    const { scores, winner, playerTurn } = get();
+    const updatedScores = getUpdatedScores({
+      scores,
+      winner,
+      type: winType,
+      playerTurn: playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X,
+    });
 
     set({ isWinnerPopupVisible: true, scores: updatedScores });
 
@@ -342,7 +347,7 @@ export const useXOStore = create((set, get) => ({
 
       playSound(UNSELECT_SOUND, 0.3);
       set({ board: newBoard, squaresToSwap: [] });
-      return "Unselect squares";
+      return "Unselect square";
     }
 
     if (isSecondSelection) {
