@@ -19,6 +19,7 @@ import {
 } from "@/functions/boardUpdater";
 import {
   bothPlayersWonWithSwap,
+  getUpdatedScores,
   hasNoSquaresAvailable,
   updateCoolDownStatus,
   whoWins,
@@ -71,7 +72,7 @@ export const useXOStore = create((set, get) => ({
     set({
       board: newBoard,
       playerTurn: hasPlayerWin ? playerTurn : opponent,
-      scores: { ...scores, [playerTurn]: scores[playerTurn] + 1 },
+      scores: getUpdatedScores({ scores, playerTurn, type: "fill" }),
     });
     handlePowerUpsCoolDown();
     declareWinner(newBoard);
@@ -133,7 +134,11 @@ export const useXOStore = create((set, get) => ({
   },
 
   showWinnerPopup: () => {
-    set({ isWinnerPopupVisible: true });
+    const { scores, winner } = get();
+    const updatedScores = getUpdatedScores({ scores, winner, type: "win" });
+
+    set({ isWinnerPopupVisible: true, scores: updatedScores });
+
     setTimeout(() => {
       set({ isWinnerPopupVisible: false });
     }, WINNER_POPUP_DURATION_MS);
