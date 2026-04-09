@@ -15,6 +15,9 @@ export const INITIAL_PLAY_MODE = "classicMode"; // "classicMode" | "autoHideMode
 export const INITIAL_SQUARE_HIDDEN_TIME = 6;
 export const MAX_LIVE_MATCHES = 9;
 
+export const EMPTY_SCORES = { [SYMBOL_O]: 0, [SYMBOL_X]: 0 };
+export const MOVE_SCORES = { fill: 1, "freeze-square": 2 };
+
 export const MODEL_CLOSE_KEYS = ["Escape", "Backspace"];
 export const PLAY_MODES = [
   { name: "Classic", type: "classicMode", id: 1 },

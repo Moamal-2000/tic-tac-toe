@@ -1,4 +1,9 @@
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import {
+  EMPTY_SCORES,
+  MOVE_SCORES,
+  SYMBOL_O,
+  SYMBOL_X,
+} from "@/data/constants";
 
 export function hasNoSquaresAvailable(board) {
   return board.every((row) => row.every(({ fillWith }) => fillWith));
@@ -113,20 +118,24 @@ export function getPlacedSymbolCount(board) {
   return board.flat().filter((square) => square.fillWith).length;
 }
 
-export function getUpdatedScores({ scores, winner, playerTurn, type }) {
-  // Fill Square
-  if (playerTurn !== undefined && type === "fill")
-    return { ...scores, [playerTurn]: scores[playerTurn] + 1 };
+export function getUpdatedScores({ scores, winner, playerTurn, type } = {}) {
+  if (!scores) return EMPTY_SCORES;
 
-  // Results Screen
   const updatedScores = { ...scores };
-  const isDraw = winner === "Draw!";
 
-  if (!isDraw && winner !== undefined) updatedScores[winner] += 10;
+  if (type && MOVE_SCORES[type]) {
+    updatedScores[playerTurn] += MOVE_SCORES[type];
+    return updatedScores;
+  }
 
-  if (isDraw) {
-    updatedScores[SYMBOL_O] += 5;
+  if (winner === "Draw!") {
     updatedScores[SYMBOL_X] += 5;
+    updatedScores[SYMBOL_O] += 5;
+    return updatedScores;
+  }
+
+  if (winner) {
+    updatedScores[winner] += 10;
   }
 
   return updatedScores;

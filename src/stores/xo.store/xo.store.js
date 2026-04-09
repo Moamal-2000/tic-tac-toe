@@ -214,8 +214,14 @@ export const useXOStore = create((set, get) => ({
   // Freeze Power-Up
   freezeSquare: (requiredData) => {
     const { rowIndex, columnIndex, squareData } = requiredData;
-    const { board, powerUps, playerTurn, unSelectPower, disablePowerUp } =
-      get();
+    const {
+      board,
+      powerUps,
+      playerTurn,
+      unSelectPower,
+      disablePowerUp,
+      scores,
+    } = get();
     const { whoUsingPower, selectedPower } = powerUps;
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const isEmptySquare = squareData.fillWith === "";
@@ -245,7 +251,11 @@ export const useXOStore = create((set, get) => ({
       powerUp: selectedPower,
     });
 
-    set({ board: newBoard, playerTurn: opponent });
+    set({
+      board: newBoard,
+      playerTurn: opponent,
+      scores: getUpdatedScores({ scores, playerTurn, type: "freeze-square" }),
+    });
     unSelectPower();
     disablePowerUp({ whoUsingPower, powerUpKey: "freeze" });
   },
