@@ -124,18 +124,19 @@ export function getUpdatedScores({ scores, winner, playerTurn, type } = {}) {
   const updatedScores = { ...scores };
 
   if (type && MOVE_SCORES[type]) {
+    if (type.startsWith("win-by")) updatedScores[winner] += MOVE_SCORES.win;
     updatedScores[playerTurn] += MOVE_SCORES[type];
     return updatedScores;
   }
 
   if (winner === "Draw!") {
-    updatedScores[SYMBOL_X] += 5;
-    updatedScores[SYMBOL_O] += 5;
+    updatedScores[SYMBOL_X] += MOVE_SCORES.draw;
+    updatedScores[SYMBOL_O] += MOVE_SCORES.draw;
     return updatedScores;
   }
 
   if (winner) {
-    updatedScores[winner] += 10;
+    updatedScores[winner] += MOVE_SCORES.win;
   }
 
   return updatedScores;

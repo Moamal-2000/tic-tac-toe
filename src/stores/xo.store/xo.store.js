@@ -117,7 +117,7 @@ export const useXOStore = create((set, get) => ({
     if (theWinner !== "None" || noSquaresAvailable) {
       set({ winner: isDraw ? "Draw!" : theWinner, hasGameStart: false });
       updateStatsOnWin({ theWinner, isDraw });
-      showWinnerPopup();
+      showWinnerPopup(`win-by-${usedPowerUp}`);
     }
   },
 
