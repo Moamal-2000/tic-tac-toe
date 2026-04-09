@@ -23,6 +23,7 @@ export const MOVE_SCORES = {
   "freeze-square": 2,
   "draw-by-swap": 3,
   "win-by-swap": 4,
+  "win-by-bomb": 10,
 };
 
 export const MODEL_CLOSE_KEYS = ["Escape", "Backspace"];

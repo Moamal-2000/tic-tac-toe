@@ -319,7 +319,7 @@ export const useXOStore = create((set, get) => ({
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "bomb" });
       handlePowerUpsCoolDown();
-      declareWinner(newBoard);
+      declareWinner(newBoard, "bomb");
     }, timeout);
   },
 
