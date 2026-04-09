@@ -164,6 +164,7 @@ export function getBombSquareStates({
   board,
   rowIndex,
   columnIndex,
+  playerTurn,
   radius = 1,
 }) {
   const bombSquareStates = [];
@@ -189,12 +190,12 @@ export function getBombSquareStates({
         continue;
       }
 
-      if (squareData.fillWith === SYMBOL_X) {
+      if (squareData.fillWith === playerTurn) {
         bombSquareStates.push("bomb-player-square");
         continue;
       }
 
-      if (squareData.fillWith === SYMBOL_O) {
+      if (squareData.fillWith && squareData.fillWith !== playerTurn) {
         bombSquareStates.push("bomb-opponent-square");
         continue;
       }
@@ -211,7 +212,12 @@ export function applyBombScores({
   playerTurn,
   updatedScores,
 }) {
-  const squaresStats = getBombSquareStates({ board, rowIndex, columnIndex });
+  const squaresStats = getBombSquareStates({
+    board,
+    rowIndex,
+    columnIndex,
+    playerTurn,
+  });
 
   for (let i = 0; i < squaresStats.length; i++) {
     updatedScores[playerTurn] += MOVE_SCORES[squaresStats[i]];
