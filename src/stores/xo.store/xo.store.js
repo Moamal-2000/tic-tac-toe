@@ -267,9 +267,17 @@ export const useXOStore = create((set, get) => ({
 
   // Bomb Power-Up
   bombSquares: (requiredData) => {
-    const { board, powerUps, playerTurn, scheduleBombDeletion } = get();
+    const { board, powerUps, playerTurn, scheduleBombDeletion, scores } = get();
     const { rowIndex, columnIndex } = requiredData;
 
+    const updatedScores = getUpdatedScores({
+      scores,
+      playerTurn,
+      type: "bomb-squares",
+      board,
+      rowIndex,
+      columnIndex,
+    });
     const newBoard = updateBoard({
       board,
       rowIndex,
@@ -279,7 +287,7 @@ export const useXOStore = create((set, get) => ({
     });
     const updatedPowerUps = { ...powerUps, hasActivePowerUp: true };
 
-    set({ board: newBoard, powerUps: updatedPowerUps });
+    set({ board: newBoard, powerUps: updatedPowerUps, scores: updatedScores });
     scheduleBombDeletion({ rowIndex, columnIndex });
   },
 
@@ -290,7 +298,6 @@ export const useXOStore = create((set, get) => ({
   }) => {
     const {
       board,
-      scores,
       powerUps,
       playerTurn,
       unSelectPower,
@@ -312,12 +319,7 @@ export const useXOStore = create((set, get) => ({
 
       const updatedPowerUps = { ...powerUps, hasActivePowerUp: false };
 
-      set({
-        board: newBoard,
-        playerTurn: opponent,
-        powerUps: updatedPowerUps,
-        scores: getUpdatedScores({ scores, playerTurn, type: "bomb-squares" }),
-      });
+      set({ board: newBoard, playerTurn: opponent, powerUps: updatedPowerUps });
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "bomb" });
       handlePowerUpsCoolDown();

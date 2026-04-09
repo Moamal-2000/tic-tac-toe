@@ -118,7 +118,15 @@ export function getPlacedSymbolCount(board) {
   return board.flat().filter((square) => square.fillWith).length;
 }
 
-export function getUpdatedScores({ scores, winner, playerTurn, type } = {}) {
+export function getUpdatedScores({
+  scores,
+  winner,
+  playerTurn,
+  type,
+  board,
+  rowIndex,
+  columnIndex,
+} = {}) {
   if (!scores) return EMPTY_SCORES;
 
   const updatedScores = { ...scores };
@@ -126,6 +134,16 @@ export function getUpdatedScores({ scores, winner, playerTurn, type } = {}) {
   if (type && MOVE_SCORES[type]) {
     if (type.startsWith("win-by")) updatedScores[winner] += MOVE_SCORES.win;
     updatedScores[playerTurn] += MOVE_SCORES[type];
+
+    if (type === "bomb-squares")
+      applyBombScores({
+        board,
+        rowIndex,
+        columnIndex,
+        playerTurn,
+        updatedScores,
+      });
+
     return updatedScores;
   }
 
@@ -140,4 +158,62 @@ export function getUpdatedScores({ scores, winner, playerTurn, type } = {}) {
   }
 
   return updatedScores;
+}
+
+export function getBombSquareStates({
+  board,
+  rowIndex,
+  columnIndex,
+  radius = 1,
+}) {
+  const bombSquareStates = [];
+  const boardSize = board.length;
+
+  for (let rowOffset = -radius; rowOffset <= radius; rowOffset += 1) {
+    for (let colOffset = -radius; colOffset <= radius; colOffset += 1) {
+      const currentRow = rowIndex + rowOffset;
+      const currentCol = columnIndex + colOffset;
+
+      const isOutOfBounds =
+        currentRow < 0 ||
+        currentCol < 0 ||
+        currentRow >= boardSize ||
+        currentCol >= boardSize;
+
+      if (isOutOfBounds) continue;
+
+      const squareData = board[currentRow][currentCol];
+
+      if (squareData.isFrozen) {
+        bombSquareStates.push("unfreeze");
+        continue;
+      }
+
+      if (squareData.fillWith === SYMBOL_X) {
+        bombSquareStates.push("bomb-player-square");
+        continue;
+      }
+
+      if (squareData.fillWith === SYMBOL_O) {
+        bombSquareStates.push("bomb-opponent-square");
+        continue;
+      }
+    }
+  }
+
+  return bombSquareStates;
+}
+
+export function applyBombScores({
+  board,
+  rowIndex,
+  columnIndex,
+  playerTurn,
+  updatedScores,
+}) {
+  const squaresStats = getBombSquareStates({ board, rowIndex, columnIndex });
+
+  for (let i = 0; i < squaresStats.length; i++) {
+    updatedScores[playerTurn] += MOVE_SCORES[squaresStats[i]];
+  }
 }
