@@ -290,6 +290,7 @@ export const useXOStore = create((set, get) => ({
   }) => {
     const {
       board,
+      scores,
       powerUps,
       playerTurn,
       unSelectPower,
@@ -315,6 +316,7 @@ export const useXOStore = create((set, get) => ({
         board: newBoard,
         playerTurn: opponent,
         powerUps: updatedPowerUps,
+        scores: getUpdatedScores({ scores, playerTurn, type: "bomb-squares" }),
       });
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "bomb" });
@@ -361,6 +363,7 @@ export const useXOStore = create((set, get) => ({
     const { rowIndex, columnIndex } = requiredData;
     const {
       board,
+      scores,
       powerUps,
       playerTurn,
       unSelectPower,
@@ -388,6 +391,7 @@ export const useXOStore = create((set, get) => ({
         playerTurn: opponent,
         squaresToSwap: [],
         powerUps: updatedPowerUps,
+        scores: getUpdatedScores({ scores, playerTurn, type: "swap-squares" }),
       });
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "swap" });

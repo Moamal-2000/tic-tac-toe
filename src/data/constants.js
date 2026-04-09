@@ -21,6 +21,8 @@ export const MOVE_SCORES = {
   win: 10,
   draw: 5,
   "freeze-square": 2,
+  "bomb-squares": 2,
+  "swap-squares": 2,
   "draw-by-swap": 3,
   "win-by-swap": 4,
   "win-by-bomb": 10,
