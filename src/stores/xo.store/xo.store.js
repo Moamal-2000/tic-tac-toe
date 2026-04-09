@@ -52,6 +52,7 @@ export const useXOStore = create((set, get) => ({
       handlePowerUpsCoolDown,
       playMode,
       squareHiddenTime,
+      scores,
     } = get();
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const newBoard = updateBoard({
@@ -67,7 +68,11 @@ export const useXOStore = create((set, get) => ({
     const noSquaresAvailable = hasNoSquaresAvailable(newBoard);
     const hasPlayerWin = theWinner !== "None" || noSquaresAvailable;
 
-    set({ board: newBoard, playerTurn: hasPlayerWin ? playerTurn : opponent });
+    set({
+      board: newBoard,
+      playerTurn: hasPlayerWin ? playerTurn : opponent,
+      scores: { ...scores, [playerTurn]: scores[playerTurn] + 1 },
+    });
     handlePowerUpsCoolDown();
     declareWinner(newBoard);
   },
@@ -87,7 +92,7 @@ export const useXOStore = create((set, get) => ({
         stats: initialStats(),
         playMode,
         squareHiddenTime,
-      })
+      }),
     );
   },
 

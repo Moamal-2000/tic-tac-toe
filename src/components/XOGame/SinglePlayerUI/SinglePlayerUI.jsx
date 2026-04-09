@@ -1,4 +1,4 @@
-import { SCREEN_SIZES } from "@/data/constants";
+import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import useComputerBot from "@/hooks/app/useComputerBot";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "../GameStats/GameStats";
@@ -21,6 +21,8 @@ const SinglePlayerUI = () => {
         <PowerUps player="player2" />
       </div>
 
+      <Scores />
+
       <XOBoard />
       <PlayerTurnIndicator
         playerTurn={playerTurn}
@@ -33,3 +35,18 @@ const SinglePlayerUI = () => {
 };
 
 export default SinglePlayerUI;
+
+function Scores() {
+  const { scores } = useXOStore();
+
+  return (
+    <div className={s.scores} style={{ display: "flex", gap: "10px" }}>
+      <div className={s.score} style={{ color: "red" }}>
+        {scores[SYMBOL_O]}
+      </div>
+      <div className={s.score} style={{ color: "cyan" }}>
+        {scores[SYMBOL_X]}
+      </div>
+    </div>
+  );
+}
