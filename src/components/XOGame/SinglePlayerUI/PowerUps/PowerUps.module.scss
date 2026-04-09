@@ -6,7 +6,6 @@
   background: #242c39;
   padding: 15px;
   border-radius: 12px;
-  border: 1px solid #3a414d;
 
   &.hidden {
     display: none;
@@ -24,7 +23,7 @@
   .powerUps {
     flex-direction: column;
   }
-  
+
   html[lang=hu] .powerUps {
     padding: 15px;
   }
@@ -41,4 +40,18 @@
       display: flex;
     }
   }
+}
+
+.powerUps.player1 {
+  border: solid 2px #ff6b6b;
+  box-shadow:
+    0 0 1px 1px rgba(255, 107, 107, .6),
+    0 0 1px 1px rgba(255, 107, 107, .6) inset;
+}
+
+.powerUps.player2 {
+  border: solid 2px #4ecdc4;
+  box-shadow:
+    0 0 1px 1px rgba(78, 205, 196, .6),
+    0 0 1px 1px rgba(78, 205, 196, .6) inset;
 }

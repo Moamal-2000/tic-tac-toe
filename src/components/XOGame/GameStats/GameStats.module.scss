@@ -8,9 +8,12 @@
   background-color: #252c3a;
   padding: 20px;
   border-radius: 16px;
-  border: 1px solid #3b424e;
+  border: solid 2px #ffc833;
   width: 100%;
   min-height: 98px;
+  box-shadow:
+    0 0 1px 1px rgba(255, 200, 51, .6),
+    0 0 1px 1px rgba(255, 200, 51, .6) inset;
 
   &.x3 {
     width: 100%;
