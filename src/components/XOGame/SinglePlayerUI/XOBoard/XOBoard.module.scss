@@ -7,27 +7,6 @@
   border-radius: 16px;
   border: 2px solid #39414b;
   position: relative;
-
-  &.xTurn {
-    border-color: #4ecdc4;
-    box-shadow:
-      0 0 1px 1px rgba(78, 205, 196, .6),
-      0 0 1px 1px rgba(78, 205, 196, .6) inset;
-  }
-
-  &.oTurn {
-    border-color: #ff6b6b;
-    box-shadow:
-      0 0 1px 1px rgba(255, 107, 107, .6),
-      0 0 1px 1px rgba(255, 107, 107, .6) inset;
-  }
-
-  &.draw {
-    border-color: #ffc833;
-    box-shadow:
-      0 0 1px 1px rgba(255, 200, 51, .6),
-      0 0 1px 1px rgba(255, 200, 51, .6) inset;
-  }
 }
 
 @include m.media("small") {

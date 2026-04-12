@@ -19,7 +19,7 @@
 
 @include m.media("small") {
   .game {
-    padding-bottom: 30px;
+    // padding-bottom: 30px;
     width: 100%;
   }
 }
@@ -30,54 +30,56 @@
   }
 }
 
-.game .wrapper {
+.game .gameBody {
   display: flex;
-  gap: 30px;
+  align-items: flex-start;
+  gap: 20px;
   width: 100%;
 }
 
 @include m.media("medium") {
-  .game .wrapper {
+  .game .gameBody {
     gap: 20px;
   }
 }
 
 @include m.media("small") {
-  .game .wrapper {
-    flex-direction: column;
-  }
-
-  .game .wrapper>*:nth-child(1) {
-    order: 2;
-  }
-
-  .game .wrapper>*:nth-child(2) {
-    order: 1;
-  }
-
-  .game .wrapper>*:nth-child(3) {
-    order: 3;
+  .game .gameBody {
+    display: block;
+    position: relative;
   }
 }
 
-.game.x3 .wrapper {
+.game.x3 .gameBody {
   width: 100%;
 }
 
 @include m.langs("ru", "hu", "ja") {
-  .game .wrapper {
+  .game .gameBody {
     gap: 20px;
   }
 }
 
 @include m.media("large") {
-  html[lang=hu] .game .wrapper {
+  html[lang=hu] .game .gameBody {
     gap: 10px;
   }
 }
 
 @include m.media("medium") {
-  html[lang=hu] .game .wrapper {
+  html[lang=hu] .game .gameBody {
     gap: 20px;
+  }
+}
+
+.game .gameBoardArea {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@include m.media("small") {
+  .game .gameBoardArea {
+    gap: 185px;
   }
 }

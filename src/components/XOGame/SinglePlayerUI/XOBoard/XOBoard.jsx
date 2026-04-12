@@ -1,17 +1,13 @@
-import { SYMBOL_X } from "@/data/constants";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import BoardRow from "./BoardRow/BoardRow";
 import WinnerPopUp from "./WinnerPopUp/WinnerPopUp";
 import s from "./XOBoard.module.scss";
 
 const XOBoard = () => {
-  const { board, playerTurn, winner } = useXOStore();
-
-  const playerTurnClass = playerTurn === SYMBOL_X ? s.xTurn : s.oTurn;
-  const drawClass = winner === "Draw!" ? s.draw : "";
+  const board = useXOStore((s) => s.board);
 
   return (
-    <div className={`${s.board} ${playerTurnClass} ${drawClass}`}>
+    <div className={s.board}>
       <WinnerPopUp />
 
       {board.map((row, rowIndex) => (

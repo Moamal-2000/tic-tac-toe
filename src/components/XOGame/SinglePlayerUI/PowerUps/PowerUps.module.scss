@@ -2,10 +2,14 @@
 
 .powerUps {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
   background: #242c39;
+  border: 1px solid #3a414d;
   padding: 15px;
+  padding-top: 50px;
   border-radius: 12px;
+  overflow: hidden;
+  position: relative;
 
   &.hidden {
     display: none;
@@ -19,39 +23,55 @@
   }
 }
 
-@include m.media("medium") {
+@include m.media("small") {
   .powerUps {
+    position: absolute;
+    top: 255px;
+    width: 100%;
+    left: 0;
+    padding-bottom: 6px;
+    display: none;
+  }
+
+  .powerUps:where(.player1, .player2):not(.hidden).display {
+    display: flex;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.powerUpsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+@include m.media("medium") {
+  .powerUpsWrapper {
     flex-direction: column;
   }
 
-  html[lang=hu] .powerUps {
+  html[lang=hu] .powerUpsWrapper {
     padding: 15px;
   }
 }
 
 @include m.media("small") {
-  .powerUps {
+  .powerUpsWrapper {
     padding: 10px;
     flex-direction: row;
-    justify-content: center;
-    display: none;
-
-    &:where(.player1, .player2):not(.hidden).display {
-      display: flex;
-    }
+    padding-inline: 0;
   }
-}
-
-.powerUps.player1 {
-  border: solid 2px #ff6b6b;
-  box-shadow:
-    0 0 1px 1px rgba(255, 107, 107, .6),
-    0 0 1px 1px rgba(255, 107, 107, .6) inset;
-}
-
-.powerUps.player2 {
-  border: solid 2px #4ecdc4;
-  box-shadow:
-    0 0 1px 1px rgba(78, 205, 196, .6),
-    0 0 1px 1px rgba(78, 205, 196, .6) inset;
 }

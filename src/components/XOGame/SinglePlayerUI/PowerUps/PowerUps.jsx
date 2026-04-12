@@ -4,11 +4,12 @@ import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import { POWER_UPS_BUTTONS } from "@/data/staticData";
 import { shouldDisablePowerUp } from "@/functions/accessibilityHelper";
 import { useXOStore } from "@/stores/xo.store/xo.store";
+import PlayerScore from "./PlayerScore/PlayerScore";
 import PowerUpButton from "./PowerUpButton/PowerUpButton";
 import s from "./PowerUps.module.scss";
 
 const PowerUps = ({ player }) => {
-  const { boardSize, board, powerUps, playerTurn, winner, playMode } =
+  const { boardSize, board, powerUps, playerTurn, winner, playMode, scores } =
     useXOStore();
 
   if (playMode === "autoHideMode") return null;
@@ -16,6 +17,7 @@ const PowerUps = ({ player }) => {
   const playerPowerUps = Object.entries(powerUps[player]);
   const isPlayer1 = playerTurn !== SYMBOL_O && player === "player1";
   const isPlayer2 = playerTurn !== SYMBOL_X && player === "player2";
+  const score = scores[player === "player1" ? SYMBOL_O : SYMBOL_X];
 
   const isMyTurn =
     (player === "player2" && !isPlayer2) ||
@@ -31,28 +33,34 @@ const PowerUps = ({ player }) => {
 
   return (
     <div className={classes}>
-      {POWER_UPS_BUTTONS.map((buttonData, index) => {
-        const { available, coolDown } = playerPowerUps[index][1];
-        const disable = shouldDisablePowerUp({
-          available,
-          powerName: buttonData.name,
-          board,
-          playerTurn,
-          winner,
-          isPlayer1,
-          isPlayer2,
-          powerUps,
-          isMyTurn,
-        });
+      <header className={s.header}>
+        <PlayerScore score={score} player={player} />
+      </header>
 
-        return (
-          <PowerUpButton
-            key={buttonData.name}
-            data={{ ...buttonData, available, coolDown, player }}
-            disabled={disable}
-          />
-        );
-      })}
+      <div className={s.powerUpsWrapper}>
+        {POWER_UPS_BUTTONS.map((buttonData, index) => {
+          const { available, coolDown } = playerPowerUps[index][1];
+          const disable = shouldDisablePowerUp({
+            available,
+            powerName: buttonData.name,
+            board,
+            playerTurn,
+            winner,
+            isPlayer1,
+            isPlayer2,
+            powerUps,
+            isMyTurn,
+          });
+
+          return (
+            <PowerUpButton
+              key={buttonData.name}
+              data={{ ...buttonData, available, coolDown, player }}
+              disabled={disable}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -24,7 +24,7 @@ export const MOVE_SCORES = {
   "bomb-player-square": -1,
   "bomb-opponent-square": 1,
   "freeze-square": 2,
-  "bomb-squares": 2,
+  "bomb-squares": 2, // Disable this (calc will happen based on bombed symbols)
   "swap-squares": 2,
   "draw-by-swap": 3,
   "win-by-swap": 4,
