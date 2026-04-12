@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "^16.2.2",
-    "next-intl": "^4.9.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "next": "^16.2.3",
+    "next-intl": "^4.9.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "socket.io-client": "^4.8.3",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "^1.0.0",
-    "sass": "^1.98.0"
+    "sass": "^1.99.0"
   }
 }
