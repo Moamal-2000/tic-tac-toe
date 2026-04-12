@@ -68,11 +68,12 @@
     "draws": "C'est Match Nul!",
     "p2_wins": "Le Joueur 2 Gagne!"
   },
-  "game_stats": {
-    "p1_wins": "Victoires J1",
-    "draws": "Matchs nuls",
-    "p2_wins": "Victoires J2"
-  },
+    "game_stats": {
+      "title": "Statistiques du jeu",
+      "p1_wins": "Victoires J1",
+      "draws": "Matchs nuls",
+      "p2_wins": "Victoires J2"
+    },
   "power_ups": {
     "freeze": "Geler",
     "bomb": "Bombe",

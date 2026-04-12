@@ -24,7 +24,7 @@ const GameStats = ({ stats }) => {
   return (
     <div className={`${s.gameStats} ${board3Class}`}>
       <header className={s.header}>
-        <h2>Game Statistics</h2>
+        <h2>{t("title")}</h2>
       </header>
 
       <PlayerTurnIndicator

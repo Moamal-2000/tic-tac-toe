@@ -68,11 +68,12 @@
     "draws": "Döntetlen!",
     "p2_wins": "A 2. Játékos Nyert!"
   },
-  "game_stats": {
-    "p1_wins": "1. játékos győzelmei",
-    "draws": "Döntetlenek",
-    "p2_wins": "2. játékos győzelmei"
-  },
+    "game_stats": {
+      "title": "Játékstatisztika",
+      "p1_wins": "1. játékos győzelmei",
+      "draws": "Döntetlenek",
+      "p2_wins": "2. játékos győzelmei"
+    },
   "power_ups": {
     "freeze": "Fagyasztás",
     "bomb": "Bomba",
