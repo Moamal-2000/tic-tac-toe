@@ -23,6 +23,18 @@ const GameStats = ({ stats }) => {
 
   return (
     <div className={`${s.gameStats} ${board3Class}`}>
+      <header className={s.header}>
+        <h2>{t("title")}</h2>
+      </header>
+
+      <PlayerTurnIndicator
+        playerTurn={playerTurn}
+        boardSize={boardSize}
+        winner={winner}
+        showOn={SCREEN_SIZES.medium.size}
+        hideUntilShow={true}
+      />
+
       <div className={s.stats}>
         <div className={`${s.stat} ${s.player1}`}>
           <span className={s.value}>{stats.p1Wins}</span>
@@ -39,14 +51,6 @@ const GameStats = ({ stats }) => {
           <span className={s.label}>{t("p2_wins")}</span>
         </div>
       </div>
-
-      <PlayerTurnIndicator
-        playerTurn={playerTurn}
-        boardSize={boardSize}
-        winner={winner}
-        showOn={SCREEN_SIZES.medium.size}
-        hideUntilShow={true}
-      />
     </div>
   );
 };

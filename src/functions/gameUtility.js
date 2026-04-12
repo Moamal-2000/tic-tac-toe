@@ -1,4 +1,9 @@
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import {
+  EMPTY_SCORES,
+  MOVE_SCORES,
+  SYMBOL_O,
+  SYMBOL_X,
+} from "@/data/constants";
 
 export function hasNoSquaresAvailable(board) {
   return board.every((row) => row.every(({ fillWith }) => fillWith));
@@ -111,4 +116,110 @@ export function opponentSymbolExists(board, playerTurn) {
 
 export function getPlacedSymbolCount(board) {
   return board.flat().filter((square) => square.fillWith).length;
+}
+
+export function getUpdatedScores({
+  scores,
+  winner,
+  playerTurn,
+  type,
+  board,
+  rowIndex,
+  columnIndex,
+} = {}) {
+  if (!scores) return EMPTY_SCORES;
+
+  const updatedScores = { ...scores };
+
+  if (type && MOVE_SCORES[type]) {
+    if (type.startsWith("win-by")) updatedScores[winner] += MOVE_SCORES.win;
+    updatedScores[playerTurn] += MOVE_SCORES[type];
+
+    if (type === "bomb-squares")
+      applyBombScores({
+        board,
+        rowIndex,
+        columnIndex,
+        playerTurn,
+        updatedScores,
+      });
+
+    return updatedScores;
+  }
+
+  if (winner === "Draw!") {
+    updatedScores[SYMBOL_X] += MOVE_SCORES.draw;
+    updatedScores[SYMBOL_O] += MOVE_SCORES.draw;
+    return updatedScores;
+  }
+
+  if (winner) {
+    updatedScores[winner] += MOVE_SCORES.win;
+  }
+
+  return updatedScores;
+}
+
+export function getBombSquareStates({
+  board,
+  rowIndex,
+  columnIndex,
+  playerTurn,
+  radius = 1,
+}) {
+  const bombSquareStates = [];
+  const boardSize = board.length;
+
+  for (let rowOffset = -radius; rowOffset <= radius; rowOffset += 1) {
+    for (let colOffset = -radius; colOffset <= radius; colOffset += 1) {
+      const currentRow = rowIndex + rowOffset;
+      const currentCol = columnIndex + colOffset;
+
+      const isOutOfBounds =
+        currentRow < 0 ||
+        currentCol < 0 ||
+        currentRow >= boardSize ||
+        currentCol >= boardSize;
+
+      if (isOutOfBounds) continue;
+
+      const squareData = board[currentRow][currentCol];
+
+      if (squareData.isFrozen) {
+        bombSquareStates.push("unfreeze");
+        continue;
+      }
+
+      if (squareData.fillWith === playerTurn) {
+        bombSquareStates.push("bomb-player-square");
+        continue;
+      }
+
+      if (squareData.fillWith && squareData.fillWith !== playerTurn) {
+        bombSquareStates.push("bomb-opponent-square");
+        continue;
+      }
+    }
+  }
+
+  return bombSquareStates;
+}
+
+export function applyBombScores({
+  board,
+  rowIndex,
+  columnIndex,
+  playerTurn,
+  updatedScores,
+}) {
+  const squaresStats = getBombSquareStates({
+    board,
+    rowIndex,
+    columnIndex,
+    playerTurn,
+  });
+
+  for (let i = 0; i < squaresStats.length; i++) {
+    updatedScores[playerTurn] += MOVE_SCORES[squaresStats[i]];
+  }
 }

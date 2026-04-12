@@ -15,13 +15,17 @@ const SinglePlayerUI = () => {
 
   return (
     <section className={`${s.game} ${board3Class}`}>
-      <div className={s.wrapper}>
+      <div className={s.gameBody}>
         <PowerUps player="player1" />
-        <GameStats stats={stats} boardSize={boardSize} />
+
+        <div className={s.gameBoardArea}>
+          <GameStats stats={stats} boardSize={boardSize} />
+          <XOBoard />
+        </div>
+
         <PowerUps player="player2" />
       </div>
 
-      <XOBoard />
       <PlayerTurnIndicator
         playerTurn={playerTurn}
         boardSize={boardSize}

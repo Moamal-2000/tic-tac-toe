@@ -30,12 +30,6 @@ html[lang=ja] .indicator {
   }
 }
 
-@media (max-width: 300px) {
-  .indicator {
-    max-width: 100%;
-  }
-}
-
 .indicator .player {
   display: flex;
   flex-direction: column;
@@ -112,13 +106,6 @@ html[lang=ja] .indicator {
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: color .3s ease;
-}
-
-@media (max-width: 300px) {
-  .indicator .player .label {
-    font-size: .8rem;
-    letter-spacing: 1px;
-  }
 }
 
 .indicator:not(.disable) .player.p1.active .label {

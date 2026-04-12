@@ -68,11 +68,12 @@
     "draws": "It's a Draw!",
     "p2_wins": "Player 2 Wins!"
   },
-  "game_stats": {
-    "p1_wins": "P1 Wins",
-    "draws": "Draws",
-    "p2_wins": "P2 Wins"
-  },
+    "game_stats": {
+      "title": "Game Statistics",
+      "p1_wins": "P1 Wins",
+      "draws": "Draws",
+      "p2_wins": "P2 Wins"
+    },
   "power_ups": {
     "freeze": "Freeze",
     "bomb": "Bomb",

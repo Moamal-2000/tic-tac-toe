@@ -1,0 +1,60 @@
+@use "@/styles/mixins" as m;
+
+.playerScore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: solid 3px;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  padding: 6px 10px;
+  width: 100%;
+
+  &.player1 {
+    color: #ff6b6b;
+  }
+
+  &.player2 {
+    color: #4ecdc4;
+    flex-direction: row-reverse;
+  }
+}
+
+@include m.media("medium") {
+  .playerScore {
+    justify-content: center;
+  }
+}
+
+@include m.media("small") {
+  .playerScore {
+    justify-content: space-between;
+  }
+}
+
+.playerScore>h2 {
+  color: #d3d5d8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+@include m.media("medium") {
+  .playerScore>h2 {
+    display: none;
+  }
+}
+
+@include m.media("small") {
+  .playerScore>h2 {
+    display: block;
+  }
+}
+
+.playerScore>span {
+  font-family: "digital7";
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}

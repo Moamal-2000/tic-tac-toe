@@ -19,6 +19,7 @@ import {
 } from "@/functions/boardUpdater";
 import {
   bothPlayersWonWithSwap,
+  getUpdatedScores,
   hasNoSquaresAvailable,
   updateCoolDownStatus,
   whoWins,
@@ -52,6 +53,7 @@ export const useXOStore = create((set, get) => ({
       handlePowerUpsCoolDown,
       playMode,
       squareHiddenTime,
+      scores,
     } = get();
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const newBoard = updateBoard({
@@ -67,7 +69,11 @@ export const useXOStore = create((set, get) => ({
     const noSquaresAvailable = hasNoSquaresAvailable(newBoard);
     const hasPlayerWin = theWinner !== "None" || noSquaresAvailable;
 
-    set({ board: newBoard, playerTurn: hasPlayerWin ? playerTurn : opponent });
+    set({
+      board: newBoard,
+      playerTurn: hasPlayerWin ? playerTurn : opponent,
+      scores: getUpdatedScores({ scores, playerTurn, type: "fill" }),
+    });
     handlePowerUpsCoolDown();
     declareWinner(newBoard);
   },
@@ -87,7 +93,7 @@ export const useXOStore = create((set, get) => ({
         stats: initialStats(),
         playMode,
         squareHiddenTime,
-      })
+      }),
     );
   },
 
@@ -104,14 +110,14 @@ export const useXOStore = create((set, get) => ({
     if (bothPlayersWonBySwap) {
       set({ winner: "Draw!", hasGameStart: false });
       updateStatsOnWin({ theWinner: "None", isDraw: true });
-      showWinnerPopup();
+      showWinnerPopup("draw-by-swap");
       return;
     }
 
     if (theWinner !== "None" || noSquaresAvailable) {
       set({ winner: isDraw ? "Draw!" : theWinner, hasGameStart: false });
       updateStatsOnWin({ theWinner, isDraw });
-      showWinnerPopup();
+      showWinnerPopup(`win-by-${usedPowerUp}`);
     }
   },
 
@@ -127,8 +133,17 @@ export const useXOStore = create((set, get) => ({
     return updatedStats;
   },
 
-  showWinnerPopup: () => {
-    set({ isWinnerPopupVisible: true });
+  showWinnerPopup: (winType) => {
+    const { scores, winner, playerTurn } = get();
+    const updatedScores = getUpdatedScores({
+      scores,
+      winner,
+      type: winType,
+      playerTurn: playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X,
+    });
+
+    set({ isWinnerPopupVisible: true, scores: updatedScores });
+
     setTimeout(() => {
       set({ isWinnerPopupVisible: false });
     }, WINNER_POPUP_DURATION_MS);
@@ -204,8 +219,14 @@ export const useXOStore = create((set, get) => ({
   // Freeze Power-Up
   freezeSquare: (requiredData) => {
     const { rowIndex, columnIndex, squareData } = requiredData;
-    const { board, powerUps, playerTurn, unSelectPower, disablePowerUp } =
-      get();
+    const {
+      board,
+      powerUps,
+      playerTurn,
+      unSelectPower,
+      disablePowerUp,
+      scores,
+    } = get();
     const { whoUsingPower, selectedPower } = powerUps;
     const opponent = playerTurn === SYMBOL_X ? SYMBOL_O : SYMBOL_X;
     const isEmptySquare = squareData.fillWith === "";
@@ -235,16 +256,28 @@ export const useXOStore = create((set, get) => ({
       powerUp: selectedPower,
     });
 
-    set({ board: newBoard, playerTurn: opponent });
+    set({
+      board: newBoard,
+      playerTurn: opponent,
+      scores: getUpdatedScores({ scores, playerTurn, type: "freeze-square" }),
+    });
     unSelectPower();
     disablePowerUp({ whoUsingPower, powerUpKey: "freeze" });
   },
 
   // Bomb Power-Up
   bombSquares: (requiredData) => {
-    const { board, powerUps, playerTurn, scheduleBombDeletion } = get();
+    const { board, powerUps, playerTurn, scheduleBombDeletion, scores } = get();
     const { rowIndex, columnIndex } = requiredData;
 
+    const updatedScores = getUpdatedScores({
+      scores,
+      playerTurn,
+      type: "bomb-squares",
+      board,
+      rowIndex,
+      columnIndex,
+    });
     const newBoard = updateBoard({
       board,
       rowIndex,
@@ -254,7 +287,7 @@ export const useXOStore = create((set, get) => ({
     });
     const updatedPowerUps = { ...powerUps, hasActivePowerUp: true };
 
-    set({ board: newBoard, powerUps: updatedPowerUps });
+    set({ board: newBoard, powerUps: updatedPowerUps, scores: updatedScores });
     scheduleBombDeletion({ rowIndex, columnIndex });
   },
 
@@ -286,15 +319,11 @@ export const useXOStore = create((set, get) => ({
 
       const updatedPowerUps = { ...powerUps, hasActivePowerUp: false };
 
-      set({
-        board: newBoard,
-        playerTurn: opponent,
-        powerUps: updatedPowerUps,
-      });
+      set({ board: newBoard, playerTurn: opponent, powerUps: updatedPowerUps });
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "bomb" });
       handlePowerUpsCoolDown();
-      declareWinner(newBoard);
+      declareWinner(newBoard, "bomb");
     }, timeout);
   },
 
@@ -322,7 +351,7 @@ export const useXOStore = create((set, get) => ({
 
       playSound(UNSELECT_SOUND, 0.3);
       set({ board: newBoard, squaresToSwap: [] });
-      return "Unselect squares";
+      return "Unselect square";
     }
 
     if (isSecondSelection) {
@@ -336,6 +365,7 @@ export const useXOStore = create((set, get) => ({
     const { rowIndex, columnIndex } = requiredData;
     const {
       board,
+      scores,
       powerUps,
       playerTurn,
       unSelectPower,
@@ -363,6 +393,7 @@ export const useXOStore = create((set, get) => ({
         playerTurn: opponent,
         squaresToSwap: [],
         powerUps: updatedPowerUps,
+        scores: getUpdatedScores({ scores, playerTurn, type: "swap-squares" }),
       });
       unSelectPower();
       disablePowerUp({ whoUsingPower, powerUpKey: "swap" });

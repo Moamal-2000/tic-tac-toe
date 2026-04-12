@@ -1,4 +1,5 @@
 import {
+  EMPTY_SCORES,
   FIRST_PLAYER,
   INITIAL_BOARD_SIZE,
   INITIAL_PLAY_MODE,
@@ -28,6 +29,7 @@ export const initialGameStates = ({
     whoUsingPower: null,
     hasActivePowerUp: false,
   },
+  scores: EMPTY_SCORES,
 });
 
 export const initialStats = ({ p1Wins = 0, draws = 0, p2Wins = 0 } = {}) => ({
@@ -60,7 +62,7 @@ export function getInitialCoolDown(boardSize) {
 export function createBoardBySize(
   size = INITIAL_BOARD_SIZE,
   playMode,
-  squareHiddenTime
+  squareHiddenTime,
 ) {
   const InitialSquare = {
     fillWith: "",
