@@ -37,7 +37,9 @@ const GameStats = ({ stats }) => {
 
       <div className={s.stats}>
         <div className={`${s.stat} ${s.player1}`}>
-          <span className={s.value}>{stats.p1Wins}</span>
+          <span className={s.value} data-score-target="player1">
+            {stats.p1Wins}
+          </span>
           <span className={s.label}>{t("p1_wins")}</span>
         </div>
 
@@ -47,7 +49,9 @@ const GameStats = ({ stats }) => {
         </div>
 
         <div className={`${s.stat} ${s.player2}`}>
-          <span className={s.value}>{stats.p2Wins}</span>
+          <span className={s.value} data-score-target="player2">
+            {stats.p2Wins}
+          </span>
           <span className={s.label}>{t("p2_wins")}</span>
         </div>
       </div>
