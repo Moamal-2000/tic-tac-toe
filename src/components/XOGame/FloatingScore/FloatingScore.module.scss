@@ -1,0 +1,47 @@
+.floatingScore {
+  position: fixed;
+  pointer-events: none;
+  font-size: 2.3rem;
+  z-index: 1000;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
+  transform-origin: center center;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  transition: none;
+
+  &.active {
+    animation: floatToTarget var(--duration) ease-out forwards;
+  }
+}
+
+.player1 {
+  color: #ff6b6b;
+  text-shadow: 0 0 12px rgba(255, 107, 107, 0.6);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.player2 {
+  color: #4ecdc4;
+  text-shadow: 0 0 12px rgba(78, 205, 196, 0.6);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes floatToTarget {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(calc(var(--target-x) - var(--start-x) - 50%),
+        calc(var(--target-y) - var(--start-y) - 50%)) scale(0.5);
+  }
+}

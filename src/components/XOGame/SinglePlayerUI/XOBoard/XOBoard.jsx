@@ -3,7 +3,7 @@ import BoardRow from "./BoardRow/BoardRow";
 import WinnerPopUp from "./WinnerPopUp/WinnerPopUp";
 import s from "./XOBoard.module.scss";
 
-const XOBoard = () => {
+const XOBoard = ({ animationHook }) => {
   const board = useXOStore((s) => s.board);
 
   return (
@@ -11,7 +11,12 @@ const XOBoard = () => {
       <WinnerPopUp />
 
       {board.map((row, rowIndex) => (
-        <BoardRow key={rowIndex} row={row} rowIndex={rowIndex} />
+        <BoardRow
+          key={rowIndex}
+          row={row}
+          rowIndex={rowIndex}
+          animationHook={animationHook}
+        />
       ))}
     </div>
   );

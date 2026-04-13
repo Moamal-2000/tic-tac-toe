@@ -223,3 +223,25 @@ export function applyBombScores({
     updatedScores[playerTurn] += MOVE_SCORES[squaresStats[i]];
   }
 }
+
+export function calculateBombScore({
+  board,
+  rowIndex,
+  columnIndex,
+  playerTurn,
+}) {
+  const squaresStats = getBombSquareStates({
+    board,
+    rowIndex,
+    columnIndex,
+    playerTurn,
+  });
+
+  let totalScore = MOVE_SCORES["bomb-squares"];
+
+  for (let i = 0; i < squaresStats.length; i++) {
+    totalScore += MOVE_SCORES[squaresStats[i]];
+  }
+
+  return totalScore;
+}
