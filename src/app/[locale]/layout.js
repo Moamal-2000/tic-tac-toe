@@ -33,7 +33,7 @@ export default async function RootLayout({ children, params }) {
         <head>
           <link
             rel="preload"
-            href="/fonts/digital-7/digital-7.ttf"
+            href="/fonts/digital-7/digital-7-mono.woff2"
             as="font"
             type="font/ttf"
             crossOrigin="anonymous"
