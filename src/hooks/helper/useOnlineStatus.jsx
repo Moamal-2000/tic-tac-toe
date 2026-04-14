@@ -4,7 +4,7 @@ import { isServer } from "@/functions/helper";
 import { useSyncExternalStore } from "react";
 
 const useOnlineStatus = () => {
-  return useSyncExternalStore(subscribe, snapShoot, () => false);
+  return useSyncExternalStore(subscribe, getSnapShot, () => false);
 };
 
 export default useOnlineStatus;
@@ -21,6 +21,6 @@ function subscribe(callback) {
   };
 }
 
-function snapShoot() {
+function getSnapShot() {
   return typeof navigator !== "undefined" ? navigator.onLine : true;
 }
