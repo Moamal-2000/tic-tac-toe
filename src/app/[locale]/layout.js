@@ -28,8 +28,18 @@ export default async function RootLayout({ children, params }) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} dir={dir}>
-      <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <html lang={locale} dir={dir}>
+        <head>
+          <link
+            rel="preload"
+            href="/fonts/digital-7/digital-7.ttf"
+            as="font"
+            type="font/ttf"
+            crossOrigin="anonymous"
+          />
+        </head>
+
         <body>
           <div className="main-content">
             <MainMenu />
@@ -40,7 +50,7 @@ export default async function RootLayout({ children, params }) {
           <UpdateNotification />
           <ConnectionLabelAlert />
         </body>
-      </NextIntlClientProvider>
-    </html>
+      </html>
+    </NextIntlClientProvider>
   );
 }
