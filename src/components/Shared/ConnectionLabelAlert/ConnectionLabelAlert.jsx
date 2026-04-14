@@ -10,7 +10,7 @@ const ConnectionLabelAlert = () => {
   const t = useTranslations("connectionLabel");
   const isOnline = useOnlineStatus();
 
-  const activeClass = isOnline ? s.active : "";
+  const onlineClass = isOnline ? s.online : "";
   const showClass = isOfflineState ? s.show : "";
 
   const message = t(isOnline ? "internetAvailable" : "internetUnavailable");
@@ -26,7 +26,7 @@ const ConnectionLabelAlert = () => {
   }, [isOnline]);
 
   return (
-    <p className={`${s.labelBody} ${activeClass} ${showClass}`}>{message}</p>
+    <p className={`${s.labelBody} ${onlineClass} ${showClass}`}>{message}</p>
   );
 };
 export default ConnectionLabelAlert;
