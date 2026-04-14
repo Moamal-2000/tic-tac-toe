@@ -1,20 +1,26 @@
 "use client";
 
 import { isServer } from "@/functions/helper";
-import { useEffect, useState } from "react";
-import useEventListener from "./useEventListener";
+import { useSyncExternalStore } from "react";
 
 const useOnlineStatus = () => {
-  const [isOnline, setIsOnline] = useState(true);
-
-  useEffect(() => {
-    setIsOnline(navigator.onLine);
-  }, []);
-
-  useEventListener(isServer ? null : window, "online", () => setIsOnline(true));
-  useEventListener(isServer ? null : window, "offline", () => setIsOnline(false));
-
-  return isOnline;
+  return useSyncExternalStore(subscribe, snapShoot, () => false);
 };
 
 export default useOnlineStatus;
+
+function subscribe(callback) {
+  if (isServer) return () => {};
+
+  window.addEventListener("online", callback);
+  window.addEventListener("offline", callback);
+
+  return () => {
+    window.removeEventListener("online", callback);
+    window.removeEventListener("offline", callback);
+  };
+}
+
+function snapShoot() {
+  return typeof navigator !== "undefined" ? navigator.onLine : true;
+}
