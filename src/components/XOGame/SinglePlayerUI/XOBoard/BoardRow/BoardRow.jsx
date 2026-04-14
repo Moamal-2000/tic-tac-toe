@@ -1,9 +1,9 @@
 import { MOVE_SCORES } from "@/data/constants";
 import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import { shouldDisableSquare } from "@/functions/accessibilityHelper";
-import { calculateBombScore } from "@/functions/gameUtility";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { getAnimationPositions } from "@/hooks/app/useScoreAnimation";
+import { shouldDisableSquare } from "@/lib/accessibilityHelper";
+import { calculateBombScore } from "@/lib/gameUtility";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import XOSquare from "../XOSquare/XOSquare";

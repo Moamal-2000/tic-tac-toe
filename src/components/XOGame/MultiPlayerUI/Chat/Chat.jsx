@@ -1,8 +1,8 @@
 "use client";
 
 import { BUTTON_SOUND } from "@/data/sounds";
-import { scrollToElementBottom } from "@/functions/helper";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
+import { scrollToElementBottom } from "@/lib/helper";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect, useRef, useState } from "react";

@@ -1,5 +1,5 @@
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { hasNoSquaresAvailable, whoWins } from "@/functions/gameUtility";
+import { hasNoSquaresAvailable, whoWins } from "@/lib/gameUtility";
 import { getInitialCoolDown } from "@/stores/xo.store/states";
 
 export function createInitialPowerUps(boardSize) {
@@ -16,7 +16,7 @@ export function createEmptyBoard(boardSize) {
     Array.from({ length: boardSize }, () => ({
       fillWith: "",
       isFrozen: false,
-    }))
+    })),
   );
 }
 
@@ -245,7 +245,7 @@ export function normalizeFromStore({ board, boardSize, playerTurn, powerUps }) {
       row.map((cell) => ({
         fillWith: cell.fillWith,
         isFrozen: !!cell.isFrozen,
-      }))
+      })),
     ),
     powerUps: {
       [SYMBOL_O]: {

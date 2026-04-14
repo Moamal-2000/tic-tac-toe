@@ -1,6 +1,6 @@
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { getSquareAriaLabel } from "@/functions/accessibilityHelper";
-import { getSquareClasses } from "@/functions/classNames";
+import { getSquareAriaLabel } from "@/lib/accessibilityHelper";
+import { getSquareClasses } from "@/lib/classNames";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
@@ -51,8 +51,8 @@ const XOSquare = ({
   const powerUpsForClasses = readOnly
     ? { selectedPower: null, whoUsingPower: null }
     : isMyTurn
-    ? powerUps
-    : { selectedPower: null, whoUsingPower: null };
+      ? powerUps
+      : { selectedPower: null, whoUsingPower: null };
 
   // Handle hover events to broadcast to opponent
   const handleMouseEnter = () => {
@@ -83,15 +83,16 @@ const XOSquare = ({
     opponentHoveredSquare.row === rowIndex &&
     opponentHoveredSquare.col === columnIndex;
 
-  const classes = getSquareClasses({
-    cssModule: s,
-    boardSize: resolvedBoardSize,
-    powerUps: powerUpsForClasses,
-    fillWith: owner,
-    playerTurn: resolvedPlayerTurn,
-    hasSelectSquares,
-    swapSelected,
-  }) + (compact ? ` ${s.compact}` : "");
+  const classes =
+    getSquareClasses({
+      cssModule: s,
+      boardSize: resolvedBoardSize,
+      powerUps: powerUpsForClasses,
+      fillWith: owner,
+      playerTurn: resolvedPlayerTurn,
+      hasSelectSquares,
+      swapSelected,
+    }) + (compact ? ` ${s.compact}` : "");
 
   return (
     <button

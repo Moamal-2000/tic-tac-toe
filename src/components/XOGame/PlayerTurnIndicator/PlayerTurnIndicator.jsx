@@ -1,7 +1,7 @@
 "use client";
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { getPlayerIndicatorClasses } from "@/functions/classNames";
+import { getPlayerIndicatorClasses } from "@/lib/classNames";
 import { useTranslations } from "next-intl";
 import s from "./PlayerTurnIndicator.module.scss";
 

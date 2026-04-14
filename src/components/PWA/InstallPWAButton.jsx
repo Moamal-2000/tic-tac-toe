@@ -1,7 +1,7 @@
 "use client";
 
 import s from "@/components/Shared/Buttons/Button/Button.module.scss";
-import { isInStandaloneMode, isIOS, isStandalone } from "@/functions/helper";
+import { isInStandaloneMode, isIOS, isStandalone } from "@/lib/helper";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 

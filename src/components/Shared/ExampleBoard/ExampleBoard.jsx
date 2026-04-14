@@ -1,4 +1,4 @@
-import { getExampleBoardSquareClasses } from "@/functions/classNames";
+import { getExampleBoardSquareClasses } from "@/lib/classNames";
 import s from "./ExampleBoard.module.scss";
 
 const ExampleBoard = ({ boardData }) => {

@@ -7,10 +7,10 @@ import {
   SWAP_SOUND,
   UNSELECT_SOUND,
 } from "@/data/sounds";
-import { shouldDisableSquare } from "@/functions/accessibilityHelper";
-import { calculateBombScore } from "@/functions/gameUtility";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { getAnimationPositions } from "@/hooks/app/useScoreAnimation";
+import { shouldDisableSquare } from "@/lib/accessibilityHelper";
+import { calculateBombScore } from "@/lib/gameUtility";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import XOSquare from "../XOSquare/XOSquare";

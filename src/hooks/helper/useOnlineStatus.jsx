@@ -1,6 +1,6 @@
 "use client";
 
-import { isServer } from "@/functions/helper";
+import { isServer } from "@/lib/helper";
 import { useSyncExternalStore } from "react";
 
 const useOnlineStatus = () => {

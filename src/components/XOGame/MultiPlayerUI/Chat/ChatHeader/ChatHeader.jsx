@@ -1,6 +1,6 @@
 "use client";
 
-import { scrollToElementBottom } from "@/functions/helper";
+import { scrollToElementBottom } from "@/lib/helper";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";
 import s from "./ChatHeader.module.scss";

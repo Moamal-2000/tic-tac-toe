@@ -1,6 +1,6 @@
 import { applyAction, getWinner, otherPlayer } from "@/ai/engine";
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { whoWins } from "@/functions/gameUtility";
+import { whoWins } from "@/lib/gameUtility";
 
 function hashGameState(state) {
   const parts = [state.boardSize, state.playerTurn];

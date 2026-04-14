@@ -1,7 +1,7 @@
 "use client";
 
 import { IS_PRODUCTION } from "@/data/env";
-import { refreshPage } from "@/functions/helper";
+import { refreshPage } from "@/lib/helper";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import s from "./UpdateNotification.module.scss";

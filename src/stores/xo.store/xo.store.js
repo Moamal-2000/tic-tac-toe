@@ -16,14 +16,14 @@ import {
   unSelectAllSquares,
   unSelectSquare,
   updateBoard,
-} from "@/functions/boardUpdater";
+} from "@/lib/boardUpdater";
 import {
   bothPlayersWonWithSwap,
   getUpdatedScores,
   hasNoSquaresAvailable,
   updateCoolDownStatus,
   whoWins,
-} from "@/functions/gameUtility";
+} from "@/lib/gameUtility";
 import { create } from "zustand";
 import {
   InitialHiddenTimeByBoardSize,

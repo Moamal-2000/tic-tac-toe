@@ -2,7 +2,7 @@
 
 import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
 import { POWER_UPS_BUTTONS } from "@/data/staticData";
-import { shouldDisablePowerUp } from "@/functions/accessibilityHelper";
+import { shouldDisablePowerUp } from "@/lib/accessibilityHelper";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import PlayerScore from "./PlayerScore/PlayerScore";
 import PowerUpButton from "./PowerUpButton/PowerUpButton";
