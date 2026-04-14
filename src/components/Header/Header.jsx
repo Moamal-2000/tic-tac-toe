@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
+import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useTranslations } from "next-intl";
 import GitHubButton from "../Shared/Buttons/GitHubButton/GitHubButton";
 import s from "./Header.module.scss";
@@ -6,11 +9,13 @@ import HeaderButtons from "./HeaderButtons/HeaderButtons";
 import Logo from "./Logo/Logo";
 
 const Header = () => {
+  const menuActive = useGlobalStore().menuActive;
+
   const t = useTranslations("header");
   const logoTitle = t("logo_home");
 
   return (
-    <header className={s.header}>
+    <header className={s.header} inert={menuActive}>
       <div className={s.wrapper}>
         <Link
           href="/"
