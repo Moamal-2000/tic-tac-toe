@@ -120,6 +120,8 @@ const BoardRow = ({ row, rowIndex, animationHook }) => {
         return (
           <XOSquare
             key={columnIndex}
+            rowIndex={rowIndex}
+            columnIndex={columnIndex}
             squareData={squareData}
             disabled={disable}
             onClick={(event) =>

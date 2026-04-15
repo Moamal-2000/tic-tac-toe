@@ -14,7 +14,7 @@ const SinglePlayerUI = () => {
   const board3Class = boardSize === 3 ? s.x3 : "";
   const { animations, removeAnimation, createAnimation } = useScoreAnimation();
 
-  useComputerBot();
+  useComputerBot({ createAnimation });
 
   return (
     <section className={`${s.game} ${board3Class}`}>

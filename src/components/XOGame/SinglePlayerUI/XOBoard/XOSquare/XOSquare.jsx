@@ -4,7 +4,7 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";
 import s from "./XOSquare.module.scss";
 
-const XOSquare = ({ squareData, disabled, onClick }) => {
+const XOSquare = ({ squareData, disabled, onClick, rowIndex, columnIndex }) => {
   const { boardSize, powerUps, squaresToSwap, playerTurn, playMode } =
     useXOStore();
   const t = useTranslations();
@@ -33,6 +33,7 @@ const XOSquare = ({ squareData, disabled, onClick }) => {
       onClick={onClick}
       disabled={disabled}
       aria-label={getSquareAriaLabel(squareData, t)}
+      data-square={`${rowIndex}-${columnIndex}`}
     >
       {fillWith && (
         <svg aria-hidden="true">
