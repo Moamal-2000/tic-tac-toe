@@ -64,10 +64,15 @@ const BoardRow = ({ row, rowIndex, animationHook }) => {
       return;
     }
 
+    const squareData = row[columnIndex];
+    const isAlreadySelected = squareData?.swapSelected;
+
     const shouldAnimate =
       selectedPower === "freeze" ||
       selectedPower === "bomb" ||
-      (selectedPower === "swap" && squaresToSwap.length === 1);
+      (selectedPower === "swap" &&
+        squaresToSwap.length === 1 &&
+        !isAlreadySelected);
 
     if (shouldAnimate) {
       const powerPoints = calculatePowerPoints(rowIndex, columnIndex);
