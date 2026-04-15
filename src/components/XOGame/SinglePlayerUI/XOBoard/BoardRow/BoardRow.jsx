@@ -35,7 +35,7 @@ const BoardRow = ({ row, rowIndex, animationHook }) => {
     squaresToSwap.length === 0;
 
   function triggerScoreAnimation(cellElement, pointsEarned, player) {
-    if (!createAnimation || !cellElement) return;
+    if (!createAnimation || !cellElement || pointsEarned === 0) return;
 
     const targetPlayer = player === "o" ? "player1" : "player2";
     const scoreElement = document.querySelector(

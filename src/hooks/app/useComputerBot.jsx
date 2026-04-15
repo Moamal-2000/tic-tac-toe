@@ -42,7 +42,7 @@ export default function useComputerBot({ createAnimation } = {}) {
     boardSize >= 4 && boardSize <= 5 && playMode !== "autoHideMode";
 
   function triggerBotScoreAnimation(rowIndex, columnIndex, pointsEarned) {
-    if (!createAnimation) return;
+    if (!createAnimation || pointsEarned === 0) return;
 
     const squareElement = document.querySelector(
       `[data-square="${rowIndex}-${columnIndex}"]`,

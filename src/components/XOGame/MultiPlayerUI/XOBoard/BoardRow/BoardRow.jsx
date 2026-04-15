@@ -47,7 +47,7 @@ const BoardRow = ({
   const { createAnimation } = animationHook || {};
 
   function triggerScoreAnimation(cellElement, pointsEarned, player) {
-    if (!createAnimation || !cellElement) return;
+    if (!createAnimation || !cellElement || pointsEarned === 0) return;
 
     const targetPlayer = player === SYMBOL_O ? "player1" : "player2";
     const scoreElement = document.querySelector(
