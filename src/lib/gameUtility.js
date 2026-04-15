@@ -133,7 +133,8 @@ export function getUpdatedScores({
 
   if (type && MOVE_SCORES[type]) {
     if (type.startsWith("win-by")) updatedScores[winner] += MOVE_SCORES.win;
-    updatedScores[playerTurn] += MOVE_SCORES[type];
+
+    if (type !== "bomb-squares") updatedScores[playerTurn] += MOVE_SCORES[type];
 
     if (type === "bomb-squares")
       applyBombScores({
@@ -237,7 +238,7 @@ export function calculateBombScore({
     playerTurn,
   });
 
-  let totalScore = MOVE_SCORES["bomb-squares"];
+  let totalScore = 0;
 
   for (let i = 0; i < squaresStats.length; i++) {
     totalScore += MOVE_SCORES[squaresStats[i]];
