@@ -20,12 +20,15 @@ const GameStats = ({ stats }) => {
     : useMultiplayerStore();
 
   const board3Class = boardSize === 3 ? s.x3 : "";
+  const onlineModeClass = gameMode === "online" ? s.online : "";
 
   return (
-    <div className={`${s.gameStats} ${board3Class}`}>
-      <header className={s.header}>
-        <h2>{t("title")}</h2>
-      </header>
+    <div className={`${s.gameStats} ${board3Class} ${onlineModeClass}`}>
+      {gameMode !== "online" && (
+        <header className={s.header}>
+          <h2>{t("title")}</h2>
+        </header>
+      )}
 
       <PlayerTurnIndicator
         playerTurn={playerTurn}

@@ -17,6 +17,10 @@
   &.x3 {
     width: 100%;
   }
+
+  &.online {
+    min-height: auto;
+  }
 }
 
 @include m.media("medium") {
