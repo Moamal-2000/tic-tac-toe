@@ -7,8 +7,9 @@ import { useXOStore } from "@/stores/xo.store/xo.store";
 import PlayerScore from "./PlayerScore/PlayerScore";
 import PowerUpButton from "./PowerUpButton/PowerUpButton";
 import s from "./PowerUps.module.scss";
+import PowerUpsScoreAnimation from "./PowerUpsScoreAnimation/PowerUpsScoreAnimation";
 
-const PowerUps = ({ player }) => {
+const PowerUps = ({ player, animationHook }) => {
   const { boardSize, board, powerUps, playerTurn, winner, playMode, scores } =
     useXOStore();
 
@@ -31,10 +32,23 @@ const PowerUps = ({ player }) => {
     !(isPlayer1 || isPlayer2) ? s.display : "",
   ].join(" ");
 
+  const filteredAnimations =
+    animationHook?.animations?.filter((anim) => {
+      return anim.playerColor === player;
+    }) || [];
+
   return (
     <div className={classes}>
       <header className={s.header}>
-        <PlayerScore score={score} player={player} />
+        <div className={s.playerScoreWrapper}>
+          {animationHook && (
+            <PowerUpsScoreAnimation
+              animations={filteredAnimations}
+              removeAnimation={animationHook.removeAnimation}
+            />
+          )}
+          <PlayerScore score={score} player={player} />
+        </div>
       </header>
 
       <div className={s.powerUpsWrapper}>

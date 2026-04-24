@@ -4,7 +4,6 @@ import { useScoreAnimation } from "@/hooks/app/useScoreAnimation";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
-import ScoreAnimationContainer from "../ScoreAnimationContainer/ScoreAnimationContainer";
 import PowerUps from "./PowerUps/PowerUps";
 import s from "./SinglePlayerUI.module.scss";
 import XOBoard from "./XOBoard/XOBoard";
@@ -18,20 +17,21 @@ const SinglePlayerUI = () => {
 
   return (
     <section className={`${s.game} ${board3Class}`}>
-      <ScoreAnimationContainer
-        animations={animations}
-        removeAnimation={removeAnimation}
-      />
-
       <div className={s.gameBody}>
-        <PowerUps player="player1" />
+        <PowerUps
+          player="player1"
+          animationHook={{ animations, removeAnimation, createAnimation }}
+        />
 
         <div className={s.gameBoardArea}>
           <GameStats stats={stats} boardSize={boardSize} />
           <XOBoard animationHook={{ createAnimation, removeAnimation }} />
         </div>
 
-        <PowerUps player="player2" />
+        <PowerUps
+          player="player2"
+          animationHook={{ animations, removeAnimation, createAnimation }}
+        />
       </div>
 
       <PlayerTurnIndicator

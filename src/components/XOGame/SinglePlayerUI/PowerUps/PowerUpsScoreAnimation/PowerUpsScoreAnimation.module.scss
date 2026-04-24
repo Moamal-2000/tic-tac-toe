@@ -1,0 +1,33 @@
+@use "@/styles/mixins" as m;
+
+.scoresContainer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scoreDisplay {
+  font-family: var(--font-digital7);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+  font-weight: bold;
+  white-space: nowrap;
+
+  &.player1 {
+    color: #ff6b6b;
+  }
+
+  &.player2 {
+    color: #4ecdc4;
+  }
+}
