@@ -12,7 +12,6 @@ const XOBoard = ({
   readOnly = false,
   compact = false,
   className = "",
-  animationHook,
 }) => {
   const board = useMultiplayerStore((state) => state.board);
   const boardSize = useMultiplayerStore((state) => state.boardSize);
@@ -44,7 +43,6 @@ const XOBoard = ({
           boardSize={resolvedBoardSize}
           playerTurn={resolvedPlayerTurn}
           compact={compact}
-          animationHook={animationHook}
         />
       ))}
     </div>

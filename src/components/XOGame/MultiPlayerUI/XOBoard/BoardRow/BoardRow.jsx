@@ -1,4 +1,3 @@
-import { MOVE_SCORES, SYMBOL_O } from "@/data/constants";
 import {
   BOMB_SOUND,
   BUTTON_SOUND,
@@ -8,9 +7,7 @@ import {
   UNSELECT_SOUND,
 } from "@/data/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
-import { getAnimationPositions } from "@/hooks/app/useScoreAnimation";
 import { shouldDisableSquare } from "@/lib/accessibilityHelper";
-import { calculateBombScore } from "@/lib/gameUtility";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import XOSquare from "../XOSquare/XOSquare";
@@ -23,7 +20,6 @@ const BoardRow = ({
   boardSize: previewBoardSize,
   playerTurn: previewPlayerTurn,
   compact = false,
-  animationHook,
 }) => {
   const {
     hasGameStarted,
@@ -35,7 +31,6 @@ const BoardRow = ({
     updateMultiplayerState,
     mySymbol,
     boardSize,
-    board,
   } = useMultiplayerStore();
 
   const resolvedBoardSize = previewBoardSize ?? boardSize;
@@ -44,30 +39,6 @@ const BoardRow = ({
   const { selectedPower, hasActivePowerUp } = powerUps;
   const playSound = usePreloadSounds(soundFiles);
   const isMyTurn = resolvedPlayerTurn === mySymbol;
-  const { createAnimation } = animationHook || {};
-
-  function triggerScoreAnimation(cellElement, pointsEarned, player) {
-    if (!createAnimation || !cellElement || pointsEarned === 0) return;
-
-    const targetPlayer = player === SYMBOL_O ? "player1" : "player2";
-    const scoreElement = document.querySelector(
-      `[data-score-target="${targetPlayer}"]`,
-    );
-
-    if (!scoreElement) {
-      console.warn(`Score element not found for player: ${targetPlayer}`);
-      return;
-    }
-
-    const positions = getAnimationPositions(cellElement, scoreElement);
-
-    createAnimation({
-      ...positions,
-      points: `${pointsEarned >= 0 ? "+" : ""}${pointsEarned}`,
-      playerColor: targetPlayer,
-      duration: 1000,
-    });
-  }
 
   function handleSquareClick(rowIndex, columnIndex, cellElement) {
     if (!hasGameStarted || winner || draw) return;
@@ -116,12 +87,6 @@ const BoardRow = ({
         playSound(SWAP_SOUND, 0.3);
         const [firstRow, firstCol] = squaresToSwap[0];
 
-        triggerScoreAnimation(
-          cellElement,
-          MOVE_SCORES["swap-squares"],
-          mySymbol,
-        );
-
         socket.emit("ability", {
           ability: "swap",
           row: firstRow,
@@ -147,11 +112,6 @@ const BoardRow = ({
 
     if (selectedPower === "freeze") {
       playSound(FREEZE_SOUND, 0.3);
-      triggerScoreAnimation(
-        cellElement,
-        MOVE_SCORES["freeze-square"],
-        mySymbol,
-      );
       socket.emit("ability", {
         ability: "freeze",
         row: rowIndex,
@@ -174,14 +134,6 @@ const BoardRow = ({
     if (selectedPower === "bomb") {
       playSound(BOMB_SOUND, 0.25);
 
-      const bombScore = calculateBombScore({
-        board,
-        rowIndex,
-        columnIndex,
-        playerTurn: mySymbol,
-      });
-      triggerScoreAnimation(cellElement, bombScore, mySymbol);
-
       socket.emit("ability", {
         ability: "bomb",
         row: rowIndex,
@@ -201,7 +153,6 @@ const BoardRow = ({
       return;
     }
 
-    triggerScoreAnimation(cellElement, MOVE_SCORES.fill, mySymbol);
     // Otherwise, emit regular move
     socket.emit("move", { row: rowIndex, col: columnIndex });
   }

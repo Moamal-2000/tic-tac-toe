@@ -1,5 +1,4 @@
 import { SCREEN_SIZES } from "@/data/constants";
-import { useScoreAnimation } from "@/hooks/app/useScoreAnimation";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";
@@ -8,7 +7,6 @@ import RematchMenu from "../../Shared/Modals/RematchMenu/RematchMenu";
 import RematchPrompt from "../../Shared/Modals/RematchPrompt/RematchPrompt";
 import GameStats from "../GameStats/GameStats";
 import PlayerTurnIndicator from "../PlayerTurnIndicator/PlayerTurnIndicator";
-import ScoreAnimationContainer from "../ScoreAnimationContainer/ScoreAnimationContainer";
 import Chat from "./Chat/Chat";
 import s from "./MultiPlayerUI.module.scss";
 import PowerUps from "./PowerUps/PowerUps";
@@ -27,7 +25,6 @@ const MultiPlayerUI = () => {
     updateGameStates,
     updateStatsOnResult,
   } = useMultiplayerStore();
-  const { animations, removeAnimation, createAnimation } = useScoreAnimation();
 
   const board3Class = boardSize === 3 ? s.x3 : "";
 
@@ -106,11 +103,6 @@ const MultiPlayerUI = () => {
 
   return (
     <section className={`${s.game} ${board3Class}`}>
-      <ScoreAnimationContainer
-        animations={animations}
-        removeAnimation={removeAnimation}
-      />
-
       <Timer />
 
       <div className={s.wrapper}>
@@ -123,10 +115,7 @@ const MultiPlayerUI = () => {
         <Chat />
       </div>
 
-      <XOBoard
-        readOnly={exploreMode}
-        animationHook={{ createAnimation, removeAnimation }}
-      />
+      <XOBoard readOnly={exploreMode} />
 
       <PlayerTurnIndicator
         playerTurn={playerTurn}
