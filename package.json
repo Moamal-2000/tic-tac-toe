@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "next": "^16.2.3",
-    "next-intl": "^4.9.1",
+    "next-intl": "^4.9.2",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "socket.io-client": "^4.8.3",
