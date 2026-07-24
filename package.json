@@ -10,14 +10,18 @@
   },
   "dependencies": {
     "next": "^16.2.11",
-    "next-intl": "^4.9.2",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "next-intl": "^4.13.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "socket.io-client": "^4.8.3",
-    "zustand": "^5.0.12"
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "babel-plugin-react-compiler": "^1.0.0",
-    "sass": "^1.99.0"
+    "sass": "^1.101.7"
+  },
+  "overrides": {
+    "postcss": "8.4.31",
+    "sharp": "^0.35.3"
   }
 }
