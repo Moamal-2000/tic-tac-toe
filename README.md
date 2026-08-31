@@ -5,7 +5,7 @@
 <br />
 <h1 align="center">Advanced Tic Tac Toe</h1>
 
-A modern twist on the classic Tic Tac Toe game, now with customizable board sizes (up to 5x5) and powerful game-changing Power-Ups like **Freeze**, **Bomb**, and **Swap**. Built with a focus on accessibility, responsiveness, and interactive fun! [Play Now](https://tictactoe-4x4.vercel.app)
+A modern twist on the classic Tic Tac Toe game, now with customizable board sizes (up to 5x5) and powerful game-changing Power-Ups like **Freeze**, **Bomb**, and **Swap**. Built with a focus on accessibility, responsiveness, and interactive fun! [Play Now](https://tictactoe.moamalalaa.com)
 
 ## Features
 
@@ -78,7 +78,7 @@ Click the **Install** button inside the app to add it to your device's home scre
 
 ## Credits
 
-Developed by [Moamal Alaa Karem](https://moamal-alaa.vercel.app)
+Developed by [Moamal Alaa Karem](https://me.moamalalaa.com)
 Design inspired by classic games with a modern UX approach.
 
 ---
