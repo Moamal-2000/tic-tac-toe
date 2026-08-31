@@ -9,8 +9,8 @@ const nextConfig = {
     return [
       {
         source: "/:path*",
-        has: [{ type: "host", value: "https://tictactoe-4x4.vercel.app" }],
-        destination: "http://tictactoe.moamalalaa.com/:path*",
+        has: [{ type: "host", value: "tictactoe-4x4.vercel.app" }],
+        destination: "https://tictactoe.moamalalaa.com/:path*",
         permanent: true,
       },
     ];
