@@ -4,7 +4,7 @@ import {
   SYMBOL_O,
   SYMBOL_X,
   TURN_TIMER_DURATION,
-} from "../data/constants.js";
+} from "../constants/global.js";
 import { Board } from "./Board.js";
 import { Player } from "./Player.js";
 
@@ -475,16 +475,16 @@ export class Game {
           isFrozen: cell.frozen,
           isBombed: cell.bombed,
           swapSelected: cell.swapSelected,
-        }))
+        })),
       ),
       abilities: {
         [SYMBOL_O]: this.players[SYMBOL_O].getAbilitiesState(
           this.board,
-          SYMBOL_X
+          SYMBOL_X,
         ),
         [SYMBOL_X]: this.players[SYMBOL_X].getAbilitiesState(
           this.board,
-          SYMBOL_O
+          SYMBOL_O,
         ),
       },
       powerUps: {
@@ -495,8 +495,8 @@ export class Game {
           this.powerUpsState.whoUsingPower === SYMBOL_O
             ? "player1"
             : this.powerUpsState.whoUsingPower === SYMBOL_X
-            ? "player2"
-            : null,
+              ? "player2"
+              : null,
         hasActivePowerUp: false,
       },
       turn: this.turn,

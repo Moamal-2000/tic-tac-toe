@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "../data/constants.js";
+import { SYMBOL_O, SYMBOL_X } from "../constants/global.js";
 import { Game } from "./Game.js";
 
 export class GameManager {
@@ -11,7 +11,7 @@ export class GameManager {
   createRoom(socketO, socketX, boardSize) {
     const roomId = this.generateRoomId();
     console.log(
-      `[Room] Created room ${roomId} with players ${socketO.id} (O) and ${socketX.id} (X)`
+      `[Room] Created room ${roomId} with players ${socketO.id} (O) and ${socketX.id} (X)`,
     );
 
     const game = new Game(roomId, socketO, socketX, boardSize, this.io);
@@ -87,7 +87,7 @@ export class GameManager {
       col,
       row2,
       col2,
-      action
+      action,
     );
     if (!abilitySuccess) return;
 
@@ -270,7 +270,7 @@ export class GameManager {
 
   handleMatchmaking(socket, boardSize) {
     console.log(
-      `[Matchmaking] Player ${socket.id} looking for match on board size ${boardSize}`
+      `[Matchmaking] Player ${socket.id} looking for match on board size ${boardSize}`,
     );
 
     if (!this.matchmakingQueue.has(boardSize)) {
@@ -285,20 +285,20 @@ export class GameManager {
       // Remove the existing socket and create a new matchmaking request
       queue.splice(existingSocketIndex, 1);
       console.log(
-        `[Matchmaking] Removed duplicate from queue for ${socket.id}`
+        `[Matchmaking] Removed duplicate from queue for ${socket.id}`,
       );
     }
 
     if (queue.length > 0) {
       const waitingSocket = queue.shift();
       console.log(
-        `[Matchmaking] Match found! Pairing ${waitingSocket.id} with ${socket.id}`
+        `[Matchmaking] Match found! Pairing ${waitingSocket.id} with ${socket.id}`,
       );
       this.createRoom(waitingSocket, socket, boardSize);
     } else {
       queue.push(socket);
       console.log(
-        `[Matchmaking] No opponent available. ${socket.id} added to queue. Queue size: ${queue.length}`
+        `[Matchmaking] No opponent available. ${socket.id} added to queue. Queue size: ${queue.length}`,
       );
     }
   }
@@ -391,7 +391,7 @@ export class GameManager {
           isFrozen: cell.frozen,
           isBombed: cell.bombed,
           swapSelected: cell.swapSelected,
-        }))
+        })),
       ),
       turn: game.turn,
       winner: game.winner,
@@ -409,7 +409,7 @@ export class GameManager {
 
     const state = game.getState();
     console.log(
-      `[Sync] Syncing room ${roomId} - O: ${game.players[SYMBOL_O]?.id}, X: ${game.players[SYMBOL_X]?.id}`
+      `[Sync] Syncing room ${roomId} - O: ${game.players[SYMBOL_O]?.id}, X: ${game.players[SYMBOL_X]?.id}`,
     );
 
     // Send to Player O
@@ -430,7 +430,6 @@ export class GameManager {
     this.io
       .to(roomId)
       .emit("square-hover", { row: null, col: null, power: null });
-
   }
 
   handlePlayerDisconnect(socketId) {
@@ -449,8 +448,8 @@ export class GameManager {
         game.players[SYMBOL_O]?.id === socketId
           ? SYMBOL_O
           : game.players[SYMBOL_X]?.id === socketId
-          ? SYMBOL_X
-          : null;
+            ? SYMBOL_X
+            : null;
 
       if (disconnectedPlayer) {
         const opponent = disconnectedPlayer === SYMBOL_O ? SYMBOL_X : SYMBOL_O;
