@@ -87,7 +87,7 @@ const MainMenuButtons = () => {
               onClick={() => handleClick(mode)}
             >
               <svg aria-hidden="true">
-                <use href={`/icons-sprite.svg#${iconName}`} />
+                <use href={`/assets/icons/icons-sprite.svg#${iconName}`} />
               </svg>
               {t(`game_modes.${mode}`)}
             </button>

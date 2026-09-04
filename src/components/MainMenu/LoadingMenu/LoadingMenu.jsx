@@ -89,7 +89,7 @@ const LoadingMenu = () => {
       <div className={s.content}>
         <div className={s.loader}>
           <svg aria-hidden="true">
-            <use href="/icons-sprite.svg#spinner" />
+            <use href="/assets/icons/icons-sprite.svg#spinner" />
           </svg>
         </div>
 

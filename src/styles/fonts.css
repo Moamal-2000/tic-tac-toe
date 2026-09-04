@@ -2,8 +2,8 @@
 @font-face {
   font-family: "Inter";
   src:
-    url("/fonts/Inter/Inter-Light.woff2") format("woff2"),
-    url("/fonts/Inter/Inter-Light.woff") format("woff");
+    url("/assets/fonts/Inter/Inter-Light.woff2") format("woff2"),
+    url("/assets/fonts/Inter/Inter-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -12,8 +12,8 @@
 @font-face {
   font-family: "Inter";
   src:
-    url("/fonts/Inter/Inter-Regular.woff2") format("woff2"),
-    url("/fonts/Inter/Inter-Regular.woff") format("woff");
+    url("/assets/fonts/Inter/Inter-Regular.woff2") format("woff2"),
+    url("/assets/fonts/Inter/Inter-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -22,8 +22,8 @@
 @font-face {
   font-family: "Inter";
   src:
-    url("/fonts/Inter/Inter-Medium.woff2") format("woff2"),
-    url("/fonts/Inter/Inter-Medium.woff") format("woff");
+    url("/assets/fonts/Inter/Inter-Medium.woff2") format("woff2"),
+    url("/assets/fonts/Inter/Inter-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -33,8 +33,8 @@
 @font-face {
   font-family: "Vazirmatn";
   src:
-    url("/fonts/Vazirmatn/Vazirmatn-Light.woff2") format("woff2"),
-    url("/fonts/Vazirmatn/Vazirmatn-Light.woff") format("woff");
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Light.woff2") format("woff2"),
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -43,8 +43,8 @@
 @font-face {
   font-family: "Vazirmatn";
   src:
-    url("/fonts/Vazirmatn/Vazirmatn-Regular.woff2") format("woff2"),
-    url("/fonts/Vazirmatn/Vazirmatn-Regular.woff") format("woff");
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Regular.woff2") format("woff2"),
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -53,8 +53,8 @@
 @font-face {
   font-family: "Vazirmatn";
   src:
-    url("/fonts/Vazirmatn/Vazirmatn-Medium.woff2") format("woff2"),
-    url("/fonts/Vazirmatn/Vazirmatn-Medium.woff") format("woff");
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Medium.woff2") format("woff2"),
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -63,8 +63,8 @@
 @font-face {
   font-family: "Vazirmatn";
   src:
-    url("/fonts/Vazirmatn/Vazirmatn-Bold.woff2") format("woff2"),
-    url("/fonts/Vazirmatn/Vazirmatn-Bold.woff") format("woff");
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Bold.woff2") format("woff2"),
+    url("/assets/fonts/Vazirmatn/Vazirmatn-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -74,8 +74,8 @@
 @font-face {
   font-family: 'digital7';
   src:
-    url('/fonts/digital-7/digital-7-mono.woff2') format('woff2'),
-    url('/fonts/digital-7/digital-7-mono.woff') format('woff');
+    url('/assets/fonts/digital-7/digital-7-mono.woff2') format('woff2'),
+    url('/assets/fonts/digital-7/digital-7-mono.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

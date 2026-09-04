@@ -12,7 +12,7 @@ const ChatHeader = ({ messagesEndRef }) => {
   const t = useTranslations("chat");
   const label = t(`${isChatOpen ? "close_chat" : "open_chat"}`);
   const badgeText = unreadMessagesCount > 99 ? "99+" : unreadMessagesCount;
-  const iconHref = `/icons-sprite.svg#${isChatOpen ? "x-symbol" : "message"}`;
+  const iconHref = `/assets/icons/icons-sprite.svg#${isChatOpen ? "x-symbol" : "message"}`;
 
   function toggleChat() {
     updateMultiplayerState({ isChatOpen: !isChatOpen });

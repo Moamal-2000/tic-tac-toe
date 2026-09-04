@@ -22,7 +22,7 @@ const VolumeButton = () => {
       onClick={toggleVolume}
     >
       <svg aria-hidden="true">
-        <use href="/icons-sprite.svg#volume" />
+        <use href="/assets/icons/icons-sprite.svg#volume" />
       </svg>
     </button>
   );

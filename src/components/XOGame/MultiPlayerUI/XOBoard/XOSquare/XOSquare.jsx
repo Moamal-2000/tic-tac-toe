@@ -107,7 +107,7 @@ const XOSquare = ({
     >
       {owner && (
         <svg aria-hidden="true">
-          <use href={`/icons-sprite.svg#${owner}-symbol`} />
+          <use href={`/assets/icons/icons-sprite.svg#${owner}-symbol`} />
         </svg>
       )}
       {isFrozen && <span className={s.freeze} />}

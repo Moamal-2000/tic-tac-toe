@@ -45,7 +45,7 @@ const PowerUpButton = ({
     >
       <Image
         className={s.icon}
-        src={`/images/${name}-icon.png`}
+        src={`/assets/images/power-ups/${name}-icon.png`}
         alt={name}
         width={22}
         height={21}

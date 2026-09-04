@@ -18,43 +18,43 @@
   ],
   "icons": [
     {
-      "src": "/PWA/icons/maskable-icon.webp",
+      "src": "/assets/images/PWA/icons/maskable-icon.webp",
       "sizes": "512x512",
       "type": "image/webp",
       "purpose": "maskable"
     },
     {
-      "src": "/PWA/icons/android-chrome-512x512.png",
+      "src": "/assets/images/PWA/icons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/PWA/icons/android-chrome-512x512.webp",
+      "src": "/assets/images/PWA/icons/android-chrome-512x512.webp",
       "sizes": "512x512",
       "type": "image/webp"
     },
     {
-      "src": "/PWA/icons/android-chrome-192x192.webp",
+      "src": "/assets/images/PWA/icons/android-chrome-192x192.webp",
       "sizes": "192x192",
       "type": "image/webp",
       "purpose": "any"
     },
     {
-      "src": "/PWA/icons/apple-touch-icon.png",
+      "src": "/assets/images/PWA/icons/apple-touch-icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "/PWA/install-app-image.webp",
+      "src": "/assets/images/PWA/install-app-image.webp",
       "sizes": "1345x872",
       "type": "image/webp",
       "form_factor": "wide"
     },
     {
-      "src": "/PWA/install-app-image-mobile.webp",
+      "src": "/assets/images/PWA/install-app-image-mobile.webp",
       "sizes": "597x991",
       "type": "image/webp",
       "form_factor": "narrow"

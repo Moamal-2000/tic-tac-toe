@@ -30,7 +30,7 @@ const FullscreenToggleButton = ({ playClickSound }) => {
       >
         <svg aria-hidden="true">
           <use
-            href={`/icons-sprite.svg#${isFullScreen ? "compress" : "expand"}`}
+            href={`/assets/icons/icons-sprite.svg#${isFullScreen ? "compress" : "expand"}`}
           />
         </svg>
       </button>

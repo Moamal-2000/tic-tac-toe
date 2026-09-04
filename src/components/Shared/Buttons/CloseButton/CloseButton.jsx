@@ -9,7 +9,7 @@ const CloseButton = ({ onClick, ariaLabel, className = "" }) => {
       aria-label={ariaLabel}
     >
       <svg aria-hidden="true">
-        <use href="/icons-sprite.svg#x-symbol" />
+        <use href="/assets/icons/icons-sprite.svg#x-symbol" />
       </svg>
     </button>
   );

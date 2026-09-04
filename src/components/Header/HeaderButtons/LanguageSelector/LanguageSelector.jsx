@@ -54,7 +54,7 @@ const LanguageSelector = () => {
       <Button onClick={handleToggleLangMenu}>
         {t("language")}
         <svg aria-hidden="true">
-          <use href="/icons-sprite.svg#chevronDown"></use>
+          <use href="/assets/icons/icons-sprite.svg#chevronDown"></use>
         </svg>
       </Button>
 

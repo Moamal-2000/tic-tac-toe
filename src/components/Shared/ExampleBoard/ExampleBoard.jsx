@@ -22,7 +22,9 @@ const ExampleBoard = ({ boardData }) => {
               >
                 {fillWith && (
                   <svg aria-hidden="true">
-                    <use href={`/icons-sprite.svg#${fillWith}-symbol`} />
+                    <use
+                      href={`/assets/icons/icons-sprite.svg#${fillWith}-symbol`}
+                    />
                   </svg>
                 )}
               </button>

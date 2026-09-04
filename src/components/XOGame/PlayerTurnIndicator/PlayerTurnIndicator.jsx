@@ -31,7 +31,7 @@ const PlayerTurnIndicator = ({
       <div className={`${s.player} ${s.p1} ${p1ActiveClass}`}>
         <div className={s.symbol}>
           <svg aria-hidden="true">
-            <use href="/icons-sprite.svg#o-symbol" />
+            <use href="/assets/icons/icons-sprite.svg#o-symbol" />
           </svg>
         </div>
 
@@ -41,7 +41,7 @@ const PlayerTurnIndicator = ({
       <div className={`${s.player} ${s.p2} ${p2ActiveClass}`}>
         <div className={s.symbol}>
           <svg aria-hidden="true">
-            <use href="/icons-sprite.svg#x-symbol" />
+            <use href="/assets/icons/icons-sprite.svg#x-symbol" />
           </svg>
         </div>
 

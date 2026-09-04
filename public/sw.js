@@ -1,14 +1,14 @@
 const CACHE_NAME = "tic-tac-toe-v4.2.7";
 
 const soundFiles = [
-  "/sounds/click.mp3",
-  "/sounds/unselect.mp3",
-  "/sounds/freeze.mp3",
-  "/sounds/bomb.mp3",
-  "/sounds/swap.mp3",
-  "/sounds/victory-1.mp3",
-  "/sounds/victory-2.mp3",
-  "/sounds/draw.mp3",
+  "/assets/sounds/click.mp3",
+  "/assets/sounds/unselect.mp3",
+  "/assets/sounds/freeze.mp3",
+  "/assets/sounds/bomb.mp3",
+  "/assets/sounds/swap.mp3",
+  "/assets/sounds/victory-1.mp3",
+  "/assets/sounds/victory-2.mp3",
+  "/assets/sounds/draw.mp3",
 ];
 
 const assets = [

@@ -1,12 +1,13 @@
+const SOUNDS_BASE_PATH = "/assets/sounds";
 export const soundFiles = {
-  click: "/sounds/click.mp3",
-  unselect: "/sounds/unselect.mp3",
-  freeze: "/sounds/freeze.mp3",
-  bomb: "/sounds/bomb.mp3",
-  swap: "/sounds/swap.mp3",
-  victory1: "/sounds/victory-1.mp3",
-  victory2: "/sounds/victory-2.mp3",
-  draw: "/sounds/draw.mp3",
+  click: `${SOUNDS_BASE_PATH}/click.mp3`,
+  unselect: `${SOUNDS_BASE_PATH}/unselect.mp3`,
+  freeze: `${SOUNDS_BASE_PATH}/freeze.mp3`,
+  bomb: `${SOUNDS_BASE_PATH}/bomb.mp3`,
+  swap: `${SOUNDS_BASE_PATH}/swap.mp3`,
+  victory1: `${SOUNDS_BASE_PATH}/victory-1.mp3`,
+  victory2: `${SOUNDS_BASE_PATH}/victory-2.mp3`,
+  draw: `${SOUNDS_BASE_PATH}/draw.mp3`,
 };
 
 export const BUTTON_SOUND = "click";

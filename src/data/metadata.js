@@ -75,7 +75,7 @@ export function getOpenGraphMetadata(pagePath = "") {
       authors: [author],
       images: [
         {
-          url: `${BASE_URL}/og-image.webp`,
+          url: `${BASE_URL}/assets/images/og-image.webp`,
           type: "image/webp",
           alt: "Tic Tac Toe Logo",
           width: 1200,

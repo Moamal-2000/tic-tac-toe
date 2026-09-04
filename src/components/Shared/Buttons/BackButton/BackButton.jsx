@@ -9,7 +9,7 @@ const BackButton = ({ onClick }) => {
       aria-label="Back to previous menu"
     >
       <svg aria-hidden="true">
-        <use href="/icons-sprite.svg#arrowLeft" />
+        <use href="/assets/icons/icons-sprite.svg#arrowLeft" />
       </svg>
     </button>
   );

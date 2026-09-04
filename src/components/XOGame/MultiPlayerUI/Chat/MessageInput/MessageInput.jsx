@@ -27,7 +27,7 @@ const MessageInput = ({ inputMessage, onInputChange, onSendMessage }) => {
         disabled={!inputMessage.trim()}
       >
         <svg fill="currentColor" aria-hidden="true">
-          <use href="/icons-sprite.svg#paper-plane"></use>
+          <use href="/assets/icons/icons-sprite.svg#paper-plane"></use>
         </svg>
       </button>
     </form>
