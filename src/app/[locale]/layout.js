@@ -4,6 +4,7 @@ import UpdateNotification from "@/components/PWA/UpdateNotification/UpdateNotifi
 import ConnectionLabelAlert from "@/components/Shared/ConnectionLabelAlert/ConnectionLabelAlert";
 import { METADATA } from "@/data/metadata";
 import { routing } from "@/i18n/routing";
+import { digital7, inter, vazirmatn } from "@/lib/fonts";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -29,17 +30,11 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <html lang={locale} dir={dir}>
-        <head>
-          <link
-            rel="preload"
-            href="/fonts/digital-7/digital-7-mono.woff2"
-            as="font"
-            type="font/ttf"
-            crossOrigin="anonymous"
-          />
-        </head>
-
+      <html
+        lang={locale}
+        dir={dir}
+        className={`${inter.variable} ${vazirmatn.variable} ${digital7.variable}`}
+      >
         <body>
           <div className="main-content">
             <MainMenu />
