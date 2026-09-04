@@ -14,7 +14,7 @@ const soundFiles = [
 const assets = [
   "/",
   "/manifest.json",
-  "/PWA/icons/maskable-icon.webp",
+  "/assets/images/PWA/icons/maskable-icon.webp",
   ...soundFiles,
 ];
 

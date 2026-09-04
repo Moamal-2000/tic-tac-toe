@@ -31,19 +31,19 @@ const PWA_METADATA = {
   icons: {
     icon: [
       {
-        url: "/PWA/icons/maskable-icon.webp",
+        url: "/assets/images/PWA/icons/maskable-icon.webp",
         sizes: "192x192",
         type: "image/webp",
       },
       {
-        url: "/PWA/icons/maskable-icon.webp",
+        url: "/assets/images/PWA/icons/maskable-icon.webp",
         sizes: "512x512",
         type: "image/webp",
       },
     ],
     apple: [
       {
-        url: "/PWA/icons/maskable-icon.webp",
+        url: "/assets/images/PWA/icons/maskable-icon.webp",
         sizes: "180x180",
         type: "image/webp",
       },
