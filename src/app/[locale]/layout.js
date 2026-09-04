@@ -6,7 +6,7 @@ import { METADATA } from "@/constants/metadata";
 import { routing } from "@/i18n/routing";
 import { digital7, inter, vazirmatn } from "@/lib/fonts";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../../styles/global.scss";
 
@@ -25,8 +25,6 @@ export default async function RootLayout({ children, params }) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-
-  setRequestLocale(locale);
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
