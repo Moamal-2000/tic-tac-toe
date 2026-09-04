@@ -9,13 +9,13 @@ import HeaderButtons from "./HeaderButtons/HeaderButtons";
 import Logo from "./Logo/Logo";
 
 const Header = () => {
-  const menuActive = useGlobalStore().menuActive;
+  const { menuActive, is404 } = useGlobalStore();
 
   const t = useTranslations("header");
   const logoTitle = t("logo_home");
 
   return (
-    <header className={s.header} inert={menuActive}>
+    <header className={s.header} inert={menuActive && !is404}>
       <div className={s.wrapper}>
         <Link
           href="/"
