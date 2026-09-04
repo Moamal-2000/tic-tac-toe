@@ -1,6 +1,6 @@
 "use client";
 
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useRef } from "react";
@@ -15,7 +15,7 @@ const AboutPopup = () => {
   const { isAboutModelActive, toggleAboutModel } = useGlobalStore();
   const aboutArticleRef = useRef(null);
   const showClass = isAboutModelActive ? s.show : "";
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
 
   function handleOverlayClick(event) {
     const popupElement = aboutArticleRef.current;

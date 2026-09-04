@@ -1,4 +1,4 @@
-import { SCREEN_SIZES } from "@/data/constants";
+import { SCREEN_SIZES } from "@/constants/global";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useEffect } from "react";

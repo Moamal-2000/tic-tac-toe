@@ -2,10 +2,10 @@ import {
   BOMB_SOUND,
   BUTTON_SOUND,
   FREEZE_SOUND,
-  soundFiles,
+  SOUND_PATHS,
   SWAP_SOUND,
   UNSELECT_SOUND,
-} from "@/data/sounds";
+} from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { shouldDisableSquare } from "@/lib/accessibilityHelper";
 import { socket } from "@/socket/socket";
@@ -37,7 +37,7 @@ const BoardRow = ({
   const resolvedPlayerTurn = previewPlayerTurn ?? playerTurn;
 
   const { selectedPower, hasActivePowerUp } = powerUps;
-  const playSound = usePreloadSounds(soundFiles);
+  const playSound = usePreloadSounds(SOUND_PATHS);
   const isMyTurn = resolvedPlayerTurn === mySymbol;
 
   function handleSquareClick(rowIndex, columnIndex, cellElement) {

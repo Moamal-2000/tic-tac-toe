@@ -1,14 +1,14 @@
 "use client";
 
-import { GITHUB_URL } from "@/data/links";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { GITHUB_URL } from "@/constants/links";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useTranslations } from "next-intl";
 import s from "./GitHubButton.module.scss";
 
 const GitHubButton = () => {
   const t = useTranslations("header");
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
 
   return (
     <a

@@ -1,6 +1,6 @@
 "use client";
 
-import { soundFiles, UNSELECT_SOUND } from "@/data/sounds";
+import { SOUND_PATHS, UNSELECT_SOUND } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -16,7 +16,7 @@ const PowerUpButton = ({
   const { selectedPower, whoUsingPower } = powerUps;
   const isSelected = selectedPower === name && whoUsingPower === player;
 
-  const playSound = usePreloadSounds({ unselect: soundFiles.unselect });
+  const playSound = usePreloadSounds({ unselect: SOUND_PATHS.unselect });
   const t = useTranslations("power_ups");
 
   const classes = [

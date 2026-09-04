@@ -3,7 +3,7 @@ import {
   MOVE_SCORES,
   SYMBOL_O,
   SYMBOL_X,
-} from "@/data/constants";
+} from "@/constants/global";
 
 export function hasNoSquaresAvailable(board) {
   return board.every((row) => row.every(({ fillWith }) => fillWith));

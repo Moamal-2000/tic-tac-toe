@@ -1,5 +1,5 @@
 import { applyAction, getWinner, otherPlayer } from "@/ai/engine";
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import { whoWins } from "@/lib/gameUtility";
 
 function hashGameState(state) {

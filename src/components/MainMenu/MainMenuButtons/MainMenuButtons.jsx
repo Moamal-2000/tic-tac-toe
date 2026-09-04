@@ -1,8 +1,8 @@
 "use client";
 
 import QuitGameModal from "@/components/Shared/Modals/QuitGameModal/QuitGameModal";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import { GAME_MODES_BUTTONS } from "@/data/staticData";
+import { GAME_MODES_BUTTONS } from "@/constants/game";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
@@ -23,7 +23,7 @@ const MainMenuButtons = () => {
     updateMultiplayerState,
   } = useMultiplayerStore();
 
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
   const t = useTranslations("main_menu");
 
   function handleClick(mode) {

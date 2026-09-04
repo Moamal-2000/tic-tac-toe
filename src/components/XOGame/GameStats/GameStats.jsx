@@ -1,6 +1,6 @@
 "use client";
 
-import { SCREEN_SIZES } from "@/data/constants";
+import { SCREEN_SIZES } from "@/constants/global";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";

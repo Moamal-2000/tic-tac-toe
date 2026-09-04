@@ -1,4 +1,4 @@
-import { SCREEN_SIZES } from "@/data/constants";
+import { SCREEN_SIZES } from "@/constants/global";
 import useComputerBot from "@/hooks/app/useComputerBot";
 import { useScoreAnimation } from "@/hooks/app/useScoreAnimation";
 import { useXOStore } from "@/stores/xo.store/xo.store";

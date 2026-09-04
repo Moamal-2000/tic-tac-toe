@@ -1,5 +1,5 @@
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
-import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/data/constants";
+import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/constants/global";
 import { useTranslations } from "next-intl";
 import s from "./HowToPlayCard.module.scss";
 

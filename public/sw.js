@@ -1,6 +1,6 @@
 const CACHE_NAME = "tic-tac-toe-v4.2.7";
 
-const soundFiles = [
+const SOUND_PATHS = [
   "/assets/sounds/click.mp3",
   "/assets/sounds/unselect.mp3",
   "/assets/sounds/freeze.mp3",
@@ -11,11 +11,11 @@ const soundFiles = [
   "/assets/sounds/draw.mp3",
 ];
 
-const assets = [
+const ASSETS = [
   "/",
   "/manifest.json",
   "/assets/images/PWA/icons/maskable-icon.webp",
-  ...soundFiles,
+  ...SOUND_PATHS,
 ];
 
 function isCacheableRequest(request) {
@@ -28,7 +28,7 @@ function isCacheableRequest(request) {
 async function installServiceWorker() {
   try {
     const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(assets);
+    await cache.addAll(ASSETS);
   } catch (error) {
     console.error("Failed to install service worker:", error);
   }

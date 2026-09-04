@@ -4,7 +4,7 @@ import {
   INITIAL_BOARD_SIZE,
   INITIAL_PLAY_MODE,
   INITIAL_SQUARE_HIDDEN_TIME,
-} from "@/data/constants";
+} from "@/constants/global";
 
 export const initialGameStates = ({
   boardSize = INITIAL_BOARD_SIZE,

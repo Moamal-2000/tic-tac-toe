@@ -2,7 +2,7 @@
 
 import CloseButton from "@/components/Shared/Buttons/CloseButton/CloseButton";
 import XOBoard from "@/components/XOGame/MultiPlayerUI/XOBoard/XOBoard";
-import { MAX_LIVE_MATCHES } from "@/data/constants";
+import { MAX_LIVE_MATCHES } from "@/constants/global";
 import { socket } from "@/socket/socket";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";

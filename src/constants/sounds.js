@@ -1,5 +1,5 @@
 const SOUNDS_BASE_PATH = "/assets/sounds";
-export const soundFiles = {
+export const SOUND_PATHS = {
   click: `${SOUNDS_BASE_PATH}/click.mp3`,
   unselect: `${SOUNDS_BASE_PATH}/unselect.mp3`,
   freeze: `${SOUNDS_BASE_PATH}/freeze.mp3`,

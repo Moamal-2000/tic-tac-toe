@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import { getSquareAriaLabel } from "@/lib/accessibilityHelper";
 import { getSquareClasses } from "@/lib/classNames";
 import { socket } from "@/socket/socket";

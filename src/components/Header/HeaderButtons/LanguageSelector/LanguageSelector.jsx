@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/Shared/Buttons/Button/Button";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import useEventListener from "@/hooks/helper/useEventListener";
 import { languagesMenu } from "@/i18n/config";
@@ -19,7 +19,7 @@ const LanguageSelector = () => {
 
   const router = useRouter();
   const pathname = usePathname();
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
 
   const langContainerRef = useRef(null);
   const langMenuRef = useRef(null);

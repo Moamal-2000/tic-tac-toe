@@ -1,7 +1,7 @@
 "use client";
 
 import CloseButton from "@/components/Shared/Buttons/CloseButton/CloseButton";
-import { BUTTON_SOUND } from "@/data/sounds";
+import { BUTTON_SOUND } from "@/constants/sounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useTranslations } from "next-intl";
 import s from "./AboutHeader.module.scss";

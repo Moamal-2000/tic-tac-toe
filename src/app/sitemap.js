@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/data/env";
+import { BASE_URL } from "@/constants/env";
 import { readdirSync } from "fs";
 import path from "path";
 

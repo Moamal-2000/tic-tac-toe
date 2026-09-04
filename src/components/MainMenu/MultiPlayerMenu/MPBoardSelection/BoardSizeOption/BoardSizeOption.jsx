@@ -1,11 +1,11 @@
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import s from "./BoardSizeOption.module.scss";
 
 const BoardSizeOption = ({ size }) => {
   const { selectedBoardSize, updateMultiplayerState } = useMultiplayerStore();
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
 
   function handleChange(event) {
     updateMultiplayerState({ selectedBoardSize: +event.target.value });

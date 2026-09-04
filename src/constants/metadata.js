@@ -1,11 +1,11 @@
 import { BASE_URL } from "./env";
 
-const title = "Advanced Tic Tac Toe";
+const TITLE = "Advanced Tic Tac Toe";
 
-const description =
+const DESCRIPTION =
   "A fun and strategic Tic Tac Toe game with board sizes up to 5x5 and exciting power-ups like Freeze, Bomb, and Swap. Learn how to play, challenge a friend, and enjoy a new level of competition!";
 
-const keywords = [
+const KEYWORDS = [
   "advanced tic tac toe",
   "tic tac toe with power ups",
   "play tic tac toe online",
@@ -23,11 +23,11 @@ const keywords = [
   "play tic tac toe with friends",
 ];
 
-const author = "Moamal Alaa Kareem";
+const AUTHOR = "Moamal Alaa Kareem";
 
 const PWA_METADATA = {
   manifest: "/manifest.json",
-  appleWebApp: { capable: true, statusBarStyle: "default", title },
+  appleWebApp: { capable: true, statusBarStyle: "default", title: TITLE },
   icons: {
     icon: [
       {
@@ -52,12 +52,12 @@ const PWA_METADATA = {
 };
 
 export const GLOBAL_METADATA = {
-  title,
-  description,
-  keywords,
-  authors: [{ name: author }],
-  publisher: author,
-  creator: author,
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: KEYWORDS,
+  authors: [{ name: AUTHOR }],
+  publisher: AUTHOR,
+  creator: AUTHOR,
   other: { google: "notranslate" },
 };
 
@@ -66,13 +66,13 @@ export function getOpenGraphMetadata(pagePath = "") {
 
   return {
     openGraph: {
-      title,
-      description,
+      title: TITLE,
+      description: DESCRIPTION,
       url,
       type: "website",
       locale: "en_US",
-      siteName: title,
-      authors: [author],
+      siteName: TITLE,
+      authors: [AUTHOR],
       images: [
         {
           url: `${BASE_URL}/assets/images/og-image.webp`,

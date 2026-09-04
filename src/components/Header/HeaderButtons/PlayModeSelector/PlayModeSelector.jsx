@@ -1,6 +1,6 @@
 "use client";
 
-import { PLAY_MODES } from "@/data/constants";
+import { PLAY_MODES } from "@/constants/global";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";

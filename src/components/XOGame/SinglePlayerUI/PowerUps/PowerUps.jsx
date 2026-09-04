@@ -1,7 +1,7 @@
 "use client";
 
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
-import { POWER_UPS_BUTTONS } from "@/data/staticData";
+import { POWER_UPS_BUTTONS } from "@/constants/game";
+import { SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import { shouldDisablePowerUp } from "@/lib/accessibilityHelper";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import PlayerScore from "./PlayerScore/PlayerScore";

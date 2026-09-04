@@ -2,7 +2,7 @@
 
 import InstallPWAButton from "@/components/PWA/InstallPWAButton";
 import Button from "@/components/Shared/Buttons/Button/Button";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -26,7 +26,7 @@ const HeaderButtons = () => {
     (s) => s.updateMultiplayerState,
   );
 
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
   const isOnlineMode = gameMode === "online";
   const isComputerMode = gameMode === "computer";
 

@@ -1,7 +1,7 @@
 import ExampleBoard from "@/components/Shared/ExampleBoard/ExampleBoard";
 import InfoCard from "@/components/Shared/InfoCard/InfoCard";
-import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/data/constants";
-import { BOARD_EXAMPLES } from "@/data/staticData";
+import { BOARD_EXAMPLES } from "@/constants/boardExamples";
+import { SYMBOL_O_TEXT, SYMBOL_X_TEXT } from "@/constants/global";
 import { useTranslations } from "next-intl";
 
 const BombExplanationCard = () => {

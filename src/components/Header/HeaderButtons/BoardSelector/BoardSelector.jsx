@@ -1,6 +1,6 @@
 "use client";
 
-import { BOARD_SIZES } from "@/data/constants";
+import { BOARD_SIZES } from "@/constants/global";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import s from "./BoardSelector.module.scss";

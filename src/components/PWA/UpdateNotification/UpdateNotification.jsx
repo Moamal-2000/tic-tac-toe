@@ -1,6 +1,6 @@
 "use client";
 
-import { IS_PRODUCTION } from "@/data/env";
+import { IS_PRODUCTION } from "@/constants/env";
 import { refreshPage } from "@/lib/helper";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";

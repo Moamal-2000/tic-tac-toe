@@ -1,6 +1,6 @@
 "use client";
 
-import { soundFiles } from "@/data/sounds";
+import { SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useXOStore } from "@/stores/xo.store/xo.store";
 import { useTranslations } from "next-intl";
@@ -14,7 +14,7 @@ const PowerUpButton = ({
   const { selectPowerUp, powerUps, unSelectPower } = useXOStore();
   const { selectedPower, whoUsingPower } = powerUps;
   const isSelected = selectedPower === name && whoUsingPower === player;
-  const playSound = usePreloadSounds({ unselect: soundFiles.unselect });
+  const playSound = usePreloadSounds({ unselect: SOUND_PATHS.unselect });
   const t = useTranslations("power_ups");
 
   const classes = [

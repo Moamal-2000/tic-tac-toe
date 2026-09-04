@@ -1,4 +1,4 @@
-import { BOARD_SIZES } from "@/data/constants";
+import { BOARD_SIZES } from "@/constants/global";
 import { useTranslations } from "next-intl";
 import BoardSizeOption from "./BoardSizeOption/BoardSizeOption";
 import s from "./MPBoardSelection.module.scss";

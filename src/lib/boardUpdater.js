@@ -1,7 +1,7 @@
 import {
   BOMB_DELETION_DELAY_MS,
   INITIAL_SQUARE_HIDDEN_TIME,
-} from "@/data/constants";
+} from "@/constants/global";
 
 export function updateBoard({
   board,
@@ -54,7 +54,7 @@ export function updateBoard({
 
 export function removeHiddenSquares(
   board,
-  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME,
 ) {
   const newBoard = board.map((row) =>
     row.map((cell) => {
@@ -64,7 +64,7 @@ export function removeHiddenSquares(
       }
 
       return cell;
-    })
+    }),
   );
 
   return newBoard;
@@ -72,10 +72,10 @@ export function removeHiddenSquares(
 
 export function reduceSymbolHiddenDuration(
   board,
-  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME
+  squareHiddenTime = INITIAL_SQUARE_HIDDEN_TIME,
 ) {
   const placedSymbols = board.flatMap((row) =>
-    row.filter((cell) => cell.fillWith)
+    row.filter((cell) => cell.fillWith),
   );
 
   placedSymbols.forEach((cell) => {
@@ -104,7 +104,7 @@ export function swapSymbolsOnBoard({ board, squaresToSwap }) {
       }
 
       return squareData;
-    })
+    }),
   );
 }
 
@@ -148,8 +148,8 @@ export function triggerBombEffect({
 export function deleteBombEffect(board) {
   return board.map((row) =>
     row.map((squareData) =>
-      squareData.isBombed ? { ...squareData, isBombed: false } : squareData
-    )
+      squareData.isBombed ? { ...squareData, isBombed: false } : squareData,
+    ),
   );
 }
 
@@ -161,7 +161,7 @@ export function unSelectAllSquares(board) {
       }
 
       return squareData;
-    })
+    }),
   );
 }
 

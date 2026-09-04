@@ -1,4 +1,4 @@
-import { IS_PRODUCTION, SOCKET_SERVER_URL } from "@/data/env";
+import { IS_PRODUCTION, SOCKET_SERVER_URL } from "@/constants/env";
 import { io } from "socket.io-client";
 
 const socketServer = IS_PRODUCTION

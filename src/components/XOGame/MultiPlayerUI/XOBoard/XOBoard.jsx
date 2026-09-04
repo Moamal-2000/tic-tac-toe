@@ -1,4 +1,4 @@
-import { SYMBOL_X } from "@/data/constants";
+import { SYMBOL_X } from "@/constants/global";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import WinnerPopUp from "../../SinglePlayerUI/XOBoard/WinnerPopUp/WinnerPopUp";
 import BoardRow from "./BoardRow/BoardRow";

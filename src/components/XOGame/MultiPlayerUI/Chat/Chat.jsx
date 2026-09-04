@@ -1,6 +1,6 @@
 "use client";
 
-import { BUTTON_SOUND } from "@/data/sounds";
+import { BUTTON_SOUND } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { scrollToElementBottom } from "@/lib/helper";
 import { socket } from "@/socket/socket";

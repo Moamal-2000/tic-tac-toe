@@ -1,6 +1,6 @@
 import AboutPopup from "@/components/AboutPopup/AboutPopup";
 import XOGame from "@/components/XOGame/XOGame";
-import { getOpenGraphMetadata } from "@/data/metadata";
+import { getOpenGraphMetadata } from "@/constants/metadata";
 
 export function generateMetadata() {
   return getOpenGraphMetadata();

@@ -1,12 +1,12 @@
 import { useLocalStorageStore } from "@/stores/localStorage.store/localStorage.store";
 import { useEffect, useRef } from "react";
 
-const usePreloadSounds = (soundFiles) => {
+const usePreloadSounds = (soundPaths = []) => {
   const isVolumeOn = useLocalStorageStore((s) => s.isVolumeOn);
   const soundsRef = useRef({});
 
   useEffect(() => {
-    for (const [key, src] of Object.entries(soundFiles)) {
+    for (const [key, src] of Object.entries(soundPaths)) {
       const audio = new Audio(src);
       audio.preload = "auto";
       soundsRef.current[key] = audio;

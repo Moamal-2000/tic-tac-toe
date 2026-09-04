@@ -1,6 +1,6 @@
 "use client";
 
-import { TURN_TIMER_DURATION } from "@/data/constants";
+import { TURN_TIMER_DURATION } from "@/constants/global";
 import { socket } from "@/socket/socket";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
 import { useTranslations } from "next-intl";

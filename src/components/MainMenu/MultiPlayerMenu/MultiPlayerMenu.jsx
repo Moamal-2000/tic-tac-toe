@@ -1,7 +1,7 @@
 "use client";
 
 import BackButton from "@/components/Shared/Buttons/BackButton/BackButton";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { socket } from "@/socket/socket";
 import { useGlobalStore } from "@/stores/global.store/global.store";
@@ -17,7 +17,7 @@ const MultiPlayerMenu = () => {
   const { updateGameMode, updateGlobalState } = useGlobalStore();
   const selectedBoardSize = useMultiplayerStore((s) => s.selectedBoardSize);
 
-  const playSound = usePreloadSounds({ click: soundFiles.click });
+  const playSound = usePreloadSounds({ click: SOUND_PATHS.click });
 
   function handleSubmit(event) {
     event?.preventDefault();

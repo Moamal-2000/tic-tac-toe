@@ -2,7 +2,7 @@ import Header from "@/components/Header/Header";
 import MainMenu from "@/components/MainMenu/MainMenu";
 import UpdateNotification from "@/components/PWA/UpdateNotification/UpdateNotification";
 import ConnectionLabelAlert from "@/components/Shared/ConnectionLabelAlert/ConnectionLabelAlert";
-import { METADATA } from "@/data/metadata";
+import { METADATA } from "@/constants/metadata";
 import { routing } from "@/i18n/routing";
 import { digital7, inter, vazirmatn } from "@/lib/fonts";
 import { hasLocale, NextIntlClientProvider } from "next-intl";

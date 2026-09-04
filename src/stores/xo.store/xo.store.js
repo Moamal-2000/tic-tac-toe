@@ -4,14 +4,14 @@ import {
   SYMBOL_O,
   SYMBOL_X,
   WINNER_POPUP_DURATION_MS,
-} from "@/data/constants";
+} from "@/constants/global";
 import {
   BOMB_SOUND,
   BUTTON_SOUND,
   FREEZE_SOUND,
   SWAP_SOUND,
   UNSELECT_SOUND,
-} from "@/data/sounds";
+} from "@/constants/sounds";
 import {
   unSelectAllSquares,
   unSelectSquare,

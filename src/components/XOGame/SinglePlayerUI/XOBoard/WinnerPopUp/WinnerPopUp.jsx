@@ -1,12 +1,12 @@
 "use client";
 
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import {
   DRAW_SOUND,
   getRandomSound,
-  soundFiles,
+  SOUND_PATHS,
   WINNER_SOUNDS,
-} from "@/data/sounds";
+} from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -24,7 +24,7 @@ const WinnerPopUp = () => {
     draw = winner === "Draw!",
   } = isSinglePlayerMode ? useXOStore() : useMultiplayerStore();
 
-  const playSound = usePreloadSounds(soundFiles);
+  const playSound = usePreloadSounds(SOUND_PATHS);
   const t = useTranslations("winner_popup");
 
   const isP1Win = winner === SYMBOL_O;

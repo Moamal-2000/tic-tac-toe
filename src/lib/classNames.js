@@ -1,4 +1,4 @@
-import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SCREEN_SIZES, SYMBOL_O, SYMBOL_X } from "@/constants/global";
 
 export function getSquareClasses({
   cssModule,

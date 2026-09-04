@@ -1,6 +1,6 @@
 "use client";
 
-import { KEY_DEBOUNCE_DELAY_MS } from "@/data/constants";
+import { KEY_DEBOUNCE_DELAY_MS } from "@/constants/global";
 import useFunctionOnKey from "@/hooks/helper/useFunctionOnKey";
 import { enterFullScreen, isFullScreenSupported } from "@/lib/helper";
 import { useTranslations } from "next-intl";

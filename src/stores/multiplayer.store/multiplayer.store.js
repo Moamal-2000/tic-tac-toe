@@ -1,4 +1,4 @@
-import { INITIAL_BOARD_SIZE, SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { INITIAL_BOARD_SIZE, SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import { create } from "zustand";
 import { initialPlayerPowerUps } from "../xo.store/states";
 

@@ -2,9 +2,9 @@
 
 import { chooseBotAction } from "@/ai/bot";
 import { normalizeFromStore } from "@/ai/engine";
-import { BOT_MOVE_DELAY_MS, MOVE_SCORES, SYMBOL_X } from "@/data/constants";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
-import { POWER_UPS } from "@/data/staticData";
+import { POWER_UPS } from "@/constants/game";
+import { BOT_MOVE_DELAY_MS, MOVE_SCORES, SYMBOL_X } from "@/constants/global";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { getAnimationPositions } from "@/hooks/app/useScoreAnimation";
 import { calculateBombScore } from "@/lib/gameUtility";
@@ -28,7 +28,7 @@ export default function useComputerBot({ createAnimation } = {}) {
     usePowerUp,
   } = useXOStore();
 
-  const playSound = usePreloadSounds(soundFiles);
+  const playSound = usePreloadSounds(SOUND_PATHS);
 
   const isBotTurn =
     gameMode === "computer" &&

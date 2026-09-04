@@ -1,5 +1,5 @@
-import { MOVE_SCORES } from "@/data/constants";
-import { BUTTON_SOUND, soundFiles } from "@/data/sounds";
+import { MOVE_SCORES } from "@/constants/global";
+import { BUTTON_SOUND, SOUND_PATHS } from "@/constants/sounds";
 import usePreloadSounds from "@/hooks/app/usePreloadSounds";
 import { getAnimationPositions } from "@/hooks/app/useScoreAnimation";
 import { shouldDisableSquare } from "@/lib/accessibilityHelper";
@@ -23,7 +23,7 @@ const BoardRow = ({ row, rowIndex, animationHook }) => {
   const gameMode = useGlobalStore((s) => s.gameMode);
 
   const { whoUsingPower, selectedPower, hasActivePowerUp } = powerUps;
-  const playSound = usePreloadSounds(soundFiles);
+  const playSound = usePreloadSounds(SOUND_PATHS);
   const createAnimation = animationHook?.createAnimation || {};
 
   const isBotTurn =

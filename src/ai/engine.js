@@ -1,4 +1,4 @@
-import { SYMBOL_O, SYMBOL_X } from "@/data/constants";
+import { SYMBOL_O, SYMBOL_X } from "@/constants/global";
 import { hasNoSquaresAvailable, whoWins } from "@/lib/gameUtility";
 import { getInitialCoolDown } from "@/stores/xo.store/states";
 
