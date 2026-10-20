@@ -3,7 +3,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const nextConfig = {
   devIndicators: false,
   reactCompiler: true,
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false,
 
   async redirects() {
     return [
