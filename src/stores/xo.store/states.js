@@ -11,6 +11,7 @@ export const initialGameStates = ({
   playMode = INITIAL_PLAY_MODE,
   squareHiddenTime = InitialHiddenTimeByBoardSize(boardSize),
   stats,
+  scores,
 } = {}) => ({
   hasGameStart: true,
   playerTurn: FIRST_PLAYER,
@@ -29,7 +30,7 @@ export const initialGameStates = ({
     whoUsingPower: null,
     hasActivePowerUp: false,
   },
-  scores: EMPTY_SCORES,
+  scores: scores || EMPTY_SCORES,
 });
 
 export const initialStats = ({ p1Wins = 0, draws = 0, p2Wins = 0 } = {}) => ({
