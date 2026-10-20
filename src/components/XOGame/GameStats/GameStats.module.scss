@@ -23,13 +23,13 @@
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .gameStats {
     min-height: 297.78px;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .gameStats {
     min-height: unset;
     justify-content: space-between;
@@ -78,7 +78,7 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   html[lang=fr] .gameStats .stats {
     gap: 20px;
   }
@@ -88,7 +88,7 @@
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   html[lang=fr] .gameStats .stats {
     gap: 10px;
   }
@@ -115,7 +115,7 @@
   text-wrap: nowrap;
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .gameStats .stats .label {
     font-size: .7rem;
   }

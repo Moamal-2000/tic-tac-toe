@@ -9,13 +9,13 @@
   position: relative;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .board {
     width: 100%;
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .board {
     padding: 12px;
   }
@@ -25,7 +25,7 @@
   margin-bottom: 6px;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .board>div:not(:last-child) {
     margin-bottom: 4px;
   }

@@ -2,10 +2,10 @@
 @use "sass:map";
 
 $breakpoints: (
-  "large": 1200px,
-  "medium": 992px,
-  "small": 768px,
-  "very-small": 376px,
+  large: 1200px,
+  medium: 992px,
+  small: 768px,
+  very-small: 376px,
 );
 
 @mixin flex-center {
@@ -29,13 +29,14 @@ $breakpoints: (
 }
 
 @mixin langs($langs...) {
-  $selectors: ();
+  $selectors: (
+  );
 
-  @each $lang in $langs {
-    $selectors: list.append($selectors, "[lang=#{$lang}]", comma);
-  }
+@each $lang in $langs {
+  $selectors: list.append($selectors, "[lang=#{$lang}]", comma);
+}
 
-  @at-root html:is(#{$selectors}) {
-    @content;
-  }
+@at-root html:is(#{$selectors}) {
+  @content;
+}
 }

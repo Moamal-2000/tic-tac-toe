@@ -35,7 +35,7 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .chatHeader {
     border-radius: 10px;
     justify-content: flex-end;
@@ -102,7 +102,7 @@
   animation: pulse 2s infinite;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .wrapper .notificationBadge {
     position: absolute;
     bottom: 10px;

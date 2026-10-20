@@ -14,13 +14,13 @@
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .powerUps {
     flex-direction: column;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .powerUps {
     padding: 10px;
     flex-direction: row;

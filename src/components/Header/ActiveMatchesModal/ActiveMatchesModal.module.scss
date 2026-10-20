@@ -29,7 +29,7 @@
   animation: modal-fade-in .2s ease-out;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .modal {
     min-height: auto;
   }
@@ -68,7 +68,7 @@
   gap: 20px 18px;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .matchesGrid {
     gap: 16px;
   }
@@ -78,7 +78,7 @@
   pointer-events: none;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .modal {
     padding: 18px;
   }

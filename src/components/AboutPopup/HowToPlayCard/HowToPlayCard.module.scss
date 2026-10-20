@@ -31,7 +31,7 @@
   flex-shrink: 0;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .howToPlayList li::before {
     all: initial;
   }

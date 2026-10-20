@@ -44,7 +44,7 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .modal {
     padding: 24px 20px;
   }

@@ -18,13 +18,13 @@ html[lang=ja] .indicator {
   width: 220px;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   html[lang=ja] .indicator {
     width: 240px;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   html[lang=ja] .indicator {
     width: 220px;
   }
@@ -117,50 +117,50 @@ html[lang=ja] .indicator {
 }
 
 // Show on specific screen sizes
-@include m.media("large") {
+@include m.media(large) {
   .showOnLarge {
     display: flex !important;
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .showOnMedium {
     display: flex !important;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .showOnSmall {
     display: flex !important;
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .showOnVerySmall {
     display: flex !important;
   }
 }
 
 // Hide on specific screen sizes
-@include m.media("large") {
+@include m.media(large) {
   .hideOnLarge {
     display: none;
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .hideOnMedium {
     display: none;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .hideOnSmall {
     display: none;
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .hideOnVerySmall {
     display: none;
   }

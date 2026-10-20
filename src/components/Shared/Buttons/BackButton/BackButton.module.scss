@@ -31,13 +31,13 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .backButton {
     left: -10px;
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .backButton {
     top: 20px;
     left: 20px;

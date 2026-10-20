@@ -43,7 +43,7 @@ html[lang=ar] .button {
   user-select: none;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .button {
     position: static;
   }

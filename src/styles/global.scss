@@ -37,7 +37,7 @@ body {
   flex-direction: column;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .main-content {
     max-width: 330px;
   }
@@ -47,7 +47,7 @@ body {
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   html[lang=ja] .main-content {
     max-width: 100%;
   }
@@ -59,7 +59,7 @@ body {
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   main {
     width: 100%;
   }

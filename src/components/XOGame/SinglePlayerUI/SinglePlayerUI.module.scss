@@ -11,20 +11,20 @@
   user-select: none;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .game {
     gap: 20px;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .game {
     // padding-bottom: 30px;
     width: 100%;
   }
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .game {
     align-items: stretch;
   }
@@ -37,13 +37,13 @@
   width: 100%;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .game .gameBody {
     gap: 20px;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .game .gameBody {
     display: block;
     position: relative;
@@ -60,13 +60,13 @@
   }
 }
 
-@include m.media("large") {
+@include m.media(large) {
   html[lang=hu] .game .gameBody {
     gap: 10px;
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   html[lang=hu] .game .gameBody {
     gap: 20px;
   }
@@ -78,7 +78,7 @@
   gap: 30px;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .game .gameBoardArea {
     gap: 185px;
   }

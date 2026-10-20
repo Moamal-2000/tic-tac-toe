@@ -24,7 +24,7 @@
   animation: modal-fade-in .2s ease-out;
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .notification {
     padding: 24px 20px;
   }

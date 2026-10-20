@@ -21,13 +21,13 @@
   }
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .playerScore {
     justify-content: center;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .playerScore {
     justify-content: space-between;
   }
@@ -41,13 +41,13 @@
   font-weight: 500;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .playerScore>h2 {
     display: none;
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .playerScore>h2 {
     display: block;
   }

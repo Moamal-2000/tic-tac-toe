@@ -22,7 +22,7 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .chat {
     border: none;
     background: linear-gradient(180deg,

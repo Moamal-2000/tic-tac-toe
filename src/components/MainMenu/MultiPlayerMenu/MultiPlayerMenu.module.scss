@@ -13,7 +13,7 @@
   height: var(--main-menu-content-height);
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .mpContent {
     position: static;
   }

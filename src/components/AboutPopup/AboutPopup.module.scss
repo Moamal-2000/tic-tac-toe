@@ -31,7 +31,7 @@
   overflow-y: auto;
 }
 
-@include m.media("medium") {
+@include m.media(medium) {
   .aboutArticle {
     padding: 24px;
   }
@@ -54,7 +54,7 @@
   background: rgba(255, 255, 255, .05);
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .aboutArticle {
     padding: 14px;
     width: 100%;
@@ -69,7 +69,7 @@
   color: rgba(255, 255, 255, .88);
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   .aboutArticle :where(p, li) {
     font-size: .875rem;
   }

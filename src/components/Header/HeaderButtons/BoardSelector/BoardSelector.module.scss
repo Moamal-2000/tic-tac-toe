@@ -10,7 +10,7 @@
   border: 1px solid #484f57;
 }
 
-@include m.media("very-small") {
+@include m.media(very-small) {
   html[lang=fr] .boardSelector {
     flex-direction: column;
     width: 100%;

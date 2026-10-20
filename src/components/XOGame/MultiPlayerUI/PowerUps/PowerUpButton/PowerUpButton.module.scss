@@ -31,7 +31,7 @@
   }
 }
 
-@include m.media("small") {
+@include m.media(small) {
   .powerUp {
     flex: 1;
   }
