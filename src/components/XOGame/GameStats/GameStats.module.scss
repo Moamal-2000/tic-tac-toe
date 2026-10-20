@@ -104,33 +104,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   height: 51px;
-}
-
-.gameStats .stat .value {
-  font-family: var(--font-digital7);
-  display: block;
-  font-size: 2.3rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, #4ecdc4, #44a08d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gameStats .stat.player1 .value {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gameStats .stat.draws .value {
-  background: linear-gradient(135deg, #ffd93d, #ff9f1c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .gameStats .stat .label {

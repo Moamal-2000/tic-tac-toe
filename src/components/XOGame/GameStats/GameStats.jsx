@@ -1,5 +1,6 @@
 "use client";
 
+import StatCounter from "@/components/Shared/StatCounter/StatCounter";
 import { SCREEN_SIZES } from "@/constants/global";
 import { useGlobalStore } from "@/stores/global.store/global.store";
 import { useMultiplayerStore } from "@/stores/multiplayer.store/multiplayer.store";
@@ -12,7 +13,6 @@ const GameStats = ({ stats }) => {
   const t = useTranslations("game_stats");
 
   const gameMode = useGlobalStore((s) => s.gameMode);
-
   const isSinglePlayerMode = gameMode === "local" || gameMode === "computer";
 
   const { boardSize, playerTurn, winner } = isSinglePlayerMode
@@ -40,21 +40,17 @@ const GameStats = ({ stats }) => {
 
       <div className={s.stats}>
         <div className={`${s.stat} ${s.player1}`}>
-          <span className={s.value} data-score-target="player1">
-            {stats.p1Wins}
-          </span>
+          <StatCounter value={stats.p1Wins} color="red" target="player1" />
           <span className={s.label}>{t("p1_wins")}</span>
         </div>
 
         <div className={`${s.stat} ${s.draws}`}>
-          <span className={s.value}>{stats.draws}</span>
+          <StatCounter value={stats.draws} color="yellow" />
           <span className={s.label}>{t("draws")}</span>
         </div>
 
         <div className={`${s.stat} ${s.player2}`}>
-          <span className={s.value} data-score-target="player2">
-            {stats.p2Wins}
-          </span>
+          <StatCounter value={stats.p2Wins} color="green" target="player2" />
           <span className={s.label}>{t("p2_wins")}</span>
         </div>
       </div>
