@@ -1,3 +1,4 @@
+import { useId } from "react";
 import s from "./StatCounter.module.scss";
 
 /**
@@ -13,7 +14,7 @@ import s from "./StatCounter.module.scss";
 const StatCounter = ({ value, color, target, padNumber, className = "" }) => {
   const validColor = COUNTER_COLORS[color] ? color : DEFAULT_COLOR;
   const [startColor, endColor] = COUNTER_COLORS[validColor];
-  const gradientId = validColor;
+  const gradientId = useId();
 
   const valueText = String(value);
   const valueLength = valueText.length;
