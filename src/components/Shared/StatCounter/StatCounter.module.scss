@@ -1,10 +1,16 @@
 .counter {
   height: 38px;
   flex: none;
+  position: relative;
 }
 
 .counter text {
   font-family: var(--font-digital7);
   font-size: 7rem;
   font-weight: normal;
+}
+
+.counter .mainScore {
+  position: absolute;
+  right: 0;
 }

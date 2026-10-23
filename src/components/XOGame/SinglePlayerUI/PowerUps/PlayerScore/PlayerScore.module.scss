@@ -53,9 +53,13 @@
   }
 }
 
-.playerScore>span {
+.playerScore .score {
+  height: 16px;
+}
+
+.playerScore .score>text {
   font-family: var(--font-digital7);
-  font-size: 1.2rem;
+  font-size: 8rem;
   letter-spacing: 1px;
   font-variant-numeric: tabular-nums;
 }

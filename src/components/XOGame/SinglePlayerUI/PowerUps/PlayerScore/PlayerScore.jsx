@@ -1,3 +1,4 @@
+import StatCounter from "@/components/Shared/StatCounter/StatCounter";
 import { useTranslations } from "next-intl";
 import s from "./PlayerScore.module.scss";
 
@@ -11,7 +12,13 @@ const PlayerScore = ({ score, player }) => {
       <h2>
         {t("player")} {player === "player1" ? 1 : 2}
       </h2>
-      <span>{`${score}`.padStart(3, 0)}</span>
+      <StatCounter
+        value={score}
+        color={player === "player1" ? "red" : "green"}
+        target={player}
+        padNumber={3}
+        className={s.score}
+      />
     </div>
   );
 };

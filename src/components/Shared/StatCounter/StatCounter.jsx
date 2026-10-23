@@ -6,20 +6,27 @@ import s from "./StatCounter.module.scss";
  * @param {string | number} props.value
  * @param {'green' | 'yellow' | 'red'} [props.color]
  * @param {'player1' | 'player2'} [props.target]
+ * @param {number} [props.padNumber]
+ * @param {string} [props.className]
  */
 
-const StatCounter = ({ value, color, target }) => {
+const StatCounter = ({ value, color, target, padNumber, className = "" }) => {
   const validColor = COUNTER_COLORS[color] ? color : DEFAULT_COLOR;
   const [startColor, endColor] = COUNTER_COLORS[validColor];
+  const gradientId = validColor;
 
   const valueText = String(value);
   const valueLength = valueText.length;
-  const gradientId = validColor;
+
+  const displayLength = Math.max(
+    valueLength,
+    Number.isInteger(padNumber) && padNumber > 0 ? padNumber : 0,
+  );
 
   return (
     <svg
-      className={s.counter}
-      viewBox={`0 0 ${valueLength * 60} 100`}
+      className={`${s.counter} ${className}`}
+      viewBox={`0 0 ${displayLength * 60} 100`}
       data-score-target={target}
       aria-hidden="true"
     >
@@ -31,18 +38,18 @@ const StatCounter = ({ value, color, target }) => {
       </defs>
 
       <text
-        x={valueLength * 30}
+        x={displayLength * 30}
         y="40"
         textAnchor="middle"
         dominantBaseline="central"
         fill={`url(#${gradientId})`}
         opacity=".4"
       >
-        {"0".repeat(valueLength)}
+        {"0".repeat(displayLength)}
       </text>
 
       <text
-        x={valueLength * 30}
+        x={displayLength * 60 - valueLength * 30}
         y="40"
         textAnchor="middle"
         dominantBaseline="central"
