@@ -78,7 +78,7 @@ Click the **Install** button inside the app to add it to your device's home scre
 
 ## Credits
 
-Developed by [Moamal Alaa Karem](https://me.moamalalaa.com)
+Developed by [Moamal Alaa Kareem](https://moamalalaa.com)
 Design inspired by classic games with a modern UX approach.
 
 ---
