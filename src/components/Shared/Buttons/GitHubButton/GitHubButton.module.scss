@@ -41,6 +41,7 @@ html[lang=ar] .button {
   color: #e9e9ec;
   height: 16px;
   user-select: none;
+  transition: text-shadow .1s ease;
 }
 
 @include m.media(small) {
@@ -52,7 +53,16 @@ html[lang=ar] .button {
 .button>svg {
   width: 16px;
   height: 16px;
-  fill: #ffc834;
-  filter: drop-shadow(0 0 4px #ffc834);
-  scale: 1.1;
+  fill: #e9e9ec;
+  transition: filter .1s ease;
+}
+
+.button:hover {
+  &>bdi {
+    text-shadow: 0 0 1px #e9e9ec;
+  }
+
+  >svg {
+    filter: drop-shadow(0 0 1px #e9e9ec);
+  }
 }

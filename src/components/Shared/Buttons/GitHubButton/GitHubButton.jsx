@@ -21,7 +21,7 @@ const GitHubButton = () => {
       dir="ltr"
     >
       <svg aria-hidden="true">
-        <use href={"/assets/icons/icons-sprite.svg#solid-star"} />
+        <use href={"/assets/icons/icons-sprite.svg#github"} />
       </svg>
       <bdi>{t("github_star")}</bdi>
     </a>
