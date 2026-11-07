@@ -28,6 +28,7 @@
     position: absolute;
     top: 255px;
     width: 100%;
+    max-height: 145px;
     left: 0;
     padding-bottom: 6px;
     display: none;
@@ -35,6 +36,10 @@
 
   .powerUps:where(.player1, .player2):not(.hidden).display {
     display: flex;
+  }
+
+  html[lang=ja] .powerUps {
+    top: 240px;
   }
 }
 
@@ -69,10 +74,6 @@
 @include m.media(medium) {
   .powerUpsWrapper {
     flex-direction: column;
-  }
-
-  html[lang=hu] .powerUpsWrapper {
-    padding: 15px;
   }
 }
 
